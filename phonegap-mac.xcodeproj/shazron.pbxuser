@@ -1,0 +1,275 @@
+// !$*UTF8*$!
+{
+	256AC3D80F4B6AC300CF3369 /* phonegap_macAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {934, 522}}";
+			sepNavSelRange = "{592, 0}";
+			sepNavVisRange = "{0, 653}";
+		};
+	};
+	256AC3D90F4B6AC300CF3369 /* phonegap_macAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {934, 689}}";
+			sepNavSelRange = "{827, 0}";
+			sepNavVisRange = "{232, 1430}";
+		};
+	};
+	256AC3F00F4B6AF500CF3369 /* phonegap_mac_Prefix.pch */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {934, 528}}";
+			sepNavSelRange = "{171, 0}";
+			sepNavVisRange = "{0, 179}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeArchitecturePreference = i386;
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 300528B0116DD4CC00C4263B /* phonegap-mac */;
+		activeTarget = 8D1107260486CEB800E47090 /* phonegap-mac */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* phonegap-mac */,
+		);
+		codeSenseManager = 300528C1116DD4FC00C4263B /* Code sense */;
+		executables = (
+			300528B0116DD4CC00C4263B /* phonegap-mac */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					756,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 293372157;
+			PBXWorkspaceStateSaveDate = 293372157;
+		};
+		perUserProjectItems = {
+			30BF0E69117C731D0080C772 /* PBXTextBookmark */ = 30BF0E69117C731D0080C772 /* PBXTextBookmark */;
+			30BF0E6A117C731D0080C772 /* PBXTextBookmark */ = 30BF0E6A117C731D0080C772 /* PBXTextBookmark */;
+			30BF0F53117C79880080C772 /* PBXTextBookmark */ = 30BF0F53117C79880080C772 /* PBXTextBookmark */;
+			30BF0F54117C79880080C772 /* PBXTextBookmark */ = 30BF0F54117C79880080C772 /* PBXTextBookmark */;
+			30BF0F6C117C7AFF0080C772 /* PBXTextBookmark */ = 30BF0F6C117C7AFF0080C772 /* PBXTextBookmark */;
+			30BF0F80117C80E80080C772 /* PBXTextBookmark */ = 30BF0F80117C80E80080C772 /* PBXTextBookmark */;
+			30BF0F9A117C81AF0080C772 /* PBXTextBookmark */ = 30BF0F9A117C81AF0080C772 /* PBXTextBookmark */;
+			30E7C93B116EC26D003E991E /* PlistBookmark */ = 30E7C93B116EC26D003E991E /* PlistBookmark */;
+			30EAE85C117C684100363693 /* PBXTextBookmark */ = 30EAE85C117C684100363693 /* PBXTextBookmark */;
+			30EAE85D117C684100363693 /* PBXTextBookmark */ = 30EAE85D117C684100363693 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 300528C0116DD4FC00C4263B /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	29B97316FDCFA39411CA2CEA /* main.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {934, 528}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 254}";
+		};
+	};
+	300528B0116DD4CC00C4263B /* phonegap-mac */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = "phonegap-mac";
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	300528C0116DD4FC00C4263B /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	300528C1116DD4FC00C4263B /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	30BF0E69117C731D0080C772 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 30E7C90C116EBF21003E991E /* Constants.h */;
+		name = "Constants.h: 12";
+		rLen = 0;
+		rLoc = 317;
+		rType = 0;
+		vrLen = 317;
+		vrLoc = 0;
+	};
+	30BF0E6A117C731D0080C772 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 30EAE82A117C643400363693 /* ContentView.h */;
+		name = "ContentView.h: 18";
+		rLen = 0;
+		rLoc = 279;
+		rType = 0;
+		vrLen = 304;
+		vrLoc = 0;
+	};
+	30BF0F53117C79880080C772 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D80F4B6AC300CF3369 /* phonegap_macAppDelegate.h */;
+		name = "phonegap_macAppDelegate.h: 26";
+		rLen = 0;
+		rLoc = 592;
+		rType = 0;
+		vrLen = 653;
+		vrLoc = 0;
+	};
+	30BF0F54117C79880080C772 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D90F4B6AC300CF3369 /* phonegap_macAppDelegate.m */;
+		name = "phonegap_macAppDelegate.m: 28";
+		rLen = 0;
+		rLoc = 827;
+		rType = 0;
+		vrLen = 1430;
+		vrLoc = 232;
+	};
+	30BF0F6C117C7AFF0080C772 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 30EAE82B117C643400363693 /* ContentView.m */;
+		name = "ContentView.m: 70";
+		rLen = 0;
+		rLoc = 1869;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 1033;
+	};
+	30BF0F80117C80E80080C772 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 30BF0F81117C80E80080C772 /* index.html */;
+		name = "index.html: 21";
+		rLen = 0;
+		rLoc = 510;
+		rType = 0;
+		vrLen = 610;
+		vrLoc = 0;
+	};
+	30BF0F81117C80E80080C772 /* index.html */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.html;
+		name = index.html;
+		path = "/Users/shazron/Documents/Git/phonegap/phonegap-mac/www/index.html";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {934, 493}}";
+			sepNavSelRange = "{215, 0}";
+			sepNavVisRange = "{0, 610}";
+		};
+	};
+	30BF0F9A117C81AF0080C772 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 30BF0F9B117C81AF0080C772 /* index.html */;
+		name = "index.html: 9";
+		rLen = 0;
+		rLoc = 215;
+		rType = 0;
+		vrLen = 610;
+		vrLoc = 0;
+	};
+	30BF0F9B117C81AF0080C772 /* index.html */ = {
+		isa = PBXFileReference;
+		name = index.html;
+		path = "/Users/shazron/Documents/Git/phonegap/phonegap-mac/www/index.html";
+		sourceTree = "<absolute>";
+	};
+	30E7C90C116EBF21003E991E /* Constants.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1244, 522}}";
+			sepNavSelRange = "{317, 0}";
+			sepNavVisRange = "{0, 317}";
+		};
+	};
+	30E7C93B116EC26D003E991E /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* phonegap_mac-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/shazron/Documents/Git/phonegap/phonegap-mac/phonegap_mac-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	30EAE82A117C643400363693 /* ContentView.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {934, 522}}";
+			sepNavSelRange = "{279, 0}";
+			sepNavVisRange = "{0, 304}";
+		};
+	};
+	30EAE82B117C643400363693 /* ContentView.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1207, 1508}}";
+			sepNavSelRange = "{1867, 0}";
+			sepNavVisRange = "{1200, 744}";
+		};
+	};
+	30EAE85C117C684100363693 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3F00F4B6AF500CF3369 /* phonegap_mac_Prefix.pch */;
+		name = "phonegap_mac_Prefix.pch: 8";
+		rLen = 0;
+		rLoc = 171;
+		rType = 0;
+		vrLen = 179;
+		vrLoc = 0;
+	};
+	30EAE85D117C684100363693 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 254;
+		vrLoc = 0;
+	};
+	8D1107260486CEB800E47090 /* phonegap-mac */ = {
+		activeExec = 0;
+		executables = (
+			300528B0116DD4CC00C4263B /* phonegap-mac */,
+		);
+	};
+}
