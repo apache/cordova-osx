@@ -12,40 +12,14 @@
 
 @synthesize window, contentView;
 
-
-+ (NSString*) pathForResource:(NSString*)resourcepath
+- (void) applicationDidFinishLaunching:(NSNotification*)aNotification 
 {
-    NSBundle * mainBundle = [NSBundle mainBundle];
-    NSMutableArray *directoryParts = [NSMutableArray arrayWithArray:[resourcepath componentsSeparatedByString:@"/"]];
-    NSString       *filename       = [directoryParts lastObject];
-    [directoryParts removeLastObject];
-	
-    NSString *directoryStr = [NSString stringWithFormat:@"%@/%@", @"www", [directoryParts componentsJoinedByString:@"/"]];
-    return [mainBundle pathForResource:filename
-								ofType:@""
-						   inDirectory:directoryStr];
-}
-
-/* TODO: put this in a utils class or something */
-+ (float) titleBarHeight:(NSWindow*)aWindow
-{
-    NSRect frame = [aWindow frame];
-    NSRect contentRect = [NSWindow contentRectForFrameRect: frame
-										  styleMask: NSTitledWindowMask];
-	
-    return (frame.size.height - contentRect.size.height);
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self.contentView
+	[[NSNotificationCenter defaultCenter] addObserver:self.contentView 
 											 selector:@selector(windowResized:) 
 												 name:NSWindowDidResizeNotification 
 											   object:[self window]];
 	
-	[self.contentView.webView setCustomUserAgent:USER_AGENT_IPHONE_OS];
-	
-    NSURL* fileUrl   = [NSURL fileURLWithPath:[phonegap_macAppDelegate pathForResource:@"index.html"]];
+    NSURL* fileUrl = [NSURL fileURLWithPath:[[Utils sharedInstance] pathForResource:kStartPage]];
 	[self.contentView.webView setMainFrameURL:[fileUrl description]];
 }
 

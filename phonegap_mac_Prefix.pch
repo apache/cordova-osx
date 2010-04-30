@@ -3,7 +3,15 @@
 //
 
 #ifdef __OBJC__
+
+	#ifdef _DEBUG
+	#define DebugNSLog(format, ...) NSLog(format, ## __VA_ARGS__)
+	#else
+	#define DebugNSLog(format, ...)
+	#endif
+
     #import <Cocoa/Cocoa.h>
 
 	#import "Constants.h"
+	#import "Utils.h"
 #endif

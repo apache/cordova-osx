@@ -18,11 +18,7 @@
 	IBOutlet ContentView* contentView;
 }
 
-@property (retain) NSWindow* window;
-@property (retain) ContentView* contentView;
-
-	
-+ (float) titleBarHeight:(NSWindow*)aWindow;
-+ (NSString*) pathForResource:(NSString*)resourcepath;
+@property (nonatomic, retain) NSWindow* window;
+@property (nonatomic, retain) ContentView* contentView;
 
 @end

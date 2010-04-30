@@ -2,23 +2,23 @@
 {
 	256AC3D80F4B6AC300CF3369 /* phonegap_macAppDelegate.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {934, 522}}";
-			sepNavSelRange = "{592, 0}";
-			sepNavVisRange = "{0, 653}";
+			sepNavIntBoundsRect = "{{0, 0}, {934, 510}}";
+			sepNavSelRange = "{532, 0}";
+			sepNavVisRange = "{0, 572}";
 		};
 	};
 	256AC3D90F4B6AC300CF3369 /* phonegap_macAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {934, 689}}";
-			sepNavSelRange = "{827, 0}";
-			sepNavVisRange = "{232, 1430}";
+			sepNavIntBoundsRect = "{{0, 0}, {934, 510}}";
+			sepNavSelRange = "{638, 0}";
+			sepNavVisRange = "{0, 717}";
 		};
 	};
 	256AC3F00F4B6AF500CF3369 /* phonegap_mac_Prefix.pch */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {934, 528}}";
-			sepNavSelRange = "{171, 0}";
-			sepNavVisRange = "{0, 179}";
+			sepNavIntBoundsRect = "{{0, 0}, {934, 487}}";
+			sepNavSelRange = "{247, 0}";
+			sepNavVisRange = "{0, 326}";
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
@@ -56,20 +56,21 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 293372157;
-			PBXWorkspaceStateSaveDate = 293372157;
+			PBXPerProjectTemplateStateSaveDate = 294348148;
+			PBXWorkspaceStateSaveDate = 294348148;
 		};
 		perUserProjectItems = {
-			30BF0E69117C731D0080C772 /* PBXTextBookmark */ = 30BF0E69117C731D0080C772 /* PBXTextBookmark */;
-			30BF0E6A117C731D0080C772 /* PBXTextBookmark */ = 30BF0E6A117C731D0080C772 /* PBXTextBookmark */;
-			30BF0F53117C79880080C772 /* PBXTextBookmark */ = 30BF0F53117C79880080C772 /* PBXTextBookmark */;
-			30BF0F54117C79880080C772 /* PBXTextBookmark */ = 30BF0F54117C79880080C772 /* PBXTextBookmark */;
-			30BF0F6C117C7AFF0080C772 /* PBXTextBookmark */ = 30BF0F6C117C7AFF0080C772 /* PBXTextBookmark */;
-			30BF0F80117C80E80080C772 /* PBXTextBookmark */ = 30BF0F80117C80E80080C772 /* PBXTextBookmark */;
-			30BF0F9A117C81AF0080C772 /* PBXTextBookmark */ = 30BF0F9A117C81AF0080C772 /* PBXTextBookmark */;
-			30E7C93B116EC26D003E991E /* PlistBookmark */ = 30E7C93B116EC26D003E991E /* PlistBookmark */;
-			30EAE85C117C684100363693 /* PBXTextBookmark */ = 30EAE85C117C684100363693 /* PBXTextBookmark */;
-			30EAE85D117C684100363693 /* PBXTextBookmark */ = 30EAE85D117C684100363693 /* PBXTextBookmark */;
+			3070C39A118B996400245025 /* PBXTextBookmark */ = 3070C39A118B996400245025 /* PBXTextBookmark */;
+			3070C39B118B996400245025 /* PBXTextBookmark */ = 3070C39B118B996400245025 /* PBXTextBookmark */;
+			3070C39C118B996400245025 /* PBXTextBookmark */ = 3070C39C118B996400245025 /* PBXTextBookmark */;
+			3070C39D118B996400245025 /* PBXTextBookmark */ = 3070C39D118B996400245025 /* PBXTextBookmark */;
+			3070C39E118B996400245025 /* PBXTextBookmark */ = 3070C39E118B996400245025 /* PBXTextBookmark */;
+			3070C39F118B996400245025 /* PBXTextBookmark */ = 3070C39F118B996400245025 /* PBXTextBookmark */;
+			3070C3A0118B996400245025 /* PBXTextBookmark */ = 3070C3A0118B996400245025 /* PBXTextBookmark */;
+			3070C3A1118B996400245025 /* PBXTextBookmark */ = 3070C3A1118B996400245025 /* PBXTextBookmark */;
+			3070C3A2118B996400245025 /* PBXTextBookmark */ = 3070C3A2118B996400245025 /* PBXTextBookmark */;
+			3070C3A3118B996400245025 /* PBXTextBookmark */ = 3070C3A3118B996400245025 /* PBXTextBookmark */;
+			3070C3A4118B996400245025 /* PBXTextBookmark */ = 3070C3A4118B996400245025 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 300528C0116DD4FC00C4263B /* Source Control */;
 		userBuildSettings = {
@@ -126,145 +127,178 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	30BF0E69117C731D0080C772 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 30E7C90C116EBF21003E991E /* Constants.h */;
-		name = "Constants.h: 12";
-		rLen = 0;
-		rLoc = 317;
-		rType = 0;
-		vrLen = 317;
-		vrLoc = 0;
-	};
-	30BF0E6A117C731D0080C772 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 30EAE82A117C643400363693 /* ContentView.h */;
-		name = "ContentView.h: 18";
-		rLen = 0;
-		rLoc = 279;
-		rType = 0;
-		vrLen = 304;
-		vrLoc = 0;
-	};
-	30BF0F53117C79880080C772 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 256AC3D80F4B6AC300CF3369 /* phonegap_macAppDelegate.h */;
-		name = "phonegap_macAppDelegate.h: 26";
-		rLen = 0;
-		rLoc = 592;
-		rType = 0;
-		vrLen = 653;
-		vrLoc = 0;
-	};
-	30BF0F54117C79880080C772 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 256AC3D90F4B6AC300CF3369 /* phonegap_macAppDelegate.m */;
-		name = "phonegap_macAppDelegate.m: 28";
-		rLen = 0;
-		rLoc = 827;
-		rType = 0;
-		vrLen = 1430;
-		vrLoc = 232;
-	};
-	30BF0F6C117C7AFF0080C772 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 30EAE82B117C643400363693 /* ContentView.m */;
-		name = "ContentView.m: 70";
-		rLen = 0;
-		rLoc = 1869;
-		rType = 0;
-		vrLen = 1301;
-		vrLoc = 1033;
-	};
-	30BF0F80117C80E80080C772 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 30BF0F81117C80E80080C772 /* index.html */;
-		name = "index.html: 21";
-		rLen = 0;
-		rLoc = 510;
-		rType = 0;
-		vrLen = 610;
-		vrLoc = 0;
-	};
-	30BF0F81117C80E80080C772 /* index.html */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = text.html;
-		name = index.html;
-		path = "/Users/shazron/Documents/Git/phonegap/phonegap-mac/www/index.html";
-		sourceTree = "<absolute>";
+	3070C2D9118B65E400245025 /* Utils.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {934, 493}}";
-			sepNavSelRange = "{215, 0}";
-			sepNavVisRange = "{0, 610}";
+			sepNavIntBoundsRect = "{{0, 0}, {934, 487}}";
+			sepNavSelRange = "{422, 0}";
+			sepNavVisRange = "{0, 458}";
 		};
 	};
-	30BF0F9A117C81AF0080C772 /* PBXTextBookmark */ = {
+	3070C2DA118B65E400245025 /* Utils.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {934, 1092}}";
+			sepNavSelRange = "{877, 0}";
+			sepNavVisRange = "{1175, 681}";
+		};
+	};
+	3070C363118B845100245025 /* WebViewDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {934, 510}}";
+			sepNavSelRange = "{313, 0}";
+			sepNavVisRange = "{0, 320}";
+		};
+	};
+	3070C364118B845100245025 /* WebViewDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {934, 637}}";
+			sepNavSelRange = "{513, 0}";
+			sepNavVisRange = "{0, 1047}";
+		};
+	};
+	3070C37F118B8DB100245025 /* Sound.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {934, 510}}";
+			sepNavSelRange = "{233, 0}";
+			sepNavVisRange = "{0, 233}";
+		};
+	};
+	3070C380118B8DB100245025 /* Sound.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {934, 897}}";
+			sepNavSelRange = "{1298, 0}";
+			sepNavVisRange = "{0, 897}";
+		};
+	};
+	3070C39A118B996400245025 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 30BF0F9B117C81AF0080C772 /* index.html */;
-		name = "index.html: 9";
+		fRef = 30E7C90C116EBF21003E991E /* Constants.h */;
+		name = "Constants.h: 13";
 		rLen = 0;
-		rLoc = 215;
+		rLoc = 208;
 		rType = 0;
-		vrLen = 610;
+		vrLen = 210;
 		vrLoc = 0;
 	};
-	30BF0F9B117C81AF0080C772 /* index.html */ = {
-		isa = PBXFileReference;
-		name = index.html;
-		path = "/Users/shazron/Documents/Git/phonegap/phonegap-mac/www/index.html";
-		sourceTree = "<absolute>";
+	3070C39B118B996400245025 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3070C2DA118B65E400245025 /* Utils.m */;
+		name = "Utils.m: 31";
+		rLen = 0;
+		rLoc = 877;
+		rType = 0;
+		vrLen = 681;
+		vrLoc = 1175;
+	};
+	3070C39C118B996400245025 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3070C37F118B8DB100245025 /* Sound.h */;
+		name = "Sound.h: 19";
+		rLen = 0;
+		rLoc = 233;
+		rType = 0;
+		vrLen = 233;
+		vrLoc = 0;
+	};
+	3070C39D118B996400245025 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3070C380118B8DB100245025 /* Sound.m */;
+		name = "Sound.m: 56";
+		rLen = 0;
+		rLoc = 1298;
+		rType = 0;
+		vrLen = 897;
+		vrLoc = 0;
+	};
+	3070C39E118B996400245025 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D90F4B6AC300CF3369 /* phonegap_macAppDelegate.m */;
+		name = "phonegap_macAppDelegate.m: 22";
+		rLen = 0;
+		rLoc = 638;
+		rType = 0;
+		vrLen = 717;
+		vrLoc = 0;
+	};
+	3070C39F118B996400245025 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D80F4B6AC300CF3369 /* phonegap_macAppDelegate.h */;
+		name = "phonegap_macAppDelegate.h: 22";
+		rLen = 0;
+		rLoc = 532;
+		rType = 0;
+		vrLen = 572;
+		vrLoc = 0;
+	};
+	3070C3A0118B996400245025 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3070C363118B845100245025 /* WebViewDelegate.h */;
+		name = "WebViewDelegate.h: 18";
+		rLen = 0;
+		rLoc = 313;
+		rType = 0;
+		vrLen = 320;
+		vrLoc = 0;
+	};
+	3070C3A1118B996400245025 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3070C364118B845100245025 /* WebViewDelegate.m */;
+		name = "WebViewDelegate.m: 22";
+		rLen = 0;
+		rLoc = 513;
+		rType = 0;
+		vrLen = 1047;
+		vrLoc = 0;
+	};
+	3070C3A2118B996400245025 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 30EAE82B117C643400363693 /* ContentView.m */;
+		name = "ContentView.m: 9";
+		rLen = 0;
+		rLoc = 164;
+		rType = 0;
+		vrLen = 840;
+		vrLoc = 0;
+	};
+	3070C3A3118B996400245025 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 30EAE82A117C643400363693 /* ContentView.h */;
+		name = "ContentView.h: 10";
+		rLen = 26;
+		rLoc = 166;
+		rType = 0;
+		vrLen = 402;
+		vrLoc = 0;
+	};
+	3070C3A4118B996400245025 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 30EAE82A117C643400363693 /* ContentView.h */;
+		name = "ContentView.h: 10";
+		rLen = 26;
+		rLoc = 166;
+		rType = 0;
+		vrLen = 402;
+		vrLoc = 0;
 	};
 	30E7C90C116EBF21003E991E /* Constants.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1244, 522}}";
-			sepNavSelRange = "{317, 0}";
-			sepNavVisRange = "{0, 317}";
+			sepNavIntBoundsRect = "{{0, 0}, {934, 510}}";
+			sepNavSelRange = "{208, 0}";
+			sepNavVisRange = "{0, 210}";
 		};
-	};
-	30E7C93B116EC26D003E991E /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 8D1107310486CEB800E47090 /* phonegap_mac-Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/shazron/Documents/Git/phonegap/phonegap-mac/phonegap_mac-Info.plist";
-		rLen = 0;
-		rLoc = 9223372036854775808;
 	};
 	30EAE82A117C643400363693 /* ContentView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {934, 522}}";
-			sepNavSelRange = "{279, 0}";
-			sepNavVisRange = "{0, 304}";
+			sepNavIntBoundsRect = "{{0, 0}, {934, 510}}";
+			sepNavSelRange = "{166, 26}";
+			sepNavVisRange = "{0, 402}";
 		};
 	};
 	30EAE82B117C643400363693 /* ContentView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1207, 1508}}";
-			sepNavSelRange = "{1867, 0}";
-			sepNavVisRange = "{1200, 744}";
+			sepNavIntBoundsRect = "{{0, 0}, {934, 715}}";
+			sepNavSelRange = "{164, 0}";
+			sepNavVisRange = "{0, 840}";
 		};
-	};
-	30EAE85C117C684100363693 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 256AC3F00F4B6AF500CF3369 /* phonegap_mac_Prefix.pch */;
-		name = "phonegap_mac_Prefix.pch: 8";
-		rLen = 0;
-		rLoc = 171;
-		rType = 0;
-		vrLen = 179;
-		vrLoc = 0;
-	};
-	30EAE85D117C684100363693 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
-		name = "main.m: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 254;
-		vrLoc = 0;
 	};
 	8D1107260486CEB800E47090 /* phonegap-mac */ = {
 		activeExec = 0;
