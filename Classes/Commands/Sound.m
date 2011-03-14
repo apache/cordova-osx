@@ -32,13 +32,18 @@
 	static SEL	* acceptableList = NULL;
 	SEL			currentSelector;
 	
+    // initialize once
 	if (acceptableList == NULL && (acceptableList = calloc(256, sizeof(SEL))))	// up to 256 selectors
 	{
+        // pragma below is to ignore the static analyze "dead-store" warning
+        #pragma unused(i)        
+        // list all acceptable selectors here, one at a time
 		acceptableList[i++] = @selector(play:);
+        //... acceptableList[i++] = @selector(whatever:);
 	}
 	
 	i = 0;
-	while (result == YES && (currentSelector = acceptableList[i++]))
+	while (acceptableList != NULL && result == YES && (currentSelector = acceptableList[i++]))
 	{
 		//checking for exclusions
 		result = !(selector == currentSelector);
