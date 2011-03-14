@@ -3,3 +3,5 @@ build
 
 /phonegap-mac.xcodeproj/xcuserdata/
 /phonegap-mac.xcodeproj/project.xcworkspace/xcuserdata/
+*.pbxuser
+*.mode1v3
