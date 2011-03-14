@@ -1,2 +1,5 @@
 .DS_Store
 build
+
+/phonegap-mac.xcodeproj/xcuserdata/
+/phonegap-mac.xcodeproj/project.xcworkspace/xcuserdata/
