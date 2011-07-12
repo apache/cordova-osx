@@ -155,6 +155,6 @@
         fullscreen: true,
         monitorOrientation:true,
         html: '<p><iframe frameborder="0" SRC="http://www.phonegap.com/" width="100%" height="100%"></iframe></p>',
-        dockedItems: dockedItems
+        //dockedItems: dockedItems
     });
 })(/* -@RandyMcMillan */);

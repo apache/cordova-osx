@@ -204,7 +204,7 @@ Ext.ux.UniversalUI = Ext.extend(Ext.Panel, {
 sink.Main = {
     init : function() {
         this.sourceButton = new Ext.Button({
-            text: 'License',
+            text: 'Source',
             ui: 'action',
             hidden: true,
             handler: this.onSourceButtonTap,
@@ -266,7 +266,7 @@ sink.Main = {
             this.codeBox.setValue('No source for this example.');
             this.sourceButton.hide();
             this.sourceActive = false;
-            this.sourceButton.setText('License');
+            this.sourceButton.setText('Source');
             ui.navigationBar.doComponentLayout();
         }
     },
