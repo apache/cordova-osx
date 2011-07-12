@@ -1,0 +1,7 @@
+{
+    productName: 'Sencha Touch',
+    version: '1.0',
+    sampleData: [{
+        desc: 'This sample content is loaded from the server.'
+    }]
+}

@@ -1,0 +1,290 @@
+code, pre, pre * {
+  font-family: Menlo, Monaco, Courier, monospace;
+}
+
+code, pre {
+  font-size: .9em;
+}
+
+.card .x-panel-body {
+    text-align: center;
+    font-size: 24px;
+    line-height: 26px;
+    font-weight: bold;
+    color: rgba(0,0,0,.4);
+    text-shadow: rgba(255,255,255,.2) 0 1px 0;
+    background-color: #ccc;
+    padding: 1em 5%;
+}
+
+.buttons {
+  background-color: #ccc;
+}
+
+.launchscreen > .x-panel-body {
+  background-color: #eee;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+.launchscreen > .x-panel-body > div {
+  width: 530px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 28px;
+  color: #666;
+  text-shadow: #fff 0 0 25px;
+}
+
+.launchscreen > .x-panel-body h1 {
+  letter-spacing: -1px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #000;
+}
+
+.launchscreen .x-panel-body span {
+  color: #999;
+}
+
+.cards .x-panel-body h1 {
+  margin-bottom: 18px;
+  font-size: 72px;
+  line-height: 80px;
+}
+.cards .x-panel-body p {
+  margin-bottom: 18px;
+}
+
+.card1 .x-panel-body {
+    background-color: #eee;
+}
+.card2 .x-panel-body {
+    background-color: #5E99CC;
+}
+.card3 .x-panel-body {
+    background-color: #759E60;
+}
+.card4 .x-panel-body {
+    background-color: #9C744F;
+}
+.card5 .x-panel-body {
+    background-color: #926D9C;
+}
+.card6 .x-panel-body {
+    background-color: #333;
+}
+
+.card4 .x-panel-body, .card5 .x-panel-body, .card6 .x-panel-body {
+    color: #FFF;
+    text-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px;
+}
+
+
+.demobtn {
+  margin: 3% 5%;
+}
+#touchdemo > .x-panel-body {
+  padding: 20px;
+}
+
+#touchpad {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 48px;
+  padding-top: 30px;
+  -webkit-border-radius: 30px;
+  border: 8px dashed #eee;
+  color: #ccc;
+  font-weight: bold;
+  background-color: rgba(255,255,255,.8);
+}
+
+.x-phone #touchpad {
+  font-size: 21px;
+}
+
+.x-tablet #touchpad {
+  margin: 20px;
+}
+
+#touchinfopanel {
+  border-right: 1px solid #000;
+  background-color: #eee;
+}
+
+#touchinfopanel .x-toolbar-metal {
+  height: 30px;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+
+#touchinfopanel .x-toolbar-metal .x-toolbar-title {
+  line-height: 30px !important;
+  font-size: 16px;
+  text-shadow: rgba(0,0,0,.5) 0 -1px 0;
+}
+
+.x-tablet .x-nested-list, .x-desktop .x-nested-list {
+  border-right: 1px solid #000;
+}
+
+.x-tablet .x-fullscreen > .x-nested-list .x-list-item:last-child:after, .x-desktop .x-fullscreen > .x-nested-list .x-list-item:last-child:after {
+  content: "\00a0";
+  position: absolute;
+  bottom: -80px;
+  margin-bottom: 20px;
+  left: 110px;
+  width: 30px;
+  height: 43px;
+  background-image: url(../img/sencha_small.png);
+}
+
+
+.overlay .x-panel-body {
+  background-color: #5E99CC;
+  padding: 80px 0 !important;
+  text-align: center;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: bold;
+  color: rgba(0,0,0,.4);
+  text-shadow: rgba(255,255,255,.2) 0 1px 0;
+  background-color: #ccc;
+  padding: 100px 15%;
+}
+
+#showSourceWrap {
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+#showSourceButton {
+  width: 100%;
+}
+
+.demos-loading {
+  background: rgba(0,0,0,.3) url(resources/shared/loading.gif) center center no-repeat;
+  display: block;
+  width: 10em;
+  height: 10em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -5em;
+  margin-top: -5em;
+  -webkit-border-radius: .5em;
+  color: #fff;
+  text-shadow: #000 0 1px 1px;
+  text-align: center;
+  padding-top: 8em;
+  font-weight: bold;
+}
+
+.x-tablet .demo-weather {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: center;
+}
+
+.x-tablet .day {
+  -webkit-box-flex: 1;
+}
+
+.demo-data .day {
+  background-color: #c5c5c5;
+  color: rgba(0,0,0,.5);
+  text-shadow: #fff 0 1px 0;
+  margin: 1%;
+  text-align: center;
+  -webkit-border-radius: 15px;
+  border-bottom: 1px solid #999;
+  padding: 15px;
+}
+
+.x-phone .day {
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-orient: horizontal;
+}
+
+.x-phone .day .date, .x-phone .day .temp {
+  -webkit-box-flex: 1;
+  text-align: center;
+}
+
+.feedflare {
+  display: none !important;
+}
+
+.x-tablet .day img {
+    display: block;
+    margin: 0 auto;
+}
+.temp {
+    display: block;
+    margin: 20px 0;
+    font-size: 48px;
+    line-height: 40px;
+}
+
+.temp_low {
+    display: block;
+    font-size: 26px;
+    color: rgba(30,30,30,.5);
+}
+
+.date {
+    margin: 10px 0 5px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+span.loading {
+  display: inline-block;
+  background: rgba(0,0,0,.1);
+  padding-top: 100px;
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  color: rgba(0,0,0,.5);
+  text-shadow: rgba(255,255,255,.3);
+  font-size: 32px;
+}
+
+.x-tablet .demo-list > .x-panel-body,
+.demo-picker > .x-panel-body {
+  background-color: #494949;
+}
+
+.x-tablet .demo-list .x-list,
+.demo-picker .x-picker {
+  border: 1px solid #3A3A3A;
+  background-color: #f7f7f7;
+}
+
+.x-simulator-thumb {
+    width: 40px;
+    height: 40px;
+    background: #EEE;
+    -webkit-border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 4px #555;
+    opacity: 0.6;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9999999;
+}
+
+.x-simulator-thumb.pressed {
+    background: #FF6600;
+}
+
+.x-tablet .x-simulator-popup .x-panel-body { font-size: 120% }
+
+.theme_choice img {
+    vertical-align: middle;
+}

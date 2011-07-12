@@ -1,0 +1,316 @@
+{
+    "projectName": "Sencha Touch",
+    "licenseText": "Copyright(c) 2010 Sencha Inc.\nlicensing@sencha.com\nhttp://www.sencha.com/touchlicense",
+    "packages": [
+        {
+            "name"  : "Platform Util",
+            "target": "pkgs/platform/util.js",
+            "id"    : "platform-util",
+            "files" : [
+                {"path": "src/platform/src/",      "name": "Ext.js"},
+                {"path": "src/platform/src/util/", "name": "Observable.js"},
+                {"path": "src/platform/src/util/", "name": "Stateful.js"},
+                {"path": "src/platform/src/util/", "name": "HashMap.js"},
+                {"path": "src/platform/src/util/", "name": "MixedCollection.js"},
+                {"path": "src/platform/src/util/", "name": "AbstractManager.js"},
+                {"path": "src/platform/src/util/", "name": "DelayedTask.js"},
+                {"path": "src/platform/src/util/", "name": "GeoLocation.js"},
+                {"path": "src/platform/src/util/", "name": "Region.js"},
+                {"path": "src/platform/src/util/", "name": "Point.js"},
+                {"path": "src/platform/src/util/", "name": "Offset.js"},
+                {"path": "src/platform/src/util/", "name": "Template.js"},
+                {"path": "src/platform/src/util/", "name": "XTemplate.js"},
+                {"path": "src/platform/src/util/", "name": "Sorter.js"},
+                {"path": "src/platform/src/util/", "name": "Filter.js"},
+                {"path": "src/platform/src/util/", "name": "Function.js"},
+                {"path": "src/platform/src/util/", "name": "Date.js"},
+                {"path": "src/platform/src/util/", "name": "Number.js"},
+                {"path": "src/platform/src/util/", "name": "Format.js"},
+                {"path": "src/platform/src/util/", "name": "LoadMask.js"}
+            ]
+        },
+        {
+            "name"  : "Platform Native",
+            "target": "pkgs/platform/native.js",
+            "id"    : "platform-native",
+            "files" : [
+                {"path": "src/platform/src/native/", "name": "Array.js"}
+            ]
+        },
+        {
+            "name"  : "Platform Core",
+            "target": "pkgs/platform/core.js",
+            "id"    : "platform-core",
+            "files" : [
+                {"path": "src/platform/src/", "name": "ComponentMgr.js"},
+                {"path": "src/platform/src/", "name": "ComponentQuery.js"},
+                {"path": "src/platform/src/", "name": "PluginMgr.js"},
+                {"path": "src/platform/src/", "name": "EventManager.js"},
+                {"path": "src/platform/src/", "name": "Support.js"}
+            ]
+        },
+        {
+            "name"  : "Platform MVC",
+            "target": "pkgs/platform/mvc.js",
+            "id"    : "platform-mvc",
+            "files" : [
+                {"path": "src/core/",             "name": "History.js"},
+                {"path": "src/platform/src/app/", "name": "ControllerManager.js"},
+                {"path": "src/platform/src/app/", "name": "Controller.js"},
+                {"path": "src/platform/src/app/", "name": "Dispatcher.js"},
+                {"path": "src/platform/src/app/", "name": "Router.js"},
+                {"path": "src/platform/src/app/", "name": "Route.js"},
+                {"path": "src/platform/src/app/", "name": "Interaction.js"},
+                {"path": "src/platform/src/app/", "name": "Application.js"},
+                {"path": "src/platform/src/app/", "name": "ApplicationManager.js"}
+            ]
+        },
+
+        {
+            "name": "Data Foundation",
+            "id": "data-foundation",
+            "target": "pkgs/platform/data-foundation.js",
+            "files": [
+                {"path": "src/platform/src/data/",         "name": "Batch.js"},
+                {"path": "src/platform/src/data/",         "name": "Model.js"},
+                {"path": "src/platform/src/data/",         "name": "Association.js"},
+                {"path": "src/platform/src/data/",         "name": "HasManyAssociation.js"},
+                {"path": "src/platform/src/data/",         "name": "BelongsToAssociation.js"},
+                {"path": "src/platform/src/data/",         "name": "PolymorphicAssociation.js"},
+                {"path": "src/platform/src/data/",         "name": "Validations.js"},
+                {"path": "src/platform/src/data/",         "name": "Errors.js"},
+                {"path": "src/platform/src/data/",         "name": "Field.js"},
+                {"path": "src/platform/src/data/",         "name": "SortTypes.js"},
+                {"path": "src/platform/src/data/",         "name": "Types.js"},
+                {"path": "src/platform/src/data/",         "name": "ModelMgr.js"},
+                {"path": "src/platform/src/data/",         "name": "Operation.js"},
+                {"path": "src/platform/src/data/",         "name": "ProxyMgr.js"},
+                {"path": "src/platform/src/data/",         "name": "ReaderMgr.js"},
+                {"path": "src/platform/src/data/",         "name": "Request.js"},
+                {"path": "src/platform/src/data/",         "name": "ResultSet.js"},
+                {"path": "src/platform/src/data/stores/",  "name": "AbstractStore.js"},
+                {"path": "src/platform/src/data/",         "name": "Store.js"},
+                {"path": "src/platform/src/data/stores/",  "name": "TreeStore.js"},
+                {"path": "src/platform/src/data/",         "name": "StoreMgr.js"},
+                {"path": "src/platform/src/data/",         "name": "WriterMgr.js"},
+                {"path": "src/platform/src/data/",         "name": "Tree.js"},
+                {"path": "src/platform/src/data/",         "name": "Node.js"},
+                {"path": "src/platform/src/data/proxies/", "name": "Proxy.js"},
+                {"path": "src/platform/src/data/proxies/", "name": "ServerProxy.js"},
+                {"path": "src/platform/src/data/proxies/", "name": "AjaxProxy.js"},
+                {"path": "src/platform/src/data/proxies/", "name": "RestProxy.js"},
+                {"path": "src/platform/src/data/proxies/", "name": "ScriptTagProxy.js"},
+                {"path": "src/platform/src/data/proxies/", "name": "ClientProxy.js"},
+                {"path": "src/platform/src/data/proxies/", "name": "MemoryProxy.js"},
+                {"path": "src/platform/src/data/proxies/", "name": "WebStorageProxy.js"},
+                {"path": "src/platform/src/data/proxies/", "name": "LocalStorageProxy.js"},
+                {"path": "src/platform/src/data/proxies/", "name": "SessionStorageProxy.js"},
+                {"path": "src/platform/src/data/readers/", "name": "Reader.js"},
+                {"path": "src/platform/src/data/writers/", "name": "Writer.js"}
+            ]
+        },
+        {
+            "name": "Data - Json",
+            "id": "data-json",
+            "target": "pkgs/platform/data-json.js",
+            "files": [
+                {"path": "src/platform/src/data/writers/", "name": "JsonWriter.js"},
+                {"path": "src/platform/src/data/readers/", "name": "JsonReader.js"},
+                {"path": "src/platform/src/data/readers/", "name": "TreeReader.js"},
+                {"path": "src/platform/src/data/readers/", "name": "ArrayReader.js"},
+                {"path": "src/platform/src/data/stores/",  "name": "ArrayStore.js"},
+                {"path": "src/platform/src/data/stores/",  "name": "JsonStore.js"},
+                {"path": "src/platform/src/data/stores/",  "name": "JsonPStore.js"}
+            ]
+        },
+        {
+            "name": "Data - XML",
+            "id": "data-xml",
+            "target": "pkgs/platform/data-xml.js",
+            "files": [
+                {"path": "src/platform/src/data/writers/", "name": "XmlWriter.js"},
+                {"path": "src/platform/src/data/readers/", "name": "XmlReader.js"},
+                {"path": "src/platform/src/data/stores/",  "name": "XmlStore.js"}
+            ]
+        },
+
+        {
+            "name"  : "Touch Core",
+            "target": "pkgs/core.js",
+            "id"    : "core",
+            "files" : [
+                {"path": "src/core/", "name": "Ext.js"},
+				{"path": "src/core/", "name": "Viewport.js"},
+                {"path": "src/util/", "name": "TapRepeater.js"},
+                {"path": "src/util/", "name": "JSON.js"},
+                {"path": "src/util/", "name": "JSONP.js"},
+                {"path": "src/util/", "name": "Draggable.js"},
+                {"path": "src/util/", "name": "Droppable.js"},
+                {"path": "src/util/", "name": "Scroller.js"},
+                {"path": "src/util/", "name": "Sortable.js"},
+                {"path": "src/util/", "name": "Date.js"},
+                {"path": "src/data/", "name": "Connection.js"},
+				{"path": "src/util/", "name": "EventSimulator.js"},
+				{"path": "src/util/", "name": "EventRecorder.js"}
+            ]
+        },
+
+        {
+            "name"  : "Touch Gestures",
+            "target": "pkgs/gestures.js",
+            "id"    : "gestures",
+            "files" : [
+                {"path": "src/gestures/", "name": "Manager.js"},
+                {"path": "src/gestures/", "name": "Event.js"},
+                {"path": "src/gestures/", "name": "Gesture.js"},
+                {"path": "src/gestures/", "name": "Touch.js"},
+                {"path": "src/gestures/", "name": "Tap.js"},
+                {"path": "src/gestures/", "name": "Swipe.js"},
+                {"path": "src/gestures/", "name": "Drag.js"},
+                {"path": "src/gestures/", "name": "Pinch.js"}
+            ]
+        },
+
+        {
+            "name"  : "Touch DOM",
+            "target": "pkgs/dom.js",
+            "id"    : "dom",
+            "files" : [
+                {"path": "src/core/", "name": "Element.js"},
+                {"path": "src/platform/src/core/", "name": "Element.static.js"},
+                {"path": "src/core/", "name": "Element.static-more.js"},
+                {"path": "src/core/", "name": "Element.position.js"},
+                {"path": "src/core/", "name": "Element.style.js"},
+                {"path": "src/platform/src/core/", "name": "Element.traversal.js"},
+                {"path": "src/core/", "name": "Element.traversal-more.js"},
+                {"path": "src/platform/src/core/", "name": "Element.insertion.js"},
+                {"path": "src/core/", "name": "Element.alignment.js"},
+                {"path": "src/core/", "name": "CompositeElement.js"},
+                {"path": "src/core/", "name": "DomHelper.js"},
+                {"path": "src/core/", "name": "DomQuery.js"},
+                {"path": "src/core/", "name": "Anim.js"},
+                {"path": "src/core/", "name": "Anim.more.js"}
+            ]
+        },
+        {
+            "name"  : "Touch Layouts",
+            "target": "pkgs/layouts.js",
+            "id"    : "layouts",
+            "files" : [
+                {"path": "src/platform/src/layout/",           "name": "LayoutManager.js"},
+                {"path": "src/platform/src/layout/",           "name": "Layout.js"},
+                {"path": "src/platform/src/layout/component/", "name": "ComponentLayout.js"},
+                {"path": "src/platform/src/layout/component/", "name": "AutoComponentLayout.js"},
+                {"path": "src/platform/src/layout/component/", "name": "DockLayout.js"},
+                {"path": "src/layout/component/",              "name": "FieldLayout.js"},
+                {"path": "src/platform/src/layout/container/", "name": "ContainerLayout.js"},
+                {"path": "src/platform/src/layout/container/", "name": "AutoContainerLayout.js"},
+                {"path": "src/platform/src/layout/container/", "name": "FitLayout.js"},
+                {"path": "src/platform/src/layout/container/", "name": "CardLayout.js"},
+                {"path": "src/layout/container/",              "name": "BoxLayout.js"}
+            ]
+        },
+        {
+            "name": "Widgets",
+            "target": "pkgs/widgets.js",
+            "id": "widgets",
+            "files": [
+                {"path": "src/platform/src/", "name": "Component.js"},
+                {"path": "src/widgets/",      "name": "Component.js"},
+                {"path": "src/platform/src/", "name": "Container.js"},
+                {"path": "src/widgets/",      "name": "Container.js"},
+                {"path": "src/platform/src/", "name": "Panel.js"},
+                {"path": "src/widgets/",      "name": "Panel.js"},
+
+                {"path": "src/widgets/", "name": "Button.js"},
+                {"path": "src/widgets/", "name": "SegmentedButton.js"},
+                {"path": "src/platform/src/misc/", "name": "AbstractStoreSelectionModel.js"},
+                {"path": "src/platform/src/misc/", "name": "DataViewSelectionModel.js"},
+                {"path": "src/platform/src/misc/", "name": "DataView.js"},
+                {"path": "src/widgets/", "name": "DataView.js"},
+                {"path": "src/widgets/", "name": "List.js"},
+                {"path": "src/widgets/", "name": "IndexBar.js"},
+                {"path": "src/widgets/", "name": "Toolbar.js"},
+                {"path": "src/widgets/", "name": "Sheet.js"},
+                {"path": "src/widgets/", "name": "TabBar.js"},
+                {"path": "src/widgets/", "name": "Tab.js"},
+                {"path": "src/widgets/", "name": "TabPanel.js"},
+                {"path": "src/widgets/", "name": "Carousel.js"},
+                {"path": "src/widgets/", "name": "Map.js"},
+                {"path": "src/widgets/", "name": "NestedList.js"},
+                {"path": "src/widgets/", "name": "Picker.js"},
+                {"path": "src/widgets/", "name": "DatePicker.js"},
+                {"path": "src/widgets/", "name": "Media.js"},
+                {"path": "src/widgets/", "name": "Video.js"},
+                {"path": "src/widgets/", "name": "Audio.js"},
+                {"path": "src/widgets/", "name": "MessageBox.js"},
+
+                {"path": "src/widgets/form/", "name": "FormPanel.js"},
+                {"path": "src/widgets/form/", "name": "FieldSet.js"},
+                {"path": "src/widgets/form/", "name": "Field.js"},
+                {"path": "src/widgets/form/", "name": "Slider.js"},
+                {"path": "src/widgets/form/", "name": "Toggle.js"},
+                {"path": "src/widgets/form/", "name": "Text.js"},
+                {"path": "src/widgets/form/", "name": "Password.js"},
+                {"path": "src/widgets/form/", "name": "Email.js"},
+                {"path": "src/widgets/form/", "name": "Url.js"},
+                {"path": "src/widgets/form/", "name": "Search.js"},
+                {"path": "src/widgets/form/", "name": "Number.js"},
+                {"path": "src/widgets/form/", "name": "Spinner.js"},
+                {"path": "src/widgets/form/", "name": "Hidden.js"},
+                {"path": "src/widgets/form/", "name": "Checkbox.js"},
+                {"path": "src/widgets/form/", "name": "Radio.js"},
+                {"path": "src/widgets/form/", "name": "Select.js"},
+                {"path": "src/widgets/form/", "name": "TextArea.js"},
+                {"path": "src/widgets/form/", "name": "DatePicker.js"}
+            ]
+        },
+        {
+            "name"  : "Plugins",
+            "target": "pkgs/plugins.js",
+            "id"    : "plugins",
+            "files" : [
+                {"path": "src/plugins/list/", "name": "ListPaging.js"},
+                {"path": "src/plugins/list/", "name": "PullRefresh.js"}
+            ]
+        }
+    ],
+    "builds": [
+        {
+            "name": "Sencha Touch",
+            "target": "sencha-touch.js",
+            "debug": true,
+		   "options": {
+		      "minVersion": 1.1
+		   },
+            "packages": [
+                "platform-util",
+                "platform-native",
+                "platform-core",
+                "data-foundation",
+                "data-json",
+                "data-xml",
+                "platform-mvc",
+                "dom",
+                "core",
+                "gestures",
+                "widgets",
+                "layouts",
+                "plugins"
+            ]
+        }
+    ],
+    "resources": [
+        {"src": "resources/"},
+        {"src": "src/"},
+        {"src": "jsbuilder/"},
+        {"src": "examples/"},
+        {"src": "test/"},
+        {"src": "sencha-touch.jsb3"},
+        {"src": "license.txt"},
+        {"src": "license.inc"},
+        {"src": "release-notes.html"},
+        {"src": "getting-started.html"},
+        {"src": "index.html"}
+    ]
+}

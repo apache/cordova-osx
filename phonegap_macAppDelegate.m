@@ -12,15 +12,24 @@
 
 @synthesize window, contentView;
 
-- (void) applicationDidFinishLaunching:(NSNotification*)aNotification 
+- (void) applicationDidStartLaunching:(NSNotification *)aNotification {}
+
+- (void) applicationWillFinishLaunching:(NSNotification *)aNotification
 {
-	[[NSNotificationCenter defaultCenter] addObserver:self.contentView 
+    [[NSNotificationCenter defaultCenter] addObserver:self.contentView 
 											 selector:@selector(windowResized:) 
 												 name:NSWindowDidResizeNotification 
 											   object:[self window]];
 	
     NSURL* fileUrl = [NSURL fileURLWithPath:[[Utils sharedInstance] pathForResource:kStartPage]];
 	[self.contentView.webView setMainFrameURL:[fileUrl description]];
+    self.window.backgroundColor = [NSColor colorWithCalibratedRed:0.933 green:0.933 blue:0.933 alpha:1.000];
+}
+
+- (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
+    
+    self.contentView.webView.alphaValue = 1.0;
+    self.contentView.alphaValue = 1.0;
 }
 
 @end
