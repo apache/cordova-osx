@@ -21,7 +21,8 @@
 	[self.webView setUIDelegate:self.delegate];
 	[self.webView setResourceLoadDelegate:self.delegate];
 	[self.webView setDownloadDelegate:self.delegate];
-	[self.webView setPolicyDelegate:self.delegate];				
+	[self.webView setPolicyDelegate:self.delegate];	
+    //self.window.backgroundColor = [NSColor colorWithCalibratedRed:0.933 green:0.933 blue:0.933 alpha:1.000];
 }
 
 - (id)initWithFrame:(NSRect)frame 
@@ -45,6 +46,7 @@
 	
 	DebugNSLog(@"window width = %f, window height = %f", size.width, size.height);
 	[self.webView setFrame:NSMakeRect(0, 0, size.width, size.height - [[Utils sharedInstance] titleBarHeight:window])];
+    //[self.webView stringByEvaluatingJavaScriptFromString:@"var e = document.createEvent('Events'); e.initEvent('orientationchange', true, false); document.dispatchEvent(e); "];
 }
 
 
