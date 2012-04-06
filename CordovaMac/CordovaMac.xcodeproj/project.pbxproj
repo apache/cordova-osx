@@ -1,0 +1,342 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		488B21E7152F6242007056D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 488B21E6152F6242007056D6 /* AppDelegate.m */; };
+		488B21EC152F742C007056D6 /* Cordova.icns in Resources */ = {isa = PBXBuildFile; fileRef = 488B21EB152F742C007056D6 /* Cordova.icns */; };
+		48B43519152E5E3500906A36 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B43518152E5E3500906A36 /* Cocoa.framework */; };
+		48B43523152E5E3500906A36 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48B43521152E5E3500906A36 /* InfoPlist.strings */; };
+		48B43525152E5E3500906A36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B43524152E5E3500906A36 /* main.m */; };
+		48B43529152E5E3500906A36 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 48B43527152E5E3500906A36 /* Credits.rtf */; };
+		48B4352F152E5E3600906A36 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48B4352D152E5E3600906A36 /* MainMenu.xib */; };
+		48B43536152E5E4100906A36 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B43535152E5E4100906A36 /* WebKit.framework */; };
+		48B43538152E5E6B00906A36 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 48B43537152E5E6B00906A36 /* www */; };
+		48B4353B152E5EC300906A36 /* ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B4353A152E5EC300906A36 /* ContentView.m */; };
+		48B4353E152E5FE200906A36 /* WebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B4353D152E5FE200906A36 /* WebViewDelegate.m */; };
+		48B43541152E603C00906A36 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B43540152E603C00906A36 /* Sound.m */; };
+		48B43544152E60A300906A36 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B43543152E60A300906A36 /* Utils.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		488B21E5152F6242007056D6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		488B21E6152F6242007056D6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		488B21EB152F742C007056D6 /* Cordova.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Cordova.icns; path = ../Cordova.icns; sourceTree = "<group>"; };
+		48B43514152E5E3500906A36 /* CordovaMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CordovaMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		48B43518152E5E3500906A36 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		48B4351B152E5E3500906A36 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		48B4351C152E5E3500906A36 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		48B4351D152E5E3500906A36 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		48B43520152E5E3500906A36 /* CordovaMac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CordovaMac-Info.plist"; sourceTree = "<group>"; };
+		48B43522152E5E3500906A36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		48B43524152E5E3500906A36 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		48B43526152E5E3500906A36 /* CordovaMac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CordovaMac-Prefix.pch"; sourceTree = "<group>"; };
+		48B43528152E5E3500906A36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		48B4352E152E5E3600906A36 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		48B43535152E5E4100906A36 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		48B43537152E5E6B00906A36 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		48B43539152E5EC300906A36 /* ContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentView.h; sourceTree = "<group>"; };
+		48B4353A152E5EC300906A36 /* ContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentView.m; sourceTree = "<group>"; };
+		48B4353C152E5FE200906A36 /* WebViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewDelegate.h; sourceTree = "<group>"; };
+		48B4353D152E5FE200906A36 /* WebViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewDelegate.m; sourceTree = "<group>"; };
+		48B4353F152E603C00906A36 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
+		48B43540152E603C00906A36 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
+		48B43542152E60A300906A36 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		48B43543152E60A300906A36 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		48B43545152E60E500906A36 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		48B43511152E5E3500906A36 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48B43536152E5E4100906A36 /* WebKit.framework in Frameworks */,
+				48B43519152E5E3500906A36 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		488B21E3152F61A9007056D6 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				48B4353F152E603C00906A36 /* Sound.h */,
+				48B43540152E603C00906A36 /* Sound.m */,
+			);
+			name = Commands;
+			sourceTree = "<group>";
+		};
+		48B43509152E5E3500906A36 = {
+			isa = PBXGroup;
+			children = (
+				48B43537152E5E6B00906A36 /* www */,
+				48B4351E152E5E3500906A36 /* CordovaMac */,
+				48B43517152E5E3500906A36 /* Frameworks */,
+				48B43515152E5E3500906A36 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		48B43515152E5E3500906A36 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48B43514152E5E3500906A36 /* CordovaMac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		48B43517152E5E3500906A36 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				48B43535152E5E4100906A36 /* WebKit.framework */,
+				48B43518152E5E3500906A36 /* Cocoa.framework */,
+				48B4351A152E5E3500906A36 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		48B4351A152E5E3500906A36 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				48B4351B152E5E3500906A36 /* AppKit.framework */,
+				48B4351C152E5E3500906A36 /* CoreData.framework */,
+				48B4351D152E5E3500906A36 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		48B4351E152E5E3500906A36 /* CordovaMac */ = {
+			isa = PBXGroup;
+			children = (
+				48B43542152E60A300906A36 /* Utils.h */,
+				48B43543152E60A300906A36 /* Utils.m */,
+				488B21E3152F61A9007056D6 /* Commands */,
+				488B21E5152F6242007056D6 /* AppDelegate.h */,
+				488B21E6152F6242007056D6 /* AppDelegate.m */,
+				48B43545152E60E500906A36 /* Constants.h */,
+				48B43539152E5EC300906A36 /* ContentView.h */,
+				48B4353A152E5EC300906A36 /* ContentView.m */,
+				48B4353C152E5FE200906A36 /* WebViewDelegate.h */,
+				48B4353D152E5FE200906A36 /* WebViewDelegate.m */,
+				48B4351F152E5E3500906A36 /* Supporting Files */,
+			);
+			path = CordovaMac;
+			sourceTree = "<group>";
+		};
+		48B4351F152E5E3500906A36 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				488B21EB152F742C007056D6 /* Cordova.icns */,
+				48B4352D152E5E3600906A36 /* MainMenu.xib */,
+				48B43520152E5E3500906A36 /* CordovaMac-Info.plist */,
+				48B43521152E5E3500906A36 /* InfoPlist.strings */,
+				48B43524152E5E3500906A36 /* main.m */,
+				48B43526152E5E3500906A36 /* CordovaMac-Prefix.pch */,
+				48B43527152E5E3500906A36 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48B43513152E5E3500906A36 /* CordovaMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48B43532152E5E3600906A36 /* Build configuration list for PBXNativeTarget "CordovaMac" */;
+			buildPhases = (
+				48B43510152E5E3500906A36 /* Sources */,
+				48B43511152E5E3500906A36 /* Frameworks */,
+				48B43512152E5E3500906A36 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CordovaMac;
+			productName = CordovaMac;
+			productReference = 48B43514152E5E3500906A36 /* CordovaMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		48B4350B152E5E3500906A36 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CDV;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = OpenOSX.org;
+			};
+			buildConfigurationList = 48B4350E152E5E3500906A36 /* Build configuration list for PBXProject "CordovaMac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 48B43509152E5E3500906A36;
+			productRefGroup = 48B43515152E5E3500906A36 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				48B43513152E5E3500906A36 /* CordovaMac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		48B43512152E5E3500906A36 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48B43523152E5E3500906A36 /* InfoPlist.strings in Resources */,
+				48B43529152E5E3500906A36 /* Credits.rtf in Resources */,
+				48B4352F152E5E3600906A36 /* MainMenu.xib in Resources */,
+				48B43538152E5E6B00906A36 /* www in Resources */,
+				488B21EC152F742C007056D6 /* Cordova.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		48B43510152E5E3500906A36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48B43525152E5E3500906A36 /* main.m in Sources */,
+				48B4353B152E5EC300906A36 /* ContentView.m in Sources */,
+				48B4353E152E5FE200906A36 /* WebViewDelegate.m in Sources */,
+				48B43541152E603C00906A36 /* Sound.m in Sources */,
+				48B43544152E60A300906A36 /* Utils.m in Sources */,
+				488B21E7152F6242007056D6 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		48B43521152E5E3500906A36 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48B43522152E5E3500906A36 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		48B43527152E5E3500906A36 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48B43528152E5E3500906A36 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		48B4352D152E5E3600906A36 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48B4352E152E5E3600906A36 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		48B43530152E5E3600906A36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		48B43531152E5E3600906A36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		48B43533152E5E3600906A36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CordovaMac/CordovaMac-Prefix.pch";
+				INFOPLIST_FILE = "CordovaMac/CordovaMac-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		48B43534152E5E3600906A36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CordovaMac/CordovaMac-Prefix.pch";
+				INFOPLIST_FILE = "CordovaMac/CordovaMac-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		48B4350E152E5E3500906A36 /* Build configuration list for PBXProject "CordovaMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48B43530152E5E3600906A36 /* Debug */,
+				48B43531152E5E3600906A36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48B43532152E5E3600906A36 /* Build configuration list for PBXNativeTarget "CordovaMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48B43533152E5E3600906A36 /* Debug */,
+				48B43534152E5E3600906A36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 48B4350B152E5E3500906A36 /* Project object */;
+}
