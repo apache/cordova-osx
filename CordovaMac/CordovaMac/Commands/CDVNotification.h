@@ -20,10 +20,10 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface Sound : NSObject {
+@interface CDVNotification : NSObject {
 	
 }
 
-- (void) play:(NSString*)file;
+- (void) alert:(NSString*)message withTitle:(NSString*)title;
 
 @end

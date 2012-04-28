@@ -17,9 +17,6 @@
  under the License.
  */
 
-#define kStartPage @"index.html"
-
-
-// PhoneGap Docs 
-#define kStartFolder @"www/phonegap-docs/template/phonegap/"
+#define kStartPage      @"index.html"
+#define kStartFolder    @"www"
 

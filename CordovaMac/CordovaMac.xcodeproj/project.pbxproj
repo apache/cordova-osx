@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30513C05154B6DED002B79B6 /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 30513C02154B6DED002B79B6 /* CDVNotification.m */; };
+		30513C06154B6DED002B79B6 /* CDVSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 30513C04154B6DED002B79B6 /* CDVSound.m */; };
+		30513C09154B6F56002B79B6 /* CDVConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 30513C08154B6F56002B79B6 /* CDVConsole.m */; };
 		488B21E7152F6242007056D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 488B21E6152F6242007056D6 /* AppDelegate.m */; };
 		488B21EC152F742C007056D6 /* Cordova.icns in Resources */ = {isa = PBXBuildFile; fileRef = 488B21EB152F742C007056D6 /* Cordova.icns */; };
 		48B43519152E5E3500906A36 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B43518152E5E3500906A36 /* Cocoa.framework */; };
@@ -18,11 +21,16 @@
 		48B43538152E5E6B00906A36 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 48B43537152E5E6B00906A36 /* www */; };
 		48B4353B152E5EC300906A36 /* ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B4353A152E5EC300906A36 /* ContentView.m */; };
 		48B4353E152E5FE200906A36 /* WebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B4353D152E5FE200906A36 /* WebViewDelegate.m */; };
-		48B43541152E603C00906A36 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B43540152E603C00906A36 /* Sound.m */; };
 		48B43544152E60A300906A36 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B43543152E60A300906A36 /* Utils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30513C01154B6DED002B79B6 /* CDVNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVNotification.h; sourceTree = "<group>"; };
+		30513C02154B6DED002B79B6 /* CDVNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVNotification.m; sourceTree = "<group>"; };
+		30513C03154B6DED002B79B6 /* CDVSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVSound.h; sourceTree = "<group>"; };
+		30513C04154B6DED002B79B6 /* CDVSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVSound.m; sourceTree = "<group>"; };
+		30513C07154B6F56002B79B6 /* CDVConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVConsole.h; sourceTree = "<group>"; };
+		30513C08154B6F56002B79B6 /* CDVConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVConsole.m; sourceTree = "<group>"; };
 		488B21E5152F6242007056D6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		488B21E6152F6242007056D6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		488B21EB152F742C007056D6 /* Cordova.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Cordova.icns; path = ../Cordova.icns; sourceTree = "<group>"; };
@@ -43,8 +51,6 @@
 		48B4353A152E5EC300906A36 /* ContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentView.m; sourceTree = "<group>"; };
 		48B4353C152E5FE200906A36 /* WebViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewDelegate.h; sourceTree = "<group>"; };
 		48B4353D152E5FE200906A36 /* WebViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewDelegate.m; sourceTree = "<group>"; };
-		48B4353F152E603C00906A36 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
-		48B43540152E603C00906A36 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
 		48B43542152E60A300906A36 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		48B43543152E60A300906A36 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		48B43545152E60E500906A36 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -63,13 +69,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		488B21E3152F61A9007056D6 /* Commands */ = {
+		30513C00154B6DED002B79B6 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
-				48B4353F152E603C00906A36 /* Sound.h */,
-				48B43540152E603C00906A36 /* Sound.m */,
+				30513C07154B6F56002B79B6 /* CDVConsole.h */,
+				30513C08154B6F56002B79B6 /* CDVConsole.m */,
+				30513C01154B6DED002B79B6 /* CDVNotification.h */,
+				30513C02154B6DED002B79B6 /* CDVNotification.m */,
+				30513C03154B6DED002B79B6 /* CDVSound.h */,
+				30513C04154B6DED002B79B6 /* CDVSound.m */,
 			);
-			name = Commands;
+			path = Commands;
 			sourceTree = "<group>";
 		};
 		48B43509152E5E3500906A36 = {
@@ -113,9 +123,9 @@
 		48B4351E152E5E3500906A36 /* CordovaMac */ = {
 			isa = PBXGroup;
 			children = (
+				30513C00154B6DED002B79B6 /* Commands */,
 				48B43542152E60A300906A36 /* Utils.h */,
 				48B43543152E60A300906A36 /* Utils.m */,
-				488B21E3152F61A9007056D6 /* Commands */,
 				488B21E5152F6242007056D6 /* AppDelegate.h */,
 				488B21E6152F6242007056D6 /* AppDelegate.m */,
 				48B43545152E60E500906A36 /* Constants.h */,
@@ -212,9 +222,11 @@
 				48B43525152E5E3500906A36 /* main.m in Sources */,
 				48B4353B152E5EC300906A36 /* ContentView.m in Sources */,
 				48B4353E152E5FE200906A36 /* WebViewDelegate.m in Sources */,
-				48B43541152E603C00906A36 /* Sound.m in Sources */,
 				48B43544152E60A300906A36 /* Utils.m in Sources */,
 				488B21E7152F6242007056D6 /* AppDelegate.m in Sources */,
+				30513C05154B6DED002B79B6 /* CDVNotification.m in Sources */,
+				30513C06154B6DED002B79B6 /* CDVSound.m in Sources */,
+				30513C09154B6F56002B79B6 /* CDVConsole.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

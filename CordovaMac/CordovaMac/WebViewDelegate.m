@@ -19,16 +19,24 @@
 
 
 #import "WebViewDelegate.h"
-#import "Sound.h"
+#import "CDVSound.h"
+#import "CDVNotification.h"
+#import "CDVConsole.h"
 
 @implementation WebViewDelegate
 
-@synthesize sound;
+@synthesize sound, notification, console;
 
 - (void) webView:(WebView*)webView windowScriptObjectAvailable:(WebScriptObject*)windowScriptObject
 {
-	if (self.sound == nil) { self.sound = [Sound new]; }
+	if (self.sound == nil) { self.sound = [CDVSound new]; }
 	[windowScriptObject setValue:self.sound forKey:@"sound"];
+	if (self.console == nil) { self.console = [CDVConsole new]; }
+	[windowScriptObject setValue:self.console forKey:@"console"];
+	if (self.notification == nil) { self.notification = [CDVNotification new]; }
+	[windowScriptObject setValue:self.notification forKey:@"notification"];
+    [windowScriptObject evaluateWebScript:@"navigator.notification = notification;"];
+    
 }
 
 /* This logs all errors from Javascript, nifty */
@@ -56,6 +64,16 @@
 + (BOOL) isKeyExcludedFromWebScript:(const char*)name
 {
 	return YES;
+}
+
+#pragma mark WebPolicyDelegate
+
+- (void)webView:(WebView *)sender decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id<WebPolicyDecisionListener>)listener
+{	
+    NSString* url = [[request URL] description];
+    NSLog(@"navigating to %@", url);
+
+    [listener use];
 }
 
 

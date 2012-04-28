@@ -18,17 +18,12 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import <WebKit/WebKit.h>
 
-@class CDVSound;
-@class CDVNotification;
-@class CDVConsole;
 
-@interface WebViewDelegate : NSObject {
+@interface CDVConsole : NSObject {
+	
 }
 
-@property (nonatomic, retain) CDVSound* sound;
-@property (nonatomic, retain) CDVNotification* notification;
-@property (nonatomic, retain) CDVConsole* console;
+- (void) log:(NSString*)message;
 
 @end

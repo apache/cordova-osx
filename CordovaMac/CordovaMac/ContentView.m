@@ -27,27 +27,27 @@
 
 - (void) awakeFromNib
 {
-self.delegate = [[[WebViewDelegate alloc] init] autorelease];
-[self.webView setFrameLoadDelegate:self.delegate];
-[self.webView setUIDelegate:self.delegate];
-[self.webView setResourceLoadDelegate:self.delegate];
-[self.webView setDownloadDelegate:self.delegate];
-[self.webView setPolicyDelegate:self.delegate];	
-//self.window.backgroundColor = [NSColor colorWithCalibratedRed:0.933 green:0.933 blue:0.933 alpha:1.000];
+    self.delegate = [[[WebViewDelegate alloc] init] autorelease];
+    [self.webView setFrameLoadDelegate:self.delegate];
+    [self.webView setUIDelegate:self.delegate];
+    [self.webView setResourceLoadDelegate:self.delegate];
+    [self.webView setDownloadDelegate:self.delegate];
+    [self.webView setPolicyDelegate:self.delegate];	
+    //self.window.backgroundColor = [NSColor colorWithCalibratedRed:0.933 green:0.933 blue:0.933 alpha:1.000];
 }
 
 - (id)initWithFrame:(NSRect)frame 
 {
-self = [super initWithFrame:frame];
-if (self) {
-	// init here
-}
-return self;
+    self = [super initWithFrame:frame];
+    if (self) {
+        // init here
+    }
+    return self;
 }
 
 - (void) drawRect:(NSRect)dirtyRect 
 {
-// Drawing code here.
+    // Drawing code here.
 }
 
 - (void) windowResized:(NSNotification*)notification;

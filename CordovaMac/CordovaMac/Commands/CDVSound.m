@@ -17,10 +17,10 @@
  under the License.
  */
 
-#import "Sound.h"
+#import "CDVSound.h"
 
 
-@implementation Sound
+@implementation CDVSound
 
 
 - (void) play:(NSString*)file
