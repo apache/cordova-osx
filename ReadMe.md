@@ -2,7 +2,7 @@ Cordova Mac
 ===========
 Cordova Mac aims to provide HTML/JS/CSS developers an XCode project for developing Native OSX Apps that run in UIWebView and take advantage of WebKit technologies.
 
-![Cordova Mac Screen Shot][https://github.com/apache/incubator-cordova-mac/CordovaMacScreenShot.png]
+![Cordova Mac ScreenShot](https://raw.github.com/apache/incubator-cordova-mac/master/CordovaMacScreenShot.png)
 
 Cordova Family
 ==============
