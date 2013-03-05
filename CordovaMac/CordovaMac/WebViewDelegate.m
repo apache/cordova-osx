@@ -22,6 +22,7 @@
 #import "CDVSound.h"
 #import "CDVNotification.h"
 #import "CDVConsole.h"
+#import "CDVBridge.h"
 
 @implementation WebViewDelegate
 
@@ -36,7 +37,8 @@
 	if (self.notification == nil) { self.notification = [CDVNotification new]; }
 	[windowScriptObject setValue:self.notification forKey:@"notification"];
     [windowScriptObject evaluateWebScript:@"navigator.notification = notification;"];
-    
+	if (self.bridge == nil) { self.bridge = [[CDVBridge alloc] initWithWebView:webView]; }
+    [windowScriptObject setValue:self.bridge forKey:@"cordovabridge"];
 }
 
 /* This logs all errors from Javascript, nifty */

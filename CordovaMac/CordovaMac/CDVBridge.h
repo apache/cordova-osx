@@ -18,19 +18,16 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import <WebKit/WebKit.h>
+@class WebView;
 
-@class CDVSound;
-@class CDVNotification;
-@class CDVConsole;
-@class CDVBridge;
-
-@interface WebViewDelegate : NSObject {
+@interface CDVBridge : NSObject {
+	
 }
 
-@property (nonatomic, retain) CDVSound* sound;
-@property (nonatomic, retain) CDVNotification* notification;
-@property (nonatomic, retain) CDVConsole* console;
-@property (nonatomic, retain) CDVBridge* bridge;
+@property (nonatomic, retain) WebView* webView;
+
+- (id) initWithWebView:(WebView*)webView;
+- (void) exec:(NSString*)callbackId withService:(NSString*)service andAction:(NSString*)action andArguments:(NSArray*)arguments;
+
 
 @end

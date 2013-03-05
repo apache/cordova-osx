@@ -10,6 +10,7 @@
 		30513C05154B6DED002B79B6 /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 30513C02154B6DED002B79B6 /* CDVNotification.m */; };
 		30513C06154B6DED002B79B6 /* CDVSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 30513C04154B6DED002B79B6 /* CDVSound.m */; };
 		30513C09154B6F56002B79B6 /* CDVConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 30513C08154B6F56002B79B6 /* CDVConsole.m */; };
+		30FC415116E5845A004E6F35 /* CDVBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FC415016E5845A004E6F35 /* CDVBridge.m */; };
 		488B21E7152F6242007056D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 488B21E6152F6242007056D6 /* AppDelegate.m */; };
 		488B21EC152F742C007056D6 /* Cordova.icns in Resources */ = {isa = PBXBuildFile; fileRef = 488B21EB152F742C007056D6 /* Cordova.icns */; };
 		48B43519152E5E3500906A36 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B43518152E5E3500906A36 /* Cocoa.framework */; };
@@ -31,6 +32,8 @@
 		30513C04154B6DED002B79B6 /* CDVSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVSound.m; sourceTree = "<group>"; };
 		30513C07154B6F56002B79B6 /* CDVConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVConsole.h; sourceTree = "<group>"; };
 		30513C08154B6F56002B79B6 /* CDVConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVConsole.m; sourceTree = "<group>"; };
+		30FC414F16E5845A004E6F35 /* CDVBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVBridge.h; sourceTree = "<group>"; };
+		30FC415016E5845A004E6F35 /* CDVBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVBridge.m; sourceTree = "<group>"; };
 		488B21E5152F6242007056D6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		488B21E6152F6242007056D6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		488B21EB152F742C007056D6 /* Cordova.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Cordova.icns; path = ../Cordova.icns; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				30513C00154B6DED002B79B6 /* Commands */,
+				30FC414F16E5845A004E6F35 /* CDVBridge.h */,
+				30FC415016E5845A004E6F35 /* CDVBridge.m */,
 				48B43542152E60A300906A36 /* Utils.h */,
 				48B43543152E60A300906A36 /* Utils.m */,
 				488B21E5152F6242007056D6 /* AppDelegate.h */,
@@ -179,7 +184,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CDV;
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = OpenOSX.org;
 			};
 			buildConfigurationList = 48B4350E152E5E3500906A36 /* Build configuration list for PBXProject "CordovaMac" */;
@@ -227,6 +232,7 @@
 				30513C05154B6DED002B79B6 /* CDVNotification.m in Sources */,
 				30513C06154B6DED002B79B6 /* CDVSound.m in Sources */,
 				30513C09154B6F56002B79B6 /* CDVConsole.m in Sources */,
+				30FC415116E5845A004E6F35 /* CDVBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +271,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -291,6 +301,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -308,6 +322,7 @@
 		48B43533152E5E3600906A36 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CordovaMac/CordovaMac-Prefix.pch";
 				INFOPLIST_FILE = "CordovaMac/CordovaMac-Info.plist";
@@ -319,6 +334,7 @@
 		48B43534152E5E3600906A36 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CordovaMac/CordovaMac-Prefix.pch";
 				INFOPLIST_FILE = "CordovaMac/CordovaMac-Info.plist";

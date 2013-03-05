@@ -27,7 +27,7 @@
 {
     NSAlert* alert = [NSAlert alertWithMessageText:title
                                      defaultButton:@"OK" alternateButton:nil
-                                       otherButton:nil informativeTextWithFormat:message];
+                                       otherButton:nil informativeTextWithFormat:@"%@", message];
     [alert runModal];
 }
 

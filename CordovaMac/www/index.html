@@ -61,8 +61,7 @@ Licensed to the Apache Software Foundation (ASF) under one
         
         console.log("Cordova is working!");
         navigator.notification.alert("Cordova is working!", "Apache Cordova");
-        
-        
+        cordovabridge.exec('INVALID', 'TestService', 'TestAction', [ 1, 'two', { 3 : 'three', 'four': 4 }]);
 	}
         
     function onDeviceReady()
