@@ -41,6 +41,13 @@
     [windowScriptObject setValue:self.bridge forKey:@"cordovabridge"];
 }
 
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+{
+    id win = [sender windowScriptObject];
+    NSString* nativeReady = @"try{cordova.require('cordova/channel').onNativeReady.fire();}catch(e){window._nativeReady = true;}";
+    [win evaluateWebScript:nativeReady];
+}
+
 /* This logs all errors from Javascript, nifty */
 - (void) webView:(WebView*)webView addMessageToConsole:(NSDictionary*)message
 {

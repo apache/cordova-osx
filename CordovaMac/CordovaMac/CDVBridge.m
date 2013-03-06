@@ -125,7 +125,7 @@
     NSArray* arguments = [self convertWebScriptObjectToNSArray:webScriptObject];
 #pragma unused(arguments)
     
-	NSLog(@"TODO: flesh out exec to dispatch the commands, possibly re-use iOS code");
+	NSLog(@"TODO: [%@.%@] flesh out exec to dispatch the commands, possibly re-use iOS code", service, action);
 }
 
 #pragma mark WebScripting Protocol
