@@ -20,7 +20,6 @@
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 #import "CDVPluginResult.h"
-#import "NSMutableArray+QueueAdditions.h"
 #import "CDVCommandDelegate.h"
 #import "CDVViewController.h"
 
@@ -56,10 +55,5 @@ NSString* const CDVLocalNotification;
  */
 
 - (id)appDelegate;
-
-// TODO(agrieve): Deprecate these in favour of using CDVCommandDelegate directly.
-- (NSString*)writeJavascript:(NSString*)javascript;
-- (NSString*)success:(CDVPluginResult*)pluginResult callbackId:(NSString*)callbackId;
-- (NSString*)error:(CDVPluginResult*)pluginResult callbackId:(NSString*)callbackId;
 
 @end

@@ -21,6 +21,5 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "Constants.h"
 
 #endif

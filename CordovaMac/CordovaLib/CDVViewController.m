@@ -18,7 +18,6 @@
  */
 
 #import "CDVViewController.h"
-#import "CDVUtils.h"
 #import "CDVConfigParser.h"
 #import "CDVCommandDelegateImpl.h"
 
@@ -188,12 +187,6 @@
 
 - (void) windowResized:(NSNotification*)notification;
 {
-	NSWindow* window = (NSWindow*)notification.object;
-	NSSize size = [window frame].size;
-	
-	//DebugNSLog(@"window width = %f, window height = %f", size.width, size.height);
-	[self.webView setFrame:NSMakeRect(0, 0, size.width, size.height - [CDVUtils titleBarHeight:window])];
-    [self.webView stringByEvaluatingJavaScriptFromString:@"var e = document.createEvent('Events'); e.initEvent('orientationchange', true, false); document.dispatchEvent(e); "];
 }
 
 @end

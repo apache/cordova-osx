@@ -117,26 +117,7 @@ NSString* const CDVLocalNotification = @"CDVLocalNotification";
 
 - (id)appDelegate
 {
-    // TODO:
-    //return [[UIApplication sharedApplication] delegate];
-    return nil;
-}
-
-- (NSString*)writeJavascript:(NSString*)javascript
-{
-    return [self.webView stringByEvaluatingJavaScriptFromString:javascript];
-}
-
-- (NSString*)success:(CDVPluginResult*)pluginResult callbackId:(NSString*)callbackId
-{
-    [self.commandDelegate evalJs:[pluginResult toSuccessCallbackString:callbackId]];
-    return @"";
-}
-
-- (NSString*)error:(CDVPluginResult*)pluginResult callbackId:(NSString*)callbackId
-{
-    [self.commandDelegate evalJs:[pluginResult toErrorCallbackString:callbackId]];
-    return @"";
+    return [[NSApplication sharedApplication] delegate];
 }
 
 // default implementation does nothing, ideally, we are not registered for notification if we aren't going to do anything.

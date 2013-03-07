@@ -17,6 +17,18 @@
  under the License.
  */
 
-#define kCDVStartPage      @"index.html"
-#define kCDVStartFolder    @"www"
 
+#import "NSWindow+Utils.h"
+
+@implementation NSWindow (Utils)
+
+- (float) titleBarHeight
+{
+    NSRect frame = [self frame];
+    NSRect contentRect = [NSWindow contentRectForFrameRect: frame
+												 styleMask: NSTitledWindowMask];
+	
+    return (frame.size.height - contentRect.size.height);
+}
+
+@end

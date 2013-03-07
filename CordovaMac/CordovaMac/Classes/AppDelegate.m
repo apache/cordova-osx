@@ -18,9 +18,7 @@
  */
 
 #import "AppDelegate.h"
-#import "Constants.h"
 #import "MainViewController.h"
-#import "CDVUtils.h"
 
 @implementation AppDelegate
 
@@ -43,10 +41,6 @@
 
 - (void) applicationDidFinishLaunching:(NSNotification*)aNotification 
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self.viewController
-                                             selector:@selector(windowResized:)
-                                                 name:NSWindowDidResizeNotification
-                                               object:[self window]];
 
 }
 
