@@ -23,6 +23,8 @@
 #import "CDVDevice.h"
 #import "CDVAvailability.h"
 
+#define SYSTEM_VERSION_PLIST    @"/System/Library/CoreServices/SystemVersion.plist"
+
 @implementation CDVDevice
 
 - (NSString*)modelVersion
@@ -32,28 +34,55 @@
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
     char* machine = malloc(size);
     sysctlbyname("hw.machine", machine, &size, NULL, 0);
-    NSString* platform = [NSString stringWithUTF8String:machine];
+    NSString* modelVersion = [NSString stringWithUTF8String:machine];
     free(machine);
 
-    return platform;
+    return modelVersion;
 }
 
 - (NSString*)model
 {
-    // TODO:
-    return @"";
+    size_t size;
+    
+    sysctlbyname("hw.model", NULL, &size, NULL, 0);
+    char* model = malloc(size);
+    sysctlbyname("hw.model", model, &size, NULL, 0);
+    NSString* name = [NSString stringWithUTF8String:model];
+    free(model);
+    
+    return name;
 }
 
 - (NSString*)uniqueAppInstanceIdentifier
 {
-    // TODO:
-    return @"";
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    static NSString* UUID_KEY = @"CDVUUID";
+    
+    NSString* app_uuid = [userDefaults stringForKey:UUID_KEY];
+    
+    if (app_uuid == nil) {
+        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+        CFStringRef uuidString = CFUUIDCreateString(kCFAllocatorDefault, uuidRef);
+        
+        app_uuid = [NSString stringWithString:(__bridge NSString*)uuidString];
+        [userDefaults setObject:app_uuid forKey:UUID_KEY];
+        [userDefaults synchronize];
+        
+        CFRelease(uuidString);
+        CFRelease(uuidRef);
+    }
+    
+    return app_uuid;
+}
+
+- (NSString*) platform
+{
+    return [[NSDictionary dictionaryWithContentsOfFile:SYSTEM_VERSION_PLIST] objectForKey:@"ProductName"];
 }
 
 - (NSString*)systemVersion
 {
-    // TODO:
-    return @"";
+    return [[NSDictionary dictionaryWithContentsOfFile:SYSTEM_VERSION_PLIST] objectForKey:@"ProductVersion"];
 }
 
 - (void)getDeviceInfo:(CDVInvokedUrlCommand*)command
@@ -69,7 +98,7 @@
     NSMutableDictionary* devProps = [NSMutableDictionary dictionaryWithCapacity:4];
 
     [devProps setObject:[self modelVersion] forKey:@"model"];
-    [devProps setObject:@"OS X" forKey:@"platform"];
+    [devProps setObject:[self platform] forKey:@"platform"];
     [devProps setObject:[self systemVersion] forKey:@"version"];
     [devProps setObject:[self uniqueAppInstanceIdentifier] forKey:@"uuid"];
     [devProps setObject:[self model] forKey:@"name"];
