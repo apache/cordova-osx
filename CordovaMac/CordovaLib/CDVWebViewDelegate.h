@@ -17,10 +17,18 @@
  under the License.
  */
 
-#ifdef __OBJC__
-
 #import <Cocoa/Cocoa.h>
+#import <WebKit/WebKit.h>
 
-#import "Constants.h"
+@class CDVConsole;
+@class CDVBridge;
+@class CDVViewController;
 
-#endif
+@interface CDVWebViewDelegate : NSObject {
+}
+
+@property (nonatomic, strong) CDVConsole* console;
+@property (nonatomic, strong) CDVBridge* bridge;
+@property (nonatomic, weak)   CDVViewController* viewController;
+
+@end

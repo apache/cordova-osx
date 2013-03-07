@@ -18,26 +18,24 @@
  */
 
 
-#import "WebViewDelegate.h"
-#import "CDVSound.h"
-#import "CDVNotification.h"
+#import "CDVWebViewDelegate.h"
 #import "CDVConsole.h"
 #import "CDVBridge.h"
 
-@implementation WebViewDelegate
+@implementation CDVWebViewDelegate
 
-@synthesize sound, notification, console;
+@synthesize console;
 
 - (void) webView:(WebView*)webView windowScriptObjectAvailable:(WebScriptObject*)windowScriptObject
 {
-	if (self.sound == nil) { self.sound = [CDVSound new]; }
-	[windowScriptObject setValue:self.sound forKey:@"sound"];
-	if (self.console == nil) { self.console = [CDVConsole new]; }
+	if (self.console == nil) {
+        self.console = [CDVConsole new];
+    }
 	[windowScriptObject setValue:self.console forKey:@"console"];
-	if (self.notification == nil) { self.notification = [CDVNotification new]; }
-	[windowScriptObject setValue:self.notification forKey:@"notification"];
-    [windowScriptObject evaluateWebScript:@"navigator.notification = notification;"];
-	if (self.bridge == nil) { self.bridge = [[CDVBridge alloc] initWithWebView:webView]; }
+	
+	if (self.bridge == nil) {
+        self.bridge = [[CDVBridge alloc] initWithWebView:webView andViewController:self.viewController];
+    }
     [windowScriptObject setValue:self.bridge forKey:@"cordovabridge"];
 }
 

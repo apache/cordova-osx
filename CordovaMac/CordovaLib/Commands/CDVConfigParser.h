@@ -6,9 +6,9 @@
  to you under the Apache License, Version 2.0 (the
  "License"); you may not use this file except in compliance
  with the License.  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing,
  software distributed under the License is distributed on an
  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -17,16 +17,12 @@
  under the License.
  */
 
-#import <Cocoa/Cocoa.h>
-#import "ContentView.h"
+@interface CDVConfigParser : NSObject <NSXMLParserDelegate>{}
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
-
-	IBOutlet NSWindow* window;
-	IBOutlet ContentView* contentView;
-}
-
-@property (nonatomic, retain) NSWindow* window;
-@property (nonatomic, retain) ContentView* contentView;
+@property (nonatomic, readonly, strong) NSMutableDictionary* pluginsDict;
+@property (nonatomic, readonly, strong) NSMutableDictionary* settings;
+@property (nonatomic, readonly, strong) NSMutableArray* whitelistHosts;
+@property (nonatomic, readonly, strong) NSMutableArray* startupPluginNames;
+@property (nonatomic, readonly, strong) NSString* startPage;
 
 @end

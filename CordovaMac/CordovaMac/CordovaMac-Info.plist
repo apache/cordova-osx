@@ -27,7 +27,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Apache License, Version 2.0</string>
 	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
+	<string>MainViewController</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

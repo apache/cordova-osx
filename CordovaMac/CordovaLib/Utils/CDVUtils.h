@@ -17,10 +17,16 @@
  under the License.
  */
 
-#ifdef __OBJC__
+#import <Foundation/Foundation.h>
 
-#import <Cocoa/Cocoa.h>
+#define DEG_EPS 0.001
+#define fequal(a,b) (fabs((a) - (b)) < DEG_EPS)
+#define fequalzero(a) (fabs(a) < DEG_EPS)
 
-#import "Constants.h"
+@interface CDVUtils : NSObject {
+}
 
-#endif
++ (float) titleBarHeight:(NSWindow*)aWindow;
++ (NSString*) pathForResource:(NSString*)resourcepath;
+
+@end

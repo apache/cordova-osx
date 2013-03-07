@@ -17,10 +17,19 @@
  under the License.
  */
 
-#ifdef __OBJC__
-
 #import <Cocoa/Cocoa.h>
+@class WebView;
+@class CDVViewController;
 
-#import "Constants.h"
+@interface CDVBridge : NSObject {
+	
+}
 
-#endif
+@property (nonatomic, weak) WebView* webView;
+@property (nonatomic, weak) CDVViewController* viewController;
+
+- (id) initWithWebView:(WebView*)webView andViewController:(CDVViewController*)viewController;
+- (void) exec:(NSString*)callbackId withService:(NSString*)service andAction:(NSString*)action andArguments:(NSArray*)arguments;
+
+
+@end

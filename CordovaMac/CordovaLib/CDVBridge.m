@@ -17,17 +17,20 @@
  under the License.
  */
 
-#import "CDVBridge.h"
 #import <WebKit/WebKit.h>
 #import <AppKit/AppKit.h>
 #import <Foundation/NSJSONSerialization.h>
+#include <objc/message.h>
+
+#import "CDVBridge.h"
+#import "CDVViewController.h"
 
 @implementation CDVBridge
 
 - (BOOL) isArray:(id)item
 {
     id win = [self.webView windowScriptObject];
-    NSNumber* result = [win callWebScriptMethod:@"__isArray__" withArguments:[NSArray arrayWithObject:item]];
+    NSNumber* result = [win callWebScriptMethod:@"CordovaBridgeUtil.isArray" withArguments:[NSArray arrayWithObject:item]];
 
     return [result boolValue];
 }
@@ -35,7 +38,7 @@
 - (BOOL) isDictionary:(id)item
 {
     id win = [self.webView windowScriptObject];
-    NSNumber* result = [win callWebScriptMethod:@"__isObject__" withArguments:[NSArray arrayWithObject:item]];
+    NSNumber* result = [win callWebScriptMethod:@"CordovaBridgeUtil.isObject" withArguments:[NSArray arrayWithObject:item]];
     return [result boolValue];
 }
 
@@ -45,7 +48,7 @@
 
     id win = [self.webView windowScriptObject];
 
-    WebScriptObject* keysObject = [win callWebScriptMethod:@"__dictionaryKeys__" withArguments:[NSArray arrayWithObject:webScriptObject]];
+    WebScriptObject* keysObject = [win callWebScriptMethod:@"CordovaBridgeUtil.getDictionaryKeys" withArguments:[NSArray arrayWithObject:webScriptObject]];
     NSArray* keys = [self convertWebScriptObjectToNSArray:keysObject];
     NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:[keys count]];
 
@@ -82,11 +85,12 @@
 
 - (void) registerJavaScriptHelpers
 {
-    NSString* isArray = [NSString stringWithFormat:@"function __isArray__(obj) { return obj.constructor == Array; };"];
-    NSString* isObject = [NSString stringWithFormat:@"function __isObject__(obj) { return obj.constructor == Object; };"];
+    NSString* cordovaBridgeUtil = @"CordovaBridgeUtil = {};";
+    NSString* isArray = [NSString stringWithFormat:@"CordovaBridgeUtil.isArray = function(obj) { return obj.constructor == Array; };"];
+    NSString* isObject = [NSString stringWithFormat:@"CordovaBridgeUtil.isObject = function(obj) { return obj.constructor == Object; };"];
     NSString* dictionaryKeys = [NSString stringWithFormat:
                                 @" \
-                                function __dictionaryKeys__(obj) { \
+                                CordovaBridgeUtil.getDictionaryKeys = function(obj) { \
                                     var a = []; \
                                     for (var key in obj) { \
                                         if (!obj.hasOwnProperty(key)) { \
@@ -99,15 +103,17 @@
                                 ];
     
     id win = [self.webView windowScriptObject];
+    [win evaluateWebScript:cordovaBridgeUtil];
     [win evaluateWebScript:isArray];
     [win evaluateWebScript:isObject];
     [win evaluateWebScript:dictionaryKeys];
 }
 
-- (id) initWithWebView:(WebView *)webView
+- (id) initWithWebView:(WebView *)webView andViewController:(CDVViewController*)viewController
 {
     if ((self = [super init]) != nil) {
         self.webView = webView;
+        self.viewController = viewController;
         [self registerJavaScriptHelpers];
     }
     
@@ -123,9 +129,32 @@
     
     // we're just going to assume the webScriptObject passed in is an NSArray
     NSArray* arguments = [self convertWebScriptObjectToNSArray:webScriptObject];
-#pragma unused(arguments)
     
-	NSLog(@"TODO: [%@.%@] flesh out exec to dispatch the commands, possibly re-use iOS code", service, action);
+    CDVInvokedUrlCommand* command = [[CDVInvokedUrlCommand alloc] initWithArguments:arguments callbackId:callbackId className:service methodName:action];
+    
+    if ((command.className == nil) || (command.methodName == nil)) {
+        NSLog(@"ERROR: Classname and/or methodName not found for command.");
+        return;
+    }
+    
+    // Fetch an instance of this class
+    CDVPlugin* obj = [_viewController.commandDelegate getCommandInstance:command.className];
+    
+    if (!([obj isKindOfClass:[CDVPlugin class]])) {
+        NSLog(@"ERROR: Plugin '%@' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.", command.className);
+        return;
+    }
+
+    // Find the proper selector to call.
+    NSString* methodName = [NSString stringWithFormat:@"%@:", command.methodName];
+    SEL normalSelector = NSSelectorFromString(methodName);
+    if ([obj respondsToSelector:normalSelector]) {
+        // [obj performSelector:normalSelector withObject:command];
+        objc_msgSend(obj, normalSelector, command);
+    } else {
+        // There's no method to call, so throw an error.
+        NSLog(@"ERROR: Method '%@' not defined in Plugin '%@'", methodName, command.className);
+    }
 }
 
 #pragma mark WebScripting Protocol

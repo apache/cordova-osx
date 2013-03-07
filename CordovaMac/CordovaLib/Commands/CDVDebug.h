@@ -6,9 +6,9 @@
  to you under the Apache License, Version 2.0 (the
  "License"); you may not use this file except in compliance
  with the License.  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing,
  software distributed under the License is distributed on an
  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -17,21 +17,9 @@
  under the License.
  */
 
-#import <Foundation/Foundation.h>
-
-#define DEG_EPS 0.001
-#define fequal(a,b) (fabs((a) - (b)) < DEG_EPS)
-#define fequalzero(a) (fabs(a) < DEG_EPS)
-
-@class LoadingView;
-
-@interface Utils : NSObject {
-}
-
-- (float) titleBarHeight:(NSWindow*)aWindow;
-- (NSString*) pathForResource:(NSString*)resourcepath;
-
-
-+ (Utils*) sharedInstance;
-
-@end
+#ifdef DEBUG
+    #define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+    #define DLog(...)
+#endif
+#define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)

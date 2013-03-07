@@ -876,11 +876,9 @@ function OSXExec() {
 
 
 OSXExec.nativeCallback = function(callbackId, status, message, keepCallback) {
-    return (function() {
-        var success = status === 0 || status === 1;
-        var args = convertMessageToArgsNativeToJs(message);
-        cordova.callbackFromNative(callbackId, success, status, args, keepCallback);
-    });
+    var success = status === 0 || status === 1;
+    var args = convertMessageToArgsNativeToJs(message);
+    cordova.callbackFromNative(callbackId, success, status, args, keepCallback);
 };
 
 module.exports = OSXExec;
@@ -4203,22 +4201,19 @@ function Device() {
     var me = this;
 
     channel.onCordovaReady.subscribe(function() {
-                                     // TODO: HACK:
-                                     me.available = true;
-                                      channel.onCordovaInfoReady.fire();
-//        me.getInfo(function(info) {
-//            me.available = true;
-//            me.platform = info.platform;
-//            me.version = info.version;
-//            me.name = info.name;
-//            me.uuid = info.uuid;
-//            me.cordova = info.cordova;
-//            me.model = info.model;
-//            channel.onCordovaInfoReady.fire();
-//        },function(e) {
-//            me.available = false;
-//            utils.alert("[ERROR] Error initializing Cordova: " + e);
-//        });
+        me.getInfo(function(info) {
+            me.available = true;
+            me.platform = info.platform;
+            me.version = info.version;
+            me.name = info.name;
+            me.uuid = info.uuid;
+            me.cordova = info.cordova;
+            me.model = info.model;
+            channel.onCordovaInfoReady.fire();
+        },function(e) {
+            me.available = false;
+            utils.alert("[ERROR] Error initializing Cordova: " + e);
+        });
     });
 }
 
@@ -5213,37 +5208,36 @@ var timerId = null;
 var timeout = 500;
 
 channel.onCordovaReady.subscribe(function() {
-    // TODO: HACK:
-//    me.getInfo(function(info) {
-//        me.type = info;
-//        if (info === "none") {
-//            // set a timer if still offline at the end of timer send the offline event
-//            timerId = setTimeout(function(){
-//                cordova.fireDocumentEvent("offline");
-//                timerId = null;
-//            }, timeout);
-//        } else {
-//            // If there is a current offline event pending clear it
-//            if (timerId !== null) {
-//                clearTimeout(timerId);
-//                timerId = null;
-//            }
-//            cordova.fireDocumentEvent("online");
-//        }
-//
-//        // should only fire this once
-//        if (channel.onCordovaConnectionReady.state !== 2) {
-//            channel.onCordovaConnectionReady.fire();
-//        }
-//    },
-//    function (e) {
-//        // If we can't get the network info we should still tell Cordova
-//        // to fire the deviceready event.
-//        if (channel.onCordovaConnectionReady.state !== 2) {
-//            channel.onCordovaConnectionReady.fire();
-//        }
-//        console.log("Error initializing Network Connection: " + e);
-//    });
+    me.getInfo(function(info) {
+        me.type = info;
+        if (info === "none") {
+            // set a timer if still offline at the end of timer send the offline event
+            timerId = setTimeout(function(){
+                cordova.fireDocumentEvent("offline");
+                timerId = null;
+            }, timeout);
+        } else {
+            // If there is a current offline event pending clear it
+            if (timerId !== null) {
+                clearTimeout(timerId);
+                timerId = null;
+            }
+            cordova.fireDocumentEvent("online");
+        }
+
+        // should only fire this once
+        if (channel.onCordovaConnectionReady.state !== 2) {
+            channel.onCordovaConnectionReady.fire();
+        }
+    },
+    function (e) {
+        // If we can't get the network info we should still tell Cordova
+        // to fire the deviceready event.
+        if (channel.onCordovaConnectionReady.state !== 2) {
+            channel.onCordovaConnectionReady.fire();
+        }
+        console.log("Error initializing Network Connection: " + e);
+    });
     channel.onCordovaConnectionReady.fire();
 });
 

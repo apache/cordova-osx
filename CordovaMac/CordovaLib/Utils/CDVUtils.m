@@ -17,13 +17,12 @@
  under the License.
  */
 
-#import "Utils.h"
+#import "CDVUtils.h"
+#import "Constants.h"
 
-static Utils* sharedInstance = nil;
+@implementation CDVUtils
 
-@implementation Utils
-
-- (float) titleBarHeight:(NSWindow*)aWindow
++ (float) titleBarHeight:(NSWindow*)aWindow
 {
     NSRect frame = [aWindow frame];
     NSRect contentRect = [NSWindow contentRectForFrameRect: frame
@@ -32,63 +31,17 @@ static Utils* sharedInstance = nil;
     return (frame.size.height - contentRect.size.height);
 }
 
-- (NSString*) pathForResource:(NSString*)resourcepath
++ (NSString*) pathForResource:(NSString*)resourcepath
 {
     NSBundle * mainBundle = [NSBundle mainBundle];
     NSMutableArray *directoryParts = [NSMutableArray arrayWithArray:[resourcepath componentsSeparatedByString:@"/"]];
     NSString       *filename       = [directoryParts lastObject];
     [directoryParts removeLastObject];
 	
-    NSString *directoryStr = [NSString stringWithFormat:@"%@/%@", kStartFolder, [directoryParts componentsJoinedByString:@"/"]];
+    NSString *directoryStr = [NSString stringWithFormat:@"%@/%@", kCDVStartFolder, [directoryParts componentsJoinedByString:@"/"]];
     return [mainBundle pathForResource:filename
 								ofType:@""
 						   inDirectory:directoryStr];
 }
-
-#pragma mark -
-#pragma mark Singleton methods
-
-+ (Utils*) sharedInstance
-{
-    @synchronized(self)
-    {
-        if (sharedInstance == nil){
-			sharedInstance = [[Utils alloc] init];
-		}
-    }
-    return sharedInstance;
-}
-
-+ (id) allocWithZone:(NSZone *)zone {
-    @synchronized(self) {
-        if (sharedInstance == nil) {
-            sharedInstance = [super allocWithZone:zone];
-            return sharedInstance;  // assignment and return on first allocation
-        }
-    }
-    return nil; // on subsequent allocation attempts return nil
-}
-
-- (id) copyWithZone:(NSZone *)zone
-{
-    return self;
-}
-
-- (id) retain {
-    return self;
-}
-
-- (unsigned long) retainCount {
-    return UINT_MAX;  // denotes an object that cannot be released
-}
-
-- (oneway void) release {
-    //do nothing
-}
-
-- (id) autorelease {
-    return self;
-}
-
 
 @end

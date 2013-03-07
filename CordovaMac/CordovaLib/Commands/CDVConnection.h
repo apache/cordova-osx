@@ -6,9 +6,9 @@
  to you under the Apache License, Version 2.0 (the
  "License"); you may not use this file except in compliance
  with the License.  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing,
  software distributed under the License is distributed on an
  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -17,10 +17,18 @@
  under the License.
  */
 
-#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import "CDVPlugin.h"
+#import "CDVReachability.h"
 
-#import <Cocoa/Cocoa.h>
+@interface CDVConnection : CDVPlugin {
+    NSString* type;
+    NSString* _callbackId;
 
-#import "Constants.h"
+    CDVReachability* internetReach;
+}
 
-#endif
+@property (copy) NSString* connectionType;
+@property (strong) CDVReachability* internetReach;
+
+@end

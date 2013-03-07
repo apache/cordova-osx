@@ -18,12 +18,15 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "CDVViewController.h"
 
+@interface AppDelegate : NSObject <NSApplicationDelegate> {
 
-@interface CDVSound : NSObject {
-	
+	IBOutlet NSWindow* window;
 }
 
-- (void) play:(NSString*)file;
+@property (nonatomic, strong) IBOutlet NSWindow* window;
+@property (nonatomic, strong) IBOutlet CDVViewController* viewController;
+
 
 @end

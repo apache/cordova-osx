@@ -17,6 +17,11 @@
  under the License.
  */
 
-#define kStartPage      @"index.html"
-#define kStartFolder    @"www"
+#import "CDVAvailability.h"
 
+#import "CDVJSON.h"
+#import "CDVDebug.h"
+#import "CDVPluginResult.h"
+#import "CDVInvokedUrlCommand.h"
+#import "CDVPlugin.h"
+#import "CDVDevice.h"

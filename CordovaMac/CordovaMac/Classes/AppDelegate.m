@@ -18,11 +18,20 @@
  */
 
 #import "AppDelegate.h"
+#import "Constants.h"
+#import "MainViewController.h"
+#import "CDVUtils.h"
 
 @implementation AppDelegate
 
 
-@synthesize window, contentView;
+@synthesize window;
+
+- (id)init
+{
+    self = [super init];
+    return self;
+}
 
 - (void) applicationDidStartLaunching:(NSNotification*) aNotification 
 {
@@ -30,20 +39,15 @@
 
 - (void) applicationWillFinishLaunching:(NSNotification*)aNotification
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self.contentView 
-                                             selector:@selector(windowResized:) 
-                                                 name:NSWindowDidResizeNotification 
-                                               object:[self window]];
-
-    NSURL* fileUrl = [NSURL fileURLWithPath:[[Utils sharedInstance] pathForResource:kStartPage]];
-        
-    [self.contentView.webView setMainFrameURL:[fileUrl description]];
 }
 
 - (void) applicationDidFinishLaunching:(NSNotification*)aNotification 
 {
-    self.contentView.webView.alphaValue = 1.0;
-    self.contentView.alphaValue = 1.0;
+    [[NSNotificationCenter defaultCenter] addObserver:self.viewController
+                                             selector:@selector(windowResized:)
+                                                 name:NSWindowDidResizeNotification
+                                               object:[self window]];
+
 }
 
 @end

@@ -17,17 +17,6 @@
  under the License.
  */
 
-#import <Cocoa/Cocoa.h>
-@class WebView;
+#define kCDVStartPage      @"index.html"
+#define kCDVStartFolder    @"www"
 
-@interface CDVBridge : NSObject {
-	
-}
-
-@property (nonatomic, retain) WebView* webView;
-
-- (id) initWithWebView:(WebView*)webView;
-- (void) exec:(NSString*)callbackId withService:(NSString*)service andAction:(NSString*)action andArguments:(NSArray*)arguments;
-
-
-@end
