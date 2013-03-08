@@ -17,9 +17,9 @@
  under the License.
  */
 
-#import "CDVViewController.h"
-#import "CDVCommandDelegateImpl.h"
-#import "CDVCommandQueue.h"
+#import <Cordova/CDVViewController.h>
+#import <Cordova/CDVCommandDelegateImpl.h>
+#import <Cordova/CDVCommandQueue.h>
 
 @interface MainViewController : CDVViewController
 
