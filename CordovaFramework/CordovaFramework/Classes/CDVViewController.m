@@ -112,7 +112,7 @@
     NSString* path = [[NSBundle mainBundle] pathForResource:@"config" ofType:@"xml"];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSAssert(NO, @"ERROR: config.xml does not exist. Please run cordova-ios/bin/cordova_plist_to_config_xml path/to/project.");
+        NSAssert(NO, @"ERROR: config.xml does not exist.");
         return;
     }
     
@@ -153,6 +153,22 @@
     }
     
     [self.pluginObjects setObject:plugin forKey:className];
+    [plugin pluginInitialize];
+}
+
+- (void)registerPlugin:(CDVPlugin*)plugin withPluginName:(NSString*)pluginName
+{
+    if ([plugin respondsToSelector:@selector(setViewController:)]) {
+        [plugin setViewController:self];
+    }
+    
+    if ([plugin respondsToSelector:@selector(setCommandDelegate:)]) {
+        [plugin setCommandDelegate:_commandDelegate];
+    }
+    
+    NSString* className = NSStringFromClass([plugin class]);
+    [self.pluginObjects setObject:plugin forKey:className];
+    [self.pluginsMap setValue:className forKey:[pluginName lowercaseString]];
     [plugin pluginInitialize];
 }
 

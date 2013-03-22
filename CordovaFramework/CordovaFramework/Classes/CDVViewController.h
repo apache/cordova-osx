@@ -53,5 +53,6 @@
 
 - (id)getCommandInstance:(NSString*)pluginName;
 - (void)registerPlugin:(CDVPlugin*)plugin withClassName:(NSString*)className;
+- (void)registerPlugin:(CDVPlugin*)plugin withPluginName:(NSString*)pluginName;
 
 @end
