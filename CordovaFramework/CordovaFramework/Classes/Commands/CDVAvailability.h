@@ -17,6 +17,8 @@
  under the License.
  */
 
+#define __CORDOVA_OSX__
+
 #define __CORDOVA_2_6_0 20600
 #define __CORDOVA_NA 99999      /* not available */
 
