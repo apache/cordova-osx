@@ -15,7 +15,7 @@
 		7E4C0B0D16EAA6A700542982 /* Cordova.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E4C0B0416EAA3CF00542982 /* Cordova.framework */; };
 		7E608F2B16E7D9B00018F512 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7E608F2A16E7D9B00018F512 /* config.xml */; };
 		7E608F3C16E7EE8D0018F512 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E608F3416E7EE8D0018F512 /* AppDelegate.m */; };
-		7E608F4816E7EE970018F512 /* Cordova.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7E608F4116E7EE970018F512 /* Cordova.icns */; };
+		7E608F4816E7EE970018F512 /* __TESTING__.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7E608F4116E7EE970018F512 /* __TESTING__.icns */; };
 		7E608F4916E7EE970018F512 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7E608F4216E7EE970018F512 /* Credits.rtf */; };
 		7E608F4A16E7EE970018F512 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E608F4416E7EE970018F512 /* InfoPlist.strings */; };
 		7E608F4B16E7EE970018F512 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E608F4616E7EE970018F512 /* MainViewController.xib */; };
@@ -343,7 +343,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = "";
 			};
 			name = Debug;
 		};
@@ -368,7 +368,7 @@
 				INSTALL_PATH = "";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = macosx;
+				SDKROOT = "";
 			};
 			name = Release;
 		};
@@ -383,6 +383,7 @@
 				INSTALL_PATH = "";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -398,6 +399,7 @@
 				INSTALL_PATH = "";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
