@@ -26,7 +26,14 @@
 }
 
 @property (nonatomic, weak) WebView* webView;
-@property (nonatomic, weak) CDVViewController* viewController;
+@property (nonatomic,
+#ifdef __MAC_10_8
+           weak
+#else
+           assign
+#endif
+           ) CDVViewController* viewController;
+
 
 - (id) initWithWebView:(WebView*)webView andViewController:(CDVViewController*)viewController;
 - (void) exec:(NSString*)callbackId withService:(NSString*)service andAction:(NSString*)action andArguments:(NSArray*)arguments;

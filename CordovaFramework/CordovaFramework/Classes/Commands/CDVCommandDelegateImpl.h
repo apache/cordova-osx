@@ -24,7 +24,10 @@
 
 @interface CDVCommandDelegateImpl : NSObject <CDVCommandDelegate>{
 //    @private
-    __weak CDVViewController* _viewController;
+#ifdef __MAC_10_8
+    __weak
+#endif
+    CDVViewController* _viewController;
     @protected
     __weak CDVCommandQueue* _commandQueue;
 }

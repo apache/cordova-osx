@@ -24,7 +24,10 @@
 
 @interface CDVCommandQueue () {
     NSInteger _lastCommandQueueFlushRequestId;
-    __weak NSViewController* _viewController;
+#ifdef __MAC_10_8
+    __weak
+#endif
+    NSViewController* _viewController;
     NSMutableArray* _queue;
     BOOL _currentlyExecuting;
 }
