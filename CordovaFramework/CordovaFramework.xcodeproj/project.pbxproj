@@ -68,6 +68,9 @@
 		7E4C0AF916EAA2AD00542982 /* NSWindow+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C0AC516EAA2AD00542982 /* NSWindow+Utils.m */; };
 		7E4C0AFB16EAA35300542982 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4C0AFA16EAA35300542982 /* SystemConfiguration.framework */; };
 		7E4C0AFD16EAA36400542982 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4C0AFC16EAA36400542982 /* WebKit.framework */; };
+		7EE6E73D1714E77C0051492C /* ShellUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EE6E73B1714E77C0051492C /* ShellUtils.h */; };
+		7EE6E73E1714E77C0051492C /* ShellUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6E73C1714E77C0051492C /* ShellUtils.m */; };
+		7EE6E73F1714E77C0051492C /* ShellUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6E73C1714E77C0051492C /* ShellUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +136,8 @@
 		7E4C0AC516EAA2AD00542982 /* NSWindow+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+Utils.m"; sourceTree = "<group>"; };
 		7E4C0AFA16EAA35300542982 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7E4C0AFC16EAA36400542982 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		7EE6E73B1714E77C0051492C /* ShellUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShellUtils.h; sourceTree = "<group>"; };
+		7EE6E73C1714E77C0051492C /* ShellUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShellUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +292,8 @@
 				7E4C0AC316EAA2AD00542982 /* NSData+Base64.m */,
 				7E4C0AC416EAA2AD00542982 /* NSWindow+Utils.h */,
 				7E4C0AC516EAA2AD00542982 /* NSWindow+Utils.m */,
+				7EE6E73B1714E77C0051492C /* ShellUtils.h */,
+				7EE6E73C1714E77C0051492C /* ShellUtils.m */,
 			);
 			name = Utils;
 			path = Classes/Utils;
@@ -319,6 +326,7 @@
 				7E4C0AF116EAA2AD00542982 /* CDVReachability.h in Headers */,
 				7E4C0AF416EAA2AD00542982 /* NSData+Base64.h in Headers */,
 				7E4C0AF716EAA2AD00542982 /* NSWindow+Utils.h in Headers */,
+				7EE6E73D1714E77C0051492C /* ShellUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +453,7 @@
 				7E4C0AF216EAA2AD00542982 /* CDVReachability.m in Sources */,
 				7E4C0AF516EAA2AD00542982 /* NSData+Base64.m in Sources */,
 				7E4C0AF816EAA2AD00542982 /* NSWindow+Utils.m in Sources */,
+				7EE6E73E1714E77C0051492C /* ShellUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +478,7 @@
 				7E4C0AF316EAA2AD00542982 /* CDVReachability.m in Sources */,
 				7E4C0AF616EAA2AD00542982 /* NSData+Base64.m in Sources */,
 				7E4C0AF916EAA2AD00542982 /* NSWindow+Utils.m in Sources */,
+				7EE6E73F1714E77C0051492C /* ShellUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
