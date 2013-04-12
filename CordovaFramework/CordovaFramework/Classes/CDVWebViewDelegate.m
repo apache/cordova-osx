@@ -26,7 +26,7 @@
 
 @synthesize console;
 
-- (void) webView:(WebView*)webView windowScriptObjectAvailable:(WebScriptObject*)windowScriptObject
+- (void)webView:(WebView*)webView didClearWindowObject:(WebScriptObject*)windowScriptObject forFrame:(WebFrame*)frame
 {
 	if (self.console == nil) {
         self.console = [CDVConsole new];
@@ -39,14 +39,13 @@
     [windowScriptObject setValue:self.bridge forKey:@"cordovabridge"];
 }
 
-- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+- (void)webView:(WebView*)sender didFinishLoadForFrame:(WebFrame*)frame
 {
     id win = [sender windowScriptObject];
     NSString* nativeReady = @"try{cordova.require('cordova/channel').onNativeReady.fire();}catch(e){window._nativeReady = true;}";
     [win evaluateWebScript:nativeReady];
 }
 
-/* This logs all errors from Javascript, nifty */
 - (void) webView:(WebView*)webView addMessageToConsole:(NSDictionary*)message
 {
 	if (![message isKindOfClass:[NSDictionary class]]) { 
@@ -83,5 +82,70 @@
     [listener use];
 }
 
+
+#pragma mark WebUIDelegate
+
+- (BOOL)webView:(WebView*)sender runBeforeUnloadConfirmPanelWithMessage:(NSString*)message initiatedByFrame:(WebFrame*)frame
+{
+    return [self webView:sender runJavaScriptConfirmPanelWithMessage:message initiatedByFrame:frame];
+}
+
+- (void)webView:(WebView *)sender runOpenPanelForFileButtonWithResultListener:(id < WebOpenPanelResultListener >)resultListener allowMultipleFiles:(BOOL)allowMultipleFiles
+{
+    NSOpenPanel* dialog = [NSOpenPanel openPanel];
+    
+    [dialog setCanChooseFiles:YES];
+    [dialog setAllowsMultipleSelection:allowMultipleFiles];
+    [dialog setCanChooseDirectories:YES];
+    
+    if ([dialog runModal] == NSOKButton) {
+        [resultListener chooseFilenames:[[dialog URLs] valueForKey:@"relativePath"]];
+    }
+}
+
+- (void)webView:(WebView*)sender runOpenPanelForFileButtonWithResultListener:(id<WebOpenPanelResultListener>)resultListener
+{
+    [self webView:sender runOpenPanelForFileButtonWithResultListener:resultListener allowMultipleFiles:NO];
+}
+
+- (void)webView:(WebView*)sender runJavaScriptAlertPanelWithMessage:(NSString*)message initiatedByFrame:(WebFrame*)frame
+{
+    NSAlert* alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:NSLocalizedString(@"OK", @"")];
+    [alert setMessageText:message];
+    
+    [alert runModal];
+}
+
+- (BOOL)webView:(WebView*)sender runJavaScriptConfirmPanelWithMessage:(NSString*)message initiatedByFrame:(WebFrame*)frame
+{
+    NSAlert* alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:NSLocalizedString(@"OK", @"")];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"")];
+    [alert setMessageText:message];
+    
+    return ([alert runModal] == NSAlertFirstButtonReturn);
+}
+
+- (NSString*)webView:(WebView*)sender runJavaScriptTextInputPanelWithPrompt:(NSString*)prompt defaultText:(NSString*)defaultText initiatedByFrame:(WebFrame*)frame
+{
+    NSAlert* alert = [NSAlert alertWithMessageText:prompt
+                                     defaultButton:NSLocalizedString(@"OK", @"")
+                                   alternateButton:NSLocalizedString(@"Cancel", @"")
+                                       otherButton:nil
+                         informativeTextWithFormat:@""];
+    
+    NSTextField* input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 300, 24)];
+    [input setStringValue:defaultText];
+    [alert setAccessoryView:input];
+    
+    NSInteger button = [alert runModal];
+    if (button == NSAlertDefaultReturn) {
+        [input validateEditing];
+        return [input stringValue];
+    }
+    
+    return nil;
+}
 
 @end
