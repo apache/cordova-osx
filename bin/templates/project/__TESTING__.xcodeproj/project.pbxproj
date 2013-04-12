@@ -13,6 +13,7 @@
 		48B43538152E5E6B00906A36 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 48B43537152E5E6B00906A36 /* www */; };
 		7E4C0B0916EAA4EB00542982 /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4C0B0416EAA3CF00542982 /* Cordova.framework */; };
 		7E4C0B0D16EAA6A700542982 /* Cordova.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E4C0B0416EAA3CF00542982 /* Cordova.framework */; };
+		7E545ABE17175CEF006EEBC6 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 7E545ABD17175CEF006EEBC6 /* README */; };
 		7E608F2B16E7D9B00018F512 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7E608F2A16E7D9B00018F512 /* config.xml */; };
 		7E608F3C16E7EE8D0018F512 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E608F3416E7EE8D0018F512 /* AppDelegate.m */; };
 		7E608F4816E7EE970018F512 /* __TESTING__.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7E608F4116E7EE970018F512 /* __TESTING__.icns */; };
@@ -71,6 +72,7 @@
 		48B43535152E5E4100906A36 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		48B43537152E5E6B00906A36 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		7E4C0AFE16EAA3CF00542982 /* CordovaFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaFramework.xcodeproj; path = ../CordovaFramework/CordovaFramework.xcodeproj; sourceTree = "<group>"; };
+		7E545ABD17175CEF006EEBC6 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		7E608F2A16E7D9B00018F512 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = config.xml; path = __TESTING__/config.xml; sourceTree = "<group>"; };
 		7E608F3316E7EE8D0018F512 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7E608F3416E7EE8D0018F512 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				7E4C0AFE16EAA3CF00542982 /* CordovaFramework.xcodeproj */,
 				7E608F4016E7EE970018F512 /* Resources */,
 				7E608F3216E7EE8D0018F512 /* Classes */,
+				7E545ABC17175CEF006EEBC6 /* Plugins */,
 				7E608F2E16E7EC900018F512 /* Other Sources */,
 				48B43517152E5E3500906A36 /* Frameworks */,
 				48B43515152E5E3500906A36 /* Products */,
@@ -141,6 +144,15 @@
 				7E4C0B0616EAA3CF00542982 /* CordovaFrameworkTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7E545ABC17175CEF006EEBC6 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				7E545ABD17175CEF006EEBC6 /* README */,
+			);
+			name = Plugins;
+			path = __TESTING__/Plugins;
 			sourceTree = "<group>";
 		};
 		7E608F2E16E7EC900018F512 /* Other Sources */ = {
@@ -260,6 +272,7 @@
 				7E608F4916E7EE970018F512 /* Credits.rtf in Resources */,
 				7E608F4A16E7EE970018F512 /* InfoPlist.strings in Resources */,
 				7E608F4B16E7EE970018F512 /* MainViewController.xib in Resources */,
+				7E545ABE17175CEF006EEBC6 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

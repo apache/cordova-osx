@@ -21,6 +21,7 @@
 #import "ShellUtils.h"
 #import <Cocoa/Cocoa.h>
 #import <Security/Authorization.h>
+#import "CDVPlugin.h"
 
 @implementation ShellUtils
 
@@ -63,11 +64,61 @@
 	return [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
 }
 
-+ (oneway void) executeShellTaskAsync:(NSString*)command
++ (NSTask*) executeShellTaskAsync:(NSString*)command usingBlock:(void (^)(NSNotification *))block
 {
-	[[[self class] shellTask:command] launch];
+    NSPipe* pipe = [NSPipe pipe];
+    NSFileHandle* fileHandle = [pipe fileHandleForReading];
     
-	return;
+	NSTask* task = [[self class] shellTask:command];
+    [task setStandardOutput:pipe];
+	[task setStandardError:pipe];
+
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+    
+    [center addObserverForName:NSFileHandleReadCompletionNotification object:fileHandle queue:mainQueue usingBlock:block];
+    [center addObserverForName:NSTaskDidTerminateNotification object:task queue:mainQueue usingBlock:block];
+
+    [task launch];
+    [fileHandle readInBackgroundAndNotify];
+    
+    return task;
 }
+
++ (void) executeShellTaskAsync:(NSString*)command withCallbackId:(NSString*)aCallbackId forPlugin:(CDVPlugin*)plugin
+{
+    __block NSString* callbackId = aCallbackId;
+    __block NSTask* task = nil;
+    
+    task = [[self class] executeShellTaskAsync:command usingBlock:^(NSNotification* notif){
+        if ([notif.object isKindOfClass:[NSFileHandle class]]) {
+            NSFileHandle* fileHandle = (NSFileHandle*)notif.object;
+            NSData* data = [[notif userInfo] valueForKey:NSFileHandleNotificationDataItem];
+            NSString* output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{ @"data": output }];
+            result.keepCallback = [NSNumber numberWithBool:YES];
+            [plugin.commandDelegate sendPluginResult:result callbackId:callbackId];
+            
+            if (task && [task isRunning]) {
+                [fileHandle readInBackgroundAndNotify];
+            }
+            
+        } else if ([notif.object isKindOfClass:[NSTask class]]) {
+            int status = [task terminationStatus];
+            CDVPluginResult* result;
+            task = nil;
+            
+            if (status == 0) { // 0 is success
+                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                       messageAsDictionary:@{ @"resultcode" :[NSNumber numberWithInt:status] }];
+            } else {
+                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsInt:status];
+            }
+            result.keepCallback = [NSNumber numberWithBool:NO];
+            [plugin.commandDelegate sendPluginResult:result callbackId:callbackId];
+        }
+    }];
+}
+
 
 @end

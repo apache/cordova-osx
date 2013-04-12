@@ -20,13 +20,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class CDVPlugin;
 @interface ShellUtils : NSObject
 
 + (BOOL) restartComputer;
 + (void) quitApp;
 
 + (NSTask*) shellTask:(NSString*)command;
-+ (oneway void) executeShellTaskAsync:(NSString*)command;
++ (NSTask*) executeShellTaskAsync:(NSString*)command usingBlock:(void (^)(NSNotification *))block;
++ (void) executeShellTaskAsync:(NSString*)command withCallbackId:(NSString*)aCallbackId forPlugin:(CDVPlugin*)plugin;
 + (NSString*) executeShellTask:(NSString*)command;
 
 @end

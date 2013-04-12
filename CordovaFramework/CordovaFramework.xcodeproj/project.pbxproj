@@ -68,7 +68,7 @@
 		7E4C0AF916EAA2AD00542982 /* NSWindow+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C0AC516EAA2AD00542982 /* NSWindow+Utils.m */; };
 		7E4C0AFB16EAA35300542982 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4C0AFA16EAA35300542982 /* SystemConfiguration.framework */; };
 		7E4C0AFD16EAA36400542982 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4C0AFC16EAA36400542982 /* WebKit.framework */; };
-		7EE6E73D1714E77C0051492C /* ShellUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EE6E73B1714E77C0051492C /* ShellUtils.h */; };
+		7EE6E73D1714E77C0051492C /* ShellUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EE6E73B1714E77C0051492C /* ShellUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EE6E73E1714E77C0051492C /* ShellUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6E73C1714E77C0051492C /* ShellUtils.m */; };
 		7EE6E73F1714E77C0051492C /* ShellUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6E73C1714E77C0051492C /* ShellUtils.m */; };
 /* End PBXBuildFile section */
