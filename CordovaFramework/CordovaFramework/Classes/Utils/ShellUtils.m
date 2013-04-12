@@ -105,15 +105,10 @@
             
         } else if ([notif.object isKindOfClass:[NSTask class]]) {
             int status = [task terminationStatus];
-            CDVPluginResult* result;
             task = nil;
             
-            if (status == 0) { // 0 is success
-                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+            CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                        messageAsDictionary:@{ @"resultcode" :[NSNumber numberWithInt:status] }];
-            } else {
-                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsInt:status];
-            }
             result.keepCallback = [NSNumber numberWithBool:NO];
             [plugin.commandDelegate sendPluginResult:result callbackId:callbackId];
         }
