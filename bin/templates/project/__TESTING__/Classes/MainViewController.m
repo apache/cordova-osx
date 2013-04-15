@@ -61,11 +61,22 @@
 }
 
 
-- (void)windowDidLoad
+- (void)awakeFromNib
 {
-    [super windowDidLoad];
+    [super awakeFromNib];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+
+    // enable HTML5 webStorage
+    WebPreferences* prefs = [self.webView preferences];
+    if ([prefs respondsToSelector:@selector(_setLocalStorageDatabasePath:)]) {
+        NSString* webStoragePath = @"~/Library/Application Support/__TESTING__";
+        [prefs performSelector:@selector(_setLocalStorageDatabasePath:) withObject:webStoragePath];
+        NSLog(@"WebStoragePath is '%@', modify in MainViewController.m.", webStoragePath);
+    }
+    if ([prefs respondsToSelector:@selector(setLocalStorageEnabled:)]) {
+        [prefs performSelector:@selector(setLocalStorageEnabled:) withObject:[NSNumber numberWithBool:YES]];
+    }
 }
 
 @end
