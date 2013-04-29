@@ -77,6 +77,16 @@
     for (NSString* pluginName in self.startupPluginNames) {
         [self getCommandInstance:pluginName];
     }
+    
+    // initialize items based on settings
+    
+    BOOL enableWebGL = [[self.settings objectForKey:@"EnableWebGL"] boolValue];
+    WebPreferences* prefs = [self.webView preferences];
+    
+    // Note that this preference may not be Mac App Store safe
+    if (enableWebGL && [prefs respondsToSelector:@selector(setWebGLEnabled:)]) {
+        [prefs performSelector:@selector(setWebGLEnabled:) withObject:[NSNumber numberWithBool:enableWebGL]];
+    }
 }
 
 - (void) __init
