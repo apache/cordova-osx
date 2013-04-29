@@ -20,9 +20,7 @@
 #
 -->
 <widget>
-    <!--
-    <preference name="MyPreferenceName" value="true" />
-     -->
+    <preference name="EnableWebGL" value="false" />
 
     <content src="index.html" />
 
