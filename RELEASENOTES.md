@@ -22,11 +22,12 @@
  
  Cordova is a framework that enables developers to include the Cordova API in their OS X application projects easily, and also create new Cordova-based OS X application projects through the command-line.
 
-### 2.7.0 (201304XX) ###
+### 2.7.0 (20130501) ###
 
 * Added ShellUtils for plugins to use.
 * Support window.alert, window.prompt, window.confirm
 * Enable HTML5 localStorage.
+* Enable WebGL support through "EnableWebGL" preference (disabled by default)
 
 <br />
 
