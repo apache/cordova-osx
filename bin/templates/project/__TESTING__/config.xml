@@ -46,7 +46,4 @@
     <feature name="NetworkStatus">
       <param name="ios-package" value="CDVConnection"/>
     </feature>
-    <!-- Deprecated plugins element. REmove in 3.0 -->
-    <plugins>
-    </plugins>
 </widget>
