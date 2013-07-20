@@ -30,7 +30,8 @@
 - (BOOL) isArray:(id)item
 {
     id win = [self.webView windowScriptObject];
-    NSNumber* result = [win callWebScriptMethod:@"CordovaBridgeUtil.isArray" withArguments:[NSArray arrayWithObject:item]];
+    WebScriptObject* bridgeUtil = [win evaluateWebScript:@"CordovaBridgeUtil"];
+    NSNumber* result = [bridgeUtil callWebScriptMethod:@"isArray" withArguments:[NSArray arrayWithObject:item]];
 
     return [result boolValue];
 }
@@ -38,7 +39,8 @@
 - (BOOL) isDictionary:(id)item
 {
     id win = [self.webView windowScriptObject];
-    NSNumber* result = [win callWebScriptMethod:@"CordovaBridgeUtil.isObject" withArguments:[NSArray arrayWithObject:item]];
+    WebScriptObject* bridgeUtil = [win evaluateWebScript:@"CordovaBridgeUtil"];
+    NSNumber* result = [bridgeUtil callWebScriptMethod:@"isObject" withArguments:[NSArray arrayWithObject:item]];
     return [result boolValue];
 }
 
