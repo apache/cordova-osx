@@ -20,70 +20,75 @@
 -->
 Cordova OSX
 =============================================================
-CordovaFramework is a framework that enables users to include Cordova in their OS X application projects easily, and also create new Cordova based OS X application projects.
-<br />
+CordovaLib is a framework that enables users to include Cordova in their OS X application projects easily, and also create new Cordova based OS X application projects.
+
 
 Pre-requisites
 -------------------------------------------------------------
-Make sure you have installed the latest released OS X SDK which comes with Xcode 4. Download it at [http://developer.apple.com/downloads](http://developer.apple.com/downloads) or the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12).
-<br />
+Make sure you have installed the latest released OS X SDK which comes with Xcode 5. Download it at [http://developer.apple.com/downloads](http://developer.apple.com/downloads) or the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12).
 
-Install CordovaFramework
+
+Add the Cordova OSX Platform the a CLI project
+-------------------------------------------------------------
+1. Get a patched version of cordova CLI and Plugman
+    1. checkout the master. see https://github.com/apache/cordova-cli#installing-from-master
+    2. patch the 2 projects with the patches provided in the `patches` directory to
+       enable the osx platform    
+
+2. Follow the instructions in the [**Command-Line Usage** section](http://cordova.apache.org/docs/en/edge/guide_cli_index.md.html#The%20Command-line%20Interface) of [http://docs.cordova.io](http://docs.cordova.io)
+
+3. add the osx platform:
+
+    ````
+    $ cordova platform add osx
+    $ cordova run osx
+    ````
+
+
+You can also open the project in XCode:
+
+    $ open platforms/osx/<yourproject>.xcodeproj
+
+Create a Cordova OSX Standalone project
 -------------------------------------------------------------
 
 1. Download the source
-2. Extract to their final location
-3. There is no step 3
+2. execute the `create` command to setup an empty project:
 
-<br />
+    ````
+    $ bin/create <path_to_new_project> <package_name> <project_name>
+    ````
+    
+    for example
+    
+    ````
+    $ bin/create ../Foo org.apache.foo FooBar
+    ````
 
-Create a Cordova project
+To use a **shared CordovaLib**, add as the first parameter "**--shared**" to the **bin/create** command.
+
+
+Updating a CordovaLib subproject reference in your project
 -------------------------------------------------------------
 
-1. Launch **Terminal.app**
-2. Go to the location where you installed Cordova, in the **bin** sub-folder
-3. Follow the instructions in the [**Command-Line Usage** section](http://docs.cordova.io/en/edge/guide_command-line_index.md.html#Command-Line%20Usage) of [http://docs.cordova.io](http://docs.cordova.io)
-
-The docs should also have been included in the distribution.
-
-To use a **shared CordovaFramework**, add as the first parameter "**--shared**" to the **bin/create** command.
-
-<br />
-
-Updating a CordovaFramework subproject reference in your project
--------------------------------------------------------------
-
-When you update to a new Cordova version, you may need to update the CordovaFramework reference in an existing project. Cordova comes with a script that will help you to do this. 
+When you update to a new Cordova version, you may need to update the CordovaLib reference in an existing project. Cordova comes with a script that will help you to do this.
 
 1. Launch **Terminal.app**
 2. Go to the location where you installed Cordova, in the **bin** sub-folder
 3. Run **"update_cordova_subproject [path/to/your/project/xcodeproj]"**  where the first parameter is the path to your project's .xcodeproj file
 
-<br />
-
-Unit Tests
---------------------------------------------------------------------
-1. **Create** a new Cordova-based Application project
-2. **Download** the code from the **[mobile-spec](https://github.com/apache/cordova-mobile-spec)** and put all of it in the root of your **www** folder
-3. **Modify cordova.js** to point to your correct cordova-X.X.X.js version
-4. **Run** the project
-
-<br />
 
 
 FAQ
 ---
-
 None yet.
 
 
 BUGS?
 -----
 File them at the [Cordova Issue Tracker](https://issues.apache.org/jira/browse/CB)      
-<br />
+
 
 MORE INFO
 ----------
 * [http://cordova.apache.org/](http://cordova.apache.org/)
-
-<br />
