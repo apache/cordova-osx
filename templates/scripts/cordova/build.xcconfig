@@ -1,0 +1,12 @@
+// to list all installed iOS identities, run:
+// security find-identity |  sed -n 's/.*\("[^"]*"\).*/\1/p' | grep 'iPhone'
+
+// generic 'OSX Developer' (no quotes) will match the right Identity with the right Provisioning Profile plus Certificate,
+// based on the app bundle id
+// CODE_SIGN_IDENTITY = OSX Developer
+
+// use local output
+CONFIGURATION_BUILD_DIR=build/
+
+// somehow xcodebuild does not find the cordova headers
+HEADER_SEARCH_PATHS = CordovaLib/build/include

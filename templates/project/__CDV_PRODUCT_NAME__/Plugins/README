@@ -1,4 +1,3 @@
-#!/bin/sh
 #
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -18,11 +17,4 @@
 # under the License.
 #
 
-# 
-# USAGE
-#   ./replaces path from to
-#
-# EXAMPLE
-#   ./replaces ./foo.txt FOO BAR
-#
-sed "s/$2/$3/g" "$1" > tmpFile ; mv tmpFile "$1"
+Put the .h and .m files of your plugin here. The .js files of your plugin belong in the www folder.

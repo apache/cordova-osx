@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 #
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -18,11 +19,22 @@
 # under the License.
 #
 
-# 
-# USAGE
-#   ./replaces path from to
 #
-# EXAMPLE
-#   ./replaces ./foo.txt FOO BAR
+# Returns the VERSION of CordovaLib used. 
+# Note: it does not work if the --shared option was used to create the project.
 #
-sed "s/$2/$3/g" "$1" > tmpFile ; mv tmpFile "$1"
+
+set -e
+
+CORDOVA_PATH=$( cd "$( dirname "$0" )" && pwd -P)
+PROJECT_PATH="$(dirname "$CORDOVA_PATH")"
+
+VERSION_FILE_PATH="$PROJECT_PATH/CordovaLib/VERSION"
+VERSION=$(<"$VERSION_FILE_PATH")
+
+if [ -f "$VERSION_FILE_PATH" ]; then
+  echo $VERSION 
+else
+  echo "The file \"$VERSION_FILE_PATH\" does not exist."
+  exit 1
+fi

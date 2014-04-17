@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 #
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -18,11 +19,6 @@
 # under the License.
 #
 
-# 
-# USAGE
-#   ./replaces path from to
-#
-# EXAMPLE
-#   ./replaces ./foo.txt FOO BAR
-#
-sed "s/$2/$3/g" "$1" > tmpFile ; mv tmpFile "$1"
+CORDOVA_PATH=$( cd "$( dirname "$0" )" && pwd -P)
+
+tail -f "$CORDOVA_PATH/console.log"

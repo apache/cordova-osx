@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 #
 # Licensed to the Apache Software Foundation (ASF) under one
@@ -31,23 +31,44 @@
 set -e
 
 function usage() {
-  echo "Usage: $0 [--shared] <path_to_new_project> <package_name> <project_name>"
-  echo "	--shared (optional): Link directly against the shared copy of the CordovaFramework instead of a copy of it."
-  echo "	<path_to_new_project>: Path to your new Cordova OS X project"
-  echo "	<package_name>: Package name, following reverse-domain style convention"
-  echo "	<project_name>: Project name"
-  exit 1
+    echo "Usage: $0 [--shared] [--arc] [--cli] <path_to_new_project> <package_name> <project_name> [<project_template_dir>]"
+    echo "	--shared (optional): Link directly against the shared copy of the CordovaLib instead of a copy of it."
+    echo "	--cli (optional): Use the CLI-project template."
+    echo "	<path_to_new_project>: Path to your new Cordova iOS project"
+    echo "	<package_name>: Package name, following reverse-domain style convention"
+    echo "	<project_name>: Project name"
+    echo "	<project_template_dir>: Path to project template (override)."
+    exit 1
 }
 
 USE_SHARED=0
-if [[ $1 == "--shared" ]]; then
-    USE_SHARED=1
-    shift;
-fi
+USE_CLI=0
+while [ $# -gt 0 ]; do
+    case "$1" in
+    --shared) USE_SHARED=1 ;;
+    --arc) USE_ARC=1 ;;
+    --cli) USE_CLI=1 ;;
+    -*) echo "Unrecognized argument: $1" >&2; usage ;;
+    *)
+        if [[ -z "$PROJECT_PATH" ]]; then
+            PROJECT_PATH="$1"
+        elif [[ -z "$PACKAGE" ]]; then
+            PACKAGE="$1"
+        elif [[ -z "$PROJECT_NAME" ]]; then
+            PROJECT_NAME="$1"
+        elif [[ -z "$PROJECT_TEMPLATE_DIR" ]]; then
+            PROJECT_TEMPLATE_DIR="$1"
+        else
+            echo "Too many arguments to $0". >&2
+            usage
+        fi
+    esac
+    shift
+done
 
 # check whether it is a proper create command (at least 3 arguments)
-if [ $# -lt 3 ]; then
-	usage
+if [[ -z "$PROJECT_NAME" ]]; then
+    usage
 fi
 
 # the two lines below are to get the current folder, and resolve symlinks
@@ -57,82 +78,77 @@ while [ -h "$SCRIPT" ] ; do
    SCRIPT=`readlink "$SCRIPT"`
 done
 
-BINDIR=$( cd "$( dirname "$SCRIPT" )" && pwd )
-CORDOVAFRAMEWORK_DIR="$BINDIR/../CordovaFramework"
-CDV_VER=$(cat $CORDOVAFRAMEWORK_DIR/VERSION)
+BINDIR=$(cd "$(dirname "$SCRIPT" )" && pwd)
+CORDOVALIB_DIR="$BINDIR/../CordovaLib"
+CDV_VER=$(cat "$CORDOVALIB_DIR/VERSION")
 
-PROJECT_PATH=$1
-PACKAGE=$2
-PROJECT_NAME=$3
+PROJECT_PARENT=$(dirname "$PROJECT_PATH")
+PROJECT_TEMPLATE_DIR=${PROJECT_TEMPLATE_DIR:-"$BINDIR/../templates/project"}
+SCRIPT_TEMPLATE_DIR=$BINDIR/../templates/scripts
+
+"$BINDIR/check_reqs" || exit $?
 
 # check whether the project path exists and is not empty
 if [ -d "$PROJECT_PATH" ]; then
-	if [ "$(ls -1A "$PROJECT_PATH")" ]; then
-		echo "\033[31mError: $PROJECT_PATH is not empty. Please specify an empty folder.\033[m"
-		exit 1
-	fi
+    if [ "$(ls -1A "$PROJECT_PATH")" ]; then
+        echo "\033[31mError: $PROJECT_PATH is not empty. Please specify an empty folder.\033[m"
+        exit 1
+    fi
 fi
 
-# copy the files in; then modify them
-cp -r "$BINDIR/templates/project/" "$PROJECT_PATH"
+#Ensure the parent directory exists so cp -r will not fail
+if [ ! -d "$PROJECT_PARENT" ]; then
+    echo "\033[31mError: $PROJECT_PARENT does not exist. Please specify an existing parent folder.\033[m"
+    exit 1
+fi
 
-# Copy in the JS.
-cp "$CORDOVAFRAMEWORK_DIR/cordova.js" "$PROJECT_PATH/www/cordova.js"
+# create the project directory. eg: MyProject/platforms/osx
+mkdir -p "$PROJECT_PATH"
+cp -r "$PROJECT_TEMPLATE_DIR/www" "$PROJECT_PATH"/www
+cp "$CORDOVALIB_DIR/cordova.js" "$PROJECT_PATH/www/cordova.js"
 
-# I've tried to be thorough in my documentation of the manual actions below...
-# on first brush it would seem that the right solution would be to brute force
-# recurse the directory tree renaming instances of __ID__ and __TESTING__ ...however this is a little blunt
-# and while so the below is too being very manual it was/is easier to test, fucking manually, and sort out the automation
+# create and copy the XCode stuff. eg:
+#   MyProject/platforms/osx/MyProject
+#   MyProject/platforms/osx/MyProject.xcodeproj
+for filename in "" ".xcodeproj"; do
+    cp -r "$PROJECT_TEMPLATE_DIR/__CDV_PRODUCT_NAME__${filename}" "${PROJECT_PATH}/${PROJECT_NAME}${filename}"
+done
+cp -r "$PROJECT_TEMPLATE_DIR/gitignore" "${PROJECT_PATH}/.gitignore"
 
-# rename the folders/files:
-#
-# - ./__TESTING__.xcodeproj/
-# - ./__TESTING__/
-# - ./__TESTING__/__TESTING__-info.plist
-# - ./__TESTING__/__TESTING__-Prefix.plist
-# - ./__TESTING__/Resources/__TESTING__.icns
-mv "$PROJECT_PATH/__TESTING__.xcodeproj" "$PROJECT_PATH/$PROJECT_NAME.xcodeproj"
-mv "$PROJECT_PATH/__TESTING__" "$PROJECT_PATH/$PROJECT_NAME"
-mv "$PROJECT_PATH/$PROJECT_NAME/__TESTING__-Info.plist" "$PROJECT_PATH/$PROJECT_NAME/$PROJECT_NAME-Info.plist"
-mv "$PROJECT_PATH/$PROJECT_NAME/__TESTING__-Prefix.pch" "$PROJECT_PATH/$PROJECT_NAME/$PROJECT_NAME-Prefix.pch"
-mv "$PROJECT_PATH/$PROJECT_NAME/Resources/__TESTING__.icns" "$PROJECT_PATH/$PROJECT_NAME/Resources/$PROJECT_NAME.icns"
+# rename some files
+export filename=$PROJECT_NAME
+find "${PROJECT_PATH}" -name '__CDV_PRODUCT_NAME__*' -type f -exec sh -c 'mv "$1" "${1//__CDV_PRODUCT_NAME__/${filename}}"' -- {} \;
+unset filename
 
-# lets store a reference to the root
-R=$PROJECT_PATH/$PROJECT_NAME
-
-# replace __TESTING__ and --ID-- with ACTIVITY and ID strings, respectively, in:
-#
-# - ./__TESTING__.xcodeproj/project.pbxproj
-# - ./__TESTING__/Classes/AppDelegate.h
-# - ./__TESTING__/Classes/AppDelegate.m
-# - ./__TESTING__/Resources/main.m
-# - ./__TESTING__/Resources/__TESTING__-info.plist
-# - ./__TESTING__/Resources/__TESTING__-Prefix.plist
-# - ./__TESTING__/Resources/en.lproj/MainViewController.xib
-
-"$BINDIR/replaces" "$R.xcodeproj/project.pbxproj" __TESTING__ "$PROJECT_NAME"
-"$BINDIR/replaces" "$R/Classes/AppDelegate.h"     __TESTING__ "$PROJECT_NAME"
-"$BINDIR/replaces" "$R/Classes/AppDelegate.m"     __TESTING__ "$PROJECT_NAME"
-"$BINDIR/replaces" "$R/Classes/MainViewController.h" __TESTING__ "$PROJECT_NAME"
-"$BINDIR/replaces" "$R/Classes/MainViewController.m" __TESTING__ "$PROJECT_NAME"
-"$BINDIR/replaces" "$R/main.m"                    __TESTING__ "$PROJECT_NAME"
-"$BINDIR/replaces" "$R/$PROJECT_NAME-Info.plist"  __TESTING__ "$PROJECT_NAME"
-"$BINDIR/replaces" "$R/$PROJECT_NAME-Prefix.pch"  __TESTING__ "$PROJECT_NAME"
-"$BINDIR/replaces" "$R/$PROJECT_NAME-Info.plist" --ID-- $PACKAGE
-"$BINDIR/replaces" "$R/Resources/en.lproj/MainViewController.xib"  __TESTING__ "$PROJECT_NAME"
+# replace placeholders in templates
+for filename in `fgrep -rl __CDV_ "${PROJECT_PATH}"`; do
+    sed -i.bak -e "s/__CDV_PRODUCT_NAME__/${PROJECT_NAME}/g" \
+           -e "s/__CDV_ORGANIZATION_NAME__/${PACKAGE}/g" \
+           -e "s/--CDV-COMPANY-ID--/${PACKAGE}/g" \
+           ${filename}
+    rm -f ${filename}.bak
+done
 
 if [[ $USE_SHARED = 1 ]]; then
     # Make the sub-project reference to Cordova have the correct path.
     "$BINDIR/update_cordova_subproject" "$R.xcodeproj/project.pbxproj"
+            "${PROJECT_PATH}/${PROJECT_NAME}.xcodeproj/project.pbxproj" > /dev/null
 else
-    # Copy in the CordovaFramework directory.
-    mkdir -p "$PROJECT_PATH/CordovaFramework/CordovaFramework.xcodeproj"
-    mkdir -p "$PROJECT_PATH/CordovaFramework/CordovaFramework/"
-    cp -r "$BINDIR/../CordovaFramework/CordovaFramework/" "$PROJECT_PATH/CordovaFramework/CordovaFramework/"
-    cp "$BINDIR/../CordovaFramework/VERSION" "$PROJECT_PATH/CordovaFramework"
-    cp "$BINDIR/../CordovaFramework/cordova.js" "$PROJECT_PATH/CordovaFramework"
-    cp "$BINDIR/../CordovaFramework/CordovaFramework.xcodeproj/project.pbxproj" "$PROJECT_PATH/CordovaFramework/CordovaFramework.xcodeproj"
+    # Copy in the CordovaLib directory.
+    cp -r "${CORDOVALIB_DIR}" "${PROJECT_PATH}/"
     # Make the sub-project reference to Cordova have the correct path.
-    "$BINDIR/update_cordova_subproject" "$R.xcodeproj/project.pbxproj" "$PROJECT_PATH/CordovaFramework/CordovaFramework.xcodeproj/project.pbxproj" > /dev/null
+    "$BINDIR/update_cordova_subproject" \
+        "${PROJECT_PATH}/${PROJECT_NAME}.xcodeproj/project.pbxproj" \
+        "${PROJECT_PATH}/CordovaLib/CordovaLib.xcodeproj/project.pbxproj" > /dev/null
 fi
 
+# Finally copy the scripts
+cp -r "$SCRIPT_TEMPLATE_DIR"/* "$PROJECT_PATH/"
+
+# copy the check_reqs script
+cp "$BINDIR/check_reqs" "$PROJECT_PATH"/cordova
+
+# copy the version scripts script
+cp "$BINDIR/apple_ios_version" "$PROJECT_PATH"/cordova
+cp "$BINDIR/apple_osx_version" "$PROJECT_PATH"/cordova
+cp "$BINDIR/apple_xcode_version" "$PROJECT_PATH"/cordova
