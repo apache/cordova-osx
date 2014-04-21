@@ -71,6 +71,12 @@
 		7EE6E73D1714E77C0051492C /* ShellUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EE6E73B1714E77C0051492C /* ShellUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EE6E73E1714E77C0051492C /* ShellUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6E73C1714E77C0051492C /* ShellUtils.m */; };
 		7EE6E73F1714E77C0051492C /* ShellUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6E73C1714E77C0051492C /* ShellUtils.m */; };
+		EC3EA05B1905926C00808C44 /* NSArray+Comparisons.h in Headers */ = {isa = PBXBuildFile; fileRef = EC3EA0551905926C00808C44 /* NSArray+Comparisons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EC3EA05C1905926C00808C44 /* NSArray+Comparisons.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3EA0561905926C00808C44 /* NSArray+Comparisons.m */; };
+		EC3EA05D1905926C00808C44 /* NSDictionary+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC3EA0571905926C00808C44 /* NSDictionary+Extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EC3EA05E1905926C00808C44 /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3EA0581905926C00808C44 /* NSDictionary+Extensions.m */; };
+		EC3EA05F1905926C00808C44 /* NSMutableArray+QueueAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC3EA0591905926C00808C44 /* NSMutableArray+QueueAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EC3EA0601905926C00808C44 /* NSMutableArray+QueueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3EA05A1905926C00808C44 /* NSMutableArray+QueueAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +144,12 @@
 		7E4C0AFC16EAA36400542982 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		7EE6E73B1714E77C0051492C /* ShellUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShellUtils.h; sourceTree = "<group>"; };
 		7EE6E73C1714E77C0051492C /* ShellUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShellUtils.m; sourceTree = "<group>"; };
+		EC3EA0551905926C00808C44 /* NSArray+Comparisons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Comparisons.h"; sourceTree = "<group>"; };
+		EC3EA0561905926C00808C44 /* NSArray+Comparisons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Comparisons.m"; sourceTree = "<group>"; };
+		EC3EA0571905926C00808C44 /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extensions.h"; sourceTree = "<group>"; };
+		EC3EA0581905926C00808C44 /* NSDictionary+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extensions.m"; sourceTree = "<group>"; };
+		EC3EA0591905926C00808C44 /* NSMutableArray+QueueAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+QueueAdditions.h"; sourceTree = "<group>"; };
+		EC3EA05A1905926C00808C44 /* NSMutableArray+QueueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+QueueAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +300,12 @@
 		7E4C0AC116EAA2AD00542982 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EC3EA0551905926C00808C44 /* NSArray+Comparisons.h */,
+				EC3EA0561905926C00808C44 /* NSArray+Comparisons.m */,
+				EC3EA0571905926C00808C44 /* NSDictionary+Extensions.h */,
+				EC3EA0581905926C00808C44 /* NSDictionary+Extensions.m */,
+				EC3EA0591905926C00808C44 /* NSMutableArray+QueueAdditions.h */,
+				EC3EA05A1905926C00808C44 /* NSMutableArray+QueueAdditions.m */,
 				7E4C0AC216EAA2AD00542982 /* NSData+Base64.h */,
 				7E4C0AC316EAA2AD00542982 /* NSData+Base64.m */,
 				7E4C0AC416EAA2AD00542982 /* NSWindow+Utils.h */,
@@ -310,9 +328,11 @@
 				7E4C0AC916EAA2AD00542982 /* CDVViewController.h in Headers */,
 				7E4C0ACC16EAA2AD00542982 /* CDVWebViewDelegate.h in Headers */,
 				7E4C0ACF16EAA2AD00542982 /* CDV.h in Headers */,
+				EC3EA05B1905926C00808C44 /* NSArray+Comparisons.h in Headers */,
 				7E4C0AD016EAA2AD00542982 /* CDVAvailability.h in Headers */,
 				7E4C0AD116EAA2AD00542982 /* CDVCommandDelegate.h in Headers */,
 				7E4C0AD216EAA2AD00542982 /* CDVCommandDelegateImpl.h in Headers */,
+				EC3EA05D1905926C00808C44 /* NSDictionary+Extensions.h in Headers */,
 				7E4C0AD516EAA2AD00542982 /* CDVCommandQueue.h in Headers */,
 				7E4C0AD816EAA2AD00542982 /* CDVConfigParser.h in Headers */,
 				7E4C0ADB16EAA2AD00542982 /* CDVConnection.h in Headers */,
@@ -326,6 +346,7 @@
 				7E4C0AF116EAA2AD00542982 /* CDVReachability.h in Headers */,
 				7E4C0AF416EAA2AD00542982 /* NSData+Base64.h in Headers */,
 				7E4C0AF716EAA2AD00542982 /* NSWindow+Utils.h in Headers */,
+				EC3EA05F1905926C00808C44 /* NSMutableArray+QueueAdditions.h in Headers */,
 				7EE6E73D1714E77C0051492C /* ShellUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,6 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E4C0AC716EAA2AD00542982 /* CDVBridge.m in Sources */,
+				EC3EA05C1905926C00808C44 /* NSArray+Comparisons.m in Sources */,
 				7E4C0ACA16EAA2AD00542982 /* CDVViewController.m in Sources */,
 				7E4C0ACD16EAA2AD00542982 /* CDVWebViewDelegate.m in Sources */,
 				7E4C0AD316EAA2AD00542982 /* CDVCommandDelegateImpl.m in Sources */,
@@ -446,6 +468,8 @@
 				7E4C0ADC16EAA2AD00542982 /* CDVConnection.m in Sources */,
 				7E4C0ADF16EAA2AD00542982 /* CDVConsole.m in Sources */,
 				7E4C0AE316EAA2AD00542982 /* CDVDevice.m in Sources */,
+				EC3EA05E1905926C00808C44 /* NSDictionary+Extensions.m in Sources */,
+				EC3EA0601905926C00808C44 /* NSMutableArray+QueueAdditions.m in Sources */,
 				7E4C0AE616EAA2AD00542982 /* CDVInvokedUrlCommand.m in Sources */,
 				7E4C0AE916EAA2AD00542982 /* CDVJSON.m in Sources */,
 				7E4C0AEC16EAA2AD00542982 /* CDVPlugin.m in Sources */,

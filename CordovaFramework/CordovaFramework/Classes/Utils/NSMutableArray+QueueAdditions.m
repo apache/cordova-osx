@@ -6,9 +6,9 @@
  to you under the Apache License, Version 2.0 (the
  "License"); you may not use this file except in compliance
  with the License.  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing,
  software distributed under the License is distributed on an
  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -17,16 +17,42 @@
  under the License.
  */
 
-#import "CDVAvailability.h"
+#import "NSMutableArray+QueueAdditions.h"
 
-#import "CDVJSON.h"
-#import "CDVDebug.h"
-#import "CDVPluginResult.h"
-#import "CDVInvokedUrlCommand.h"
-#import "CDVPlugin.h"
-#import "CDVDevice.h"
+@implementation NSMutableArray (QueueAdditions)
 
-#import "ShellUtils.h"
-#import "NSDictionary+Extensions.h"
-#import "NSArray+Comparisons.h"
-#import "NSData+Base64.h"
+- (id)queueHead
+{
+    if ([self count] == 0) {
+        return nil;
+    }
+
+    return [self objectAtIndex:0];
+}
+
+- (__autoreleasing id)dequeue
+{
+    if ([self count] == 0) {
+        return nil;
+    }
+
+    id head = [self objectAtIndex:0];
+    if (head != nil) {
+        // [[head retain] autorelease]; ARC - the __autoreleasing on the return value should so the same thing
+        [self removeObjectAtIndex:0];
+    }
+
+    return head;
+}
+
+- (id)pop
+{
+    return [self dequeue];
+}
+
+- (void)enqueue:(id)object
+{
+    [self addObject:object];
+}
+
+@end

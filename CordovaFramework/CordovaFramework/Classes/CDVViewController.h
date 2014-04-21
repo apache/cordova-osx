@@ -27,6 +27,8 @@
 #import "CDVPlugin.h"
 #import "CDVWebViewDelegate.h"
 
+static NSMutableArray* __CDVViewController_all_created__;
+
 @interface CDVViewController : NSWindowController
 {
     @protected
@@ -51,8 +53,13 @@
 @property (nonatomic, readonly, strong) CDVCommandQueue* commandQueue;
 @property (nonatomic, readonly, strong) id <CDVCommandDelegate> commandDelegate;
 
++ (void) registerViewController:(CDVViewController*) vc;
++ (void) unregisterViewController:(CDVViewController*) vc;
+
 - (id)getCommandInstance:(NSString*)pluginName;
 - (void)registerPlugin:(CDVPlugin*)plugin withClassName:(NSString*)className;
 - (void)registerPlugin:(CDVPlugin*)plugin withPluginName:(NSString*)pluginName;
+
+- (IBAction)newDocument:(id)sender;
 
 @end

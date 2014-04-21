@@ -41,6 +41,17 @@
 @synthesize commandDelegate = _commandDelegate;
 @synthesize commandQueue = _commandQueue;
 
++ (void) registerViewController:(CDVViewController*) vc
+{
+    if (__CDVViewController_all_created__ == nil) __CDVViewController_all_created__ = [[NSMutableArray alloc]init];
+    [__CDVViewController_all_created__ addObject:vc];
+}
+
++ (void) unregisterViewController:(CDVViewController*) vc
+{
+    [__CDVViewController_all_created__ removeObject:vc];
+}
+
 - (void) awakeFromNib
 {
     _commandDelegate = [[CDVCommandDelegateImpl alloc] initWithViewController:self];
@@ -245,8 +256,22 @@
     return obj;
 }
 
-- (void) windowResized:(NSNotification*)notification;
+- (IBAction)newDocument:(id)sender
 {
+    CDVViewController* vctr = [[CDVViewController alloc]initWithWindowNibName:@"DocumentViewController"];
+    [vctr window];
+    
+    //we need to retain the controllers, otherwise they are going to be released
+    [CDVViewController registerViewController:vctr];
+}
+
+- (void) windowDidResize:(NSNotification*)notification
+{
+}
+
+- (void) windowWillClose:(NSNotification*)notification
+{
+    [CDVViewController unregisterViewController:self];
 }
 
 - (void)windowDidLoad

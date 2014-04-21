@@ -6,9 +6,9 @@
  to you under the Apache License, Version 2.0 (the
  "License"); you may not use this file except in compliance
  with the License.  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing,
  software distributed under the License is distributed on an
  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -17,16 +17,25 @@
  under the License.
  */
 
-#import "CDVAvailability.h"
-
-#import "CDVJSON.h"
-#import "CDVDebug.h"
-#import "CDVPluginResult.h"
-#import "CDVInvokedUrlCommand.h"
-#import "CDVPlugin.h"
-#import "CDVDevice.h"
-
-#import "ShellUtils.h"
-#import "NSDictionary+Extensions.h"
 #import "NSArray+Comparisons.h"
-#import "NSData+Base64.h"
+
+@implementation NSArray (Comparisons)
+
+- (id)objectAtIndex:(NSUInteger)index withDefault:(id)aDefault
+{
+    id obj = nil;
+
+    @try {
+        obj = [self objectAtIndex:index];
+        if ((obj == [NSNull null]) || (obj == nil)) {
+            return aDefault;
+        }
+    }
+    @catch(NSException* exception) {
+        NSLog(@"Exception - Name: %@ Reason: %@", [exception name], [exception reason]);
+    }
+
+    return obj;
+}
+
+@end
