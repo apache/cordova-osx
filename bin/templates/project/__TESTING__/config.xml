@@ -40,6 +40,17 @@
     <!-- Preferences for OSX -->
     <preference name="EnableWebGL" value="false" />
 
+    <!-- Enable WebKit inspector -->
+    <preference name="EnableDebugMode" value="false" />
+
+    <preference name="HideCursor" value="false" />
+	
+    <!-- Kiosk Mode
+         - the app will run in full screen mode
+         - application switching is disabled
+    -->
+    <preference name="KioskMode" value="false" />
+
     <feature name="Device">
       <param name="ios-package" value="CDVDevice"/>
     </feature>

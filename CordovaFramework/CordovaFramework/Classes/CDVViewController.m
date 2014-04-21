@@ -82,11 +82,45 @@
     
     BOOL enableWebGL = [[self.settings objectForKey:@"EnableWebGL"] boolValue];
     WebPreferences* prefs = [self.webView preferences];
-    
+
     // Note that this preference may not be Mac App Store safe
     if (enableWebGL && [prefs respondsToSelector:@selector(setWebGLEnabled:)]) {
         [prefs performSelector:@selector(setWebGLEnabled:) withObject:[NSNumber numberWithBool:enableWebGL]];
     }
+
+    BOOL enableDebugMode = [[self.settings objectForKey:@"EnableDebugMode"] boolValue];
+
+    BOOL kioskMode = [[self.settings objectForKey:@"KioskMode"] boolValue];
+
+    // debugging mode
+    if (enableDebugMode && kioskMode == FALSE) {
+        [[NSUserDefaults standardUserDefaults]setBool:TRUE forKey:@"WebKitDeveloperExtras"];
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"IncludeDebugMenu"];
+    } else {
+        [[NSUserDefaults standardUserDefaults]setBool:FALSE forKey:@"WebKitDeveloperExtras"];
+        [[NSUserDefaults standardUserDefaults]setInteger:0  forKey:@"IncludeDebugMenu"];
+    }
+
+    // usefull for touchscreens
+    BOOL hideCursor = [[self.settings objectForKey:@"HideCursor"] boolValue];
+
+    if (hideCursor) {
+        [NSCursor hide];
+    }
+
+    if (kioskMode) {
+        [self performSelector:@selector(__makeFullScreen) withObject:nil afterDelay:0.0];
+    }
+}
+
+- (void) __makeFullScreen {
+    NSView* contentView = [[self window]contentView];
+    NSNumber* flag = [NSNumber numberWithUnsignedInt:(NSApplicationPresentationHideMenuBar|\
+                                                      NSApplicationPresentationDisableAppleMenu|\
+                                                      NSApplicationPresentationDisableProcessSwitching|\
+                                                      NSApplicationPresentationDisableHideApplication|\
+                                                      NSApplicationPresentationHideDock)];
+    [contentView enterFullScreenMode:[NSScreen mainScreen] withOptions:[NSDictionary dictionaryWithObject:flag forKey:NSFullScreenModeApplicationPresentationOptions]];
 }
 
 - (void) __init
@@ -213,6 +247,11 @@
 
 - (void) windowResized:(NSNotification*)notification;
 {
+}
+
+- (void)windowDidLoad
+{
+
 }
 
 @end
