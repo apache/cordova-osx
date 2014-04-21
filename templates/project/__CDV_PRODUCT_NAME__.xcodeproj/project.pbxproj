@@ -82,10 +82,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7069FBC31905A1F9000B48E1 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Plugins;
+			path = __CDV_PRODUCT_NAME__/Plugins;
+			sourceTree = SOURCE_ROOT;
+		};
 		70BD681A18FFB02D00A1EFCF = {
 			isa = PBXGroup;
 			children = (
 				70BD686818FFB0BF00A1EFCF /* Classes */,
+				7069FBC31905A1F9000B48E1 /* Plugins */,
 				70BD682C18FFB02D00A1EFCF /* __CDV_PRODUCT_NAME__ */,
 				70BD682518FFB02D00A1EFCF /* Frameworks */,
 				70BD682418FFB02D00A1EFCF /* Products */,
@@ -349,6 +358,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -386,6 +396,7 @@
 					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = macosx;
 			};
 			name = Release;
