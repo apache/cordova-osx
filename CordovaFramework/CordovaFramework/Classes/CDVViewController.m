@@ -57,6 +57,46 @@
     _commandDelegate = [[CDVCommandDelegateImpl alloc] initWithViewController:self];
     self.webViewDelegate.viewController = self;
     
+    // initialize items based on settings
+    BOOL enableWebGL = [[self.settings objectForKey:@"EnableWebGL"] boolValue];
+    WebPreferences* prefs = [self.webView preferences];
+    
+    // Note that this preference may not be Mac App Store safe
+    if (enableWebGL && [prefs respondsToSelector:@selector(setWebGLEnabled:)]) {
+        [prefs performSelector:@selector(setWebGLEnabled:) withObject:[NSNumber numberWithBool:enableWebGL]];
+    }
+    
+    BOOL enableDebugMode = [[self.settings objectForKey:@"EnableDebugMode"] boolValue];
+    
+    BOOL kioskMode = [[self.settings objectForKey:@"KioskMode"] boolValue];
+    
+    // debugging mode
+    if (enableDebugMode && kioskMode == FALSE) {
+        [[NSUserDefaults standardUserDefaults]setBool:TRUE forKey:@"WebKitDeveloperExtras"];
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"IncludeDebugMenu"];
+    } else {
+        [[NSUserDefaults standardUserDefaults]setBool:FALSE forKey:@"WebKitDeveloperExtras"];
+        [[NSUserDefaults standardUserDefaults]setInteger:0  forKey:@"IncludeDebugMenu"];
+    }
+    
+    // usefull for touchscreens
+    BOOL hideCursor = [[self.settings objectForKey:@"HideCursor"] boolValue];
+    
+    if (hideCursor) {
+        [NSCursor hide];
+    }
+    
+    if (kioskMode) {
+        [self performSelector:@selector(__makeFullScreen) withObject:nil afterDelay:0.0];
+    }
+    
+    for (NSString* pluginName in self.startupPluginNames) {
+        [self getCommandInstance:pluginName];
+    }
+}
+
+- (void) loadRequest
+{
     NSURL* appURL = nil;
     NSString* loadErr = nil;
     
@@ -83,44 +123,6 @@
     } else {
         NSString* html = [NSString stringWithFormat:@"<html><body> %@ </body></html>", loadErr];
         [[self.webView mainFrame] loadHTMLString:html baseURL:nil];
-    }
-    
-    for (NSString* pluginName in self.startupPluginNames) {
-        [self getCommandInstance:pluginName];
-    }
-    
-    // initialize items based on settings
-    
-    BOOL enableWebGL = [[self.settings objectForKey:@"EnableWebGL"] boolValue];
-    WebPreferences* prefs = [self.webView preferences];
-
-    // Note that this preference may not be Mac App Store safe
-    if (enableWebGL && [prefs respondsToSelector:@selector(setWebGLEnabled:)]) {
-        [prefs performSelector:@selector(setWebGLEnabled:) withObject:[NSNumber numberWithBool:enableWebGL]];
-    }
-
-    BOOL enableDebugMode = [[self.settings objectForKey:@"EnableDebugMode"] boolValue];
-
-    BOOL kioskMode = [[self.settings objectForKey:@"KioskMode"] boolValue];
-
-    // debugging mode
-    if (enableDebugMode && kioskMode == FALSE) {
-        [[NSUserDefaults standardUserDefaults]setBool:TRUE forKey:@"WebKitDeveloperExtras"];
-        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"IncludeDebugMenu"];
-    } else {
-        [[NSUserDefaults standardUserDefaults]setBool:FALSE forKey:@"WebKitDeveloperExtras"];
-        [[NSUserDefaults standardUserDefaults]setInteger:0  forKey:@"IncludeDebugMenu"];
-    }
-
-    // usefull for touchscreens
-    BOOL hideCursor = [[self.settings objectForKey:@"HideCursor"] boolValue];
-
-    if (hideCursor) {
-        [NSCursor hide];
-    }
-
-    if (kioskMode) {
-        [self performSelector:@selector(__makeFullScreen) withObject:nil afterDelay:0.0];
     }
 }
 
@@ -260,6 +262,7 @@
 {
     CDVViewController* vctr = [[CDVViewController alloc]initWithWindowNibName:@"DocumentViewController"];
     [vctr window];
+    [vctr loadRequest];
     
     //we need to retain the controllers, otherwise they are going to be released
     [CDVViewController registerViewController:vctr];

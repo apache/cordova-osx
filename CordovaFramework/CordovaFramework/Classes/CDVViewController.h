@@ -60,6 +60,8 @@ static NSMutableArray* __CDVViewController_all_created__;
 - (void)registerPlugin:(CDVPlugin*)plugin withClassName:(NSString*)className;
 - (void)registerPlugin:(CDVPlugin*)plugin withPluginName:(NSString*)pluginName;
 
+- (void) loadRequest;
+
 - (IBAction)newDocument:(id)sender;
 
 @end

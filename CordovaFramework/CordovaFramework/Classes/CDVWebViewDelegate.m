@@ -82,7 +82,7 @@
     
     NSInteger type = [[actionInformation valueForKey:WebActionNavigationTypeKey]integerValue];
     if (type == 5) {
-        //[[sender window]makeKeyAndOrderFront:self];
+        [[sender window]makeKeyAndOrderFront:self];
     }
 
     [listener use];

@@ -77,6 +77,8 @@
     if ([prefs respondsToSelector:@selector(setLocalStorageEnabled:)]) {
         [prefs performSelector:@selector(setLocalStorageEnabled:) withObject:[NSNumber numberWithBool:YES]];
     }
+
+    [super loadRequest];		
 }
 
 @end
