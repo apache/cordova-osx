@@ -22,6 +22,14 @@
 #
 # compile and launch a Cordova/iOS project to the simulator
 #
+function usage() {
+    echo "Usage: $0"
+    echo "      --clean    : clean before building"
+    echo "      --debug    : use debug configuration (default)."
+    echo "      --release  : use release configuration."
+    echo "      --run      : run application after building"
+    echo "      --fg       : run application in foreground after building"
+}
 
 CORDOVA_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$CORDOVA_PATH")"
@@ -33,15 +41,17 @@ cd "$PROJECT_PATH"
 
 CONFIGURATION=Debug
 CLEAN=
-OPEN=0
+RUN=
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --debug) ;;
         --release) CONFIGURATION=Release;;
-        --device) OPEN=1 ;; # ignored for osx
-        --emulator) OPEN=1 ;; # ignored for osx
+        --device) RUN=run ;; # ignored for osx
+        --emulator) RUN=run ;; # ignored for osx
+        --run) RUN=run ;; # ignored for osx
+        --fg) RUN=fg;;
         --clean) CLEAN=clean;;
-        *) echo "Unrecognized flag: $1"; exit 2;;
+        *) echo "Unrecognized flag: $1"; usage; exit 2;;
     esac
     shift
 done
@@ -53,7 +63,11 @@ xcodebuild \
     -configuration "$CONFIGURATION" \
     $CLEAN build
 
-if (($OPEN)); then
+if [ "$RUN" == "run" ]; then
     echo "Starting $PROJECT_NAME.app ..."
-    open "$PROJECT_PATH/build/$PROJECT_NAME.app"
+    exec "$PROJECT_PATH/build/$PROJECT_NAME.app/Contents/MacOS/$PROJECT_NAME" \
+          > "$CORDOVA_PATH/console.log" 2>&1 &
+elif [ "$RUN" == "fg" ]; then
+    echo "Starting $PROJECT_NAME.app ..."
+    exec "$PROJECT_PATH/build/$PROJECT_NAME.app/Contents/MacOS/$PROJECT_NAME"
 fi
