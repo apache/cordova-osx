@@ -1,5 +1,5 @@
 diff --git a/platforms.js b/platforms.js
-index 5bb82f1..a5f8e7e 100644
+index 5bb82f1..13010d1 100644
 --- a/platforms.js
 +++ b/platforms.js
 @@ -24,6 +24,12 @@ module.exports = {
@@ -9,8 +9,8 @@ index 5bb82f1..a5f8e7e 100644
 +    'osx' : {
 +        hostos : ['darwin'],
 +        parser : './src/metadata/ios_parser',
-+        url    : 'https://github.com/tripodsan/cordova-osx.git',
-+        version: '3.4.1'
++        url    : 'https://git-wip-us.apache.org/repos/asf?p=cordova-osx.git',
++        version: 'master'
 +    },
      'android' : {
          parser : './src/metadata/android_parser',
