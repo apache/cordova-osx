@@ -16,7 +16,6 @@
 #  KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-#
 
-system_profiler SPUSBDataType | sed -n -e '/iPad/,/Serial/p' | grep "Serial Number:" | awk -F ": " '{print $2 " iPad"}'
-system_profiler SPUSBDataType | sed -n -e '/iPhone/,/Serial/p' | grep "Serial Number:" | awk -F ": " '{print $2 " iPhone"}'
+echo "OSX does not support additional devices."
+exit 1
