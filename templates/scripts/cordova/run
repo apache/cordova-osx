@@ -19,5 +19,4 @@
 # under the License.
 #
 CORDOVA_PATH=$( cd "$( dirname "$0" )" && pwd -P)
-"$CORDOVA_PATH/build" --device || exit $?
-
+"$CORDOVA_PATH/build" --run $* || exit $?
