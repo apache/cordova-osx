@@ -16,21 +16,6 @@
 #  KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-#
-# Valid values for "--target" (case insensitive):
-#     "iPhone (Retina 3.5-inch)" (default)
-#     "iPhone (Retina 4-inch)"
-#     "iPhone"
-#     "iPad"
-#     "iPad (Retina)"
 
-set -e
-
-SIM_RUNNING=$(ps aux | grep -i "[i]Phone Simulator" | wc -l)
-if [ $SIM_RUNNING == 0 ]; then
-    echo "No emulators are running."
-    exit 1
-fi
-
-SIM_ID=`defaults read com.apple.iphonesimulator "SimulateDevice"`
-echo \"$SIM_ID\"
+echo "OSX does not need emulators."
+exit 1
