@@ -46,7 +46,7 @@
 
 /* Begin PBXFileReference section */
 		707060AE18FFC05700755D46 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		707060B018FFC0D900755D46 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		707060B018FFC0D900755D46 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = __CDV_PRODUCT_NAME__/config.xml; sourceTree = "<group>"; };
 		70BD682318FFB02D00A1EFCF /* __CDV_PRODUCT_NAME__.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = __CDV_PRODUCT_NAME__.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70BD682618FFB02D00A1EFCF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		70BD682918FFB02D00A1EFCF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -65,6 +65,7 @@
 		70BD686A18FFB0BF00A1EFCF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		70BD686B18FFB0BF00A1EFCF /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		70BD686C18FFB0BF00A1EFCF /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		70DAA8D91908785C00AF3749 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +94,8 @@
 		70BD681A18FFB02D00A1EFCF = {
 			isa = PBXGroup;
 			children = (
+				707060B018FFC0D900755D46 /* config.xml */,
+				70DAA8D91908785C00AF3749 /* www */,
 				70BD686818FFB0BF00A1EFCF /* Classes */,
 				7069FBC31905A1F9000B48E1 /* Plugins */,
 				70BD682C18FFB02D00A1EFCF /* __CDV_PRODUCT_NAME__ */,
@@ -134,7 +137,6 @@
 		70BD682C18FFB02D00A1EFCF /* __CDV_PRODUCT_NAME__ */ = {
 			isa = PBXGroup;
 			children = (
-				707060B018FFC0D900755D46 /* config.xml */,
 				707060AE18FFC05700755D46 /* MainViewController.xib */,
 				70BD683E18FFB02D00A1EFCF /* Images.xcassets */,
 				70BD682D18FFB02D00A1EFCF /* Supporting Files */,
