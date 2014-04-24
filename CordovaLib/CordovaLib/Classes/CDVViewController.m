@@ -86,11 +86,37 @@
     
     BOOL enableWebGL = [[self.settings objectForKey:@"EnableWebGL"] boolValue];
     WebPreferences* prefs = [self.webView preferences];
-    
+    [prefs setAutosaves:YES];
+
     // Note that this preference may not be Mac App Store safe
-    if (enableWebGL && [prefs respondsToSelector:@selector(setWebGLEnabled:)]) {
-        [prefs performSelector:@selector(setWebGLEnabled:) withObject:[NSNumber numberWithBool:enableWebGL]];
+    if (enableWebGL) {
+        [prefs setWebGLEnabled:YES];
     }
+
+    // ensure that local storage is enable and paths are correct
+    NSString* webStoragePath = [self.settings valueForKey:@"OSXLocalStoragePath"];
+    if (webStoragePath == nil) {
+        NSString* appBundleID = [[NSBundle mainBundle] bundleIdentifier];
+        NSFileManager* fileManager = [[NSFileManager alloc] init];
+        NSError* err = nil;
+        NSURL* dir = [fileManager URLForDirectory:NSApplicationSupportDirectory
+                                         inDomain:NSUserDomainMask
+                                appropriateForURL:nil
+                                           create:YES
+                                            error:&err];
+        if (err) {
+            NSLog(@"error finding app support directory %@", err);
+            webStoragePath = [NSString stringWithFormat:@"~/Library/Application Support/%@", appBundleID];
+        } else {
+            NSURL* folder = [[NSURL alloc] initFileURLWithPath:[dir path] isDirectory:YES];
+            NSURL* storageURL = [NSURL URLWithString:appBundleID relativeToURL:folder];
+            webStoragePath = storageURL.path;
+        }
+    }
+    [prefs _setLocalStorageDatabasePath:webStoragePath];
+    [prefs setLocalStorageEnabled:YES];
+    NSLog(@"WebStoragePath is '%@', modify in config.xml.", webStoragePath);
+    [self.webView setPreferences:prefs];
 }
 
 - (void) __init

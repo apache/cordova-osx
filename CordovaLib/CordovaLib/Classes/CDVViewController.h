@@ -56,3 +56,16 @@
 - (void)registerPlugin:(CDVPlugin*)plugin withPluginName:(NSString*)pluginName;
 
 @end
+
+// add private web preferences
+@interface WebPreferences (WebPrivate)
+
+- (BOOL)webGLEnabled;
+- (void)setWebGLEnabled:(BOOL)enabled;
+
+- (BOOL)localStorageEnabled;
+- (void)setLocalStorageEnabled:(BOOL)localStorageEnabled;
+
+- (NSString *)_localStorageDatabasePath;
+- (void)_setLocalStorageDatabasePath:(NSString *)path;
+@end
