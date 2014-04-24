@@ -16,10 +16,8 @@
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
-    <feature name="LocalStorage">
-        <param name="ios-package" value="CDVLocalStorage" />
-    </feature>
-    <name>Pong</name>
+    <preference name="OSXLocalStoragePath" value="~/Library/Application Support/__CDV_PRODUCT_NAME__" />
+    <name>__CDV_PRODUCT_NAME__</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
