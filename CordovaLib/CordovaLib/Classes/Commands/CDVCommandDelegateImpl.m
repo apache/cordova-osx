@@ -53,7 +53,7 @@
 	
 		NSString* sourceBaseDir = [[NSUserDefaults standardUserDefaults]valueForKey:@"SourceBaseDir"];
 		if (sourceBaseDir != nil) {
-			NSLog(@"carefull, sourcing HTML sources from %@", sourceBaseDir);
+			NSLog(@"careful, sourcing HTML sources from %@ because of SourceBaseDir", sourceBaseDir);
 			NSString* path = [NSString stringWithFormat:@"%@/%@/%@", sourceBaseDir, directoryStr, filename];
 			return path;
 		} else {
