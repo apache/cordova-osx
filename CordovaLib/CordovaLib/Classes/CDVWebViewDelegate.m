@@ -19,20 +19,24 @@
 
 
 #import "CDVWebViewDelegate.h"
-#import "CDVViewController.h"
 #import "CDVConsole.h"
 #import "CDVBridge.h"
 
 @implementation CDVWebViewDelegate
 
+@synthesize console;
+
 - (void)webView:(WebView*)webView didClearWindowObject:(WebScriptObject*)windowScriptObject forFrame:(WebFrame*)frame
 {
-	self.console = [CDVConsole new];
-
+	if (self.console == nil) {
+        self.console = [CDVConsole new];
+    }
 	[windowScriptObject setValue:self.console forKey:@"console"];
 	
-	self.bridge = [[CDVBridge alloc] initWithWebView:webView andViewController:self.viewController];
-	[windowScriptObject setValue:self.bridge forKey:@"cordovabridge"];
+	if (self.bridge == nil) {
+        self.bridge = [[CDVBridge alloc] initWithWebView:webView andViewController:self.viewController];
+    }
+    [windowScriptObject setValue:self.bridge forKey:@"cordovabridge"];
 }
 
 - (void)webView:(WebView*)sender didFinishLoadForFrame:(WebFrame*)frame
@@ -74,34 +78,8 @@
 {	
     NSString* url = [[request URL] description];
     NSLog(@"navigating to %@", url);
-    
-    NSInteger type = [[actionInformation valueForKey:WebActionNavigationTypeKey]integerValue];
-    if (type == 5) {
-        [[sender window]makeKeyAndOrderFront:self];
-    }
 
     [listener use];
-}
-
-- (void) webView:(WebView *)webView decidePolicyForNewWindowAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListener:(id < WebPolicyDecisionListener >)listener
-{
-    [listener use];
-}
-
-- (WebView*) webView:(WebView *)sender createWebViewWithRequest:(NSURLRequest *)request
-{
-    if (request == nil) {//is most likely window.open
-				CDVViewController* vctr = [self.viewController makeViewController];
-        [vctr window];
-        
-        //we need to retain the controllers, otherwise they are going to be released
-        [CDVViewController registerViewController:vctr];
-        
-        return vctr.webView;
-    }
-    else {
-        return sender;
-    }
 }
 
 
@@ -168,12 +146,6 @@
     }
     
     return nil;
-}
-
-- (void)dealloc
-{
-	self.console = nil;
-	self.bridge = nil;
 }
 
 @end

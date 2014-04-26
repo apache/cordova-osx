@@ -50,8 +50,7 @@
 
     id win = [self.webView windowScriptObject];
 
-		WebScriptObject* bridgeUtil = [win evaluateWebScript:@"CordovaBridgeUtil"];
-    WebScriptObject* keysObject = [bridgeUtil callWebScriptMethod:@"getDictionaryKeys" withArguments:[NSArray arrayWithObject:webScriptObject]];
+    WebScriptObject* keysObject = [win callWebScriptMethod:@"CordovaBridgeUtil.getDictionaryKeys" withArguments:[NSArray arrayWithObject:webScriptObject]];
     NSArray* keys = [self convertWebScriptObjectToNSArray:keysObject];
     NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:[keys count]];
 
