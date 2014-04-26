@@ -19,6 +19,7 @@
 
 
 #import "CDVWebViewDelegate.h"
+#import "CDVViewController.h"
 #import "CDVConsole.h"
 #import "CDVBridge.h"
 
@@ -28,14 +29,13 @@
 
 - (void)webView:(WebView*)webView didClearWindowObject:(WebScriptObject*)windowScriptObject forFrame:(WebFrame*)frame
 {
-	if (self.console == nil) {
-        self.console = [CDVConsole new];
-    }
+    //create new instance even if exists because this may be a reload of a page
+    self.console = [CDVConsole new];
+    
 	[windowScriptObject setValue:self.console forKey:@"console"];
 	
-	if (self.bridge == nil) {
         self.bridge = [[CDVBridge alloc] initWithWebView:webView andViewController:self.viewController];
-    }
+    
     [windowScriptObject setValue:self.bridge forKey:@"cordovabridge"];
 }
 
@@ -79,9 +79,34 @@
     NSString* url = [[request URL] description];
     NSLog(@"navigating to %@", url);
 
+    NSInteger type = [[actionInformation valueForKey:WebActionNavigationTypeKey]integerValue];
+    if (type == 5) { //usually new page/window request
+        [[sender window]makeKeyAndOrderFront:self];
+    }
+
     [listener use];
 }
 
+- (void) webView:(WebView *)webView decidePolicyForNewWindowAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListener:(id < WebPolicyDecisionListener >)listener
+{
+    [listener use];
+}
+
+- (WebView*) webView:(WebView *)sender createWebViewWithRequest:(NSURLRequest *)request
+{
+    if (request == nil) {//is most likely window.open
+				CDVViewController* vctr = [self.viewController makeViewController];
+        [vctr window];
+        
+        //we need to retain the controllers, otherwise they are going to be released
+        [CDVViewController registerViewController:vctr];
+        
+        return vctr.webView;
+    }
+    else {
+        return sender;
+    }
+}
 
 #pragma mark WebUIDelegate
 
@@ -146,6 +171,12 @@
     }
     
     return nil;
+}
+
+- (void)dealloc
+{
+	self.console = nil;
+	self.bridge = nil;
 }
 
 @end

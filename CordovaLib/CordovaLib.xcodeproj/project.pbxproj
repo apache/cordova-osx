@@ -62,6 +62,12 @@
 		70DAA9261908E84800AF3749 /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BD673A18FF9DAE00A1EFCF /* libCordova.a */; };
 		70DAA9291908E93500AF3749 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DAA9281908E93500AF3749 /* MainViewController.m */; };
 		70E382C91909BBFF0029A2F0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E382C81909BBFF0029A2F0 /* SenTestingKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EC97BEAC190C508800974B23 /* NSArray+Comparisons.h in Headers */ = {isa = PBXBuildFile; fileRef = EC97BEA6190C508800974B23 /* NSArray+Comparisons.h */; };
+		EC97BEAD190C508800974B23 /* NSArray+Comparisons.m in Sources */ = {isa = PBXBuildFile; fileRef = EC97BEA7190C508800974B23 /* NSArray+Comparisons.m */; };
+		EC97BEAE190C508800974B23 /* NSDictionary+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC97BEA8190C508800974B23 /* NSDictionary+Extensions.h */; };
+		EC97BEAF190C508800974B23 /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC97BEA9190C508800974B23 /* NSDictionary+Extensions.m */; };
+		EC97BEB0190C508800974B23 /* NSMutableArray+QueueAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC97BEAA190C508800974B23 /* NSMutableArray+QueueAdditions.h */; };
+		EC97BEB1190C508800974B23 /* NSMutableArray+QueueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC97BEAB190C508800974B23 /* NSMutableArray+QueueAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +148,12 @@
 		70DAA9271908E93500AF3749 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		70DAA9281908E93500AF3749 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		70E382C81909BBFF0029A2F0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		EC97BEA6190C508800974B23 /* NSArray+Comparisons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Comparisons.h"; sourceTree = "<group>"; };
+		EC97BEA7190C508800974B23 /* NSArray+Comparisons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Comparisons.m"; sourceTree = "<group>"; };
+		EC97BEA8190C508800974B23 /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extensions.h"; sourceTree = "<group>"; };
+		EC97BEA9190C508800974B23 /* NSDictionary+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extensions.m"; sourceTree = "<group>"; };
+		EC97BEAA190C508800974B23 /* NSMutableArray+QueueAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+QueueAdditions.h"; sourceTree = "<group>"; };
+		EC97BEAB190C508800974B23 /* NSMutableArray+QueueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+QueueAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +318,12 @@
 		70BD679018FFA12D00A1EFCF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EC97BEA6190C508800974B23 /* NSArray+Comparisons.h */,
+				EC97BEA7190C508800974B23 /* NSArray+Comparisons.m */,
+				EC97BEA8190C508800974B23 /* NSDictionary+Extensions.h */,
+				EC97BEA9190C508800974B23 /* NSDictionary+Extensions.m */,
+				EC97BEAA190C508800974B23 /* NSMutableArray+QueueAdditions.h */,
+				EC97BEAB190C508800974B23 /* NSMutableArray+QueueAdditions.m */,
 				70BD679118FFA12D00A1EFCF /* NSData+Base64.h */,
 				70BD679218FFA12D00A1EFCF /* NSData+Base64.m */,
 				70BD679318FFA12D00A1EFCF /* NSWindow+Utils.h */,
@@ -362,9 +380,11 @@
 				70BD67A418FFA12D00A1EFCF /* CDVConfigParser.h in Headers */,
 				70BD679D18FFA12D00A1EFCF /* CDV.h in Headers */,
 				70BD67B518FFA12D00A1EFCF /* CDVReachability.h in Headers */,
+				EC97BEAC190C508800974B23 /* NSArray+Comparisons.h in Headers */,
 				70BD67AD18FFA12D00A1EFCF /* CDVInvokedUrlCommand.h in Headers */,
 				70BD679718FFA12D00A1EFCF /* CDVBridge.h in Headers */,
 				70BD67AB18FFA12D00A1EFCF /* CDVDevice.h in Headers */,
+				EC97BEAE190C508800974B23 /* NSDictionary+Extensions.h in Headers */,
 				70BD67AF18FFA12D00A1EFCF /* CDVJSON.h in Headers */,
 				70BD67AA18FFA12D00A1EFCF /* CDVDebug.h in Headers */,
 				70BD679B18FFA12D00A1EFCF /* CDVWebViewDelegate.h in Headers */,
@@ -378,6 +398,7 @@
 				70BD67B318FFA12D00A1EFCF /* CDVPluginResult.h in Headers */,
 				70BD67A618FFA12D00A1EFCF /* CDVConnection.h in Headers */,
 				70BD67A018FFA12D00A1EFCF /* CDVCommandDelegateImpl.h in Headers */,
+				EC97BEB0190C508800974B23 /* NSMutableArray+QueueAdditions.h in Headers */,
 				70BD67B918FFA12D00A1EFCF /* NSWindow+Utils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,6 +540,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70BD67A918FFA12D00A1EFCF /* CDVConsole.m in Sources */,
+				EC97BEAD190C508800974B23 /* NSArray+Comparisons.m in Sources */,
 				70BD67A118FFA12D00A1EFCF /* CDVCommandDelegateImpl.m in Sources */,
 				70BD67AE18FFA12D00A1EFCF /* CDVInvokedUrlCommand.m in Sources */,
 				70BD67B018FFA12D00A1EFCF /* CDVJSON.m in Sources */,
@@ -527,6 +549,8 @@
 				70BD67AC18FFA12D00A1EFCF /* CDVDevice.m in Sources */,
 				70BD67B618FFA12D00A1EFCF /* CDVReachability.m in Sources */,
 				70BD679C18FFA12D00A1EFCF /* CDVWebViewDelegate.m in Sources */,
+				EC97BEAF190C508800974B23 /* NSDictionary+Extensions.m in Sources */,
+				EC97BEB1190C508800974B23 /* NSMutableArray+QueueAdditions.m in Sources */,
 				70BD679818FFA12D00A1EFCF /* CDVBridge.m in Sources */,
 				70BD67BC18FFA12D00A1EFCF /* ShellUtils.m in Sources */,
 				70BD67A518FFA12D00A1EFCF /* CDVConfigParser.m in Sources */,
