@@ -78,6 +78,26 @@ When you update to a new Cordova version, you may need to update the CordovaLib 
 3. Run **"update_cordova_subproject [path/to/your/project/xcodeproj]"**  where the first parameter is the path to your project's .xcodeproj file
 
 
+Useful options 
+--------------
+
+In the `config.xml` you can use following configuration parameters
+
+    ```<preference name="EnableDebugMode" value="false" />```
+The debug modes enables WebKit's Inspector. The inspector is accessible via right-click.
+
+    ```<preference name="HideCursor" value="false" />```
+Hides the cursor. This option is very usefull for touchscreens using mouse emulation.
+
+    ```<preference name="KioskMode" value="false" />```
+Kiosk Mode will make the app run in full screen mode and disables application switching.
+
+Loading resources (JS/CSS) directly from your project's source directory. 
+    ```$ defaults write com.xxx.yyy write SourceBaseDir /Users/blah/myproject```
+
+This option is very usefull for rapid JS/CSS development because you do do not have to rebuild the entire application,
+just reload the page - EnableDebugMode may have to be enabled.
+`SourceBaseDir` should point to where your `www` folder is.
 
 FAQ
 ---

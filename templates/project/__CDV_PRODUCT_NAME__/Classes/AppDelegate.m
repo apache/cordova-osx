@@ -41,7 +41,11 @@
 
 - (void) applicationDidFinishLaunching:(NSNotification*)aNotification 
 {
+}
 
+- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+{
+    //you can create your WindowController here and pass it the filename
 }
 
 @end
