@@ -25,19 +25,14 @@
 
 @implementation CDVWebViewDelegate
 
-@synthesize console;
-
 - (void)webView:(WebView*)webView didClearWindowObject:(WebScriptObject*)windowScriptObject forFrame:(WebFrame*)frame
 {
-	if (self.console == nil) {
-        self.console = [CDVConsole new];
-    }
+	self.console = [CDVConsole new];
+
 	[windowScriptObject setValue:self.console forKey:@"console"];
 	
-	if (self.bridge == nil) {
-        self.bridge = [[CDVBridge alloc] initWithWebView:webView andViewController:self.viewController];
-    }
-    [windowScriptObject setValue:self.bridge forKey:@"cordovabridge"];
+	self.bridge = [[CDVBridge alloc] initWithWebView:webView andViewController:self.viewController];
+	[windowScriptObject setValue:self.bridge forKey:@"cordovabridge"];
 }
 
 - (void)webView:(WebView*)sender didFinishLoadForFrame:(WebFrame*)frame
@@ -96,7 +91,7 @@
 - (WebView*) webView:(WebView *)sender createWebViewWithRequest:(NSURLRequest *)request
 {
     if (request == nil) {//is most likely window.open
-        CDVViewController* vctr = [[CDVViewController alloc]initWithWindowNibName:@"DocumentViewController"];
+				CDVViewController* vctr = [self.viewController makeViewController];
         [vctr window];
         
         //we need to retain the controllers, otherwise they are going to be released
@@ -173,6 +168,12 @@
     }
     
     return nil;
+}
+
+- (void)dealloc
+{
+	self.console = nil;
+	self.bridge = nil;
 }
 
 @end

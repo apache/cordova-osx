@@ -20,6 +20,7 @@
 #import "CDVViewController.h"
 #import "CDVConfigParser.h"
 #import "CDVCommandDelegateImpl.h"
+#import "CDVJSON.h"
 
 @interface CDVViewController ()
 
@@ -41,15 +42,20 @@
 @synthesize commandDelegate = _commandDelegate;
 @synthesize commandQueue = _commandQueue;
 
-+ (void) registerViewController:(CDVViewController*) vc
++ (void)registerViewController:(CDVViewController*) vc
 {
     if (__CDVViewController_all_created__ == nil) __CDVViewController_all_created__ = [[NSMutableArray alloc]init];
     [__CDVViewController_all_created__ addObject:vc];
 }
 
-+ (void) unregisterViewController:(CDVViewController*) vc
++ (void)unregisterViewController:(CDVViewController*) vc
 {
-    [__CDVViewController_all_created__ removeObject:vc];
+	[__CDVViewController_all_created__ removeObject:vc];
+}
+
++ (NSArray*)registeredViewControllers
+{
+    return __CDVViewController_all_created__;
 }
 
 - (void) awakeFromNib
@@ -66,7 +72,7 @@
         [prefs performSelector:@selector(setWebGLEnabled:) withObject:[NSNumber numberWithBool:enableWebGL]];
     }
     
-    BOOL enableDebugMode = [[self.settings objectForKey:@"EnableDebugMode"] boolValue];
+    BOOL enableDebugMode = [[NSUserDefaults standardUserDefaults ]boolForKey:@"EnableDebugMode"];
     
     BOOL kioskMode = [[self.settings objectForKey:@"KioskMode"] boolValue];
     
@@ -105,7 +111,18 @@
     } else if ([self.wwwFolderName rangeOfString:@"://"].location != NSNotFound) {
         appURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", self.wwwFolderName, self.startPage]];
     } else {
-        NSString* startFilePath = [self.commandDelegate pathForResource:self.startPage];
+			
+				NSString* path = self.startPage;
+				NSString* opts = nil;
+				NSRange r = [path rangeOfString:@"?"];
+			
+				//save options
+				if (r.location != NSNotFound) {
+					opts = [path substringFromIndex:r.location];
+					path = [path substringToIndex:r.location];
+				}
+			
+        NSString* startFilePath = [self.commandDelegate pathForResource:path];
         if (startFilePath == nil) {
             loadErr = [NSString stringWithFormat:@"ERROR: Start Page at '%@/%@' was not found.", self.wwwFolderName, self.startPage];
             NSLog(@"%@", loadErr);
@@ -113,6 +130,7 @@
             appURL = nil;
         } else {
             appURL = [NSURL fileURLWithPath:startFilePath];
+						if (opts != nil) appURL = [NSURL URLWithString:[[appURL description]stringByAppendingString:opts]];
         }
     }
     
@@ -258,9 +276,27 @@
     return obj;
 }
 
+- (void)postWindowMessage:(id) data {
+	id win = [self.webView windowScriptObject];
+	if ([data isKindOfClass:[NSString class]]) {
+		[win setValue:data forKey:@"_saGF11231DDsmsg_"];
+	}
+	else {
+		[win setValue:[data JSONString] forKey:@"_saGF11231DDsmsg_"];
+	}
+	NSString* js = @"try{window.postMessage(_saGF11231DDsmsg_,\"*\");}catch(e){};delete _saGF11231DDsmsg_;";
+	[win evaluateWebScript:js];
+}
+
+- (CDVViewController*) makeViewController
+{
+	CDVViewController* vctr = [[CDVViewController alloc]initWithWindowNibName:@"DocumentViewController"];
+	return vctr;
+}
+
 - (IBAction)newDocument:(id)sender
 {
-    CDVViewController* vctr = [[CDVViewController alloc]initWithWindowNibName:@"DocumentViewController"];
+    CDVViewController* vctr = [self makeViewController];
     [vctr window];
     [vctr loadRequest];
     
@@ -281,5 +317,10 @@
 {
 
 }
-
+- (void)dealloc
+{
+	self.contentView = nil;
+	self.webView = nil;
+	self.webViewDelegate = nil;
+}
 @end

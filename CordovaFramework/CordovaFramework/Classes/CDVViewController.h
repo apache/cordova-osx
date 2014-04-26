@@ -53,14 +53,18 @@ static NSMutableArray* __CDVViewController_all_created__;
 @property (nonatomic, readonly, strong) CDVCommandQueue* commandQueue;
 @property (nonatomic, readonly, strong) id <CDVCommandDelegate> commandDelegate;
 
-+ (void) registerViewController:(CDVViewController*) vc;
-+ (void) unregisterViewController:(CDVViewController*) vc;
++ (void)registerViewController:(CDVViewController*) vc;
++ (void)unregisterViewController:(CDVViewController*) vc;
++ (NSArray*)registeredViewControllers;
 
 - (id)getCommandInstance:(NSString*)pluginName;
 - (void)registerPlugin:(CDVPlugin*)plugin withClassName:(NSString*)className;
 - (void)registerPlugin:(CDVPlugin*)plugin withPluginName:(NSString*)pluginName;
 
 - (void) loadRequest;
+- (void) postWindowMessage:(id) data;
+
+- (CDVViewController*) makeViewController;
 
 - (IBAction)newDocument:(id)sender;
 

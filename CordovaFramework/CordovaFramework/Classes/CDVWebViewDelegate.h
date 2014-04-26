@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) CDVConsole* console;
 @property (nonatomic, strong) CDVBridge* bridge;
+
 @property (nonatomic,
 #ifdef __MAC_10_8
            weak
