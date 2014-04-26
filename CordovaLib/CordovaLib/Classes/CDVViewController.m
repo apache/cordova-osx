@@ -60,76 +60,8 @@
 
 - (void) awakeFromNib
 {
-    _commandDelegate = [[CDVCommandDelegateImpl alloc] initWithViewController:self];
-
-    // make the linker happy since CDVWebViewDelegate is not referenced anywhere and would be stripped out
-    // see http://stackoverflow.com/questions/1725881/unknown-class-myclass-in-interface-builder-file-error-at-runtime
-    [CDVWebViewDelegate class];
-    //self.webViewDelegate.viewController = self;
-
-    // initialize items based on settings
-    
-    BOOL enableWebGL = [[self.settings objectForKey:@"EnableWebGL"] boolValue];
-    WebPreferences* prefs = [self.webView preferences];
-    [prefs setAutosaves:YES];
-
-    // Note that this preference may not be Mac App Store safe
-    if (enableWebGL) {
-        [prefs setWebGLEnabled:YES];
-    }
-
-    // ensure that local storage is enable and paths are correct
-    NSString* webStoragePath = [self.settings valueForKey:@"OSXLocalStoragePath"];
-    if (webStoragePath == nil) {
-        NSString* appBundleID = [[NSBundle mainBundle] bundleIdentifier];
-        NSFileManager* fileManager = [[NSFileManager alloc] init];
-        NSError* err = nil;
-        NSURL* dir = [fileManager URLForDirectory:NSApplicationSupportDirectory
-                                         inDomain:NSUserDomainMask
-                                appropriateForURL:nil
-                                           create:YES
-                                            error:&err];
-        if (err) {
-            NSLog(@"error finding app support directory %@", err);
-            webStoragePath = [NSString stringWithFormat:@"~/Library/Application Support/%@", appBundleID];
-        } else {
-            NSURL* folder = [[NSURL alloc] initFileURLWithPath:[dir path] isDirectory:YES];
-            NSURL* storageURL = [NSURL URLWithString:appBundleID relativeToURL:folder];
-            webStoragePath = storageURL.path;
-        }
-    }
-    [prefs _setLocalStorageDatabasePath:webStoragePath];
-    [prefs setLocalStorageEnabled:YES];
-    NSLog(@"WebStoragePath is '%@', modify in config.xml.", webStoragePath);
-    [self.webView setPreferences:prefs];  
-
-    BOOL enableDebugMode = [[NSUserDefaults standardUserDefaults ]boolForKey:@"EnableDebugMode"];
-    
-    BOOL kioskMode = [[self.settings objectForKey:@"KioskMode"] boolValue];
-    
-    // debugging mode
-    if (enableDebugMode && kioskMode == FALSE) {
-        [[NSUserDefaults standardUserDefaults]setBool:TRUE forKey:@"WebKitDeveloperExtras"];
-        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"IncludeDebugMenu"];
-    } else {
-        [[NSUserDefaults standardUserDefaults]setBool:FALSE forKey:@"WebKitDeveloperExtras"];
-        [[NSUserDefaults standardUserDefaults]setInteger:0  forKey:@"IncludeDebugMenu"];
-    }
-    
-    // usefull for touchscreens
-    BOOL hideCursor = [[self.settings objectForKey:@"HideCursor"] boolValue];
-    
-    if (hideCursor) {
-        [NSCursor hide];
-    }
-    
-    if (kioskMode) {
-        [self performSelector:@selector(__makeFullScreen) withObject:nil afterDelay:0.0];
-    }
-
-    for (NSString* pluginName in self.startupPluginNames) {
-        [self getCommandInstance:pluginName];
-    }
+	//load request by default
+	[self loadRequest];
 }
     
 - (void) loadRequest
@@ -187,7 +119,79 @@
 
 - (void) __init
 {
-    [self loadSettings];
+	[self loadSettings];
+	
+	//apply settings
+	_commandDelegate = [[CDVCommandDelegateImpl alloc] initWithViewController:self];
+	
+	// make the linker happy since CDVWebViewDelegate is not referenced anywhere and would be stripped out
+	// see http://stackoverflow.com/questions/1725881/unknown-class-myclass-in-interface-builder-file-error-at-runtime
+	[CDVWebViewDelegate class];
+	//self.webViewDelegate.viewController = self;
+	
+	// initialize items based on settings
+	
+	BOOL enableWebGL = [[self.settings objectForKey:@"EnableWebGL"] boolValue];
+	WebPreferences* prefs = [self.webView preferences];
+	[prefs setAutosaves:YES];
+	
+	// Note that this preference may not be Mac App Store safe
+	if (enableWebGL) {
+		[prefs setWebGLEnabled:YES];
+	}
+	
+	// ensure that local storage is enable and paths are correct
+	NSString* webStoragePath = [self.settings valueForKey:@"OSXLocalStoragePath"];
+	if (webStoragePath == nil) {
+		NSString* appBundleID = [[NSBundle mainBundle] bundleIdentifier];
+		NSFileManager* fileManager = [[NSFileManager alloc] init];
+		NSError* err = nil;
+		NSURL* dir = [fileManager URLForDirectory:NSApplicationSupportDirectory
+																		 inDomain:NSUserDomainMask
+														appropriateForURL:nil
+																			 create:YES
+																				error:&err];
+		if (err) {
+			NSLog(@"error finding app support directory %@", err);
+			webStoragePath = [NSString stringWithFormat:@"~/Library/Application Support/%@", appBundleID];
+		} else {
+			NSURL* folder = [[NSURL alloc] initFileURLWithPath:[dir path] isDirectory:YES];
+			NSURL* storageURL = [NSURL URLWithString:appBundleID relativeToURL:folder];
+			webStoragePath = storageURL.path;
+		}
+	}
+	[prefs _setLocalStorageDatabasePath:webStoragePath];
+	[prefs setLocalStorageEnabled:YES];
+	NSLog(@"WebStoragePath is '%@', modify in config.xml.", webStoragePath);
+	[self.webView setPreferences:prefs];
+	
+	BOOL enableDebugMode = [[NSUserDefaults standardUserDefaults ]boolForKey:@"EnableDebugMode"];
+	
+	BOOL kioskMode = [[self.settings objectForKey:@"KioskMode"] boolValue];
+	
+	// debugging mode
+	if (enableDebugMode && kioskMode == FALSE) {
+		[[NSUserDefaults standardUserDefaults]setBool:TRUE forKey:@"WebKitDeveloperExtras"];
+		[[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"IncludeDebugMenu"];
+	} else {
+		[[NSUserDefaults standardUserDefaults]setBool:FALSE forKey:@"WebKitDeveloperExtras"];
+		[[NSUserDefaults standardUserDefaults]setInteger:0  forKey:@"IncludeDebugMenu"];
+	}
+	
+	// usefull for touchscreens
+	BOOL hideCursor = [[self.settings objectForKey:@"HideCursor"] boolValue];
+	
+	if (hideCursor) {
+		[NSCursor hide];
+	}
+	
+	if (kioskMode) {
+		[self performSelector:@selector(__makeFullScreen) withObject:nil afterDelay:0.0];
+	}
+	
+	for (NSString* pluginName in self.startupPluginNames) {
+		[self getCommandInstance:pluginName];
+	}
 }
 
 - (id) init
