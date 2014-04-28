@@ -22,6 +22,7 @@
 #import "CDVPluginResult.h"
 #import "CDVCommandDelegate.h"
 #import "CDVViewController.h"
+#import "NSArray+Comparisons.h"
 
 NSString* const CDVPageDidLoadNotification;
 NSString* const CDVPluginHandleOpenURLNotification;
