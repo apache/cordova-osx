@@ -24,6 +24,8 @@
 
 #import "CDVBridge.h"
 #import "CDVViewController.h"
+#import "NSArray+Comparisons.h"
+#import "NSData+Base64.h"
 
 @implementation CDVBridge
 
@@ -60,8 +62,8 @@
     while (key = [enumerator nextObject]) {
         [dict setObject:[webScriptObject valueForKey:key] forKey:key];
     }
-    
-    return dict;
+	
+		return dict;
 }
 
 - (NSArray*) convertWebScriptObjectToNSArray:(WebScriptObject*)webScriptObject
@@ -76,8 +78,16 @@
             if ([self isArray:item]) {
                 [a addObject:[self convertWebScriptObjectToNSArray:item]];
             } else if ([self isDictionary:item]) {
-                [a addObject:[self convertWebScriptObjectToNSDictionary:item]];
-            };
+                NSDictionary* d = [self convertWebScriptObjectToNSDictionary:item];
+								NSString* cdvtype = [d valueForKey:@"CDVType"];
+								if ([cdvtype isEqualToString:@"ArrayBuffer"]) {
+									NSData* bd = [NSData dataFromBase64String:[d valueForKey:@"data"]];
+									if (bd == nil) bd = [[NSData alloc]init];
+									[a addObject:bd];
+								} else {
+									[a addObject:d];
+								}
+            }
         } else {
             [a addObject:item];
         }
@@ -122,6 +132,18 @@
     
     return self;
 }
+
+- (void) postMessage:(NSString*)data
+{
+	if ([data isKindOfClass:[NSString class]]) {
+		id rv = [NSJSONSerialization JSONObjectWithData:[data dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:NULL];
+		if (rv == nil && data != nil) rv = data;
+		[self.viewController handleWindowMessage:rv];
+	} else {
+		NSLog(@"postMessage excepts NSString argument only");
+	}
+}
+
 
 - (void) exec:(NSString*)callbackId withService:(NSString*)service andAction:(NSString*)action andArguments:(WebScriptObject*)webScriptObject
 {
@@ -174,6 +196,7 @@
 	if (acceptableList == NULL && (acceptableList = calloc(256, sizeof(SEL))))	// up to 256 selectors
 	{
 		acceptableList[i++] = @selector(exec:withService:andAction:andArguments:);
+		acceptableList[i++] = @selector(postMessage:);
 	}
 	
 	i = 0;
@@ -193,6 +216,9 @@
 	
 	if (aSelector == @selector(exec:withService:andAction:andArguments:)) {
 		result = @"exec";
+	}
+	else if (aSelector == @selector(postMessage:)) {
+		result = @"postMessage";
 	}
 	
 	return result;
