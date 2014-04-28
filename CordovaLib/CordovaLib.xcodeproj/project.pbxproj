@@ -16,7 +16,7 @@
 		70BD679A18FFA12D00A1EFCF /* CDVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD677218FFA12D00A1EFCF /* CDVViewController.m */; };
 		70BD679B18FFA12D00A1EFCF /* CDVWebViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677318FFA12D00A1EFCF /* CDVWebViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD679C18FFA12D00A1EFCF /* CDVWebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD677418FFA12D00A1EFCF /* CDVWebViewDelegate.m */; };
-		70BD679D18FFA12D00A1EFCF /* CDV.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677618FFA12D00A1EFCF /* CDV.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		70BD679D18FFA12D00A1EFCF /* CDV.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677618FFA12D00A1EFCF /* CDV.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD679E18FFA12D00A1EFCF /* CDVAvailability.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677718FFA12D00A1EFCF /* CDVAvailability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD679F18FFA12D00A1EFCF /* CDVCommandDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677818FFA12D00A1EFCF /* CDVCommandDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD67A018FFA12D00A1EFCF /* CDVCommandDelegateImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677918FFA12D00A1EFCF /* CDVCommandDelegateImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,11 +42,11 @@
 		70BD67B418FFA12D00A1EFCF /* CDVPluginResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD678D18FFA12D00A1EFCF /* CDVPluginResult.m */; };
 		70BD67B518FFA12D00A1EFCF /* CDVReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD678E18FFA12D00A1EFCF /* CDVReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD67B618FFA12D00A1EFCF /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD678F18FFA12D00A1EFCF /* CDVReachability.m */; };
-		70BD67B718FFA12D00A1EFCF /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679118FFA12D00A1EFCF /* NSData+Base64.h */; };
+		70BD67B718FFA12D00A1EFCF /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679118FFA12D00A1EFCF /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD67B818FFA12D00A1EFCF /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD679218FFA12D00A1EFCF /* NSData+Base64.m */; };
 		70BD67B918FFA12D00A1EFCF /* NSWindow+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679318FFA12D00A1EFCF /* NSWindow+Utils.h */; };
 		70BD67BA18FFA12D00A1EFCF /* NSWindow+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD679418FFA12D00A1EFCF /* NSWindow+Utils.m */; };
-		70BD67BB18FFA12D00A1EFCF /* ShellUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679518FFA12D00A1EFCF /* ShellUtils.h */; };
+		70BD67BB18FFA12D00A1EFCF /* ShellUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679518FFA12D00A1EFCF /* ShellUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD67BC18FFA12D00A1EFCF /* ShellUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD679618FFA12D00A1EFCF /* ShellUtils.m */; };
 		70DAA8E71908E05900AF3749 /* CDVStartPageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DAA8E61908E05900AF3749 /* CDVStartPageTests.m */; };
 		70DAA8EA1908E07E00AF3749 /* CDVWebViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DAA8E91908E07E00AF3749 /* CDVWebViewTest.m */; };
@@ -62,9 +62,9 @@
 		70DAA9261908E84800AF3749 /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BD673A18FF9DAE00A1EFCF /* libCordova.a */; };
 		70DAA9291908E93500AF3749 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DAA9281908E93500AF3749 /* MainViewController.m */; };
 		70E382C91909BBFF0029A2F0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E382C81909BBFF0029A2F0 /* SenTestingKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		EC97BEAC190C508800974B23 /* NSArray+Comparisons.h in Headers */ = {isa = PBXBuildFile; fileRef = EC97BEA6190C508800974B23 /* NSArray+Comparisons.h */; };
+		EC97BEAC190C508800974B23 /* NSArray+Comparisons.h in Headers */ = {isa = PBXBuildFile; fileRef = EC97BEA6190C508800974B23 /* NSArray+Comparisons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EC97BEAD190C508800974B23 /* NSArray+Comparisons.m in Sources */ = {isa = PBXBuildFile; fileRef = EC97BEA7190C508800974B23 /* NSArray+Comparisons.m */; };
-		EC97BEAE190C508800974B23 /* NSDictionary+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC97BEA8190C508800974B23 /* NSDictionary+Extensions.h */; };
+		EC97BEAE190C508800974B23 /* NSDictionary+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC97BEA8190C508800974B23 /* NSDictionary+Extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EC97BEAF190C508800974B23 /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC97BEA9190C508800974B23 /* NSDictionary+Extensions.m */; };
 		EC97BEB0190C508800974B23 /* NSMutableArray+QueueAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EC97BEAA190C508800974B23 /* NSMutableArray+QueueAdditions.h */; };
 		EC97BEB1190C508800974B23 /* NSMutableArray+QueueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC97BEAB190C508800974B23 /* NSMutableArray+QueueAdditions.m */; };
@@ -699,6 +699,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CordovaLib/CordovaLib-Prefix.pch";
+				GENERATE_MASTER_OBJECT_FILE = YES;
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PUBLIC_HEADERS_FOLDER_PATH)/Private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
@@ -711,6 +712,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CordovaLib/CordovaLib-Prefix.pch";
+				GENERATE_MASTER_OBJECT_FILE = YES;
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PUBLIC_HEADERS_FOLDER_PATH)/Private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
