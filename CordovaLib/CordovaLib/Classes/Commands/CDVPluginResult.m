@@ -29,7 +29,7 @@
 @end
 
 @implementation CDVPluginResult
-@synthesize status, message, keepCallback;
+@synthesize status, message, keepCallback, associatedObject;
 
 static NSArray* org_apache_cordova_CommandStatusMsgs;
 
