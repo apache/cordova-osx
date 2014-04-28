@@ -58,12 +58,6 @@
     return __CDVViewController_all_created__;
 }
 
-- (void) awakeFromNib
-{
-	//load request by default
-	[self loadRequest];
-}
-    
 - (void) loadRequest
 {
     NSURL* appURL = nil;
@@ -120,7 +114,30 @@
 - (void) __init
 {
 	[self loadSettings];
-	
+}
+
+- (id) init
+{
+    self = [super init];
+    if (self) {
+        // Initialization code here.
+        [self __init];
+    }
+    return self;
+}
+
+- (id)initWithWindowNibName:(NSString*)nibNameOrNil
+{
+    self = [super initWithWindowNibName:nibNameOrNil];
+    if (self) {
+        // Initialization code here.
+        [self __init];
+    }
+    return self;
+}
+
+- (void) awakeFromNib
+{
 	//apply settings
 	_commandDelegate = [[CDVCommandDelegateImpl alloc] initWithViewController:self];
 	
@@ -192,26 +209,6 @@
 	for (NSString* pluginName in self.startupPluginNames) {
 		[self getCommandInstance:pluginName];
 	}
-}
-
-- (id) init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-        [self __init];
-    }
-    return self;
-}
-
-- (id)initWithWindowNibName:(NSString*)nibNameOrNil
-{
-    self = [super initWithWindowNibName:nibNameOrNil];
-    if (self) {
-        // Initialization code here.
-        [self __init];
-    }
-    return self;
 }
 
 - (void)loadSettings
@@ -311,6 +308,9 @@
     return obj;
 }
 
+- (void)handleWindowMessage:(id) data {
+}
+
 - (void)postWindowMessage:(id) data {
 	id win = [self.webView windowScriptObject];
 	if ([data isKindOfClass:[NSString class]]) {
@@ -348,10 +348,6 @@
     [CDVViewController unregisterViewController:self];
 }
 
-- (void)windowDidLoad
-{
-
-}
 - (void)dealloc
 {
 	self.contentView = nil;
