@@ -14,7 +14,7 @@
 		70BD679A18FFA12D00A1EFCF /* CDVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD677218FFA12D00A1EFCF /* CDVViewController.m */; };
 		70BD679B18FFA12D00A1EFCF /* CDVWebViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677318FFA12D00A1EFCF /* CDVWebViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD679C18FFA12D00A1EFCF /* CDVWebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD677418FFA12D00A1EFCF /* CDVWebViewDelegate.m */; };
-		70BD679D18FFA12D00A1EFCF /* CDV.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677618FFA12D00A1EFCF /* CDV.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		70BD679D18FFA12D00A1EFCF /* CDV.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677618FFA12D00A1EFCF /* CDV.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD679E18FFA12D00A1EFCF /* CDVAvailability.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677718FFA12D00A1EFCF /* CDVAvailability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD679F18FFA12D00A1EFCF /* CDVCommandDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677818FFA12D00A1EFCF /* CDVCommandDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD67A018FFA12D00A1EFCF /* CDVCommandDelegateImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677918FFA12D00A1EFCF /* CDVCommandDelegateImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };

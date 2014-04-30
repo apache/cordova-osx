@@ -182,19 +182,9 @@
 	NSLog(@"WebStoragePath is '%@', modify in config.xml.", webStoragePath);
 	[self.webView setPreferences:prefs];
 	
-	BOOL enableDebugMode = [[NSUserDefaults standardUserDefaults ]boolForKey:@"EnableDebugMode"];
-	
+
 	BOOL kioskMode = [[self.settings objectForKey:@"KioskMode"] boolValue];
-	
-	// debugging mode
-	if (enableDebugMode && kioskMode == FALSE) {
-		[[NSUserDefaults standardUserDefaults]setBool:TRUE forKey:@"WebKitDeveloperExtras"];
-		[[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"IncludeDebugMenu"];
-	} else {
-		[[NSUserDefaults standardUserDefaults]setBool:FALSE forKey:@"WebKitDeveloperExtras"];
-		[[NSUserDefaults standardUserDefaults]setInteger:0  forKey:@"IncludeDebugMenu"];
-	}
-	
+
 	// usefull for touchscreens
 	BOOL hideCursor = [[self.settings objectForKey:@"HideCursor"] boolValue];
 	
@@ -244,7 +234,18 @@
     if (self.startPage == nil) {
         self.startPage = @"index.html";
     }
-    
+
+ 	  BOOL enableDebugMode = [[NSUserDefaults standardUserDefaults ]boolForKey:@"EnableDebugMode"];
+	
+	  // debugging mode
+	  if (enableDebugMode) {
+		    [[NSUserDefaults standardUserDefaults]setBool:TRUE forKey:@"WebKitDeveloperExtras"];
+		    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"IncludeDebugMenu"];
+	  } else {
+		    [[NSUserDefaults standardUserDefaults]setBool:FALSE forKey:@"WebKitDeveloperExtras"];
+		    [[NSUserDefaults standardUserDefaults]setInteger:0  forKey:@"IncludeDebugMenu"];
+	  }
+	   
     // Initialize the plugin objects dict.
     self.pluginObjects = [[NSMutableDictionary alloc] initWithCapacity:20];
 }

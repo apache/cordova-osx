@@ -19,8 +19,6 @@
     <preference name="OSXLocalStoragePath" value="~/Library/Application Support/__CDV_PRODUCT_NAME__" />
     <!-- Preferences for OSX -->
     <preference name="EnableWebGL" value="false" />
-    <!-- Enable WebKit inspector -->
-    <preference name="EnableDebugMode" value="false" />
     <!-- Useful for touchscreens -->
     <preference name="HideCursor" value="false" />
     <!-- Kiosk Mode

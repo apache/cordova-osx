@@ -27,8 +27,14 @@
 
 - (id)init
 {
-    self = [super init];
-    return self;
+	self = [super init];
+  if (self) {
+    //register URL handler
+    //actual URL scheme to handle needs to be defined in the info.plist file
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(handleOpenLocationAppleEvent:withReplyEvent:)forEventClass:'GURL' andEventID:'GURL'];
+  }
+      
+	return self;
 }
 
 - (void) applicationDidStartLaunching:(NSNotification*) aNotification 
@@ -45,7 +51,30 @@
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
 {
-    //you can create your WindowController here and pass it the filename
+  //you can create your WindowController here and pass it the filename
+  return FALSE;
+}
+
+- (BOOL)application:(NSApplication*)theApplication openLocation:(NSURL*)url
+{
+	return FALSE;
+}
+
+//GURL event handler
+- (void) handleOpenLocationAppleEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)reply {
+	// get the descriptor
+	NSAppleEventDescriptor *directObjectDescriptor = [event paramDescriptorForKeyword:keyDirectObject];
+	if (directObjectDescriptor) {
+		// get the complete string
+		NSString *urlString = [directObjectDescriptor stringValue];
+		if (urlString) {
+			// get the complete URL
+			NSURL *objectURL = [[NSURL alloc] initWithString:urlString];
+			if (objectURL) {
+				[self application:NSApp openLocation:objectURL];
+			}
+		}
+	}
 }
 
 @end
