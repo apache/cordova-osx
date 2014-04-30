@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		70718D80190A4201002ADC5F /* CDVBase64Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 70718D7F190A4201002ADC5F /* CDVBase64Tests.m */; };
 		70BD673E18FF9DAE00A1EFCF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BD673D18FF9DAE00A1EFCF /* Cocoa.framework */; };
-		70BD675918FF9DAE00A1EFCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70BD675718FF9DAE00A1EFCF /* InfoPlist.strings */; };
 		70BD679718FFA12D00A1EFCF /* CDVBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD676F18FFA12D00A1EFCF /* CDVBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD679818FFA12D00A1EFCF /* CDVBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD677018FFA12D00A1EFCF /* CDVBridge.m */; };
 		70BD679918FFA12D00A1EFCF /* CDVViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD677118FFA12D00A1EFCF /* CDVViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,50 +40,22 @@
 		70BD67B418FFA12D00A1EFCF /* CDVPluginResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD678D18FFA12D00A1EFCF /* CDVPluginResult.m */; };
 		70BD67B518FFA12D00A1EFCF /* CDVReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD678E18FFA12D00A1EFCF /* CDVReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD67B618FFA12D00A1EFCF /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD678F18FFA12D00A1EFCF /* CDVReachability.m */; };
-		70BD67B718FFA12D00A1EFCF /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679118FFA12D00A1EFCF /* NSData+Base64.h */; };
+		70BD67B718FFA12D00A1EFCF /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679118FFA12D00A1EFCF /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD67B818FFA12D00A1EFCF /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD679218FFA12D00A1EFCF /* NSData+Base64.m */; };
 		70BD67B918FFA12D00A1EFCF /* NSWindow+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679318FFA12D00A1EFCF /* NSWindow+Utils.h */; };
 		70BD67BA18FFA12D00A1EFCF /* NSWindow+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD679418FFA12D00A1EFCF /* NSWindow+Utils.m */; };
 		70BD67BB18FFA12D00A1EFCF /* ShellUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679518FFA12D00A1EFCF /* ShellUtils.h */; };
 		70BD67BC18FFA12D00A1EFCF /* ShellUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD679618FFA12D00A1EFCF /* ShellUtils.m */; };
-		70DAA8E71908E05900AF3749 /* CDVStartPageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DAA8E61908E05900AF3749 /* CDVStartPageTests.m */; };
-		70DAA8EA1908E07E00AF3749 /* CDVWebViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DAA8E91908E07E00AF3749 /* CDVWebViewTest.m */; };
-		70DAA8F11908E37C00AF3749 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BD673D18FF9DAE00A1EFCF /* Cocoa.framework */; };
-		70DAA8F71908E37C00AF3749 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70DAA8F51908E37C00AF3749 /* InfoPlist.strings */; };
-		70DAA8F91908E37C00AF3749 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DAA8F81908E37C00AF3749 /* main.m */; };
-		70DAA8FD1908E37C00AF3749 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 70DAA8FB1908E37C00AF3749 /* Credits.rtf */; };
-		70DAA9001908E37C00AF3749 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DAA8FF1908E37C00AF3749 /* AppDelegate.m */; };
-		70DAA91F1908E7CC00AF3749 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70DAA91E1908E7CC00AF3749 /* MainViewController.xib */; };
-		70DAA9221908E80C00AF3749 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 70DAA9201908E80C00AF3749 /* www */; };
-		70DAA9231908E80C00AF3749 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 70DAA9211908E80C00AF3749 /* config.xml */; };
-		70DAA9251908E82600AF3749 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70DAA9241908E82600AF3749 /* WebKit.framework */; };
-		70DAA9261908E84800AF3749 /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BD673A18FF9DAE00A1EFCF /* libCordova.a */; };
-		70DAA9291908E93500AF3749 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DAA9281908E93500AF3749 /* MainViewController.m */; };
-		70E382C91909BBFF0029A2F0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E382C81909BBFF0029A2F0 /* SenTestingKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		70BD675118FF9DAE00A1EFCF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 70BD673218FF9DAE00A1EFCF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 70BD673918FF9DAE00A1EFCF;
-			remoteInfo = CordovaLib;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		70718D7F190A4201002ADC5F /* CDVBase64Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVBase64Tests.m; sourceTree = "<group>"; };
 		70BD673A18FF9DAE00A1EFCF /* libCordova.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCordova.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		70BD673D18FF9DAE00A1EFCF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		70BD674018FF9DAE00A1EFCF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		70BD674118FF9DAE00A1EFCF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		70BD674218FF9DAE00A1EFCF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		70BD674518FF9DAE00A1EFCF /* CordovaLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CordovaLib-Prefix.pch"; sourceTree = "<group>"; };
-		70BD674D18FF9DAE00A1EFCF /* CordovaLibTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CordovaLibTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		70BD674E18FF9DAE00A1EFCF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		70BD675618FF9DAE00A1EFCF /* CordovaLibTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CordovaLibTests-Info.plist"; sourceTree = "<group>"; };
-		70BD675818FF9DAE00A1EFCF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		70BD676F18FFA12D00A1EFCF /* CDVBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVBridge.h; sourceTree = "<group>"; };
 		70BD677018FFA12D00A1EFCF /* CDVBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVBridge.m; sourceTree = "<group>"; };
 		70BD677118FFA12D00A1EFCF /* CDVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVViewController.h; sourceTree = "<group>"; };
@@ -124,23 +94,7 @@
 		70BD679418FFA12D00A1EFCF /* NSWindow+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+Utils.m"; sourceTree = "<group>"; };
 		70BD679518FFA12D00A1EFCF /* ShellUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShellUtils.h; sourceTree = "<group>"; };
 		70BD679618FFA12D00A1EFCF /* ShellUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShellUtils.m; sourceTree = "<group>"; };
-		70DAA8E61908E05900AF3749 /* CDVStartPageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVStartPageTests.m; sourceTree = "<group>"; };
-		70DAA8E81908E07E00AF3749 /* CDVWebViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVWebViewTest.h; sourceTree = "<group>"; };
-		70DAA8E91908E07E00AF3749 /* CDVWebViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVWebViewTest.m; sourceTree = "<group>"; };
-		70DAA8F01908E37C00AF3749 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		70DAA8F41908E37C00AF3749 /* TestApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestApp-Info.plist"; sourceTree = "<group>"; };
-		70DAA8F61908E37C00AF3749 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		70DAA8F81908E37C00AF3749 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		70DAA8FA1908E37C00AF3749 /* TestApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestApp-Prefix.pch"; sourceTree = "<group>"; };
-		70DAA8FC1908E37C00AF3749 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		70DAA8FE1908E37C00AF3749 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		70DAA8FF1908E37C00AF3749 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		70DAA91E1908E7CC00AF3749 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		70DAA9201908E80C00AF3749 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
-		70DAA9211908E80C00AF3749 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		70DAA9241908E82600AF3749 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		70DAA9271908E93500AF3749 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		70DAA9281908E93500AF3749 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		70E382C81909BBFF0029A2F0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
@@ -153,24 +107,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		70BD674A18FF9DAE00A1EFCF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		70DAA8ED1908E37C00AF3749 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				70DAA9261908E84800AF3749 /* libCordova.a in Frameworks */,
-				70DAA9251908E82600AF3749 /* WebKit.framework in Frameworks */,
-				70DAA8F11908E37C00AF3749 /* Cocoa.framework in Frameworks */,
-				70E382C91909BBFF0029A2F0 /* SenTestingKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -178,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				70BD674318FF9DAE00A1EFCF /* CordovaLib */,
-				70BD675418FF9DAE00A1EFCF /* CordovaLibTests */,
 				70BD673C18FF9DAE00A1EFCF /* Frameworks */,
 				70BD673B18FF9DAE00A1EFCF /* Products */,
 			);
@@ -188,8 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				70BD673A18FF9DAE00A1EFCF /* libCordova.a */,
-				70BD674D18FF9DAE00A1EFCF /* CordovaLibTests.octest */,
-				70DAA8F01908E37C00AF3749 /* TestApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,28 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				70BD674518FF9DAE00A1EFCF /* CordovaLib-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		70BD675418FF9DAE00A1EFCF /* CordovaLibTests */ = {
-			isa = PBXGroup;
-			children = (
-				70DAA8F21908E37C00AF3749 /* TestApp */,
-				70DAA8E81908E07E00AF3749 /* CDVWebViewTest.h */,
-				70DAA8E91908E07E00AF3749 /* CDVWebViewTest.m */,
-				70718D7F190A4201002ADC5F /* CDVBase64Tests.m */,
-				70DAA8E61908E05900AF3749 /* CDVStartPageTests.m */,
-				70BD675518FF9DAE00A1EFCF /* Supporting Files */,
-			);
-			path = CordovaLibTests;
-			sourceTree = "<group>";
-		};
-		70BD675518FF9DAE00A1EFCF /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				70BD675618FF9DAE00A1EFCF /* CordovaLibTests-Info.plist */,
-				70BD675718FF9DAE00A1EFCF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -316,41 +227,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		70DAA8F21908E37C00AF3749 /* TestApp */ = {
-			isa = PBXGroup;
-			children = (
-				70DAA9211908E80C00AF3749 /* config.xml */,
-				70DAA9201908E80C00AF3749 /* www */,
-				70DAA92A1908E99700AF3749 /* Classes */,
-				70DAA92B1908E9B400AF3749 /* Supporting Files */,
-			);
-			path = TestApp;
-			sourceTree = "<group>";
-		};
-		70DAA92A1908E99700AF3749 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				70DAA8FE1908E37C00AF3749 /* AppDelegate.h */,
-				70DAA8FF1908E37C00AF3749 /* AppDelegate.m */,
-				70DAA9271908E93500AF3749 /* MainViewController.h */,
-				70DAA9281908E93500AF3749 /* MainViewController.m */,
-			);
-			name = Classes;
-			sourceTree = "<group>";
-		};
-		70DAA92B1908E9B400AF3749 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				70DAA91E1908E7CC00AF3749 /* MainViewController.xib */,
-				70DAA8F41908E37C00AF3749 /* TestApp-Info.plist */,
-				70DAA8FA1908E37C00AF3749 /* TestApp-Prefix.pch */,
-				70DAA8F51908E37C00AF3749 /* InfoPlist.strings */,
-				70DAA8F81908E37C00AF3749 /* main.m */,
-				70DAA8FB1908E37C00AF3749 /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -402,42 +278,6 @@
 			productReference = 70BD673A18FF9DAE00A1EFCF /* libCordova.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		70BD674C18FF9DAE00A1EFCF /* CordovaLibTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 70BD676118FF9DAE00A1EFCF /* Build configuration list for PBXNativeTarget "CordovaLibTests" */;
-			buildPhases = (
-				70BD674918FF9DAE00A1EFCF /* Sources */,
-				70BD674A18FF9DAE00A1EFCF /* Frameworks */,
-				70BD674B18FF9DAE00A1EFCF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				70BD675218FF9DAE00A1EFCF /* PBXTargetDependency */,
-			);
-			name = CordovaLibTests;
-			productName = CordovaLibTests;
-			productReference = 70BD674D18FF9DAE00A1EFCF /* CordovaLibTests.octest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		70DAA8EF1908E37C00AF3749 /* TestApp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 70DAA9171908E37C00AF3749 /* Build configuration list for PBXNativeTarget "TestApp" */;
-			buildPhases = (
-				70DAA8EC1908E37C00AF3749 /* Sources */,
-				70DAA8ED1908E37C00AF3749 /* Frameworks */,
-				70DAA8EE1908E37C00AF3749 /* Resources */,
-				70718D7E190A3F96002ADC5F /* Copy cordova.js to www direcrtory */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TestApp;
-			productName = TestApp;
-			productReference = 70DAA8F01908E37C00AF3749 /* TestApp.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -446,11 +286,6 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Apache Software Foundation";
-				TargetAttributes = {
-					70BD674C18FF9DAE00A1EFCF = {
-						TestTargetID = 70DAA8EF1908E37C00AF3749;
-					};
-				};
 			};
 			buildConfigurationList = 70BD673518FF9DAE00A1EFCF /* Build configuration list for PBXProject "CordovaLib" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -466,52 +301,9 @@
 			projectRoot = "";
 			targets = (
 				70BD673918FF9DAE00A1EFCF /* Cordova */,
-				70BD674C18FF9DAE00A1EFCF /* CordovaLibTests */,
-				70DAA8EF1908E37C00AF3749 /* TestApp */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		70BD674B18FF9DAE00A1EFCF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				70BD675918FF9DAE00A1EFCF /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		70DAA8EE1908E37C00AF3749 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				70DAA9221908E80C00AF3749 /* www in Resources */,
-				70DAA8F71908E37C00AF3749 /* InfoPlist.strings in Resources */,
-				70DAA91F1908E7CC00AF3749 /* MainViewController.xib in Resources */,
-				70DAA8FD1908E37C00AF3749 /* Credits.rtf in Resources */,
-				70DAA9231908E80C00AF3749 /* config.xml in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		70718D7E190A3F96002ADC5F /* Copy cordova.js to www direcrtory */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy cordova.js to www direcrtory";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cp cordova.js \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Contents/Resources/www/cordova.js\"";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		70BD673618FF9DAE00A1EFCF /* Sources */ = {
@@ -538,62 +330,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		70BD674918FF9DAE00A1EFCF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				70DAA8EA1908E07E00AF3749 /* CDVWebViewTest.m in Sources */,
-				70718D80190A4201002ADC5F /* CDVBase64Tests.m in Sources */,
-				70DAA8E71908E05900AF3749 /* CDVStartPageTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		70DAA8EC1908E37C00AF3749 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				70DAA9001908E37C00AF3749 /* AppDelegate.m in Sources */,
-				70DAA9291908E93500AF3749 /* MainViewController.m in Sources */,
-				70DAA8F91908E37C00AF3749 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		70BD675218FF9DAE00A1EFCF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 70BD673918FF9DAE00A1EFCF /* Cordova */;
-			targetProxy = 70BD675118FF9DAE00A1EFCF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		70BD675718FF9DAE00A1EFCF /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				70BD675818FF9DAE00A1EFCF /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		70DAA8F51908E37C00AF3749 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				70DAA8F61908E37C00AF3749 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		70DAA8FB1908E37C00AF3749 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				70DAA8FC1908E37C00AF3749 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		70BD675C18FF9DAE00A1EFCF /* Debug */ = {
@@ -628,7 +365,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Cordova;
 				PUBLIC_HEADERS_FOLDER_PATH = include/Cordova;
@@ -663,7 +400,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = Cordova;
 				PUBLIC_HEADERS_FOLDER_PATH = include/Cordova;
 				SDKROOT = macosx;
@@ -694,98 +431,6 @@
 			};
 			name = Release;
 		};
-		70BD676218FF9DAE00A1EFCF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TestApp.app/Contents/MacOS/TestApp";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CordovaLib/CordovaLib-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "CordovaLibTests/CordovaLibTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		70BD676318FF9DAE00A1EFCF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TestApp.app/Contents/MacOS/TestApp";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CordovaLib/CordovaLib-Prefix.pch";
-				INFOPLIST_FILE = "CordovaLibTests/CordovaLibTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
-		70DAA9181908E37C00AF3749 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CordovaLibTests/TestApp/TestApp-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "CordovaLibTests/TestApp/TestApp-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		70DAA9191908E37C00AF3749 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CordovaLibTests/TestApp/TestApp-Prefix.pch";
-				INFOPLIST_FILE = "CordovaLibTests/TestApp/TestApp-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -803,24 +448,6 @@
 			buildConfigurations = (
 				70BD675F18FF9DAE00A1EFCF /* Debug */,
 				70BD676018FF9DAE00A1EFCF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		70BD676118FF9DAE00A1EFCF /* Build configuration list for PBXNativeTarget "CordovaLibTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				70BD676218FF9DAE00A1EFCF /* Debug */,
-				70BD676318FF9DAE00A1EFCF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		70DAA9171908E37C00AF3749 /* Build configuration list for PBXNativeTarget "TestApp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				70DAA9181908E37C00AF3749 /* Debug */,
-				70DAA9191908E37C00AF3749 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
