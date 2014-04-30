@@ -18,12 +18,9 @@
  */
 
 #import <SenTestingKit/SenTestingKit.h>
+#import <Cordova/CDVViewController.h>
 
 #import "CDVWebViewTest.h"
-#import "CDVViewController.h"
-#import "AppDelegate.h"
-
-
 
 @interface CDVStartPageTest : CDVWebViewTest
 @end
