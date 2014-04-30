@@ -79,9 +79,10 @@
     [center addObserverForName:NSFileHandleReadCompletionNotification object:fileHandle queue:mainQueue usingBlock:block];
     [center addObserverForName:NSTaskDidTerminateNotification object:task queue:mainQueue usingBlock:block];
 
-    [task launch];
-    [fileHandle readInBackgroundAndNotify];
-    
+		[fileHandle readInBackgroundAndNotify];
+		
+		[task launch];
+  
     return task;
 }
 
@@ -102,16 +103,23 @@
             if (task && [task isRunning]) {
                 [fileHandle readInBackgroundAndNotify];
             }
-            
+
+				} else if ([notif.userInfo valueForKey:@"CDVPluginResult"] != nil) {
+					CDVPluginResult* result = [notif.userInfo valueForKey:@"CDVPluginResult"];
+					[plugin.commandDelegate sendPluginResult:result callbackId:callbackId];
+					task = nil;
+
         } else if ([notif.object isKindOfClass:[NSTask class]]) {
             int status = [task terminationStatus];
-            task = nil;
-            
+          
             CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                        messageAsDictionary:@{ @"resultcode" :[NSNumber numberWithInt:status] }];
             result.keepCallback = [NSNumber numberWithBool:NO];
-            [plugin.commandDelegate sendPluginResult:result callbackId:callbackId];
-        }
+					
+						//sometimes the data notification arrives before the termination, so let's stuff it back in
+						NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+					  [center postNotificationName:NSTaskDidTerminateNotification object:task userInfo:[NSDictionary dictionaryWithObject:result forKey:@"CDVPluginResult"]];
+				}
     }];
 }
 
