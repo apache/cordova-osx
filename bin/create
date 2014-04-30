@@ -131,8 +131,9 @@ done
 
 if [[ $USE_SHARED = 1 ]]; then
     # Make the sub-project reference to Cordova have the correct path.
-    "$BINDIR/update_cordova_subproject" "$R.xcodeproj/project.pbxproj"
-            "${PROJECT_PATH}/${PROJECT_NAME}.xcodeproj/project.pbxproj" > /dev/null
+    "$BINDIR/update_cordova_subproject" \
+        "${PROJECT_PATH}/${PROJECT_NAME}.xcodeproj/project.pbxproj" \
+        "${PROJECT_PATH}/CordovaLib/CordovaLib.xcodeproj/project.pbxproj" > /dev/null
 else
     # Copy in the CordovaLib directory.
     cp -r "${CORDOVALIB_DIR}" "${PROJECT_PATH}/"
