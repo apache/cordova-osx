@@ -27,11 +27,11 @@
 
 + (BOOL) restartComputer
 {
-	NSAppleScript* script = [[NSAppleScript alloc] initWithSource:@"tell application \"System Events\" to restart"];
-	NSDictionary* errorInfo;
-	NSAppleEventDescriptor* descriptor = [script executeAndReturnError:&errorInfo];
+    NSAppleScript* script = [[NSAppleScript alloc] initWithSource:@"tell application \"System Events\" to restart"];
+    NSDictionary* errorInfo;
+    NSAppleEventDescriptor* descriptor = [script executeAndReturnError:&errorInfo];
     
-	return (descriptor != nil);
+    return (descriptor != nil);
 }
 
 + (void) quitApp
@@ -41,9 +41,9 @@
 
 + (NSTask*) shellTask:(NSString*)command
 {
-	NSTask* task = [[NSTask alloc] init];
+    NSTask* task = [[NSTask alloc] init];
     [task setLaunchPath: @"/bin/sh"];
-	[task setStandardInput:[NSFileHandle fileHandleWithNullDevice]];
+    [task setStandardInput:[NSFileHandle fileHandleWithNullDevice]];
     [task setArguments: @[@"-c", command]];
     
     return task;
@@ -79,9 +79,9 @@
     [center addObserverForName:NSFileHandleReadCompletionNotification object:fileHandle queue:mainQueue usingBlock:block];
     [center addObserverForName:NSTaskDidTerminateNotification object:task queue:mainQueue usingBlock:block];
 
-		[fileHandle readInBackgroundAndNotify];
-		
-		[task launch];
+    [fileHandle readInBackgroundAndNotify];
+
+    [task launch];
   
     return task;
 }
@@ -104,10 +104,10 @@
                 [fileHandle readInBackgroundAndNotify];
             }
 
-				} else if ([notif.userInfo valueForKey:@"CDVPluginResult"] != nil) {
-					CDVPluginResult* result = [notif.userInfo valueForKey:@"CDVPluginResult"];
-					[plugin.commandDelegate sendPluginResult:result callbackId:callbackId];
-					task = nil;
+        } else if ([notif.userInfo valueForKey:@"CDVPluginResult"] != nil) {
+            CDVPluginResult* result = [notif.userInfo valueForKey:@"CDVPluginResult"];
+            [plugin.commandDelegate sendPluginResult:result callbackId:callbackId];
+            task = nil;
 
         } else if ([notif.object isKindOfClass:[NSTask class]]) {
             int status = [task terminationStatus];
@@ -115,11 +115,11 @@
             CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                        messageAsDictionary:@{ @"resultcode" :[NSNumber numberWithInt:status] }];
             result.keepCallback = [NSNumber numberWithBool:NO];
-					
-						//sometimes the data notification arrives before the termination, so let's stuff it back in
-						NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-					  [center postNotificationName:NSTaskDidTerminateNotification object:task userInfo:[NSDictionary dictionaryWithObject:result forKey:@"CDVPluginResult"]];
-				}
+
+            //sometimes the data notification arrives before the termination, so let's stuff it back in
+            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+            [center postNotificationName:NSTaskDidTerminateNotification object:task userInfo:[NSDictionary dictionaryWithObject:result forKey:@"CDVPluginResult"]];
+        }
     }];
 }
 

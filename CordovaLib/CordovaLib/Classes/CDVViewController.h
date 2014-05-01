@@ -62,8 +62,6 @@ static NSMutableArray* __CDVViewController_all_created__;
 - (void)registerPlugin:(CDVPlugin*)plugin withPluginName:(NSString*)pluginName;
 
 - (void)loadRequest;
-- (void)postWindowMessage:(id) data;
-- (void)handleWindowMessage:(id) data;
 
 - (CDVViewController*) makeViewController;
 

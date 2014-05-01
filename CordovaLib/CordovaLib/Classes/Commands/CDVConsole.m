@@ -33,43 +33,43 @@
 /* checks whether a selector is acceptable to be called from JavaScript */
 + (BOOL) isSelectorExcludedFromWebScript:(SEL)selector
 {
-	BOOL	result = YES;
-	
-	int			i = 0;
-	static SEL	* acceptableList = NULL;
-	SEL			currentSelector;
-	
-	if (acceptableList == NULL && (acceptableList = calloc(256, sizeof(SEL))))	// up to 256 selectors
-	{
-		acceptableList[i++] = @selector(log:);
-	}
-	
-	i = 0;
-	while (result == YES && (currentSelector = acceptableList[i++]))
-	{
-		//checking for exclusions
-		result = !(selector == currentSelector);
-	}
-	
-	return result;
+    BOOL result = YES;
+
+    int i = 0;
+    static SEL	* acceptableList = NULL;
+    SEL currentSelector;
+
+    if (acceptableList == NULL && (acceptableList = calloc(256, sizeof(SEL))))	// up to 256 selectors
+    {
+        acceptableList[i++] = @selector(log:);
+    }
+
+    i = 0;
+    while (result == YES && (currentSelector = acceptableList[i++]))
+    {
+        //checking for exclusions
+        result = !(selector == currentSelector);
+    }
+
+    return result;
 }
 
 /* helper function so we don't have to have underscores and stuff in js to refer to the right method */
 + (NSString*) webScriptNameForSelector:(SEL)aSelector
 {
-	id	result = nil;
-	
-	if (aSelector == @selector(log:)) {
-		result = @"log";
-	}
-	
-	return result;
+    id result = nil;
+
+    if (aSelector == @selector(log:)) {
+        result = @"log";
+    }
+
+    return result;
 }
 
 // right now exclude all properties (eg keys)
 + (BOOL) isKeyExcludedFromWebScript:(const char*)name
 {
-	return YES;
+    return YES;
 }
 
 @end

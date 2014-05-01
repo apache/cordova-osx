@@ -22,7 +22,7 @@
 @class CDVViewController;
 
 @interface CDVBridge : NSObject {
-	
+
 }
 
 @property (nonatomic, weak) WebView* webView;
@@ -37,6 +37,6 @@
 
 - (id) initWithWebView:(WebView*)webView andViewController:(CDVViewController*)viewController;
 - (void) exec:(NSString*)callbackId withService:(NSString*)service andAction:(NSString*)action andArguments:(NSArray*)arguments;
-- (void) postMessage:(NSString*)data;
+
 
 @end

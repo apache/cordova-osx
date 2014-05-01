@@ -68,17 +68,17 @@
     } else if ([self.wwwFolderName rangeOfString:@"://"].location != NSNotFound) {
         appURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", self.wwwFolderName, self.startPage]];
     } else {
-			
-				NSString* path = self.startPage;
-				NSString* opts = nil;
-				NSRange r = [path rangeOfString:@"?"];
-			
-				//save options
-				if (r.location != NSNotFound) {
-					opts = [path substringFromIndex:r.location];
-					path = [path substringToIndex:r.location];
-				}
-			
+
+        NSString* path = self.startPage;
+        NSString* opts = nil;
+        NSRange r = [path rangeOfString:@"?"];
+
+        //save options
+        if (r.location != NSNotFound) {
+            opts = [path substringFromIndex:r.location];
+            path = [path substringToIndex:r.location];
+        }
+
         NSString* startFilePath = [self.commandDelegate pathForResource:path];
         if (startFilePath == nil) {
             loadErr = [NSString stringWithFormat:@"ERROR: Start Page at '%@/%@' was not found.", self.wwwFolderName, self.startPage];
@@ -87,7 +87,7 @@
             appURL = nil;
         } else {
             appURL = [NSURL fileURLWithPath:startFilePath];
-						if (opts != nil) appURL = [NSURL URLWithString:[[appURL description]stringByAppendingString:opts]];
+            if (opts != nil) appURL = [NSURL URLWithString:[[appURL description]stringByAppendingString:opts]];
         }
     }
     
@@ -138,67 +138,67 @@
 
 - (void) awakeFromNib
 {
-	//apply settings
-	_commandDelegate = [[CDVCommandDelegateImpl alloc] initWithViewController:self];
-	
-	// make the linker happy since CDVWebViewDelegate is not referenced anywhere and would be stripped out
-	// see http://stackoverflow.com/questions/1725881/unknown-class-myclass-in-interface-builder-file-error-at-runtime
-	[CDVWebViewDelegate class];
-	//self.webViewDelegate.viewController = self;
-	
-	// initialize items based on settings
-	
-	BOOL enableWebGL = [[self.settings objectForKey:@"EnableWebGL"] boolValue];
-	WebPreferences* prefs = [self.webView preferences];
-	[prefs setAutosaves:YES];
-	
-	// Note that this preference may not be Mac App Store safe
-	if (enableWebGL) {
-		[prefs setWebGLEnabled:YES];
-	}
-	
-	// ensure that local storage is enable and paths are correct
-	NSString* webStoragePath = [self.settings valueForKey:@"OSXLocalStoragePath"];
-	if (webStoragePath == nil) {
-		NSString* appBundleID = [[NSBundle mainBundle] bundleIdentifier];
-		NSFileManager* fileManager = [[NSFileManager alloc] init];
-		NSError* err = nil;
-		NSURL* dir = [fileManager URLForDirectory:NSApplicationSupportDirectory
-																		 inDomain:NSUserDomainMask
-														appropriateForURL:nil
-																			 create:YES
-																				error:&err];
-		if (err) {
-			NSLog(@"error finding app support directory %@", err);
-			webStoragePath = [NSString stringWithFormat:@"~/Library/Application Support/%@", appBundleID];
-		} else {
-			NSURL* folder = [[NSURL alloc] initFileURLWithPath:[dir path] isDirectory:YES];
-			NSURL* storageURL = [NSURL URLWithString:appBundleID relativeToURL:folder];
-			webStoragePath = storageURL.path;
-		}
-	}
-	[prefs _setLocalStorageDatabasePath:webStoragePath];
-	[prefs setLocalStorageEnabled:YES];
-	NSLog(@"WebStoragePath is '%@', modify in config.xml.", webStoragePath);
-	[self.webView setPreferences:prefs];
-	
+    //apply settings
+    _commandDelegate = [[CDVCommandDelegateImpl alloc] initWithViewController:self];
 
-	BOOL kioskMode = [[self.settings objectForKey:@"KioskMode"] boolValue];
+    // make the linker happy since CDVWebViewDelegate is not referenced anywhere and would be stripped out
+    // see http://stackoverflow.com/questions/1725881/unknown-class-myclass-in-interface-builder-file-error-at-runtime
+    [CDVWebViewDelegate class];
+    //self.webViewDelegate.viewController = self;
 
-	// usefull for touchscreens
-	BOOL hideCursor = [[self.settings objectForKey:@"HideCursor"] boolValue];
-	
-	if (hideCursor) {
-		[NSCursor hide];
-	}
-	
-	if (kioskMode) {
-		[self performSelector:@selector(__makeFullScreen) withObject:nil afterDelay:0.0];
-	}
-	
-	for (NSString* pluginName in self.startupPluginNames) {
-		[self getCommandInstance:pluginName];
-	}
+    // initialize items based on settings
+
+    BOOL enableWebGL = [[self.settings objectForKey:@"EnableWebGL"] boolValue];
+    WebPreferences* prefs = [self.webView preferences];
+    [prefs setAutosaves:YES];
+
+    // Note that this preference may not be Mac App Store safe
+    if (enableWebGL) {
+        [prefs setWebGLEnabled:YES];
+    }
+
+    // ensure that local storage is enable and paths are correct
+    NSString* webStoragePath = [self.settings valueForKey:@"OSXLocalStoragePath"];
+    if (webStoragePath == nil) {
+        NSString* appBundleID = [[NSBundle mainBundle] bundleIdentifier];
+        NSFileManager* fileManager = [[NSFileManager alloc] init];
+        NSError* err = nil;
+        NSURL* dir = [fileManager URLForDirectory:NSApplicationSupportDirectory
+                                         inDomain:NSUserDomainMask
+                                appropriateForURL:nil
+                                           create:YES
+                                            error:&err];
+        if (err) {
+            NSLog(@"error finding app support directory %@", err);
+            webStoragePath = [NSString stringWithFormat:@"~/Library/Application Support/%@", appBundleID];
+        } else {
+            NSURL* folder = [[NSURL alloc] initFileURLWithPath:[dir path] isDirectory:YES];
+            NSURL* storageURL = [NSURL URLWithString:appBundleID relativeToURL:folder];
+            webStoragePath = storageURL.path;
+        }
+    }
+    [prefs _setLocalStorageDatabasePath:webStoragePath];
+    [prefs setLocalStorageEnabled:YES];
+    NSLog(@"WebStoragePath is '%@', modify in config.xml.", webStoragePath);
+    [self.webView setPreferences:prefs];
+
+
+    BOOL kioskMode = [[self.settings objectForKey:@"KioskMode"] boolValue];
+
+    // usefull for touchscreens
+    BOOL hideCursor = [[self.settings objectForKey:@"HideCursor"] boolValue];
+
+    if (hideCursor) {
+        [NSCursor hide];
+    }
+
+    if (kioskMode) {
+        [self performSelector:@selector(__makeFullScreen) withObject:nil afterDelay:0.0];
+    }
+
+    for (NSString* pluginName in self.startupPluginNames) {
+        [self getCommandInstance:pluginName];
+    }
 }
 
 - (void)loadSettings
@@ -235,17 +235,17 @@
         self.startPage = @"index.html";
     }
 
- 	  BOOL enableDebugMode = [[NSUserDefaults standardUserDefaults ]boolForKey:@"EnableDebugMode"];
-	
-	  // debugging mode
-	  if (enableDebugMode) {
-		    [[NSUserDefaults standardUserDefaults]setBool:TRUE forKey:@"WebKitDeveloperExtras"];
-		    [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"IncludeDebugMenu"];
-	  } else {
-		    [[NSUserDefaults standardUserDefaults]setBool:FALSE forKey:@"WebKitDeveloperExtras"];
-		    [[NSUserDefaults standardUserDefaults]setInteger:0  forKey:@"IncludeDebugMenu"];
-	  }
-	   
+     BOOL enableDebugMode = [[NSUserDefaults standardUserDefaults ]boolForKey:@"EnableDebugMode"];
+
+    // debugging mode
+    if (enableDebugMode) {
+        [[NSUserDefaults standardUserDefaults]setBool:TRUE forKey:@"WebKitDeveloperExtras"];
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"IncludeDebugMenu"];
+    } else {
+        [[NSUserDefaults standardUserDefaults]setBool:FALSE forKey:@"WebKitDeveloperExtras"];
+        [[NSUserDefaults standardUserDefaults]setInteger:0  forKey:@"IncludeDebugMenu"];
+    }
+   
     // Initialize the plugin objects dict.
     self.pluginObjects = [[NSMutableDictionary alloc] initWithCapacity:20];
 }
@@ -312,22 +312,10 @@
 - (void)handleWindowMessage:(id) data {
 }
 
-- (void)postWindowMessage:(id) data {
-	id win = [self.webView windowScriptObject];
-	if ([data isKindOfClass:[NSString class]]) {
-		//set a dummy variable we use for the post
-		[win setValue:data forKey:@"_saGF11231DDsmsg_"];
-	} else {
-		[win setValue:[data JSONString] forKey:@"_saGF11231DDsmsg_"];
-	}
-	NSString* js = @"try{window.postMessage(_saGF11231DDsmsg_,\"*\");}catch(e){};delete _saGF11231DDsmsg_;";
-	[win evaluateWebScript:js];
-}
-
 - (CDVViewController*) makeViewController
 {
-	CDVViewController* vctr = [[CDVViewController alloc]initWithWindowNibName:@"DocumentViewController"];
-	return vctr;
+    CDVViewController* vctr = [[CDVViewController alloc]initWithWindowNibName:@"DocumentViewController"];
+    return vctr;
 }
 
 - (IBAction)newDocument:(id)sender
@@ -351,9 +339,9 @@
 
 - (void)dealloc
 {
-	self.contentView = nil;
-	self.webView = nil;
-	self.webViewDelegate = nil;
+    self.contentView = nil;
+    self.webView = nil;
+    self.webViewDelegate = nil;
 }
 
 @end

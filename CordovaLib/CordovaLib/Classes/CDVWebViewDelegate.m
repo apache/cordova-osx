@@ -32,9 +32,9 @@
     //create new instance even if exists because this may be a reload of a page
     self.console = [CDVConsole new];
     
-	[windowScriptObject setValue:self.console forKey:@"console"];
-	
-        self.bridge = [[CDVBridge alloc] initWithWebView:webView andViewController:self.viewController];
+    [windowScriptObject setValue:self.console forKey:@"console"];
+
+    self.bridge = [[CDVBridge alloc] initWithWebView:webView andViewController:self.viewController];
     
     [windowScriptObject setValue:self.bridge forKey:@"cordovabridge"];
 }
@@ -48,14 +48,14 @@
 
 - (void) webView:(WebView*)webView addMessageToConsole:(NSDictionary*)message
 {
-	if (![message isKindOfClass:[NSDictionary class]]) { 
-		return;
-	}
-	
-	NSLog(@"JavaScript error: %@:%@: %@", 
-		  [[message objectForKey:@"sourceURL"] lastPathComponent],	// could be nil
-		  [message objectForKey:@"lineNumber"],
-		  [message objectForKey:@"message"]);
+    if (![message isKindOfClass:[NSDictionary class]]) { 
+        return;
+    }
+
+    NSLog(@"JavaScript error: %@:%@: %@", 
+        [[message objectForKey:@"sourceURL"] lastPathComponent],	// could be nil
+        [message objectForKey:@"lineNumber"],
+        [message objectForKey:@"message"]);
 }
 
 #pragma mark WebScripting protocol
@@ -63,19 +63,19 @@
 /* checks whether a selector is acceptable to be called from JavaScript */
 + (BOOL) isSelectorExcludedFromWebScript:(SEL)selector
 {
-	return YES;
+    return YES;
 }
 
 // right now exclude all properties (eg keys)
 + (BOOL) isKeyExcludedFromWebScript:(const char*)name
 {
-	return YES;
+    return YES;
 }
 
 #pragma mark WebPolicyDelegate
 
 - (void)webView:(WebView *)sender decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id<WebPolicyDecisionListener>)listener
-{	
+{
     NSString* url = [[request URL] description];
     NSLog(@"navigating to %@", url);
 
@@ -95,7 +95,7 @@
 - (WebView*) webView:(WebView *)sender createWebViewWithRequest:(NSURLRequest *)request
 {
     if (request == nil) {//is most likely window.open
-				CDVViewController* vctr = [self.viewController makeViewController];
+        CDVViewController* vctr = [self.viewController makeViewController];
         [vctr window];
         
         //we need to retain the controllers, otherwise they are going to be released
@@ -175,8 +175,8 @@
 
 - (void)dealloc
 {
-	self.console = nil;
-	self.bridge = nil;
+    self.console = nil;
+    self.bridge = nil;
 }
 
 @end

@@ -41,7 +41,7 @@
     NSBundle* mainBundle = [NSBundle mainBundle];
     NSMutableArray* directoryParts = [NSMutableArray arrayWithArray:[resourcepath componentsSeparatedByString:@"/"]];
     NSString* filename = [directoryParts lastObject];
-	
+
     [directoryParts removeLastObject];
 
     NSString* directoryPartsJoined = [directoryParts componentsJoinedByString:@"/"];
@@ -50,16 +50,16 @@
     if ([directoryPartsJoined length] > 0) {
         directoryStr = [NSString stringWithFormat:@"%@/%@", _viewController.wwwFolderName, [directoryParts componentsJoinedByString:@"/"]];
     }
-	
-		NSString* sourceBaseDir = [[NSUserDefaults standardUserDefaults]valueForKey:@"SourceBaseDir"];
-		if (sourceBaseDir != nil) {
-			NSLog(@"careful, sourcing HTML sources from %@ because of SourceBaseDir", sourceBaseDir);
-			NSString* path = [NSString stringWithFormat:@"%@/%@/%@", sourceBaseDir, directoryStr, filename];
-			return path;
-		} else {
-			NSString* path = [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
-			return path;
-		}
+
+    NSString* sourceBaseDir = [[NSUserDefaults standardUserDefaults]valueForKey:@"SourceBaseDir"];
+    if (sourceBaseDir != nil) {
+        NSLog(@"careful, sourcing HTML sources from %@ because of SourceBaseDir", sourceBaseDir);
+        NSString* path = [NSString stringWithFormat:@"%@/%@/%@", sourceBaseDir, directoryStr, filename];
+        return path;
+    } else {
+        NSString* path = [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
+        return path;
+    }
 }
 
 - (void)evalJsHelper2:(NSString*)js
