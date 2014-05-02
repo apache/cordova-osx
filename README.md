@@ -35,7 +35,7 @@ Add the Cordova OSX Platform the a CLI project
     2. patch the 2 projects with the patches provided in the `patches` directory to
        enable the osx platform    
 
-2. Follow the instructions in the [**Command-Line Usage** section](http://cordova.apache.org/docs/en/edge/guide_cli_index.md.html#The%20Command-line%20Interface) of [http://docs.cordova.io](http://docs.cordova.io)
+2. Follow the instructions in the [**Command-Line Usage** section](http://cordova.apache.org/docs/en/edge/guide_cli_index.md.html#The%20Command-line%20Interface) of the [Cordova Docs](http://cordova.apache.org/docs/en/edge)
 
 3. add the osx platform:
 
