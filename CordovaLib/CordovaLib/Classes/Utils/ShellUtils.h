@@ -28,7 +28,7 @@
 
 + (NSTask*) shellTask:(NSString*)command;
 + (NSTask*) executeShellTaskAsync:(NSString*)command usingBlock:(void (^)(NSNotification *))block;
-+ (void) executeShellTaskAsync:(NSString*)command withCallbackId:(NSString*)aCallbackId forPlugin:(CDVPlugin*)plugin;
++ (void) executeShellTaskAsync:(NSString*)command withInput:(NSString*)input withCallbackId:(NSString*)aCallbackId forPlugin:(CDVPlugin*)plugin;
 + (NSString*) executeShellTask:(NSString*)command;
 
 @end
