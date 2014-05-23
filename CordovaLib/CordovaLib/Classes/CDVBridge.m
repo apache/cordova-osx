@@ -187,7 +187,7 @@
     }
 
     i = 0;
-    while (result == YES && (currentSelector = acceptableList[i++]))
+    while (acceptableList && result == YES && (currentSelector = acceptableList[i++]))
     {
         //checking for exclusions
         result = !(selector == currentSelector);
