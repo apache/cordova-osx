@@ -54,9 +54,9 @@
     NSPipe* pipe = [NSPipe pipe];
     NSFileHandle* fileHandle = [pipe fileHandleForReading];
     
-    NSTask* task = [[self class] shellTask:command];
+	NSTask* task = [[self class] shellTask:command];
     [task setStandardOutput:pipe];
-    [task setStandardError:pipe];
+	[task setStandardError:pipe];
     [task launch];
     
     NSData* outputData = [fileHandle readDataToEndOfFile];
@@ -64,63 +64,61 @@
 	return [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
 }
 
-+ (NSTask*) executeShellTaskAsync:(NSString*)command withInput:(NSString*)data usingBlock:(void (^)(NSNotification *))block
++ (NSTask*) executeShellTaskAsync:(NSString*)command usingBlock:(void (^)(NSNotification *))block
 {
-    NSPipe* opipe = [NSPipe pipe];
-    NSPipe* ipipe = [NSPipe pipe];
-
-    NSFileHandle* ifileHandle = [ipipe fileHandleForReading];
-    NSFileHandle* ofileHandle = [opipe fileHandleForWriting];
-
-    NSTask* task = [[self class] shellTask:command];
-    if (data != nil) {
-        [task setStandardInput:opipe];
-    }
-    [task setStandardOutput:ipipe];
-    [task setStandardError:ipipe];
+    NSPipe* pipe = [NSPipe pipe];
+    NSFileHandle* fileHandle = [pipe fileHandleForReading];
+    
+	NSTask* task = [[self class] shellTask:command];
+    [task setStandardOutput:pipe];
+	[task setStandardError:pipe];
 
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
     
-    [center addObserverForName:NSFileHandleReadCompletionNotification object:ifileHandle queue:mainQueue usingBlock:block];
-  // this should not be necessary, the task will close the output handle
-	// [center addObserverForName:NSTaskDidTerminateNotification object:task queue:mainQueue usingBlock:block];
+    [center addObserverForName:NSFileHandleReadCompletionNotification object:fileHandle queue:mainQueue usingBlock:block];
+    [center addObserverForName:NSTaskDidTerminateNotification object:task queue:mainQueue usingBlock:block];
 
-    [ifileHandle readInBackgroundAndNotify];
-    if (data != nil) {
-        [ofileHandle writeData:[data dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
+    [fileHandle readInBackgroundAndNotify];
+
     [task launch];
-    [ofileHandle closeFile];
   
     return task;
 }
 
-+ (void) executeShellTaskAsync:(NSString*)command withInput:(NSString*)input withCallbackId:(NSString*)aCallbackId forPlugin:(CDVPlugin*)plugin;
++ (void) executeShellTaskAsync:(NSString*)command withCallbackId:(NSString*)aCallbackId forPlugin:(CDVPlugin*)plugin
 {
     __block NSString* callbackId = aCallbackId;
     __block NSTask* task = nil;
-    __block NSMutableString* outputString = [NSMutableString string];
-
-    task = [[self class] executeShellTaskAsync:command withInput:input usingBlock:^(NSNotification* notif){
-        int status = 0;
-
+    
+    task = [[self class] executeShellTaskAsync:command usingBlock:^(NSNotification* notif){
         if ([notif.object isKindOfClass:[NSFileHandle class]]) {
             NSFileHandle* fileHandle = (NSFileHandle*)notif.object;
             NSData* data = [[notif userInfo] valueForKey:NSFileHandleNotificationDataItem];
             NSString* output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            [outputString appendString:output];
+            CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{ @"data": output }];
+            result.keepCallback = [NSNumber numberWithBool:YES];
+            [plugin.commandDelegate sendPluginResult:result callbackId:callbackId];
             
             if (task && [task isRunning]) {
                 [fileHandle readInBackgroundAndNotify];
-            } else {
-                status = [task terminationStatus];
-                CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                                        messageAsDictionary:@{ @"resultcode" :[NSNumber numberWithInt:status], @"data" :outputString }];
-                result.keepCallback = [NSNumber numberWithBool:NO];
-                [plugin.commandDelegate sendPluginResult:result callbackId:callbackId];
             }
+
+        } else if ([notif.userInfo valueForKey:@"CDVPluginResult"] != nil) {
+            CDVPluginResult* result = [notif.userInfo valueForKey:@"CDVPluginResult"];
+            [plugin.commandDelegate sendPluginResult:result callbackId:callbackId];
+            task = nil;
+
+        } else if ([notif.object isKindOfClass:[NSTask class]]) {
+            int status = [task terminationStatus];
+          
+            CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                       messageAsDictionary:@{ @"resultcode" :[NSNumber numberWithInt:status] }];
+            result.keepCallback = [NSNumber numberWithBool:NO];
+
+            //sometimes the data notification arrives before the termination, so let's stuff it back in
+            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+            [center postNotificationName:NSTaskDidTerminateNotification object:task userInfo:[NSDictionary dictionaryWithObject:result forKey:@"CDVPluginResult"]];
         }
     }];
 }
