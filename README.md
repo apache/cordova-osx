@@ -18,97 +18,121 @@
 # under the License.
 #
 -->
+### This is a fork of the official cordova-osx platform
+
+This fork includes many fixes and small improvemts. Hopefully it will be merged with the official version one day.
+
+It is may also by necessary for forks of related plugins.
+
+- cordova file API [cordova-plugin-file](https://github.com/onflapp/cordova-plugin-file)
+- chrome socket API [chrome-cordova](https://github.com/onflapp/mobile-chrome-apps/tree/master/chrome-cordova/plugins/chrome.socket)
+
 Cordova OSX
 =============================================================
 CordovaLib is a framework that enables users to include Cordova in their OS X application projects easily, and also create new Cordova based OS X application projects.
-
 
 Pre-requisites
 -------------------------------------------------------------
 Make sure you have installed the latest released OS X SDK which comes with Xcode 5. Download it at [http://developer.apple.com/downloads](http://developer.apple.com/downloads) or the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12).
 
+You will also need to install the [nodejs](http://nodejs.org).
 
-Add the Cordova OSX Platform the a CLI project
--------------------------------------------------------------
-1. Get a patched version of cordova CLI and Plugman
-    1. checkout the master. see https://github.com/apache/cordova-cli#installing-from-master
-    2. patch the 2 projects with the patches provided in the `patches` directory to
-       enable the osx platform    
-
-2. Follow the instructions in the [**Command-Line Usage** section](http://cordova.apache.org/docs/en/edge/guide_cli_index.md.html#The%20Command-line%20Interface) of [http://docs.cordova.io](http://docs.cordova.io)
-
-3. add the osx platform:
-
-    ````
-    $ cordova platform add osx
-    $ cordova run osx
-    ````
-
-
-You can also open the project in XCode:
-
-    $ open platforms/osx/<yourproject>.xcodeproj
-
-Create a Cordova OSX Standalone project
+Register OSX platform in the cordova
 -------------------------------------------------------------
 
-1. Download the source
-2. execute the `create` command to setup an empty project:
+### 1 Install cordova itself
 
-    ````
-    $ bin/create <path_to_new_project> <package_name> <project_name>
-    ````
-    
-    for example
-    
-    ````
-    $ bin/create ../Foo org.apache.foo FooBar
-    ````
+```
+$ sudo npm install -g cordova
+```
 
-To use a **shared CordovaLib**, add as the first parameter "**--shared**" to the **bin/create** command.
+### 2 Clone this repository
 
+```
+$ git clone https://github.com/onflapp/cordova-osx.git
+```
 
-Updating a CordovaLib subproject reference in your project
+### 3 Patch the cordova
+
+You can use patches in the *patches* directory or if you are lazy, do the following:
+
+```
+$ sudo cp patched-files/src/cordova/platform.js /usr/local/lib/node_modules/cordova/node_modules/cordova-lib/src/cordova
+$ sudo cp patched-files/src/cordova/platforms.js /usr/local/lib/node_modules/cordova/node_modules/cordova-lib/src/cordova
+
+$ sudo cp patched-files/src/plugman/platforms.js /usr/local/lib/node_modules/cordova/node_modules/cordova-lib/src/plugman
+$ sudo cp patched-files/src/plugman/platforms/osx.js /usr/local/lib/node_modules/cordova/node_modules/cordova-lib/src/plugman/platforms
+```
+
+*NOTE: you will be executing these commads as root, you should backup the original files first.*
+
+### 4 Verify the patch worked
+
+```
+$ cordova platform ls
+```
+
+Use this fork intead of the official cordova-osx
 -------------------------------------------------------------
 
-When you update to a new Cordova version, you may need to update the CordovaLib reference in an existing project. Cordova comes with a script that will help you to do this.
+Patching cordova as described above will get you the official OSX platform support.
+This may or may not be what you want. If you are interested in *this* fork, you'll need to take additional steps.
 
-1. Launch **Terminal.app**
-2. Go to the location where you installed Cordova, in the **bin** sub-folder
-3. Run **"update_cordova_subproject [path/to/your/project/xcodeproj]"**  where the first parameter is the path to your project's .xcodeproj file
+Copy the *content* of the entire project (*cordova-osx*) to *~/.cordova/lib/osx/cordova/master*
 
+```
+$ mkdir -p ~/.cordova/lib/osx/cordova/master
+$ cp -R ./cordova-osx/* ~/.cordova/lib/osx/cordova/master
+```
+
+If this directory exists already, you may have to remove it.
+
+NOTE: you should be able to find '~/.cordova/lib/osx/cordova/master/package.json' in there.
+If you see ~/.cordova/lib/osx/cordova/master/cordova-osx, this is wrong. 
+It must be the *content* of the cordova-osx that is copied into the master
+
+There is probably a better way to use a fork then this, I just didn't find a simpler way.
+
+Add OS X platform to your project
+-------------------------------------------------------------
+
+### 1 Create a project
+
+```
+$ cordova create hello com.example.hello HelloWorld
+```
+
+### 2 Add platform
+
+```
+$ cd ./hello
+$ cordova platform add osx
+```
 
 Useful options 
 --------------
 
 In the `config.xml` you can use following configuration parameters
 
-    ```<preference name="EnableDebugMode" value="false" />```
+```<preference name="EnableDebugMode" value="false" />```
+
 The debug modes enables WebKit's Inspector. The inspector is accessible via right-click.
 
-    ```<preference name="HideCursor" value="false" />```
+```<preference name="HideCursor" value="false" />```
+
 Hides the cursor. This option is very usefull for touchscreens using mouse emulation.
 
-    ```<preference name="KioskMode" value="false" />```
+```<preference name="KioskMode" value="false" />```
+
 Kiosk Mode will make the app run in full screen mode and disables application switching.
 
 Loading resources (JS/CSS) directly from your project's source directory. 
-    ```$ defaults write com.xxx.yyy write SourceBaseDir /Users/blah/myproject```
+```$ defaults write com.xxx.yyy write SourceBaseDir /Users/blah/myproject```
 
 This option is very usefull for rapid JS/CSS development because you do do not have to rebuild the entire application,
 just reload the page - EnableDebugMode may have to be enabled.
 `SourceBaseDir` should point to where your `www` folder is.
 
-FAQ
----
-None yet.
-
-
-BUGS?
------
-File them at the [Cordova Issue Tracker](https://issues.apache.org/jira/browse/CB)      
-
-
-MORE INFO
+More Info
 ----------
 * [http://cordova.apache.org/](http://cordova.apache.org/)
