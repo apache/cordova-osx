@@ -28,7 +28,7 @@ Pre-requisites
 Make sure you have installed the latest released OS X SDK which comes with Xcode 5. Download it at [http://developer.apple.com/downloads](http://developer.apple.com/downloads) or the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12).
 
 
-Add the Cordova OSX Platform the a CLI project
+Add the Cordova OSX Platform to a CLI project
 -------------------------------------------------------------
 1. Get a patched version of cordova CLI and Plugman
     1. checkout the master. see https://github.com/apache/cordova-cli#installing-from-master
