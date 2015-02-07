@@ -27,3 +27,7 @@
 #import "CDVDevice.h"
 
 #import "ShellUtils.h"
+#import "NSDictionary+Extensions.h"
+#import "NSArray+Comparisons.h"
+#import "NSMutableArray+QueueAdditions.h"
+#import "NSData+Base64.h"

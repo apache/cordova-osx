@@ -24,6 +24,8 @@
 
 #import "CDVBridge.h"
 #import "CDVViewController.h"
+#import "NSArray+Comparisons.h"
+#import "NSData+Base64.h"
 
 @implementation CDVBridge
 
@@ -50,7 +52,8 @@
 
     id win = [self.webView windowScriptObject];
 
-    WebScriptObject* keysObject = [win callWebScriptMethod:@"CordovaBridgeUtil.getDictionaryKeys" withArguments:[NSArray arrayWithObject:webScriptObject]];
+    WebScriptObject* bridgeUtil = [win evaluateWebScript:@"CordovaBridgeUtil"];
+    WebScriptObject* keysObject = [bridgeUtil callWebScriptMethod:@"getDictionaryKeys" withArguments:[NSArray arrayWithObject:webScriptObject]];
     NSArray* keys = [self convertWebScriptObjectToNSArray:keysObject];
     NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:[keys count]];
 
@@ -59,7 +62,7 @@
     while (key = [enumerator nextObject]) {
         [dict setObject:[webScriptObject valueForKey:key] forKey:key];
     }
-    
+
     return dict;
 }
 
@@ -75,8 +78,16 @@
             if ([self isArray:item]) {
                 [a addObject:[self convertWebScriptObjectToNSArray:item]];
             } else if ([self isDictionary:item]) {
-                [a addObject:[self convertWebScriptObjectToNSDictionary:item]];
-            };
+                NSDictionary* d = [self convertWebScriptObjectToNSDictionary:item];
+                NSString* cdvtype = [d valueForKey:@"CDVType"];
+                if ([cdvtype isEqualToString:@"ArrayBuffer"]) {
+                    NSData* bd = [NSData dataFromBase64String:[d valueForKey:@"data"]];
+                    if (bd == nil) bd = [[NSData alloc]init];
+                    [a addObject:bd];
+                } else {
+                    [a addObject:d];
+                }
+            }
         } else {
             [a addObject:item];
         }
@@ -164,43 +175,43 @@
 /* checks whether a selector is acceptable to be called from JavaScript */
 + (BOOL) isSelectorExcludedFromWebScript:(SEL)selector
 {
-	BOOL	result = YES;
-	
-	int			i = 0;
-	static SEL	* acceptableList = NULL;
-	SEL			currentSelector;
-	
-	if (acceptableList == NULL && (acceptableList = calloc(256, sizeof(SEL))))	// up to 256 selectors
-	{
-		acceptableList[i++] = @selector(exec:withService:andAction:andArguments:);
-	}
-	
-	i = 0;
-	while (result == YES && (currentSelector = acceptableList[i++]))
-	{
-		//checking for exclusions
-		result = !(selector == currentSelector);
-	}
-	
-	return result;
+    BOOL result = YES;
+
+    int i = 0;
+    static SEL * acceptableList = NULL;
+    SEL currentSelector;
+
+    if (acceptableList == NULL && (acceptableList = calloc(256, sizeof(SEL)))) // up to 256 selectors
+    {
+        acceptableList[i++] = @selector(exec:withService:andAction:andArguments:);
+    }
+
+    i = 0;
+    while (acceptableList && result == YES && (currentSelector = acceptableList[i++]))
+    {
+        //checking for exclusions
+        result = !(selector == currentSelector);
+    }
+
+    return result;
 }
 
 /* helper function so we don't have to have underscores and stuff in js to refer to the right method */
 + (NSString*) webScriptNameForSelector:(SEL)aSelector
 {
-	id	result = nil;
-	
-	if (aSelector == @selector(exec:withService:andAction:andArguments:)) {
-		result = @"exec";
-	}
-	
-	return result;
+    id result = nil;
+
+    if (aSelector == @selector(exec:withService:andAction:andArguments:)) {
+        result = @"exec";
+    }
+
+    return result;
 }
 
 // right now exclude all properties (eg keys)
 + (BOOL) isKeyExcludedFromWebScript:(const char*)name
 {
-	return YES;
+    return YES;
 }
 
 @end

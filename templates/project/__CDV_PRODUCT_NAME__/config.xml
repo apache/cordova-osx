@@ -17,6 +17,16 @@
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="OSXLocalStoragePath" value="~/Library/Application Support/__CDV_PRODUCT_NAME__" />
+    <!-- Preferences for OSX -->
+    <preference name="EnableWebGL" value="false" />
+    <!-- Useful for touchscreens -->
+    <preference name="HideCursor" value="false" />
+    <!-- Kiosk Mode
+         - the app will run in full screen mode
+         - application switching is disabled
+    -->
+    <preference name="KioskMode" value="false" />
+    
     <name>__CDV_PRODUCT_NAME__</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

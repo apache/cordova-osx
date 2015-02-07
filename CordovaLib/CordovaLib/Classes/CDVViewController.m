@@ -20,6 +20,7 @@
 #import "CDVViewController.h"
 #import "CDVConfigParser.h"
 #import "CDVCommandDelegateImpl.h"
+#import "CDVJSON.h"
 
 @interface CDVViewController ()
 
@@ -41,15 +42,24 @@
 @synthesize commandDelegate = _commandDelegate;
 @synthesize commandQueue = _commandQueue;
 
-- (void) awakeFromNib
++ (void)registerViewController:(CDVViewController*) vc
 {
-    _commandDelegate = [[CDVCommandDelegateImpl alloc] initWithViewController:self];
+    if (__CDVViewController_all_created__ == nil) __CDVViewController_all_created__ = [[NSMutableArray alloc]init];
+    [__CDVViewController_all_created__ addObject:vc];
+}
 
-    // make the linker happy since CDVWebViewDelegate is not referenced anywhere and would be stripped out
-    // see http://stackoverflow.com/questions/1725881/unknown-class-myclass-in-interface-builder-file-error-at-runtime
-    [CDVWebViewDelegate class];
-    //self.webViewDelegate.viewController = self;
-    
++ (void)unregisterViewController:(CDVViewController*) vc
+{
+	[__CDVViewController_all_created__ removeObject:vc];
+}
+
++ (NSArray*)registeredViewControllers
+{
+    return __CDVViewController_all_created__;
+}
+
+- (void) loadRequest
+{
     NSURL* appURL = nil;
     NSString* loadErr = nil;
     
@@ -58,7 +68,18 @@
     } else if ([self.wwwFolderName rangeOfString:@"://"].location != NSNotFound) {
         appURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", self.wwwFolderName, self.startPage]];
     } else {
-        NSString* startFilePath = [self.commandDelegate pathForResource:self.startPage];
+
+        NSString* path = self.startPage;
+        NSString* opts = nil;
+        NSRange r = [path rangeOfString:@"?"];
+
+        //save options
+        if (r.location != NSNotFound) {
+            opts = [path substringFromIndex:r.location];
+            path = [path substringToIndex:r.location];
+        }
+
+        NSString* startFilePath = [self.commandDelegate pathForResource:path];
         if (startFilePath == nil) {
             loadErr = [NSString stringWithFormat:@"ERROR: Start Page at '%@/%@' was not found.", self.wwwFolderName, self.startPage];
             NSLog(@"%@", loadErr);
@@ -66,6 +87,7 @@
             appURL = nil;
         } else {
             appURL = [NSURL fileURLWithPath:startFilePath];
+            if (opts != nil) appURL = [NSURL URLWithString:[[appURL description]stringByAppendingString:opts]];
         }
     }
     
@@ -77,13 +99,55 @@
         NSString* html = [NSString stringWithFormat:@"<html><body> %@ </body></html>", loadErr];
         [[self.webView mainFrame] loadHTMLString:html baseURL:nil];
     }
-    
-    for (NSString* pluginName in self.startupPluginNames) {
-        [self getCommandInstance:pluginName];
+}
+
+- (void) __makeFullScreen {
+    NSView* contentView = [[self window]contentView];
+    NSNumber* flag = [NSNumber numberWithUnsignedInt:(NSApplicationPresentationHideMenuBar|\
+                                                      NSApplicationPresentationDisableAppleMenu|\
+                                                      NSApplicationPresentationDisableProcessSwitching|\
+                                                      NSApplicationPresentationDisableHideApplication|\
+                                                      NSApplicationPresentationHideDock)];
+    [contentView enterFullScreenMode:[NSScreen mainScreen] withOptions:[NSDictionary dictionaryWithObject:flag forKey:NSFullScreenModeApplicationPresentationOptions]];
+}
+
+- (void) __init
+{
+	[self loadSettings];
+}
+
+- (id) init
+{
+    self = [super init];
+    if (self) {
+        // Initialization code here.
+        [self __init];
     }
-    
+    return self;
+}
+
+- (id)initWithWindowNibName:(NSString*)nibNameOrNil
+{
+    self = [super initWithWindowNibName:nibNameOrNil];
+    if (self) {
+        // Initialization code here.
+        [self __init];
+    }
+    return self;
+}
+
+- (void) awakeFromNib
+{
+    //apply settings
+    _commandDelegate = [[CDVCommandDelegateImpl alloc] initWithViewController:self];
+
+    // make the linker happy since CDVWebViewDelegate is not referenced anywhere and would be stripped out
+    // see http://stackoverflow.com/questions/1725881/unknown-class-myclass-in-interface-builder-file-error-at-runtime
+    [CDVWebViewDelegate class];
+    //self.webViewDelegate.viewController = self;
+
     // initialize items based on settings
-    
+
     BOOL enableWebGL = [[self.settings objectForKey:@"EnableWebGL"] boolValue];
     WebPreferences* prefs = [self.webView preferences];
     [prefs setAutosaves:YES];
@@ -117,31 +181,24 @@
     [prefs setLocalStorageEnabled:YES];
     NSLog(@"WebStoragePath is '%@', modify in config.xml.", webStoragePath);
     [self.webView setPreferences:prefs];
-}
 
-- (void) __init
-{
-    [self loadSettings];
-}
 
-- (id) init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-        [self __init];
+    BOOL kioskMode = [[self.settings objectForKey:@"KioskMode"] boolValue];
+
+    // usefull for touchscreens
+    BOOL hideCursor = [[self.settings objectForKey:@"HideCursor"] boolValue];
+
+    if (hideCursor) {
+        [NSCursor hide];
     }
-    return self;
-}
 
-- (id)initWithWindowNibName:(NSString*)nibNameOrNil
-{
-    self = [super initWithWindowNibName:nibNameOrNil];
-    if (self) {
-        // Initialization code here.
-        [self __init];
+    if (kioskMode) {
+        [self performSelector:@selector(__makeFullScreen) withObject:nil afterDelay:0.0];
     }
-    return self;
+
+    for (NSString* pluginName in self.startupPluginNames) {
+        [self getCommandInstance:pluginName];
+    }
 }
 
 - (void)loadSettings
@@ -177,7 +234,18 @@
     if (self.startPage == nil) {
         self.startPage = @"index.html";
     }
-    
+
+     BOOL enableDebugMode = [[NSUserDefaults standardUserDefaults ]boolForKey:@"EnableDebugMode"];
+
+    // debugging mode
+    if (enableDebugMode) {
+        [[NSUserDefaults standardUserDefaults]setBool:TRUE forKey:@"WebKitDeveloperExtras"];
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"IncludeDebugMenu"];
+    } else {
+        [[NSUserDefaults standardUserDefaults]setBool:FALSE forKey:@"WebKitDeveloperExtras"];
+        [[NSUserDefaults standardUserDefaults]setInteger:0  forKey:@"IncludeDebugMenu"];
+    }
+   
     // Initialize the plugin objects dict.
     self.pluginObjects = [[NSMutableDictionary alloc] initWithCapacity:20];
 }
@@ -241,8 +309,39 @@
     return obj;
 }
 
-- (void) windowResized:(NSNotification*)notification;
+- (void)handleWindowMessage:(id) data {
+}
+
+- (CDVViewController*) makeViewController
 {
+    CDVViewController* vctr = [[CDVViewController alloc]initWithWindowNibName:@"DocumentViewController"];
+    return vctr;
+}
+
+- (IBAction)newDocument:(id)sender
+{
+    CDVViewController* vctr = [self makeViewController];
+    [vctr window];
+    [vctr loadRequest];
+    
+    //we need to retain the controllers, otherwise they are going to be released
+    [CDVViewController registerViewController:vctr];
+}
+
+- (void) windowDidResize:(NSNotification*)notification
+{
+}
+
+- (void) windowWillClose:(NSNotification*)notification
+{
+    [CDVViewController unregisterViewController:self];
+}
+
+- (void)dealloc
+{
+    self.contentView = nil;
+    self.webView = nil;
+    self.webViewDelegate = nil;
 }
 
 @end

@@ -51,7 +51,15 @@
         directoryStr = [NSString stringWithFormat:@"%@/%@", _viewController.wwwFolderName, [directoryParts componentsJoinedByString:@"/"]];
     }
 
-    return [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
+    NSString* sourceBaseDir = [[NSUserDefaults standardUserDefaults]valueForKey:@"SourceBaseDir"];
+    if (sourceBaseDir != nil) {
+        NSLog(@"careful, sourcing HTML sources from %@ because of SourceBaseDir", sourceBaseDir);
+        NSString* path = [NSString stringWithFormat:@"%@/%@/%@", sourceBaseDir, directoryStr, filename];
+        return path;
+    } else {
+        NSString* path = [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
+        return path;
+    }
 }
 
 - (void)evalJsHelper2:(NSString*)js
