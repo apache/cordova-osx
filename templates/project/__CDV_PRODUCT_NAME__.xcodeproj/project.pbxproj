@@ -18,6 +18,7 @@
 		70BD686718FFB06500A1EFCF /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BD686518FFB06500A1EFCF /* WebKit.framework */; };
 		70BD686D18FFB0BF00A1EFCF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD686A18FFB0BF00A1EFCF /* AppDelegate.m */; };
 		70BD686E18FFB0BF00A1EFCF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD686C18FFB0BF00A1EFCF /* MainViewController.m */; };
+		ECB0600A1910FAC300851C7E /* DocumentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB060091910FAC300851C7E /* DocumentViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		70BD686B18FFB0BF00A1EFCF /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		70BD686C18FFB0BF00A1EFCF /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		70DAA8D91908785C00AF3749 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		ECB060091910FAC300851C7E /* DocumentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		70BD682C18FFB02D00A1EFCF /* __CDV_PRODUCT_NAME__ */ = {
 			isa = PBXGroup;
 			children = (
+				ECB060091910FAC300851C7E /* DocumentViewController.xib */,
 				707060AE18FFC05700755D46 /* MainViewController.xib */,
 				70BD683E18FFB02D00A1EFCF /* Images.xcassets */,
 				70BD682D18FFB02D00A1EFCF /* Supporting Files */,
@@ -258,6 +261,7 @@
 				707060AF18FFC05700755D46 /* MainViewController.xib in Resources */,
 				70BD683F18FFB02D00A1EFCF /* Images.xcassets in Resources */,
 				70BD683718FFB02D00A1EFCF /* Credits.rtf in Resources */,
+				ECB0600A1910FAC300851C7E /* DocumentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
