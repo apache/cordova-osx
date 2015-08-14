@@ -61,7 +61,7 @@ function copyJsAndCordovaLib(projectPath, projectName, use_shared) {
     } else {
         var r = path.join(projectPath, projectName);
         var srcLib = path.join(ROOT, 'CordovaLib');
-        var dstLib = path.join(r, 'CordovaLib');
+        var dstLib = path.join(projectPath, 'CordovaLib');
         shell.mkdir('-p', path.join(dstLib, 'CordovaLib.xcodeproj'));
         shell.cp('-f', path.join(r, '.gitignore'), projectPath);
         shell.cp('-rf',path.join(srcLib, 'CordovaLib'), dstLib);

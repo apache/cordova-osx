@@ -29,20 +29,40 @@ Make sure you have installed the latest released OS X SDK which comes with Xcode
 Download it at [http://developer.apple.com/downloads](http://developer.apple.com/downloads) 
 or the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12).
 
-
 Add the Cordova OSX Platform the a CLI project
 -------------------------------------------------------------
-1. Get a patched version of cordova CLI and Plugman
-    1. checkout the master. see https://github.com/apache/cordova-cli#installing-from-master
-    2. patch the 2 projects with the patches provided in the `patches` directory to
-       enable the osx platform    
+1. get a patched version of cordova-lib
+    1. checkout the cordova-lib master. 
+    2. patch cordova-lib with the patch file provided in the `patches` directory to
+       enable the osx platform:
+       
+       ````
+       $ cordova-lib
+       $ cat ../cordova-osx/patches/cordova-lib.patch | patch -p1
+       patching file cordova-lib/src/platforms/platformsConfig.json
+       $ cd ..
+       ````
+    3. link the patched version to cordova-cli and cordova-plugman (see https://github.com/apache/cordova-lib#setup)
+    
+        ````
+        $ cd cordova-lib/cordova-lib
+        $ npm install && npm link
+        $ cd ../../cordova-cli
+        $ npm link cordova-lib && npm install 
+        $ cd ../cordova-plugman
+        $ npm link cordova-lib && npm install
+        ````
+    
 
-2. Follow the instructions in the [**Command-Line Usage** section](http://cordova.apache.org/docs/en/edge/guide_cli_index.md.html#The%20Command-line%20Interface) of the [Cordova Docs](http://cordova.apache.org/docs/en/edge)
+2. Follow the instructions in the [**Command-Line Usage** section](http://cordova.apache.org/docs/en/edge/guide_cli_index.md.html#The%20Command-line%20Interface) of the [Cordova Docs](http://cordova.apache.org/docs/en/edge). For example
+    ````
+    $ cordova create hello com.example.hello HelloWorld
+    ````
 
 3. add the osx platform:
 
     ````
-    $ cordova platform add osx
+    $ cordova platform add ../cordova-osx
     $ cordova run osx
     ````
 
@@ -66,9 +86,6 @@ Create a Cordova OSX Standalone project
     ````
     $ bin/create ../Foo org.apache.foo FooBar
     ````
-
-To use a **shared CordovaLib**, add as the first parameter "**--linked**" to the **bin/create** command.
-
 
 Updating a CordovaLib subproject reference in your project
 -------------------------------------------------------------
