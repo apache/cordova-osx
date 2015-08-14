@@ -17,11 +17,12 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 module.exports = {
     id: "osx",
-    initialize:function() {
+    bootstrap: function() {
+        require('cordova/channel').onNativeReady.fire();
     }
 };
 
