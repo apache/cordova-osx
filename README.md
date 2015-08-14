@@ -20,12 +20,14 @@
 -->
 Cordova OSX
 =============================================================
-CordovaLib is a framework that enables users to include Cordova in their OS X application projects easily, and also create new Cordova based OS X application projects.
-
+CordovaLib is a framework that enables users to include Cordova in their OS X application projects easily, 
+and also create new Cordova based OS X application projects.
 
 Pre-requisites
 -------------------------------------------------------------
-Make sure you have installed the latest released OS X SDK which comes with Xcode 5. Download it at [http://developer.apple.com/downloads](http://developer.apple.com/downloads) or the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12).
+Make sure you have installed the latest released OS X SDK which comes with Xcode 6. 
+Download it at [http://developer.apple.com/downloads](http://developer.apple.com/downloads) 
+or the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12).
 
 
 Add the Cordova OSX Platform the a CLI project
@@ -65,17 +67,18 @@ Create a Cordova OSX Standalone project
     $ bin/create ../Foo org.apache.foo FooBar
     ````
 
-To use a **shared CordovaLib**, add as the first parameter "**--shared**" to the **bin/create** command.
+To use a **shared CordovaLib**, add as the first parameter "**--linked**" to the **bin/create** command.
 
 
 Updating a CordovaLib subproject reference in your project
 -------------------------------------------------------------
 
-When you update to a new Cordova version, you may need to update the CordovaLib reference in an existing project. Cordova comes with a script that will help you to do this.
+When you update to a new Cordova version, you may need to update the CordovaLib reference in an existing project. 
+Cordova comes with a script that will help you to do this.
 
 1. Launch **Terminal.app**
-2. Go to the location where you installed Cordova, in the **bin** sub-folder
-3. Run **"update_cordova_subproject [path/to/your/project/xcodeproj]"**  where the first parameter is the path to your project's .xcodeproj file
+2. Go to the location where you installed Cordova, in the `bin` sub-folder
+3. Run `update /path/to/your/project` 
 
 
 

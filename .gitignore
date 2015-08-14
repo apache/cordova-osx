@@ -2,8 +2,9 @@
 .*.sw?
 *.cso
 tmp
-lib
+*.mode1v3
 *.pbxuser
-build
-*.xcworkspace
 xcuserdata
+*.xcworkspace
+console.log
+/node_modules

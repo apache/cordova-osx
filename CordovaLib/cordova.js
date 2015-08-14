@@ -1,5 +1,5 @@
 // Platform: osx
-// 3.5.0-dev
+// 4.0.0-dev
 /*
  Licensed to the Apache Software Foundation (ASF) under one
  or more contributor license agreements.  See the NOTICE file
@@ -19,7 +19,7 @@
  under the License.
 */
 ;(function() {
-var CORDOVA_JS_BUILD_LABEL = '3.5.0-dev';
+var CORDOVA_JS_BUILD_LABEL = '4.0.0-dev';
 // file: lib/scripts/require.js
 
 var require,
