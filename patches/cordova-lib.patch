@@ -16,3 +16,16 @@ index a1eaf3f..e20fc83 100644
      "android": {
          "parser_file": "../cordova/metadata/android_parser",
          "handler_file": "../plugman/platforms/android",
+diff --git a/cordova-lib/src/plugman/util/default-engines.js b/cordova-lib/src/plugman/util/default-engines.js
+index 16b5b33..0382b6e 100644
+--- a/cordova-lib/src/plugman/util/default-engines.js
++++ b/cordova-lib/src/plugman/util/default-engines.js
+@@ -29,6 +29,8 @@ module.exports = function(project_dir){
+             { 'platform':'android', 'scriptSrc': path.join(project_dir,'cordova','version') },
+         'cordova-ios':
+             { 'platform':'ios', 'scriptSrc': path.join(project_dir,'cordova','version') },
++        'cordova-osx':
++            { 'platform':'osx', 'scriptSrc': path.join(project_dir,'cordova','version') },
+         'cordova-blackberry10':
+             { 'platform':'blackberry10', 'scriptSrc': path.join(project_dir,'cordova','version') },
+         'cordova-wp8':
