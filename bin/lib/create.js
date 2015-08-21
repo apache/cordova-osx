@@ -196,10 +196,12 @@ exports.createProject = function(project_path, package_name, project_name, opts)
     shell.sed('-i', /__PROJECT_NAME__/g, project_name_esc, path.join(r, 'Classes', 'MainViewController.h'));
     shell.sed('-i', /__PROJECT_NAME__/g, project_name_esc, path.join(r, 'Classes', 'MainViewController.m'));
     shell.sed('-i', /__PROJECT_NAME__/g, project_name_esc, path.join(r, 'MainViewController.xib'));
+    shell.sed('-i', /__PROJECT_NAME__/g, project_name_esc, path.join(r, 'en.lproj/MainViewController.strings'));
     shell.sed('-i', /__PROJECT_NAME__/g, project_name_esc, path.join(r, 'main.m'));
     shell.sed('-i', /__PROJECT_NAME__/g, project_name_esc, path.join(r, project_name+'-Info.plist'));
     shell.sed('-i', /__PROJECT_NAME__/g, project_name_esc, path.join(r, project_name+'-Prefix.pch'));
     shell.sed('-i', /--ID--/g, package_name, path.join(r, project_name+'-Info.plist'));
+    shell.sed('-i', /__PROJECT_NAME__/g, project_name_esc, path.join(r, 'config.xml'));
 
     //CordovaLib stuff
     copyJsAndCordovaLib(project_path, project_name, use_shared);
