@@ -17,7 +17,13 @@
     <preference name="PageLength" value="0"/>
     <preference name="PaginationBreakingMode" value="page"/>
     <preference name="PaginationMode" value="unpaginated"/>
+
+    <!-- OSX: location of the local storage path -->
     <preference name="OSXLocalStoragePath" value="~/Library/Application Support/__PROJECT_NAME__"/>
+
+    <!-- OSX: size of the application window in the format "wxh". special values 'auto' and 'fullscreen' -->
+    <preference name="WindowSize" value="auto" />
+
     <name>__PROJECT_NAME__</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
