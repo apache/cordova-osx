@@ -59,8 +59,8 @@
 
 /* Begin PBXFileReference section */
 		707060AE18FFC05700755D46 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		707060B018FFC0D900755D46 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = __PROJECT_NAME__/config.xml; sourceTree = "<group>"; };
-		70BD682318FFB02D00A1EFCF /* __PROJECT_NAME__.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = __PROJECT_NAME__.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		707060B018FFC0D900755D46 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "__PROJECT_NAME__/config.xml"; sourceTree = "<group>"; };
+		70BD682318FFB02D00A1EFCF /* __PROJECT_NAME__.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "__PROJECT_NAME__.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70BD682618FFB02D00A1EFCF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		70BD682918FFB02D00A1EFCF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		70BD682A18FFB02D00A1EFCF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -101,7 +101,7 @@
 			children = (
 			);
 			name = Plugins;
-			path = __PROJECT_NAME__/Plugins;
+			path = "__PROJECT_NAME__/Plugins";
 			sourceTree = SOURCE_ROOT;
 		};
 		70BD681A18FFB02D00A1EFCF = {
@@ -154,7 +154,7 @@
 				70BD683E18FFB02D00A1EFCF /* Images.xcassets */,
 				70BD682D18FFB02D00A1EFCF /* Supporting Files */,
 			);
-			path = __PROJECT_NAME__;
+			path = "__PROJECT_NAME__";
 			sourceTree = "<group>";
 		};
 		70BD682D18FFB02D00A1EFCF /* Supporting Files */ = {
@@ -187,7 +187,7 @@
 				70BD686C18FFB0BF00A1EFCF /* MainViewController.m */,
 			);
 			name = Classes;
-			path = __PROJECT_NAME__/Classes;
+			path = "__PROJECT_NAME__/Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,8 +208,8 @@
 			dependencies = (
 				70BD687118FFB19500A1EFCF /* PBXTargetDependency */,
 			);
-			name = __PROJECT_NAME__;
-			productName = __PROJECT_NAME__;
+			name = "__PROJECT_NAME__";
+			productName = "__PROJECT_NAME__";
 			productReference = 70BD682318FFB02D00A1EFCF /* __PROJECT_NAME__.app */;
 			productType = "com.apple.product-type.application";
 		};
