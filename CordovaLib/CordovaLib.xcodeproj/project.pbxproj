@@ -47,6 +47,8 @@
 		70BD67BB18FFA12D00A1EFCF /* ShellUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679518FFA12D00A1EFCF /* ShellUtils.h */; };
 		70BD67BC18FFA12D00A1EFCF /* ShellUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD679618FFA12D00A1EFCF /* ShellUtils.m */; };
 		CC6A01B9AD6ECF2D913FF418 /* CDVWindowSizeCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = CC6A03B1971BACCB9183AEFE /* CDVWindowSizeCommand.h */; };
+		CC6A03130738A1F299369195 /* CDVCursorMonitorService.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6A07666A2CE3AE46F85AD6 /* CDVCursorMonitorService.m */; };
+		CC6A060DFE3B49803140B568 /* CDVCursorMonitorService.h in Headers */ = {isa = PBXBuildFile; fileRef = CC6A08BE679E9B2A17CB995E /* CDVCursorMonitorService.h */; };
 		CC6A061F0987401A5AB7FE69 /* NSScreen+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = CC6A00E23A9BC2910E28D36E /* NSScreen+Utils.h */; };
 		CC6A07EE3FA39E9ED21FC2AD /* CDVWindowSizeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6A0DB9905DAB3A94C6BCC8 /* CDVWindowSizeCommand.m */; };
 		CC6A0C2EAD9E57810677CE21 /* NSScreen+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6A01EC9D87C6FC66791911 /* NSScreen+Utils.m */; };
@@ -103,6 +105,8 @@
 		CC6A00E23A9BC2910E28D36E /* NSScreen+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScreen+Utils.h"; sourceTree = "<group>"; };
 		CC6A01EC9D87C6FC66791911 /* NSScreen+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScreen+Utils.m"; sourceTree = "<group>"; };
 		CC6A03B1971BACCB9183AEFE /* CDVWindowSizeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVWindowSizeCommand.h; sourceTree = "<group>"; };
+		CC6A07666A2CE3AE46F85AD6 /* CDVCursorMonitorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVCursorMonitorService.m; sourceTree = "<group>"; };
+		CC6A08BE679E9B2A17CB995E /* CDVCursorMonitorService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVCursorMonitorService.h; sourceTree = "<group>"; };
 		CC6A0DB9905DAB3A94C6BCC8 /* CDVWindowSizeCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVWindowSizeCommand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,6 +224,8 @@
 				70BD678F18FFA12D00A1EFCF /* CDVReachability.m */,
 				CC6A0DB9905DAB3A94C6BCC8 /* CDVWindowSizeCommand.m */,
 				CC6A03B1971BACCB9183AEFE /* CDVWindowSizeCommand.h */,
+				CC6A08BE679E9B2A17CB995E /* CDVCursorMonitorService.h */,
+				CC6A07666A2CE3AE46F85AD6 /* CDVCursorMonitorService.m */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -269,6 +275,7 @@
 				70BD67B918FFA12D00A1EFCF /* NSWindow+Utils.h in Headers */,
 				CC6A01B9AD6ECF2D913FF418 /* CDVWindowSizeCommand.h in Headers */,
 				CC6A061F0987401A5AB7FE69 /* NSScreen+Utils.h in Headers */,
+				CC6A060DFE3B49803140B568 /* CDVCursorMonitorService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +350,7 @@
 				70BD67A718FFA12D00A1EFCF /* CDVConnection.m in Sources */,
 				CC6A07EE3FA39E9ED21FC2AD /* CDVWindowSizeCommand.m in Sources */,
 				CC6A0C2EAD9E57810677CE21 /* NSScreen+Utils.m in Sources */,
+				CC6A03130738A1F299369195 /* CDVCursorMonitorService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

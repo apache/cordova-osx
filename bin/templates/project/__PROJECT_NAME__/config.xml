@@ -24,6 +24,9 @@
     <!-- OSX: size of the application window in the format "wxh". special values 'auto' and 'fullscreen' -->
     <preference name="WindowSize" value="auto" />
 
+    <!-- OSX: idle duration in seconds after which the mouse pointer should be hidden. '0' for always.--> 
+    <preference name="HideMousePointer" value="1" />
+
     <name>__PROJECT_NAME__</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

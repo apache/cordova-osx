@@ -21,6 +21,7 @@
 #import "CDVConfigParser.h"
 #import "CDVCommandDelegateImpl.h"
 #import "CDVWindowSizeCommand.h"
+#import "CDVCursorMonitorService.h"
 
 @interface CDVViewController ()
 
@@ -91,6 +92,7 @@
     [self configureWebGL: prefs];
     [self configureLocalStorage:prefs];
     [self configureWindowSize];
+    [self configureHideMousePointer];
     [self.webView setPreferences:prefs];
 }
 
@@ -226,6 +228,16 @@
             _cfgWindowSize.width = [dims[0] integerValue];
             _cfgWindowSize.height = [dims[1] integerValue];
         }
+    }
+}
+
+/**
+ * Configures the hideMousePointer preference.
+ */
+- (void) configureHideMousePointer {
+    NSString *hide = self.settings[@"HideMousePointer"];
+    if (hide) {
+        [[CDVCursorMonitorService service] startWithTimeout:[hide integerValue]];
     }
 }
 
