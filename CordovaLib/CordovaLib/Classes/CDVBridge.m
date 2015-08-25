@@ -49,8 +49,9 @@
     // Assumption: webScriptObject has already been tested using isDictionary:
 
     id win = [self.webView windowScriptObject];
-
-    WebScriptObject* keysObject = [win callWebScriptMethod:@"CordovaBridgeUtil.getDictionaryKeys" withArguments:[NSArray arrayWithObject:webScriptObject]];
+    
+    WebScriptObject *util = [win valueForKey:@"CordovaBridgeUtil"];
+    WebScriptObject* keysObject = [util callWebScriptMethod:@"getDictionaryKeys" withArguments:[NSArray arrayWithObject:webScriptObject]];
     NSArray* keys = [self convertWebScriptObjectToNSArray:keysObject];
     NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:[keys count]];
 
@@ -87,22 +88,10 @@
 
 - (void) registerJavaScriptHelpers
 {
-    NSString* cordovaBridgeUtil = @"CordovaBridgeUtil = {};";
+    NSString* cordovaBridgeUtil = @"var CordovaBridgeUtil = {};";
     NSString* isArray = [NSString stringWithFormat:@"CordovaBridgeUtil.isArray = function(obj) { return obj.constructor == Array; };"];
     NSString* isObject = [NSString stringWithFormat:@"CordovaBridgeUtil.isObject = function(obj) { return obj.constructor == Object; };"];
-    NSString* dictionaryKeys = [NSString stringWithFormat:
-                                @" \
-                                CordovaBridgeUtil.getDictionaryKeys = function(obj) { \
-                                    var a = []; \
-                                    for (var key in obj) { \
-                                        if (!obj.hasOwnProperty(key)) { \
-                                            continue; \
-                                        } \
-                                        a.push(key); \
-                                    } \
-                                    return a; \
-                                }"
-                                ];
+    NSString* dictionaryKeys = [NSString stringWithFormat:@"CordovaBridgeUtil.getDictionaryKeys = function(obj) { return Object.keys(obj);};"];
     
     id win = [self.webView windowScriptObject];
     [win evaluateWebScript:cordovaBridgeUtil];
