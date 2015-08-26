@@ -28,7 +28,7 @@
 - (BOOL) isArray:(id) item {
     id win = [self.webView windowScriptObject];
     WebScriptObject* bridgeUtil = [win evaluateWebScript:@"CordovaBridgeUtil"];
-    NSNumber* result = [bridgeUtil callWebScriptMethod:@"isArray" withArguments:[NSArray arrayWithObject:item]];
+    NSNumber* result = [bridgeUtil callWebScriptMethod:@"isArray" withArguments:@[item]];
 
     return [result boolValue];
 }
@@ -36,7 +36,7 @@
 - (BOOL) isDictionary:(id) item {
     id win = [self.webView windowScriptObject];
     WebScriptObject* bridgeUtil = [win evaluateWebScript:@"CordovaBridgeUtil"];
-    NSNumber* result = [bridgeUtil callWebScriptMethod:@"isObject" withArguments:[NSArray arrayWithObject:item]];
+    NSNumber* result = [bridgeUtil callWebScriptMethod:@"isObject" withArguments:@[item]];
     return [result boolValue];
 }
 
@@ -46,14 +46,14 @@
     id win = [self.webView windowScriptObject];
 
     WebScriptObject* util = [win valueForKey:@"CordovaBridgeUtil"];
-    WebScriptObject* keysObject = [util callWebScriptMethod:@"getDictionaryKeys" withArguments:[NSArray arrayWithObject:webScriptObject]];
+    WebScriptObject* keysObject = [util callWebScriptMethod:@"getDictionaryKeys" withArguments:@[webScriptObject]];
     NSArray* keys = [self convertWebScriptObjectToNSArray:keysObject];
     NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:[keys count]];
 
     NSEnumerator* enumerator = [keys objectEnumerator];
     id key;
-    while (key = [enumerator nextObject]) {
-        [dict setObject:[webScriptObject valueForKey:key] forKey:key];
+    while ((key = enumerator.nextObject)) {
+        dict[key] = [webScriptObject valueForKey:key];
     }
 
     return dict;
@@ -62,7 +62,7 @@
 - (NSArray*) convertWebScriptObjectToNSArray:(WebScriptObject*) webScriptObject {
     // Assumption: webScriptObject has already been tested using isArray:
 
-    NSUInteger count = [[webScriptObject valueForKey:@"length"] integerValue];
+    NSUInteger count = [[webScriptObject valueForKey:@"length"] unsignedIntegerValue];
     NSMutableArray* a = [NSMutableArray array];
     for (unsigned i = 0; i < count; i++) {
         id item = [webScriptObject webScriptValueAtIndex:i];
@@ -142,36 +142,17 @@
 #pragma mark WebScripting Protocol
 
 /* checks whether a selector is acceptable to be called from JavaScript */
-+ (BOOL) isSelectorExcludedFromWebScript:(SEL) selector {
-    BOOL result = YES;
-
-    int i = 0;
-    static SEL* acceptableList = NULL;
-    SEL currentSelector;
-
-    if (acceptableList == NULL && (acceptableList = calloc(256, sizeof(SEL))))    // up to 256 selectors
-    {
-        acceptableList[i++] = @selector(exec:withService:andAction:andArguments:);
-    }
-
-    i = 0;
-    while (result == YES && (currentSelector = acceptableList[i++])) {
-        //checking for exclusions
-        result = !(selector == currentSelector);
-    }
-
-    return result;
++ (BOOL) isSelectorExcludedFromWebScript:(SEL) sel {
+    return sel != @selector(exec:withService:andAction:andArguments:);
 }
 
 /* helper function so we don't have to have underscores and stuff in js to refer to the right method */
 + (NSString*) webScriptNameForSelector:(SEL) aSelector {
-    id result = nil;
-
     if (aSelector == @selector(exec:withService:andAction:andArguments:)) {
-        result = @"exec";
+        return @"exec";
+    } else {
+        return nil;
     }
-
-    return result;
 }
 
 // right now exclude all properties (eg keys)
