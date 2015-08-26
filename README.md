@@ -29,7 +29,7 @@ Make sure you have installed the latest released OS X SDK which comes with Xcode
 Download it at [http://developer.apple.com/downloads](http://developer.apple.com/downloads) 
 or the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12).
 
-Add the Cordova OSX Platform the a CLI project
+Add the Cordova OSX Platform to a CLI project
 -------------------------------------------------------------
 1. get a patched version of cordova-lib
     1. checkout the cordova-lib master. 
