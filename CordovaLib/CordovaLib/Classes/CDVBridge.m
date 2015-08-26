@@ -66,7 +66,9 @@
     NSMutableArray* a = [NSMutableArray array];
     for (unsigned i = 0; i < count; i++) {
         id item = [webScriptObject webScriptValueAtIndex:i];
-        if ([item isKindOfClass:[WebScriptObject class]]) {
+        if (!item) {
+            [a addObject:[NSNull null]];
+        } else if ([item isKindOfClass:[WebScriptObject class]]) {
             if ([self isArray:item]) {
                 [a addObject:[self convertWebScriptObjectToNSArray:item]];
             } else if ([self isDictionary:item]) {
