@@ -29,47 +29,57 @@ Make sure you have installed the latest released OS X SDK which comes with Xcode
 Download it at [http://developer.apple.com/downloads](http://developer.apple.com/downloads) 
 or the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12).
 
-Add the Cordova OSX Platform the a CLI project
--------------------------------------------------------------
-1. get a patched version of cordova-lib
-    1. checkout the cordova-lib master. 
-    2. patch cordova-lib with the patch file provided in the `patches` directory to
-       enable the osx platform:
-       
-       ````
-       $ cordova-lib
-       $ cat ../cordova-osx/patches/cordova-lib.patch | patch -p1
-       patching file cordova-lib/src/platforms/platformsConfig.json
-       $ cd ..
-       ````
-    3. link the patched version to cordova-cli and cordova-plugman (see https://github.com/apache/cordova-lib#setup)
-    
-        ````
-        $ cd cordova-lib/cordova-lib
-        $ npm install && npm link
-        $ cd ../../cordova-cli
-        $ npm link cordova-lib && npm install 
-        $ cd ../cordova-plugman
-        $ npm link cordova-lib && npm install
-        ````
-    
+Add the Cordova OSX Platform to a CLI project
+---------------------------------------------
+Since OSX is not officially released yet, we need to use the development versions of the respective modules where OSX was already added. currently those are:
 
-2. Follow the instructions in the [**Command-Line Usage** section](http://cordova.apache.org/docs/en/edge/guide_cli_index.md.html#The%20Command-line%20Interface) of the [Cordova Docs](http://cordova.apache.org/docs/en/edge). For example
+* _cordova-lib_
+* _cordova-plugman_
+* _cordova-plugin-file_
+
+### Use Development versions for your build
+
+1. checkout the master branch of _cordova-lib_, _cordova-plugman_, _cordova-cli_ and all the plugins you require
+2. link the development version if _cordova-lib_ to _cordova-cli_ and _cordova-plugman_ (see https://github.com/apache/cordova-lib#setup)
+    
+   ````
+   $ cd cordova-lib/cordova-lib
+   $ npm install && npm link
+   $ cd ../../cordova-cli
+   $ npm link cordova-lib && npm install 
+   $ cd ../cordova-plugman
+   $ npm link cordova-lib && npm install
+   ````
+
+### Create your project
+   
+1. (Optionally) Follow the instructions in the [**Command-Line Usage** section](http://cordova.apache.org/docs/en/edge/guide_cli_index.md.html#The%20Command-line%20Interface) of the [Cordova Docs](http://cordova.apache.org/docs/en/edge) to create a new project. For example
     ````
     $ cordova create hello com.example.hello HelloWorld
     ````
 
-3. add the osx platform:
+2. add the osx platform:
 
-    ````
-    $ cordova platform add ../cordova-osx
-    $ cordova run osx
-    ````
+   ````
+   $ cordova platform add ../cordova-osx
+   $ cordova run osx
+   ````
+
+3. You can also open the project in XCode:
+
+   ````
+   $ open platforms/osx/<yourproject>.xcodeproj
+   ````
 
 
-You can also open the project in XCode:
+### Add plugins
 
-    $ open platforms/osx/<yourproject>.xcodeproj
+1. if you need the file-plugin add the master branch version, eg:
+
+   ````
+   $ cordova plugin add https://github.com/apache/cordova-plugin-file.git
+   ````
+    
 
 Create a Cordova OSX Standalone project
 -------------------------------------------------------------
@@ -77,15 +87,24 @@ Create a Cordova OSX Standalone project
 1. Download the source
 2. execute the `create` command to setup an empty project:
 
-    ````
-    $ bin/create <path_to_new_project> <package_name> <project_name>
-    ````
+   ````
+   $ bin/create <path_to_new_project> <package_name> <project_name>
+   ````
     
-    for example
+   for example
     
-    ````
-    $ bin/create ../Foo org.apache.foo FooBar
-    ````
+   ````
+   $ bin/create ../Foo org.apache.foo FooBar
+   ````
+
+### Add plugins
+
+1. if you need the file-plugin add the master branch version, eg:
+
+   ````
+   $ cordova plugin add https://github.com/apache/cordova-plugin-file.git
+   ````
+
 
 Updating a CordovaLib subproject reference in your project
 -------------------------------------------------------------
