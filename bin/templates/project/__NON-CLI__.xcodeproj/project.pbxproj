@@ -109,9 +109,10 @@
 			children = (
 				707060B018FFC0D900755D46 /* config.xml */,
 				70DAA8D91908785C00AF3749 /* www */,
+				70BD682C18FFB02D00A1EFCF /* __PROJECT_NAME__ */,
 				70BD686818FFB0BF00A1EFCF /* Classes */,
 				7069FBC31905A1F9000B48E1 /* Plugins */,
-				70BD682C18FFB02D00A1EFCF /* __PROJECT_NAME__ */,
+				70D86C851B903D11000750E0 /* Resources */,
 				70BD682518FFB02D00A1EFCF /* Frameworks */,
 				70BD682418FFB02D00A1EFCF /* Products */,
 			);
@@ -188,6 +189,13 @@
 			);
 			name = Classes;
 			path = "__PROJECT_NAME__/Classes";
+			sourceTree = "<group>";
+		};
+		70D86C851B903D11000750E0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
