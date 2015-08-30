@@ -26,6 +26,6 @@
 GCC_PREPROCESSOR_DEFINITIONS = DEBUG=1
 
 // disable code signing for debug builds
-// CODE_SIGNING_ALLOWED = NO
+CODE_SIGNING_ALLOWED = NO
 
 #include "build-extras.xcconfig"
