@@ -313,6 +313,10 @@
     } else if (_cfgWindowSize.height > 0 && _cfgWindowSize.width > 0) {
         [CDVWindowSizeCommand setSizeOfWindow:self.window size:_cfgWindowSize];
     }
+    // use black background while starting.
+    self.window.backgroundColor = [NSColor blackColor];
+    self.webView.drawsBackground = NO;
+
     [self showWindow:self];
     [self.window makeKeyAndOrderFront:self];
     [[NSApplication sharedApplication] activateIgnoringOtherApps : YES];
