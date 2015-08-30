@@ -196,6 +196,7 @@
 			children = (
 			);
 			name = Resources;
+			path = "__PROJECT_NAME__/Resources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
