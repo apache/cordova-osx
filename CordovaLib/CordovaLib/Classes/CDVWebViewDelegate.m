@@ -21,18 +21,18 @@
 #import "CDVWebViewDelegate.h"
 #import "CDVConsole.h"
 #import "CDVBridge.h"
-#import "CookieJar.h"
+// #import "CookieJar.h"
 
 @implementation CDVWebViewDelegate
 
-CookieJar *_cookies;
+//CookieJar *_cookies;
 
 @synthesize console;
 
 - (instancetype) init {
     self = [super init];
     if (self) {
-        _cookies = [[CookieJar alloc] init];
+        // _cookies = [[CookieJar alloc] init];
     }
     return self;
 }
@@ -138,28 +138,28 @@ CookieJar *_cookies;
 }
 
 # pragma mark WebResourceLoadDelegate
-- (NSURLRequest *)webView:(WebView *)sender resource:(id)identifier
-          willSendRequest:(NSURLRequest *)request
-         redirectResponse:(NSURLResponse *)redirectResponse
-           fromDataSource:(WebDataSource *)dataSource {
-    // only handle cookies for http and https
-    if ([redirectResponse isKindOfClass:[NSHTTPURLResponse class]]) {
-        [_cookies handleCookiesInResponse:(NSHTTPURLResponse*) redirectResponse];
-    }
-
-    NSMutableURLRequest* modifiedRequest = [request mutableCopy];
-    [modifiedRequest setHTTPShouldHandleCookies:NO];
-    [_cookies handleCookiesInRequest:modifiedRequest];
-    return modifiedRequest;
-}
-
-- (void)   webView:(WebView *)sender resource:(id)identifier
-didReceiveResponse:(NSURLResponse *)response
-    fromDataSource:(WebDataSource *)dataSource {
-    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-        [_cookies handleCookiesInResponse: (NSHTTPURLResponse *) response];
-    }
-}
+//- (NSURLRequest *)webView:(WebView *)sender resource:(id)identifier
+//          willSendRequest:(NSURLRequest *)request
+//         redirectResponse:(NSURLResponse *)redirectResponse
+//           fromDataSource:(WebDataSource *)dataSource {
+//    // only handle cookies for http and https
+//    if ([redirectResponse isKindOfClass:[NSHTTPURLResponse class]]) {
+//        [_cookies handleCookiesInResponse:(NSHTTPURLResponse*) redirectResponse];
+//    }
+//
+//    NSMutableURLRequest* modifiedRequest = [request mutableCopy];
+//    [modifiedRequest setHTTPShouldHandleCookies:NO];
+//    [_cookies handleCookiesInRequest:modifiedRequest];
+//    return modifiedRequest;
+//}
+//
+//- (void)   webView:(WebView *)sender resource:(id)identifier
+//didReceiveResponse:(NSURLResponse *)response
+//    fromDataSource:(WebDataSource *)dataSource {
+//    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+//        [_cookies handleCookiesInResponse: (NSHTTPURLResponse *) response];
+//    }
+//}
 
 #pragma mark WebFrameLoadDelegate
 
