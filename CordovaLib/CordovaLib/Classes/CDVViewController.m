@@ -94,6 +94,7 @@
     [self configureWindowSize];
     [self configureHideMousePointer];
     [self.webView setPreferences:prefs];
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
 }
 
 - (void)__init {
