@@ -1433,6 +1433,9 @@ window.cordova = require('cordova');
 
     var platformInitChannelsArray = [channel.onNativeReady, channel.onPluginsReady];
 
+    // setting exec
+    cordova.exec = require('cordova/exec');
+
     function logUnfiredChannels(arr) {
         for (var i = 0; i < arr.length; ++i) {
             if (arr[i].state != 2) {
