@@ -43,9 +43,9 @@
     }
     [windowScriptObject setValue:self.console forKey:@"console"];
 
-    if (self.bridge == nil) {
-        self.bridge = [[CDVBridge alloc] initWithWebView:webView andViewController:self.viewController];
-    }
+    // allways re-initialized bridge to that it can add the helper methods on the webview's window
+    self.bridge = [[CDVBridge alloc] initWithWebView:webView andViewController:self.viewController];
+
     [windowScriptObject setValue:self.bridge forKey:@"cordovabridge"];
 }
 
