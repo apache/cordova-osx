@@ -17,7 +17,7 @@
  under the License.
  */
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import <Cordova/CDVViewController.h>
 
 #import "CDVWebViewTest.h"
@@ -42,7 +42,7 @@
     [self viewController];
     NSString* geHREF = @"window.location.href";
     NSString* href = [self.webView stringByEvaluatingJavaScriptFromString:geHREF];
-    STAssertTrue([href hasSuffix:@"index.html"], @"href should point to index.html");
+    XCTAssertTrue([href hasSuffix:@"index.html"], @"href should point to index.html");
 }
 
 

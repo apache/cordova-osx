@@ -6,9 +6,9 @@
  to you under the Apache License, Version 2.0 (the
  "License"); you may not use this file except in compliance
  with the License.  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing,
  software distributed under the License is distributed on an
  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -17,16 +17,27 @@
  under the License.
  */
 
-#import <Cocoa/Cocoa.h>
-#import <Cordova/CDVViewController.h>
+#import <XCTest/XCTest.h>
+#import <WebKit/WebKit.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
+@class AppDelegate;
+@class CDVViewController;
 
-}
+@interface CDVWebViewTest : XCTestCase
 
-@property (nonatomic, strong) IBOutlet CDVViewController* viewController;
+@property (nonatomic, strong) NSString* startPage;
 
-- (void)createViewController: (NSString*) startPage;
-- (void)destroyViewController;
+- (AppDelegate*)appDelegate;
+- (CDVViewController*)viewController;
+- (WebView*)webView;
 
+// Returns the already registered plugin object for the given class.
+- (id)pluginInstance:(NSString*)pluginName;
+// Destroys the existing webview and creates a new one.
+- (void)reloadWebView;
+// Runs the run loop until the given block returns true, or until a timeout
+// occurs.
+- (void)waitForConditionName:(NSString*)conditionName block:(BOOL (^)())block;
+// Convenience function for stringByEvaluatingJavaScriptFromString.
+- (NSString*)evalJs:(NSString*)code;
 @end

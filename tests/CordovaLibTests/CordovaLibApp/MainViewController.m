@@ -50,8 +50,12 @@
 
 - (id)init
 {
-    if ((self = [super init])) {
-        // additional view controller initialization
+    self = [super init];
+    if (self) {
+        // Uncomment to override the CDVCommandDelegateImpl used
+        // _commandDelegate = [[MainCommandDelegate alloc] initWithViewController:self];
+        // Uncomment to override the CDVCommandQueue used
+        // _commandQueue = [[MainCommandQueue alloc] initWithViewController:self];
     }
     return self;
 }
@@ -64,10 +68,6 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
-- (void)orderFrontStandardAboutPanel:(id)sender
-{
-    [NSApp orderFrontStandardAboutPanel:sender];
-}
 @end
 
 @implementation MainCommandDelegate

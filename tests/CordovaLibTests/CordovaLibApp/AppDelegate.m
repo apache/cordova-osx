@@ -24,6 +24,7 @@
 
 
 @synthesize viewController;
+@synthesize window;
 
 - (id)init{
     self = [super init];
@@ -55,10 +56,13 @@
 
 - (void) applicationDidFinishLaunching:(NSNotification*)aNotification {
     // Create the main view on start-up only when not running unit tests.
-    if (!NSClassFromString(@"CDVWebViewTest")) {
+    Class testProbeClass = NSClassFromString(@"XCTestProbe");
+    if (!testProbeClass) {
+        testProbeClass = NSClassFromString(@"SenTestProbe");
+    }
+    if (!testProbeClass) {
         [self createViewController: nil];
     }
 }
-
 
 @end
