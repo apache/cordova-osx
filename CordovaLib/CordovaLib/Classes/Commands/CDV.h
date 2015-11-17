@@ -25,5 +25,3 @@
 #import "CDVInvokedUrlCommand.h"
 #import "CDVPlugin.h"
 #import "CDVDevice.h"
-
-#import "ShellUtils.h"
