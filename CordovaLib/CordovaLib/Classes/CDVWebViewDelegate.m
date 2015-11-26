@@ -38,10 +38,8 @@
 }
 
 - (void) webView:(WebView*) webView didClearWindowObject:(WebScriptObject*) windowScriptObject forFrame:(WebFrame*) frame {
-    if (self.console == nil) {
-        self.console = [CDVConsole new];
-    }
-    [windowScriptObject setValue:self.console forKey:@"console"];
+
+    [self initConsole:windowScriptObject];
 
     // allways re-initialized bridge to that it can add the helper methods on the webview's window
     self.bridge = [[CDVBridge alloc] initWithWebView:webView andViewController:self.viewController];
@@ -59,6 +57,15 @@
             message[@"message"]);
 }
 
+- (void) initConsole:(WebScriptObject*) windowScriptObject {
+    // only use own console if no debug menu is enabled.
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"WebKitDeveloperExtras"]) {
+        if (self.console == nil) {
+            self.console = [CDVConsole new];
+        }
+        [windowScriptObject setValue:self.console forKey:@"console"];
+    }
+}
 
 #pragma mark WebScripting protocol
 

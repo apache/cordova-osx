@@ -11,7 +11,6 @@
 		70BD682718FFB02D00A1EFCF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BD682618FFB02D00A1EFCF /* Cocoa.framework */; };
 		70BD683118FFB02D00A1EFCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70BD682F18FFB02D00A1EFCF /* InfoPlist.strings */; };
 		70BD683318FFB02D00A1EFCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD683218FFB02D00A1EFCF /* main.m */; };
-		70BD683718FFB02D00A1EFCF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 70BD683518FFB02D00A1EFCF /* Credits.rtf */; };
 		70BD683F18FFB02D00A1EFCF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70BD683E18FFB02D00A1EFCF /* Images.xcassets */; };
 		70BD686318FFB04800A1EFCF /* libCordovaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BD686018FFB04300A1EFCF /* libCordovaLib.a */; };
 		70BD686618FFB06500A1EFCF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BD686418FFB06500A1EFCF /* SystemConfiguration.framework */; };
@@ -69,7 +68,6 @@
 		70BD683018FFB02D00A1EFCF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		70BD683218FFB02D00A1EFCF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		70BD683418FFB02D00A1EFCF /* __PROJECT_NAME__-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "__PROJECT_NAME__-Prefix.pch"; sourceTree = "<group>"; };
-		70BD683618FFB02D00A1EFCF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		70BD683E18FFB02D00A1EFCF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		70BD685A18FFB04300A1EFCF /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = ../CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
 		70BD686418FFB06500A1EFCF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -165,7 +163,6 @@
 				70BD682F18FFB02D00A1EFCF /* InfoPlist.strings */,
 				70BD683218FFB02D00A1EFCF /* main.m */,
 				70BD683418FFB02D00A1EFCF /* __PROJECT_NAME__-Prefix.pch */,
-				70BD683518FFB02D00A1EFCF /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -280,7 +277,6 @@
 				70BD683118FFB02D00A1EFCF /* InfoPlist.strings in Resources */,
 				707060AF18FFC05700755D46 /* MainViewController.xib in Resources */,
 				70BD683F18FFB02D00A1EFCF /* Images.xcassets in Resources */,
-				70BD683718FFB02D00A1EFCF /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,14 +327,6 @@
 				70BD683018FFB02D00A1EFCF /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		70BD683518FFB02D00A1EFCF /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				70BD683618FFB02D00A1EFCF /* en */,
-			);
-			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
