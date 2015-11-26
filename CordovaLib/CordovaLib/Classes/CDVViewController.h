@@ -53,7 +53,20 @@
 
 - (id)getCommandInstance:(NSString*)pluginName;
 
-- (IBAction) toggleFullScreen:(id) sender;
+/**
+ * Action that toggles the fullscreen.
+ * This is an action target of the MainMenu -> Fullscreen menu item.
+ */
+- (IBAction) onFullscreen:(id) sender;
+
+/**
+ * Action that invokes the application's preferences.
+ * This is an action target of the MainMenu -> Preferences menu item.
+ *
+ * The default implementation doesn't do much yet and implementations would need to override
+ * this method on the {@link MainViewController} or adjust the menu items `target` property.
+ */
+- (IBAction) onPreferences:(id) sender;
 
 - (void)registerPlugin:(CDVPlugin*)plugin withClassName:(NSString*)className;
 - (void)registerPlugin:(CDVPlugin*)plugin withPluginName:(NSString*)pluginName;

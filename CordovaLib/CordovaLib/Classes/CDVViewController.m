@@ -301,13 +301,6 @@
     return obj;
 }
 
-/**
- * Implement our own fullscreen logic
- */
-- (IBAction) toggleFullScreen:(id)sender {
-    [CDVWindowSizeCommand toggleFullScreen:self.window];
-}
-
 - (void) onAppDidFinishLaunching:(NSNotification*) notification {
     if (_cfgFullScreen) {
         [CDVWindowSizeCommand makeFullScreen:self.window];
@@ -326,6 +319,18 @@
 
 - (void) windowResized:(NSNotification*)notification;
 {
+}
+
+#pragma mark Menu Action Handlers
+/**
+ * Implement our own fullscreen logic
+ */
+- (IBAction) onFullscreen:(id)sender {
+    [CDVWindowSizeCommand toggleFullScreen:self.window];
+}
+
+- (IBAction) onPreferences:(id) sender {
+    // override or tweak menu item in plugin
 }
 
 @end
