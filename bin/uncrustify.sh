@@ -34,7 +34,7 @@ function Usage() {
 
 function VerifyEnv() {
     if ! which "$EXE" > /dev/null; then
-        echo "uncrustify binary not found in the cordova-ios repo."
+        echo "uncrustify binary not found in the cordova-osx repo."
         echo "In the repo root, install via npm: npm install"
         exit 1
     fi

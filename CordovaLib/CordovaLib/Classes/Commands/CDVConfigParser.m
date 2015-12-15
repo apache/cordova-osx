@@ -76,7 +76,7 @@
     } else if ((featureName != nil) && [elementName isEqualToString:@"param"]) {
         NSString* paramName = [attributeDict[@"name"] lowercaseString];
         id value = attributeDict[@"value"];
-        if ([paramName isEqualToString:@"ios-package"]) {
+        if ([paramName isEqualToString:@"ios-package"] || [paramName isEqualToString:@"osx-package"]) {
             pluginsDict[featureName] = value;
         }
         BOOL paramIsOnload = ([paramName isEqualToString:@"onload"] && [@"true" isEqualToString : value]);

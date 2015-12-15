@@ -20,92 +20,91 @@
 /*jshint node: true*/
 
 var Q     = require('q'),
-    nopt  = require('nopt'),
     path  = require('path'),
     shell = require('shelljs'),
     spawn = require('./spawn'),
     check_reqs = require('./check_reqs'),
     fs = require('fs');
 
+var events = require('cordova-common').events;
+
 var projectPath = path.join(__dirname, '..', '..');
 var projectName = null;
 
-module.exports.run = function (argv) {
+module.exports.run = function (buildOpts) {
 
-    var args = nopt({
-        // "archs": String,     // TODO: add support for building different archs
-        'debug': Boolean,
-        'release': Boolean,
-        'codeSignIdentity': String,
-        'codeSignResourceRules': String,
-        'provisioningProfile': String,
-        'buildConfig' : String
-    }, {'-r': '--release'}, argv);
+    buildOpts = buildOpts || {};
 
-    if (args.debug && args.release) {
+    if (buildOpts.debug && buildOpts.release) {
         return Q.reject('Only one of "debug"/"release" options should be specified');
     }
 
-    if(args.buildConfig) {
-        if(!fs.existsSync(args.buildConfig)) {
-            return Q.reject('Build config file does not exist:' + args.buildConfig);
+    if (buildOpts.device && buildOpts.emulator) {
+        return Q.reject('Only one of "device"/"emulator" options should be specified');
+    }
+
+    if(buildOpts.buildConfig) {
+        if(!fs.existsSync(buildOpts.buildConfig)) {
+            return Q.reject('Build config file does not exist:' + buildOpts.buildConfig);
         }
-        console.log('Reading build config file:', path.resolve(args.buildConfig));
-        var buildConfig = JSON.parse(fs.readFileSync(args.buildConfig, 'utf-8'));
-        if(buildConfig.ios) {
-            var buildType = args.release ? 'release' : 'debug';
-            var config = buildConfig.ios[buildType];
+        events.emit('log','Reading build config file:', path.resolve(buildOpts.buildConfig));
+        var buildConfig = JSON.parse(fs.readFileSync(buildOpts.buildConfig, 'utf-8'));
+        if(buildConfig.osx) {
+            var buildType = buildOpts.release ? 'release' : 'debug';
+            var config = buildConfig.osx[buildType];
             if(config) {
-                ['codeSignIdentity', 'codeSignResourceRules', 'provisioningProfile'].forEach( 
+                ['codeSignIdentity', 'codeSignResourceRules', 'provisioningProfile'].forEach(
                     function(key) {
-                        args[key] = args[key] || config[key];
+                        buildOpts[key] = buildOpts[key] || config[key];
                     });
             }
         }
     }
-    
+
     return check_reqs.run().then(function () {
         return findXCodeProjectIn(projectPath);
     }).then(function (name) {
         projectName = name;
         var extraConfig = '';
-        if (args.codeSignIdentity) {
-            extraConfig += 'CODE_SIGN_IDENTITY = ' + args.codeSignIdentity + '\n';
-            extraConfig += 'CODE_SIGN_IDENTITY[sdk=iphoneos*] = ' + args.codeSignIdentity + '\n';
+        if (buildOpts.codeSignIdentity) {
+            extraConfig += 'CODE_SIGN_IDENTITY = ' + buildOpts.codeSignIdentity + '\n';
         }
-        if (args.codeSignResourceRules) {
-            extraConfig += 'CODE_SIGN_RESOURCE_RULES_PATH = ' + args.codeSignResourceRules + '\n';
+        if (buildOpts.codeSignResourceRules) {
+            extraConfig += 'CODE_SIGN_RESOURCE_RULES_PATH = ' + buildOpts.codeSignResourceRules + '\n';
         }
-        if (args.provisioningProfile) {
-            extraConfig += 'PROVISIONING_PROFILE = ' + args.provisioningProfile + '\n';
+        if (buildOpts.provisioningProfile) {
+            extraConfig += 'PROVISIONING_PROFILE = ' + buildOpts.provisioningProfile + '\n';
         }
         return Q.nfcall(fs.writeFile, path.join(__dirname, '..', 'build-extras.xcconfig'), extraConfig, 'utf-8');
     }).then(function () {
-        var configuration = args.release ? 'Release' : 'Debug';
+        var configuration = buildOpts.release ? 'Release' : 'Debug';
 
-        console.log('Building project  : ' + path.join(projectPath, projectName + '.xcodeproj'));
-        console.log('\tConfiguration : ' + configuration);
+        events.emit('log','Building project  : ' + path.join(projectPath, projectName + '.xcodeproj'));
+        events.emit('log','\tConfiguration : ' + configuration);
 
         var xcodebuildArgs = getXcodeArgs(projectName, projectPath, configuration);
         return spawn('xcodebuild', xcodebuildArgs, projectPath);
     }).then(function () {
-        //if (!args.device) {
-        //    return;
-        //}
-        //var buildOutputDir = path.join(projectPath, 'build', 'device');
+        if (buildOpts.noSign) {
+            return;
+        }
+        //var buildOutputDir = path.join(projectPath, 'build');
         //var pathToApp = path.join(buildOutputDir, projectName + '.app');
         //var pathToIpa = path.join(buildOutputDir, projectName + '.ipa');
         //var xcRunArgs = ['-sdk', 'iphoneos', 'PackageApplication',
         //    '-v', pathToApp,
         //    '-o', pathToIpa];
-        //if (args.codeSignIdentity) {
-        //    xcRunArgs.concat('--sign', args.codeSignIdentity);
+        //if (buildOpts.codeSignIdentity) {
+        //    xcRunArgs.concat('--sign', buildOpts.codeSignIdentity);
         //}
-        //if (args.provisioningProfile) {
-        //    xcRunArgs.concat('--embed', args.provisioningProfile);
+        //if (buildOpts.provisioningProfile) {
+        //    xcRunArgs.concat('--embed', buildOpts.provisioningProfile);
         //}
         //return spawn('xcrun', xcRunArgs, projectPath);
-        return Q.resolve();
+
+        // todo
+
+        return;
     });
 };
 
@@ -119,12 +118,12 @@ function findXCodeProjectIn(projectPath) {
     var xcodeProjFiles = shell.ls(projectPath).filter(function (name) {
         return path.extname(name) === '.xcodeproj';
     });
-    
+
     if (xcodeProjFiles.length === 0) {
         return Q.reject('No Xcode project found in ' + projectPath);
     }
     if (xcodeProjFiles.length > 1) {
-        console.warn('Found multiple .xcodeproj directories in \n' +
+        events.emit('warn','Found multiple .xcodeproj directories in \n' +
             projectPath + '\nUsing first one');
     }
 
@@ -156,7 +155,7 @@ function getXcodeArgs(projectName, projectPath, configuration) {
 // help/usage function
 module.exports.help = function help() {
     console.log('');
-    console.log('Usage: build [--debug | --release] [--archs=\"<list of architectures...>\"]');
+    console.log('Usage: build [--debug | --release]');
     console.log('             [--codeSignIdentity=\"<identity>\"]');
     console.log('             [--codeSignResourceRules=\"<resourcerules path>\"]');
     console.log('             [--provisioningProfile=\"<provisioning profile>\"]');
@@ -164,19 +163,16 @@ module.exports.help = function help() {
     console.log('    --debug                 : Builds project in debug mode. (Default)');
     console.log('    --release               : Builds project in release mode.');
     console.log('    -r                      : Shortcut :: builds project in release mode.');
-    // TODO: add support for building different archs
-    // console.log("    --archs   : Builds project binaries for specific chip architectures (`anycpu`, `arm`, `x86`, `x64`).");
     console.log('    --codeSignIdentity      : Type of signing identity used for code signing.');
     console.log('    --codeSignResourceRules : Path to ResourceRules.plist.');
     console.log('    --provisioningProfile   : UUID of the profile.');
+    console.log('    --noSign                : Builds project without application signing.');
     console.log('');
     console.log('examples:');
     console.log('    build ');
     console.log('    build --debug');
     console.log('    build --release');
-    console.log('    build --codeSignIdentity="iPhone Distribution" --provisioningProfile="926c2bd6-8de9-4c2f-8407-1016d2d12954"');
-    // TODO: add support for building different archs
-    // console.log("    build --release --archs=\"armv7\"");
+    console.log('    build --codeSignIdentity="Mac Distribution" --provisioningProfile="926c2bd6-8de9-4c2f-8407-1016d2d12954"');
     console.log('');
     process.exit(0);
 };

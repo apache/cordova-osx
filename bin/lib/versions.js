@@ -22,7 +22,7 @@
 var child_process = require('child_process'),
     Q = require('q');
 
-exports.get_apple_ios_version = function() {
+exports.get_apple_osx_version = function() {
     var d = Q.defer();
     child_process.exec('xcodebuild -showsdks', function(error, stdout, stderr) {
         if (error) {
@@ -36,10 +36,10 @@ exports.get_apple_ios_version = function() {
     return d.promise.then(function(output) {
         var regex = /[0-9]*\.[0-9]*/,
             versions = [],
-            regexIOS = /^iOS \d+/;
+            regexOSX = /^OS X \d+/;
         output = output.split('\n');
         for (var i = 0; i < output.length; i++) {
-            if (output[i].trim().match(regexIOS)) {
+            if (output[i].trim().match(regexOSX)) {
                 versions[versions.length] = parseFloat(output[i].match(regex)[0]);
                 }
         }
@@ -94,51 +94,15 @@ exports.get_apple_xcode_version = function() {
 };
 
 /**
- * Gets ios-deploy util version
- * @return {Promise} Promise that either resolved with ios-deploy version
- *                           or rejected in case of error
- */
-exports.get_ios_deploy_version = function() {
-    var d = Q.defer();
-    child_process.exec('ios-deploy --version', function(error, stdout, stderr) {
-        if (error) {
-            d.reject(stderr);
-        } else {
-            d.resolve(stdout);
-        }
-    });
-    return d.promise;
-};
-
-/**
- * Gets ios-sim util version
- * @return {Promise} Promise that either resolved with ios-sim version
- *                           or rejected in case of error
- */
-exports.get_ios_sim_version = function() {
-    var d = Q.defer();
-    child_process.exec('ios-sim --version', function(error, stdout, stderr) {
-        if (error) {
-            d.reject(stderr);
-        } else {
-            d.resolve(stdout);
-        }
-    });
-    return d.promise;
-};
-
-/**
  * Gets specific tool version
- * @param  {String} toolName Tool name to check. Known tools are 'xcodebuild', 'ios-sim' and 'ios-deploy'
+ * @param  {String} toolName Tool name to check. Known tools are 'xcodebuild'
  * @return {Promise}         Promise that either resolved with tool version
  *                                   or rejected in case of error
  */
 exports.get_tool_version = function (toolName) {
     switch (toolName) {
         case 'xcodebuild': return exports.get_apple_xcode_version();
-        case 'ios-sim': return exports.get_ios_sim_version();
-        case 'ios-deploy': return exports.get_ios_deploy_version();
-        default: return Q.reject(toolName + ' is not valid tool name. Valid names are: \'xcodebuild\', \'ios-sim\' and \'ios-deploy\'');
+        default: return Q.reject(toolName + ' is not valid tool name. Valid names are: \'xcodebuild\'');
     }
 };
 

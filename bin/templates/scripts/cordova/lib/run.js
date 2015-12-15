@@ -20,27 +20,18 @@
 /*jshint node: true*/
 
 var Q = require('q'),
-    nopt  = require('nopt'),
-    path  = require('path'),
-    build = require('./build'),
-    spawn = require('./spawn');
+    path   = require('path'),
+    build  = require('./build'),
+    spawn  = require('./spawn'),
+    events = require('cordova-common').events;
 
 var projectPath = path.join(__dirname, '..', '..');
 
-module.exports.run = function (argv) {
+module.exports.run = function (runOptions) {
 
-    // parse args here
-    // --debug and --release args not parsed here
-    // but still valid since they can be passed down to build command 
-    var args  = nopt({
-        // "archs": String,     // TODO: add support for building different archs
-        'nobuild': Boolean
-    }, {}, argv);
-
-    return Q.resolve()
-    .then(function () {
-        if (!args.nobuild) {
-            return build.run(argv);
+    return Q.resolve().then(function () {
+        if (!runOptions.nobuild) {
+            return build.run(runOptions);
         } else {
             return Q.resolve();
         }
@@ -58,23 +49,20 @@ module.exports.run = function (argv) {
  */
 function runApp(appDir, appName) {
     var binPath = path.join(appDir, 'Contents', 'MacOS', appName);
-    console.log('Starting: %s', binPath);
+    events.emit('log','Starting: ' + binPath);
     return spawn(binPath);
 }
 
 module.exports.help = function () {
     console.log('\nUsage: run [ --debug | --release | --nobuild ]');
-    // TODO: add support for building different archs
-    // console.log('           [ --archs="<list of target architectures>" ] ');
     console.log('    --debug       : Builds project in debug mode. (Passed down to build command, if necessary)');
     console.log('    --release     : Builds project in release mode. (Passed down to build command, if necessary)');
     console.log('    --nobuild     : Uses pre-built package, or errors if project is not built.');
-    // TODO: add support for building different archs
-    // console.log('    --archs       : Specific chip architectures (`anycpu`, `arm`, `x86`, `x64`).');
     console.log('');
     console.log('Examples:');
     console.log('    run');
-    console.log('    run --nobuild');
+    console.log('    run --release');
+    console.log('    run --debug');
     console.log('');
     process.exit(0);
 };

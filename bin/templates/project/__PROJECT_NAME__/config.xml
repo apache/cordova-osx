@@ -44,6 +44,7 @@
     <preference name="HideMousePointer" value="1" />
 
     <name>__PROJECT_NAME__</name>
+    <copyright>__CDV_ORGANIZATION_NAME__</copyright>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>

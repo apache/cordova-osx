@@ -23,6 +23,6 @@
 
 #include "build.xcconfig"
 
-// CODE_SIGN_IDENTITY = Mac Distribution
+CODE_SIGN_IDENTITY = Mac Distribution
 
 #include "build-extras.xcconfig"
