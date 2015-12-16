@@ -22,7 +22,6 @@
 var args  = process.argv;
 var Api = require('./Api');
 var nopt = require('nopt');
-var path = require('path');
 
 // Support basic help commands
 if(['--help', '/?', '-h', 'help', '-help', '/help'].indexOf(process.argv[2]) >= 0) {
@@ -34,11 +33,8 @@ if(['--help', '/?', '-h', 'help', '-help', '/help'].indexOf(process.argv[2]) >= 
 var buildOpts = nopt({
     'verbose' : Boolean,
     'silent' : Boolean,
-    'archs': String,
     'debug': Boolean,
     'release': Boolean,
-    'device': Boolean,
-    'emulator': Boolean,
     'codeSignIdentity': String,
     'codeSignResourceRules': String,
     'provisioningProfile': String,
