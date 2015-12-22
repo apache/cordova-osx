@@ -136,7 +136,7 @@
     [alert setAccessoryView:input];
 
     NSInteger button = [alert runModal];
-    if (button == NSAlertDefaultReturn) {
+    if (button == NSAlertFirstButtonReturn) {
         [input validateEditing];
         return [input stringValue];
     }
