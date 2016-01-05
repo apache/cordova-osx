@@ -18,6 +18,7 @@
  */
 
 #import <WebKit/WebKit.h>
+#import <JavascriptCore/JavascriptCore.h>
 #include <objc/message.h>
 
 #import "CDVBridge.h"
@@ -38,48 +39,6 @@
     WebScriptObject* bridgeUtil = [win evaluateWebScript:@"CordovaBridgeUtil"];
     NSNumber* result = [bridgeUtil callWebScriptMethod:@"isObject" withArguments:@[item]];
     return [result boolValue];
-}
-
-- (NSDictionary*) convertWebScriptObjectToNSDictionary:(WebScriptObject*) webScriptObject {
-    // Assumption: webScriptObject has already been tested using isDictionary:
-
-    id win = [self.webView windowScriptObject];
-
-    WebScriptObject* util = [win valueForKey:@"CordovaBridgeUtil"];
-    WebScriptObject* keysObject = [util callWebScriptMethod:@"getDictionaryKeys" withArguments:@[webScriptObject]];
-    NSArray* keys = [self convertWebScriptObjectToNSArray:keysObject];
-    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:[keys count]];
-
-    NSEnumerator* enumerator = [keys objectEnumerator];
-    id key;
-    while ((key = enumerator.nextObject)) {
-        dict[key] = [webScriptObject valueForKey:key];
-    }
-
-    return dict;
-}
-
-- (NSArray*) convertWebScriptObjectToNSArray:(WebScriptObject*) webScriptObject {
-    // Assumption: webScriptObject has already been tested using isArray:
-
-    NSUInteger count = [[webScriptObject valueForKey:@"length"] unsignedIntegerValue];
-    NSMutableArray* a = [NSMutableArray array];
-    for (unsigned i = 0; i < count; i++) {
-        id item = [webScriptObject webScriptValueAtIndex:i];
-        if (!item) {
-            [a addObject:[NSNull null]];
-        } else if ([item isKindOfClass:[WebScriptObject class]]) {
-            if ([self isArray:item]) {
-                [a addObject:[self convertWebScriptObjectToNSArray:item]];
-            } else if ([self isDictionary:item]) {
-                [a addObject:[self convertWebScriptObjectToNSDictionary:item]];
-            };
-        } else {
-            [a addObject:item];
-        }
-    }
-
-    return a;
 }
 
 - (void) registerJavaScriptHelpers {
@@ -112,7 +71,7 @@
     // between iOS and OS X. Also we are going async as well.
 
     // we're just going to assume the webScriptObject passed in is an NSArray
-    NSArray* arguments = [self convertWebScriptObjectToNSArray:webScriptObject];
+    NSArray* arguments = [[webScriptObject JSValue] toArray];
 
     CDVInvokedUrlCommand* command = [[CDVInvokedUrlCommand alloc] initWithArguments:arguments callbackId:callbackId className:service methodName:action];
 
