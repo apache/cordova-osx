@@ -27,18 +27,15 @@
 
 @implementation CDVStartPageTest
 
-- (void)setUp
-{
+- (void) setUp {
     [super setUp];
 }
 
-- (void)tearDown
-{
+- (void) tearDown {
     [super tearDown];
 }
 
-- (void)testDefaultStartPage
-{
+- (void) testDefaultStartPage {
     [self viewController];
     NSString* geHREF = @"window.location.href";
     NSString* href = [self.webView stringByEvaluatingJavaScriptFromString:geHREF];

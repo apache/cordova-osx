@@ -26,22 +26,19 @@
 
 @implementation CDVBase64Tests
 
-- (void)setUp
-{
+- (void) setUp {
     [super setUp];
 
     // setup code here
 }
 
-- (void)tearDown
-{
+- (void) tearDown {
     // Tear-down code here.
 
     [super tearDown];
 }
 
-- (void)testBase64Encode
-{
+- (void) testBase64Encode {
     NSString* decodedString = @"abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&";
     NSData* decodedData = [decodedString dataUsingEncoding:NSUTF8StringEncoding];
 
@@ -51,8 +48,7 @@
     XCTAssertTrue([expectedEncodedString isEqualToString:actualEncodedString]);
 }
 
-- (void)testBase64Decode
-{
+- (void) testBase64Decode {
     NSString* encodedString = @"YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXoxMjM0NTY3ODkwIUAjJCVeJg==";
     NSString* decodedString = @"abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&";
     NSData* encodedData = [decodedString dataUsingEncoding:NSUTF8StringEncoding];

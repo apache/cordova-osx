@@ -22,6 +22,7 @@
 		70DAA9221908E80C00AF3749 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 70DAA9201908E80C00AF3749 /* www */; };
 		70DAA9231908E80C00AF3749 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 70DAA9211908E80C00AF3749 /* config.xml */; };
 		70DAA9251908E82600AF3749 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70DAA9241908E82600AF3749 /* WebKit.framework */; };
+		CC6A0B56B7165F2929A4F2EF /* CDVBridgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6A07C34FC25839C2500136 /* CDVBridgeTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		70DAA9241908E82600AF3749 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		70DAA9271908E93500AF3749 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		70DAA9281908E93500AF3749 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		CC6A07C34FC25839C2500136 /* CDVBridgeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVBridgeTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				70718D7F190A4201002ADC5F /* CDVBase64Tests.m */,
 				70DAA8E61908E05900AF3749 /* CDVStartPageTests.m */,
 				70BD675518FF9DAE00A1EFCF /* Supporting Files */,
+				CC6A07C34FC25839C2500136 /* CDVBridgeTests.m */,
 			);
 			name = CordovaLibTests;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				70DAA8EA1908E07E00AF3749 /* CDVWebViewTest.m in Sources */,
 				70718D80190A4201002ADC5F /* CDVBase64Tests.m in Sources */,
 				70DAA8E71908E05900AF3749 /* CDVStartPageTests.m in Sources */,
+				CC6A0B56B7165F2929A4F2EF /* CDVBridgeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
