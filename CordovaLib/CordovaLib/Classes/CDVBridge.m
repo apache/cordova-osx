@@ -26,31 +26,12 @@
 
 @implementation CDVBridge
 
-- (BOOL) isArray:(id) item {
-    id win = [self.webView windowScriptObject];
-    WebScriptObject* bridgeUtil = [win evaluateWebScript:@"CordovaBridgeUtil"];
-    NSNumber* result = [bridgeUtil callWebScriptMethod:@"isArray" withArguments:@[item]];
-
-    return [result boolValue];
-}
-
-- (BOOL) isDictionary:(id) item {
-    id win = [self.webView windowScriptObject];
-    WebScriptObject* bridgeUtil = [win evaluateWebScript:@"CordovaBridgeUtil"];
-    NSNumber* result = [bridgeUtil callWebScriptMethod:@"isObject" withArguments:@[item]];
-    return [result boolValue];
-}
-
 - (void) registerJavaScriptHelpers {
     NSString* cordovaBridgeUtil = @"var CordovaBridgeUtil = {};";
-    NSString* isArray = [NSString stringWithFormat:@"CordovaBridgeUtil.isArray = function(obj) { return obj.constructor == Array; };"];
-    NSString* isObject = [NSString stringWithFormat:@"CordovaBridgeUtil.isObject = function(obj) { return obj.constructor == Object; };"];
     NSString* dictionaryKeys = [NSString stringWithFormat:@"CordovaBridgeUtil.getDictionaryKeys = function(obj) { return Object.keys(obj);};"];
 
     id win = [self.webView windowScriptObject];
     [win evaluateWebScript:cordovaBridgeUtil];
-    [win evaluateWebScript:isArray];
-    [win evaluateWebScript:isObject];
     [win evaluateWebScript:dictionaryKeys];
 }
 

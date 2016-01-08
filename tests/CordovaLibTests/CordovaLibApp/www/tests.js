@@ -29,8 +29,8 @@ function echoTests() {
         'double': 3.141,
         'array': ['a','b','c'],
         'nested-array': ['a','b','c', [1,2,3]],
-        'object': {a:'a', b:'b'}
-        // 'nested-object': {a:'a', b:'b', c:{d:'d'}} (does not work yet, CB-10308)
+        'object': {a:'a', b:'b'},
+        'nested-object': {a:'a', b:'b', c:{d:'d'}}
     };
 
     var tests = [];
