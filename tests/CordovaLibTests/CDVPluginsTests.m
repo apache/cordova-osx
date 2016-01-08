@@ -18,28 +18,39 @@
  */
 
 #import <XCTest/XCTest.h>
-#import <WebKit/WebKit.h>
+#import <Cordova/CDVViewController.h>
+#import <Cordova/CDVBridge.h>
 
-@class AppDelegate;
-@class CDVViewController;
+#import "CDVWebViewTest.h"
 
-@interface CDVWebViewTest : XCTestCase
+@interface CDVPluginsTest : CDVWebViewTest
+@end
 
-@property (nonatomic, strong) NSString* startPage;
+@implementation CDVPluginsTest
 
-- (AppDelegate*)appDelegate;
-- (CDVViewController*)viewController;
-- (WebView*)webView;
+- (void) setUp {
+    [super setUp];
+}
 
-// Returns the already registered plugin object for the given class.
-- (id)pluginInstance:(NSString*)pluginName;
-// Destroys the existing webview and creates a new one.
-- (void)reloadWebView;
-// Runs the run loop until the given block returns true, or until a timeout
-// occurs.
-- (void)waitForConditionName:(NSString*)conditionName block:(BOOL (^)())block;
-- (void) waitForPageLoad;
+- (void) tearDown {
+    [super tearDown];
+}
 
-// Convenience function for stringByEvaluatingJavaScriptFromString.
-- (NSString*)evalJs:(NSString*)code;
+- (void) testEcho {
+    [self viewController];
+
+    NSString* testId = [self.webView stringByEvaluatingJavaScriptFromString:@"runTests()"];
+
+    NSLog(@"waiting for test %@", testId);
+    NSString *jsString = [NSString stringWithFormat:@"window.jsTests['%@'].result", testId];
+
+    __block NSString *result;
+    [self waitForConditionName:testId block:^{
+        result = [self evalJs:jsString];
+        return (BOOL) (result.length > 0);
+    }];
+    XCTAssertTrue([result isEqualToString:@"true"], @"test should succeed");
+}
+
+
 @end

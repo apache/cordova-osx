@@ -17,29 +17,11 @@
  under the License.
  */
 
-#import <XCTest/XCTest.h>
-#import <WebKit/WebKit.h>
+#import <Foundation/Foundation.h>
+#import <Cordova/CDVPlugin.h>
 
-@class AppDelegate;
-@class CDVViewController;
+@interface TestPlugin : CDVPlugin
 
-@interface CDVWebViewTest : XCTestCase
+- (void) echo:(CDVInvokedUrlCommand*)command __unused;
 
-@property (nonatomic, strong) NSString* startPage;
-
-- (AppDelegate*)appDelegate;
-- (CDVViewController*)viewController;
-- (WebView*)webView;
-
-// Returns the already registered plugin object for the given class.
-- (id)pluginInstance:(NSString*)pluginName;
-// Destroys the existing webview and creates a new one.
-- (void)reloadWebView;
-// Runs the run loop until the given block returns true, or until a timeout
-// occurs.
-- (void)waitForConditionName:(NSString*)conditionName block:(BOOL (^)())block;
-- (void) waitForPageLoad;
-
-// Convenience function for stringByEvaluatingJavaScriptFromString.
-- (NSString*)evalJs:(NSString*)code;
 @end

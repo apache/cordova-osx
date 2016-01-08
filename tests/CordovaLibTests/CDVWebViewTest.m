@@ -53,8 +53,7 @@
         [self.appDelegate createViewController:self.startPage];
 
         // Things break if tearDown is called before the page has finished
-        // loading (a JS error happens and an alert pops up), so enforce a wait
-        // here.
+        // loading (a JS error happens and an alert pops up), so enforce a wait here
         [self waitForPageLoad];
     }
 
@@ -90,8 +89,10 @@
     while (!block()) {
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
         NSTimeInterval elapsed = -[startTime timeIntervalSinceNow];
-        XCTAssertTrue(i < kMinIterations || elapsed < kConditionTimeout,
-                @"Timed out waiting for condition %@", conditionName);
+        if (i > kMinIterations && elapsed > kConditionTimeout) {
+            XCTFail(@"Timed out waiting for condition %@", conditionName);
+            break;
+        }
         ++i;
     }
 }

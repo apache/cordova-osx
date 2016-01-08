@@ -17,29 +17,31 @@
  under the License.
  */
 
-#import <XCTest/XCTest.h>
-#import <WebKit/WebKit.h>
+#import "TestPlugin.h"
 
-@class AppDelegate;
-@class CDVViewController;
+@implementation TestPlugin {
 
-@interface CDVWebViewTest : XCTestCase
+}
 
-@property (nonatomic, strong) NSString* startPage;
+- (void) pluginInitialize {
+    [super pluginInitialize];
+    NSLog(@"test plugin initialized.");
+    return;
+}
 
-- (AppDelegate*)appDelegate;
-- (CDVViewController*)viewController;
-- (WebView*)webView;
+- (void) echo:(CDVInvokedUrlCommand*) command {
+    id arg0 = [command argumentAtIndex:0];
+    NSLog(@"TestPlugin.echo(%@)", arg0);
 
-// Returns the already registered plugin object for the given class.
-- (id)pluginInstance:(NSString*)pluginName;
-// Destroys the existing webview and creates a new one.
-- (void)reloadWebView;
-// Runs the run loop until the given block returns true, or until a timeout
-// occurs.
-- (void)waitForConditionName:(NSString*)conditionName block:(BOOL (^)())block;
-- (void) waitForPageLoad;
+//    CDVPluginResult* pluginResult;
+//    if ([arg0 isKindOfClass:[NSString class]]) {
+//        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:arg0];
+//    }
+//
+//
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:arg0];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
 
-// Convenience function for stringByEvaluatingJavaScriptFromString.
-- (NSString*)evalJs:(NSString*)code;
+
 @end
