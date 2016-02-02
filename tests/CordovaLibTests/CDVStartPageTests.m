@@ -27,34 +27,19 @@
 
 @implementation CDVStartPageTest
 
-- (void)setUp
-{
+- (void) setUp {
     [super setUp];
 }
 
-- (void)tearDown
-{
+- (void) tearDown {
     [super tearDown];
 }
 
-- (void)testDefaultStartPage
-{
+- (void) testDefaultStartPage {
     [self viewController];
     NSString* geHREF = @"window.location.href";
     NSString* href = [self.webView stringByEvaluatingJavaScriptFromString:geHREF];
     XCTAssertTrue([href hasSuffix:@"index.html"], @"href should point to index.html");
 }
-
-
-// currently fails
-
-//- (void)testParametersInStartPage
-//{
-//    self.startPage = @"index.html?delta=true";
-//    [self reloadWebView];
-//    NSString* geHREF = @"window.location.href";
-//    NSString* href = [self.webView stringByEvaluatingJavaScriptFromString:geHREF];
-//    STAssertTrue([href hasSuffix:@"index.html?delta=true"], @"href should point to index.html?delta=true");
-//}
 
 @end

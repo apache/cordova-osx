@@ -17,13 +17,11 @@
  under the License.
  */
 
-#import "CDVPlugin.h"
+#import <Foundation/Foundation.h>
+#import <Cordova/CDVPlugin.h>
 
-@interface CDVDevice : CDVPlugin
-{}
+@interface TestPlugin : CDVPlugin
 
-+ (NSString*)cordovaVersion;
-
-- (void)getDeviceInfo:(CDVInvokedUrlCommand*)command;
+- (void) echo:(CDVInvokedUrlCommand*)command __unused;
 
 @end

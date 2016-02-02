@@ -45,4 +45,7 @@
     </author>
     <content src="index.html"/>
     <access origin="*"/>
+    <feature name="TestPlugin">
+        <param name="ios-package" value="TestPlugin" />
+    </feature>
 </widget>

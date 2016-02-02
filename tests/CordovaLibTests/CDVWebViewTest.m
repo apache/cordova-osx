@@ -20,46 +20,40 @@
 #import "CDVWebViewTest.h"
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
 
 @interface CDVWebViewTest ()
 // Runs the run loop until the webview has finished loading.
-- (void)waitForPageLoad;
+- (void) waitForPageLoad;
 @end
 
 @implementation CDVWebViewTest
 
 @synthesize startPage;
 
-- (void)setUp
-{
+- (void) setUp {
     [super setUp];
 }
 
-- (void)tearDown
-{
+- (void) tearDown {
     // Enforce that the view controller is released between tests to ensure
     // tests don't affect each other.
-//    [self.appDelegate destroyViewController];
+    // [self.appDelegate destroyViewController];
     [super tearDown];
 }
 
-- (AppDelegate*)appDelegate
-{
+- (AppDelegate*) appDelegate {
     return [[NSApplication sharedApplication] delegate];
 }
 
-- (CDVViewController*)viewController
-{
+- (CDVViewController*) viewController {
     // Lazily create the view controller so that tests that do not require it
     // are not slowed down by it.
     if (self.appDelegate.viewController == nil) {
-        
-        [self.appDelegate createViewController: self.startPage];
+
+        [self.appDelegate createViewController:self.startPage];
 
         // Things break if tearDown is called before the page has finished
-        // loading (a JS error happens and an alert pops up), so enforce a wait
-        // here.
+        // loading (a JS error happens and an alert pops up), so enforce a wait here
         [self waitForPageLoad];
     }
 
@@ -67,27 +61,23 @@
     return self.appDelegate.viewController;
 }
 
-- (WebView*)webView
-{
+- (WebView*) webView {
     return self.viewController.webView;
 }
 
-- (id)pluginInstance:(NSString*)pluginName
-{
+- (id) pluginInstance:(NSString*) pluginName {
     id ret = [self.viewController getCommandInstance:pluginName];
 
     XCTAssertNotNil(ret, @"Missing plugin %@", pluginName);
     return ret;
 }
 
-- (void)reloadWebView
-{
+- (void) reloadWebView {
     [self.appDelegate destroyViewController];
     [self viewController];
 }
 
-- (void)waitForConditionName:(NSString*)conditionName block:(BOOL (^)())block
-{
+- (void) waitForConditionName:(NSString*) conditionName block:(BOOL (^)()) block {
     // Number of seconds to wait for a condition to become true before giving up.
     const NSTimeInterval kConditionTimeout = 5.0;
     // Useful when debugging so that it does not timeout after one loop.
@@ -99,21 +89,21 @@
     while (!block()) {
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
         NSTimeInterval elapsed = -[startTime timeIntervalSinceNow];
-        XCTAssertTrue(i < kMinIterations || elapsed < kConditionTimeout,
-            @"Timed out waiting for condition %@", conditionName);
+        if (i > kMinIterations && elapsed > kConditionTimeout) {
+            XCTFail(@"Timed out waiting for condition %@", conditionName);
+            break;
+        }
         ++i;
     }
 }
 
-- (void)waitForPageLoad
-{
+- (void) waitForPageLoad {
     [self waitForConditionName:@"PageLoad" block:^{
-        return [@"true" isEqualToString :[self evalJs:@"window.pageIsLoaded"]];
+        return [@"true" isEqualToString:[self evalJs:@"window.pageIsLoaded"]];
     }];
 }
 
-- (NSString*)evalJs:(NSString*)code
-{
+- (NSString*) evalJs:(NSString*) code {
     return [self.webView stringByEvaluatingJavaScriptFromString:code];
 }
 

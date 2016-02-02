@@ -26,8 +26,6 @@
 		70BD67A818FFA12D00A1EFCF /* CDVConsole.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD678118FFA12D00A1EFCF /* CDVConsole.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD67A918FFA12D00A1EFCF /* CDVConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD678218FFA12D00A1EFCF /* CDVConsole.m */; };
 		70BD67AA18FFA12D00A1EFCF /* CDVDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD678318FFA12D00A1EFCF /* CDVDebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		70BD67AB18FFA12D00A1EFCF /* CDVDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD678418FFA12D00A1EFCF /* CDVDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		70BD67AC18FFA12D00A1EFCF /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD678518FFA12D00A1EFCF /* CDVDevice.m */; };
 		70BD67AD18FFA12D00A1EFCF /* CDVInvokedUrlCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD678618FFA12D00A1EFCF /* CDVInvokedUrlCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BD67AE18FFA12D00A1EFCF /* CDVInvokedUrlCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD678718FFA12D00A1EFCF /* CDVInvokedUrlCommand.m */; };
 		70BD67AF18FFA12D00A1EFCF /* CDVJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD678818FFA12D00A1EFCF /* CDVJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -80,8 +78,6 @@
 		70BD678118FFA12D00A1EFCF /* CDVConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVConsole.h; sourceTree = "<group>"; };
 		70BD678218FFA12D00A1EFCF /* CDVConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVConsole.m; sourceTree = "<group>"; };
 		70BD678318FFA12D00A1EFCF /* CDVDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVDebug.h; sourceTree = "<group>"; };
-		70BD678418FFA12D00A1EFCF /* CDVDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVDevice.h; sourceTree = "<group>"; };
-		70BD678518FFA12D00A1EFCF /* CDVDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVDevice.m; sourceTree = "<group>"; };
 		70BD678618FFA12D00A1EFCF /* CDVInvokedUrlCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVInvokedUrlCommand.h; sourceTree = "<group>"; };
 		70BD678718FFA12D00A1EFCF /* CDVInvokedUrlCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVInvokedUrlCommand.m; sourceTree = "<group>"; };
 		70BD678818FFA12D00A1EFCF /* CDVJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVJSON.h; sourceTree = "<group>"; };
@@ -214,8 +210,6 @@
 				70BD678118FFA12D00A1EFCF /* CDVConsole.h */,
 				70BD678218FFA12D00A1EFCF /* CDVConsole.m */,
 				70BD678318FFA12D00A1EFCF /* CDVDebug.h */,
-				70BD678418FFA12D00A1EFCF /* CDVDevice.h */,
-				70BD678518FFA12D00A1EFCF /* CDVDevice.m */,
 				70BD678618FFA12D00A1EFCF /* CDVInvokedUrlCommand.h */,
 				70BD678718FFA12D00A1EFCF /* CDVInvokedUrlCommand.m */,
 				70BD678818FFA12D00A1EFCF /* CDVJSON.h */,
@@ -259,7 +253,6 @@
 				70BD679D18FFA12D00A1EFCF /* CDV.h in Headers */,
 				70BD67AD18FFA12D00A1EFCF /* CDVInvokedUrlCommand.h in Headers */,
 				70BD679718FFA12D00A1EFCF /* CDVBridge.h in Headers */,
-				70BD67AB18FFA12D00A1EFCF /* CDVDevice.h in Headers */,
 				70BD67AF18FFA12D00A1EFCF /* CDVJSON.h in Headers */,
 				70BD67AA18FFA12D00A1EFCF /* CDVDebug.h in Headers */,
 				70BD679B18FFA12D00A1EFCF /* CDVWebViewDelegate.h in Headers */,
@@ -339,7 +332,6 @@
 				70BD67B018FFA12D00A1EFCF /* CDVJSON.m in Sources */,
 				70BD67A318FFA12D00A1EFCF /* CDVCommandQueue.m in Sources */,
 				70BD67B818FFA12D00A1EFCF /* NSData+Base64.m in Sources */,
-				70BD67AC18FFA12D00A1EFCF /* CDVDevice.m in Sources */,
 				70BD679C18FFA12D00A1EFCF /* CDVWebViewDelegate.m in Sources */,
 				70BD679818FFA12D00A1EFCF /* CDVBridge.m in Sources */,
 				70BD67BC18FFA12D00A1EFCF /* ShellUtils.m in Sources */,
