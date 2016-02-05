@@ -31,25 +31,6 @@ Make sure you have installed the latest released OS X SDK which comes with Xcode
 Download it at [http://developer.apple.com/downloads](http://developer.apple.com/downloads) 
 or the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12).
 
-### Use Development versions for your build
-Since OSX is not officially released yet, we need to use the development versions of the respective modules where OSX was already added. currently those are:
-
-* _cordova-lib_
-* _cordova-plugman_
-* _cordova-plugin-file_
-
-1. checkout the master branch of _cordova-lib_, _cordova-plugman_, _cordova-cli_ and all the plugins you require
-2. link the development version if _cordova-lib_ to _cordova-cli_ and _cordova-plugman_ (see https://github.com/apache/cordova-lib#setup)
-    
-   ````
-   $ cd cordova-lib/cordova-lib
-   $ npm install && npm link
-   $ cd ../../cordova-cli
-   $ npm link cordova-lib && npm install 
-   $ cd ../cordova-plugman
-   $ npm link cordova-lib && npm install
-   ````
-
 
 Create your project
 -------------------------------------------------------------
@@ -62,9 +43,11 @@ Create your project
 2. add the osx platform:
 
    ````
-   $ cordova platform add osx
+   $ cordova platform add git://git.apache.org/cordova-osx.git
    $ cordova run osx
    ````
+   
+   > **Note**: Since OSX is not officailly released and deployed to npm yet, you need to use the git url when adding the platform.
 
 3. You can also open the project in XCode:
 
