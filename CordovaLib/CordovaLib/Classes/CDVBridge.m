@@ -18,7 +18,7 @@
  */
 
 #import <WebKit/WebKit.h>
-#import <JavascriptCore/JavascriptCore.h>
+#import <JavaScriptCore/JavaScriptCore.h>
 #include <objc/message.h>
 
 #import "CDVBridge.h"
