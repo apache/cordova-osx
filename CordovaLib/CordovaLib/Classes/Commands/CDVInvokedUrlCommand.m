@@ -23,7 +23,7 @@
 
 @synthesize arguments = _arguments;
 @synthesize callbackId = _callbackId;
-@synthesize className = _className;
+@synthesize cmdClassName = _cmdClassName;
 @synthesize methodName = _methodName;
 
 + (CDVInvokedUrlCommand*) commandFromJson:(NSArray*) jsonEntry {
@@ -51,7 +51,7 @@
     if (self != nil) {
         _arguments = arguments;
         _callbackId = callbackId;
-        _className = className;
+        _cmdClassName = className;
         _methodName = methodName;
     }
     [self massageArguments];

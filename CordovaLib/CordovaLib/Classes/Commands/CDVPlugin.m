@@ -26,19 +26,18 @@ NSString* const CDVLocalNotification = @"CDVLocalNotification";
 
 @interface CDVPlugin ()
 
-@property (readwrite, assign) BOOL hasPendingOperation;
+@property(readwrite, assign) BOOL hasPendingOperation;
 
 @end
 
 @implementation CDVPlugin
 @synthesize webView, viewController, commandDelegate, hasPendingOperation;
 
-- (CDVPlugin*)initWithWebView:(WebView*)theWebView
-{
+- (CDVPlugin*) initWithWebView:(WebView*) theWebView {
     self = [super init];
     if (self) {
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAppTerminate) name:UIApplicationWillTerminateNotification object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMemoryWarning) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+        // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAppTerminate) name:UIApplicationWillTerminateNotification object:nil];
+        // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMemoryWarning) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleOpenURL:) name:CDVPluginHandleOpenURLNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReset) name:CDVPluginResetNotification object:theWebView];
 
@@ -47,8 +46,7 @@ NSString* const CDVLocalNotification = @"CDVLocalNotification";
     return self;
 }
 
-- (void)pluginInitialize
-{
+- (void) pluginInitialize {
     // You can listen to more app notifications, see:
     // http://developer.apple.com/library/ios/#DOCUMENTATION/UIKit/Reference/UIApplication_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40006728-CH3-DontLinkElementID_4
 
@@ -66,8 +64,7 @@ NSString* const CDVLocalNotification = @"CDVLocalNotification";
     // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageDidLoad:) name:CDVPageDidLoadNotification object:self.webView];
 }
 
-- (void)dispose
-{
+- (void) dispose {
     viewController = nil;
     commandDelegate = nil;
     webView = nil;
@@ -82,41 +79,33 @@ NSString* const CDVLocalNotification = @"CDVLocalNotification";
 */
 
 /* NOTE: calls into JavaScript must not call or trigger any blocking UI, like alerts */
-- (void)handleOpenURL:(NSNotification*)notification
-{
+- (void) handleOpenURL:(NSNotification*) notification {
     // override to handle urls sent to your app
     // register your url schemes in your App-Info.plist
-
-    NSURL* url = [notification object];
-
-    if ([url isKindOfClass:[NSURL class]]) {
+    if ([[notification object] isKindOfClass:[NSURL class]]) {
+        NSURL __unused* url = [notification object];
         /* Do your thing! */
     }
 }
 
 /* NOTE: calls into JavaScript must not call or trigger any blocking UI, like alerts */
-- (void)onAppTerminate
-{
+- (void) onAppTerminate {
     // override this if you need to do any cleanup on app exit
 }
 
-- (void)onMemoryWarning
-{
+- (void) onMemoryWarning {
     // override to remove caches, etc
 }
 
-- (void)onReset
-{
+- (void) onReset {
     // Override to cancel any long-running requests when the WebView navigates or refreshes.
 }
 
-- (void)dealloc
-{
+- (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];   // this will remove all notification unless added using addObserverForName:object:queue:usingBlock:
 }
 
-- (id)appDelegate
-{
+- (id) appDelegate {
     return [[NSApplication sharedApplication] delegate];
 }
 

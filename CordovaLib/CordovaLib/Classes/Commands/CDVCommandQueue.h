@@ -19,6 +19,9 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCUnusedMethodInspection"
+
 @class CDVInvokedUrlCommand;
 @class CDVViewController;
 
@@ -38,3 +41,5 @@
 - (BOOL)execute:(CDVInvokedUrlCommand*)command;
 
 @end
+
+#pragma clang diagnostic pop

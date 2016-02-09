@@ -18,15 +18,13 @@
  */
 
 #import "CDVCommandDelegateImpl.h"
-#import "CDVJSON.h"
 #import "CDVCommandQueue.h"
 #import "CDVPluginResult.h"
 #import "CDVViewController.h"
 
 @implementation CDVCommandDelegateImpl
 
-- (id)initWithViewController:(CDVViewController*)viewController
-{
+- (id) initWithViewController:(CDVViewController*) viewController {
     self = [super init];
     if (self != nil) {
         _viewController = viewController;
@@ -36,8 +34,7 @@
     return self;
 }
 
-- (NSString*)pathForResource:(NSString*)resourcepath
-{
+- (NSString*) pathForResource:(NSString*) resourcepath {
     NSBundle* mainBundle = [NSBundle mainBundle];
     NSMutableArray* directoryParts = [NSMutableArray arrayWithArray:[resourcepath componentsSeparatedByString:@"/"]];
     NSString* filename = [directoryParts lastObject];
@@ -54,8 +51,7 @@
     return [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
 }
 
-- (void)evalJsHelper2:(NSString*)js
-{
+- (void) evalJsHelper2:(NSString*) js {
     CDV_EXEC_LOG(@"Exec: evalling: %@", [js substringToIndex:MIN([js length], 160)]);
     NSString* commandsJSON = [_viewController.webView stringByEvaluatingJavaScriptFromString:js];
     if ([commandsJSON length] > 0) {
@@ -63,11 +59,10 @@
     }
 
     // TODO:
-//    [_commandQueue enqueCommandBatch:commandsJSON];
+    //    [_commandQueue enqueCommandBatch:commandsJSON];
 }
 
-- (void)evalJsHelper:(NSString*)js
-{
+- (void) evalJsHelper:(NSString*) js {
     // Cycle the run-loop before executing the JS.
     // This works around a bug where sometimes alerts() within callbacks can cause
     // dead-lock.
@@ -83,8 +78,7 @@
     }
 }
 
-- (void)sendPluginResult:(CDVPluginResult*)result callbackId:(NSString*)callbackId
-{
+- (void) sendPluginResult:(CDVPluginResult*) result callbackId:(NSString*) callbackId {
     CDV_EXEC_LOG(@"Exec(%@): Sending result. Status=%@", callbackId, result.status);
     // This occurs when there is are no win/fail callbacks for the call.
     if ([@"INVALID" isEqualToString:callbackId]) {
@@ -99,13 +93,11 @@
     [self evalJsHelper:js];
 }
 
-- (void)evalJs:(NSString*)js
-{
+- (void) evalJs:(NSString*) js {
     [self evalJs:js scheduledOnRunLoop:YES];
 }
 
-- (void)evalJs:(NSString*)js scheduledOnRunLoop:(BOOL)scheduledOnRunLoop
-{
+- (void) evalJs:(NSString*) js scheduledOnRunLoop:(BOOL) scheduledOnRunLoop {
     js = [NSString stringWithFormat:@"cordova.require('cordova/exec').nativeEvalAndFetch(function(){%@})", js];
     if (scheduledOnRunLoop) {
         [self evalJsHelper:js];
@@ -114,37 +106,31 @@
     }
 }
 
-- (BOOL)execute:(CDVInvokedUrlCommand*)command
-{
+- (BOOL) execute:(CDVInvokedUrlCommand*) command {
     return [_commandQueue execute:command];
 }
 
-- (id)getCommandInstance:(NSString*)pluginName
-{
+- (id) getCommandInstance:(NSString*) pluginName {
     return [_viewController getCommandInstance:pluginName];
 }
 
-- (void)runInBackground:(void (^)())block
-{
+- (void) runInBackground:(void (^)()) block {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block);
 }
 
-- (NSString*)userAgent
-{
+- (NSString*) userAgent {
     //return [_viewController userAgent];
     return nil;
 }
 
-- (BOOL)URLIsWhitelisted:(NSURL*)url
-{
-// TODO:
-//    return ![_viewController.whitelist schemeIsAllowed:[url scheme]] ||
-//           [_viewController.whitelist URLIsAllowed:url];
+- (BOOL) URLIsWhitelisted:(NSURL*) url {
+    // TODO:
+    //    return ![_viewController.whitelist schemeIsAllowed:[url scheme]] ||
+    //           [_viewController.whitelist URLIsAllowed:url];
     return NO;
 }
 
-- (NSDictionary*)settings
-{
+- (NSDictionary*) settings {
     return _viewController.settings;
 }
 

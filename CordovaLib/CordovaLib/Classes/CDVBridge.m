@@ -56,16 +56,16 @@
 
     CDVInvokedUrlCommand* command = [[CDVInvokedUrlCommand alloc] initWithArguments:arguments callbackId:callbackId className:service methodName:action];
 
-    if ((command.className == nil) || (command.methodName == nil)) {
+    if ((command.cmdClassName == nil) || (command.methodName == nil)) {
         NSLog(@"ERROR: Classname and/or methodName not found for command.");
         return;
     }
 
     // Fetch an instance of this class
-    CDVPlugin* obj = [_viewController.commandDelegate getCommandInstance:command.className];
+    CDVPlugin* obj = [_viewController.commandDelegate getCommandInstance:command.cmdClassName];
 
     if (!([obj isKindOfClass:[CDVPlugin class]])) {
-        NSLog(@"ERROR: Plugin '%@' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.", command.className);
+        NSLog(@"ERROR: Plugin '%@' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.", command.cmdClassName);
         return;
     }
 
@@ -77,7 +77,7 @@
         objc_msgSend(obj, normalSelector, command);
     } else {
         // There's no method to call, so throw an error.
-        NSLog(@"ERROR: Method '%@' not defined in Plugin '%@'", methodName, command.className);
+        NSLog(@"ERROR: Method '%@' not defined in Plugin '%@'", methodName, command.cmdClassName);
     }
 }
 

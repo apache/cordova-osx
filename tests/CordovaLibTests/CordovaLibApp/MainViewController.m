@@ -25,8 +25,7 @@
 
 @implementation MainViewController
 
-- (id)initWithWindow:(NSWindow *)window
-{
+- (id) initWithWindow:(NSWindow*) window {
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
@@ -35,8 +34,7 @@
     return self;
 }
 
-- (id)initWithWindowNibName:(NSString*)nibNameOrNil
-{
+- (id) initWithWindowNibName:(NSString*) nibNameOrNil {
     self = [super initWithWindowNibName:nibNameOrNil];
     if (self) {
         // Uncomment to override the CDVCommandDelegateImpl used
@@ -48,8 +46,7 @@
 }
 
 
-- (id)init
-{
+- (id) init {
     self = [super init];
     if (self) {
         // Uncomment to override the CDVCommandDelegateImpl used
@@ -61,8 +58,7 @@
 }
 
 
-- (void)awakeFromNib
-{
+- (void) awakeFromNib {
     [super awakeFromNib];
 
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
@@ -78,13 +74,11 @@
 
 #pragma mark CDVCommandDelegate implementation
 
-- (id)getCommandInstance:(NSString*)className
-{
+- (id) getCommandInstance:(NSString*) className {
     return [super getCommandInstance:className];
 }
 
-- (NSString*)pathForResource:(NSString*)resourcepath;
-{
+- (NSString*) pathForResource:(NSString*) resourcepath; {
     return [super pathForResource:resourcepath];
 }
 
@@ -95,8 +89,7 @@
 /* To override, uncomment the line in the init function(s)
  in MainViewController.m
  */
-- (BOOL)execute:(CDVInvokedUrlCommand*)command
-{
+- (BOOL) execute:(CDVInvokedUrlCommand*) command {
     return [super execute:command];
 }
 

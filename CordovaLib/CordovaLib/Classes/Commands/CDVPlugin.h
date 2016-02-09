@@ -23,6 +23,11 @@
 #import "CDVCommandDelegate.h"
 #import "CDVViewController.h"
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCUnusedPropertyInspection"
+#pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
+#pragma ide diagnostic ignored "OCUnusedMethodInspection"
+
 NSString* const CDVPageDidLoadNotification;
 NSString* const CDVPluginHandleOpenURLNotification;
 NSString* const CDVPluginResetNotification;
@@ -57,3 +62,5 @@ NSString* const CDVLocalNotification;
 - (id)appDelegate;
 
 @end
+
+#pragma clang diagnostic pop

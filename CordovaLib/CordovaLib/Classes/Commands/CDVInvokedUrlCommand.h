@@ -19,16 +19,19 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCUnusedPropertyInspection"
+
 @interface CDVInvokedUrlCommand : NSObject {
     NSString* _callbackId;
-    NSString* _className;
+    NSString* _cmdClassName;
     NSString* _methodName;
     NSArray* _arguments;
 }
 
 @property(nonatomic, readonly) NSArray* arguments;
 @property(nonatomic, readonly) NSString* callbackId;
-@property(nonatomic, readonly) NSString* className;
+@property(nonatomic, readonly) NSString* cmdClassName;
 @property(nonatomic, readonly) NSString* methodName;
 
 + (CDVInvokedUrlCommand*) commandFromJson:(NSArray*) jsonEntry;
@@ -40,15 +43,23 @@
 
 - (id) initFromJson:(NSArray*) jsonEntry;
 
-// Returns the argument at the given index.
-// If index >= the number of arguments, returns nil.
-// If the argument at the given index is NSNull, returns nil.
+/**
+ * Returns the argument at the given index.
+ * If index >= the number of arguments, returns nil.
+ * If the argument at the given index is NSNull, returns nil.
+ */
 - (id) argumentAtIndex:(NSUInteger) index;
 
-// Same as above, but returns defaultValue instead of nil.
+/**
+ * Same as above, but returns defaultValue instead of nil.
+ */
 - (id) argumentAtIndex:(NSUInteger) index withDefault:(id) defaultValue;
 
-// Same as above, but returns defaultValue instead of nil, and if the argument is not of the expected class, returns defaultValue
+/**
+ * Same as above, but returns defaultValue instead of nil, and if the argument is not of the expected class, returns defaultValue
+ */
 - (id) argumentAtIndex:(NSUInteger) index withDefault:(id) defaultValue andClass:(Class) aClass;
 
 @end
+
+#pragma clang diagnostic pop

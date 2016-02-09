@@ -19,6 +19,10 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCUnusedPropertyInspection"
+#pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
+#pragma ide diagnostic ignored "OCUnusedMethodInspection"
 typedef enum {
     CDVCommandStatus_NO_RESULT = 0,
     CDVCommandStatus_OK,
@@ -37,8 +41,11 @@ typedef enum {
 @property (nonatomic, strong, readonly) NSNumber* status;
 @property (nonatomic, strong, readonly) id message;
 @property (nonatomic, strong)           NSNumber* keepCallback;
-// This property can be used to scope the lifetime of another object. For example,
-// Use it to store the associated NSData when `message` is created using initWithBytesNoCopy.
+
+/**
+ * This property can be used to scope the lifetime of another object. For example,
+ * Use it to store the associated NSData when `message` is created using initWithBytesNoCopy.
+ */
 @property (nonatomic, strong) id associatedObject;
 
 - (CDVPluginResult*)init;
@@ -61,3 +68,5 @@ typedef enum {
 - (NSString*)argumentsAsJSON;
 
 @end
+
+#pragma clang diagnostic pop

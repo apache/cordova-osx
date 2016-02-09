@@ -22,31 +22,31 @@
 // The block below is to support NSArray/NSDictionary subscripting in 10.7
 #ifdef __MAC_10_7
 
-@interface NSArray(Subscripting)
-- (id)objectAtIndexedSubscript:(NSUInteger)index;
+@interface NSArray (Subscripting)
+- (id) objectAtIndexedSubscript:(NSUInteger) index;
 @end
 
-@interface NSMutableArray(Subscripting)
-- (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)index;
+@interface NSMutableArray (Subscripting)
+- (void) setObject:(id) obj atIndexedSubscript:(NSUInteger) index;
 @end
 
-@interface NSDictionary(Subscripting)
-- (id)objectForKeyedSubscript:(id)key;
+@interface NSDictionary (Subscripting)
+- (id) objectForKeyedSubscript:(id) key;
 @end
 
-@interface NSMutableDictionary(Subscripting)
-- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;
+@interface NSMutableDictionary (Subscripting)
+- (void) setObject:(id) obj forKeyedSubscript:(id <NSCopying>) key;
 @end
 
 #endif
 
 @interface CDVConfigParser ()
 
-@property (nonatomic, readwrite, strong) NSMutableDictionary* pluginsDict;
-@property (nonatomic, readwrite, strong) NSMutableDictionary* settings;
-@property (nonatomic, readwrite, strong) NSMutableArray* whitelistHosts;
-@property (nonatomic, readwrite, strong) NSMutableArray* startupPluginNames;
-@property (nonatomic, readwrite, strong) NSString* startPage;
+@property(nonatomic, readwrite, strong) NSMutableDictionary* pluginsDict;
+@property(nonatomic, readwrite, strong) NSMutableDictionary* settings;
+@property(nonatomic, readwrite, strong) NSMutableArray* whitelistHosts;
+@property(nonatomic, readwrite, strong) NSMutableArray* startupPluginNames;
+@property(nonatomic, readwrite, strong) NSString* startPage;
 
 @end
 
@@ -54,8 +54,7 @@
 
 @synthesize pluginsDict, settings, whitelistHosts, startPage, startupPluginNames;
 
-- (id)init
-{
+- (id) init {
     self = [super init];
     if (self != nil) {
         self.pluginsDict = [[NSMutableDictionary alloc] initWithCapacity:30];
@@ -67,8 +66,7 @@
     return self;
 }
 
-- (void)parser:(NSXMLParser*)parser didStartElement:(NSString*)elementName namespaceURI:(NSString*)namespaceURI qualifiedName:(NSString*)qualifiedName attributes:(NSDictionary*)attributeDict
-{
+- (void) parser:(NSXMLParser*) parser didStartElement:(NSString*) elementName namespaceURI:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName attributes:(NSDictionary*) attributeDict {
     if ([elementName isEqualToString:@"preference"]) {
         settings[attributeDict[@"name"]] = attributeDict[@"value"];
     } else if ([elementName isEqualToString:@"feature"]) { // store feature name to use with correct parameter set
@@ -79,8 +77,8 @@
         if ([paramName isEqualToString:@"ios-package"] || [paramName isEqualToString:@"osx-package"]) {
             pluginsDict[featureName] = value;
         }
-        BOOL paramIsOnload = ([paramName isEqualToString:@"onload"] && [@"true" isEqualToString : value]);
-        BOOL attribIsOnload = [@"true" isEqualToString : [attributeDict[@"onload"] lowercaseString]];
+        BOOL paramIsOnload = ([paramName isEqualToString:@"onload"] && [@"true" isEqualToString:value]);
+        BOOL attribIsOnload = [@"true" isEqualToString:[attributeDict[@"onload"] lowercaseString]];
         if (paramIsOnload || attribIsOnload) {
             [self.startupPluginNames addObject:featureName];
         }
@@ -91,15 +89,13 @@
     }
 }
 
-- (void)parser:(NSXMLParser*)parser didEndElement:(NSString*)elementName namespaceURI:(NSString*)namespaceURI qualifiedName:(NSString*)qualifiedName
-{
+- (void) parser:(NSXMLParser*) parser didEndElement:(NSString*) elementName namespaceURI:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName {
     if ([elementName isEqualToString:@"feature"]) { // no longer handling a feature so release
         featureName = nil;
     }
 }
 
-- (void)parser:(NSXMLParser*)parser parseErrorOccurred:(NSError*)parseError
-{
+- (void) parser:(NSXMLParser*) parser parseErrorOccurred:(NSError*) parseError {
     NSAssert(NO, @"config.xml parse error line %ld col %ld", [parser lineNumber], [parser columnNumber]);
 }
 

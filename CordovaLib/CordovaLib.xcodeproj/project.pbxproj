@@ -38,8 +38,6 @@
 		70BD67B818FFA12D00A1EFCF /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD679218FFA12D00A1EFCF /* NSData+Base64.m */; };
 		70BD67B918FFA12D00A1EFCF /* NSWindow+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679318FFA12D00A1EFCF /* NSWindow+Utils.h */; };
 		70BD67BA18FFA12D00A1EFCF /* NSWindow+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD679418FFA12D00A1EFCF /* NSWindow+Utils.m */; };
-		70BD67BB18FFA12D00A1EFCF /* ShellUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679518FFA12D00A1EFCF /* ShellUtils.h */; };
-		70BD67BC18FFA12D00A1EFCF /* ShellUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD679618FFA12D00A1EFCF /* ShellUtils.m */; };
 		CC6A01B9AD6ECF2D913FF418 /* CDVWindowSizeCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = CC6A03B1971BACCB9183AEFE /* CDVWindowSizeCommand.h */; };
 		CC6A03130738A1F299369195 /* CDVCursorMonitorService.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6A07666A2CE3AE46F85AD6 /* CDVCursorMonitorService.m */; };
 		CC6A051516599A029D1ECA50 /* CDVMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6A0F82EDAFA619D95D3392 /* CDVMainWindow.m */; };
@@ -90,8 +88,6 @@
 		70BD679218FFA12D00A1EFCF /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		70BD679318FFA12D00A1EFCF /* NSWindow+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+Utils.h"; sourceTree = "<group>"; };
 		70BD679418FFA12D00A1EFCF /* NSWindow+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+Utils.m"; sourceTree = "<group>"; };
-		70BD679518FFA12D00A1EFCF /* ShellUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShellUtils.h; sourceTree = "<group>"; };
-		70BD679618FFA12D00A1EFCF /* ShellUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShellUtils.m; sourceTree = "<group>"; };
 		70DAA9241908E82600AF3749 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		70E382C81909BBFF0029A2F0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		CC6A00E23A9BC2910E28D36E /* NSScreen+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScreen+Utils.h"; sourceTree = "<group>"; };
@@ -233,8 +229,6 @@
 				70BD679218FFA12D00A1EFCF /* NSData+Base64.m */,
 				70BD679318FFA12D00A1EFCF /* NSWindow+Utils.h */,
 				70BD679418FFA12D00A1EFCF /* NSWindow+Utils.m */,
-				70BD679518FFA12D00A1EFCF /* ShellUtils.h */,
-				70BD679618FFA12D00A1EFCF /* ShellUtils.m */,
 				CC6A01EC9D87C6FC66791911 /* NSScreen+Utils.m */,
 				CC6A00E23A9BC2910E28D36E /* NSScreen+Utils.h */,
 			);
@@ -261,7 +255,6 @@
 				70BD679F18FFA12D00A1EFCF /* CDVCommandDelegate.h in Headers */,
 				70BD679E18FFA12D00A1EFCF /* CDVAvailability.h in Headers */,
 				70BD679918FFA12D00A1EFCF /* CDVViewController.h in Headers */,
-				70BD67BB18FFA12D00A1EFCF /* ShellUtils.h in Headers */,
 				70BD67B118FFA12D00A1EFCF /* CDVPlugin.h in Headers */,
 				70BD67B318FFA12D00A1EFCF /* CDVPluginResult.h in Headers */,
 				70BD67A018FFA12D00A1EFCF /* CDVCommandDelegateImpl.h in Headers */,
@@ -334,7 +327,6 @@
 				70BD67B818FFA12D00A1EFCF /* NSData+Base64.m in Sources */,
 				70BD679C18FFA12D00A1EFCF /* CDVWebViewDelegate.m in Sources */,
 				70BD679818FFA12D00A1EFCF /* CDVBridge.m in Sources */,
-				70BD67BC18FFA12D00A1EFCF /* ShellUtils.m in Sources */,
 				70BD67A518FFA12D00A1EFCF /* CDVConfigParser.m in Sources */,
 				70BD679A18FFA12D00A1EFCF /* CDVViewController.m in Sources */,
 				70BD67B218FFA12D00A1EFCF /* CDVPlugin.m in Sources */,

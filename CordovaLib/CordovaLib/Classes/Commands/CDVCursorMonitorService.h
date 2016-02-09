@@ -19,6 +19,9 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCUnusedMethodInspection"
+
 @interface CDVCursorMonitorService : NSObject
 
 + (CDVCursorMonitorService*) service;
@@ -28,3 +31,5 @@
 - (void) stop;
 
 @end
+
+#pragma clang diagnostic pop

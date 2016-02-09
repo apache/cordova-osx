@@ -23,8 +23,7 @@
 @implementation CDVConsole
 
 
-- (void) log:(NSString*)message
-{
+- (void) log:(NSString*) message {
     NSLog(@"%@", message);
 }
 
@@ -80,7 +79,7 @@
 }
 
 // right now exclude all properties (eg keys)
-+ (BOOL) isKeyExcludedFromWebScript:(const char*)name {
++ (BOOL) isKeyExcludedFromWebScript:(const char*) name {
     return YES;
 }
 

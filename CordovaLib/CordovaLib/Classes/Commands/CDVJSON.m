@@ -18,12 +18,10 @@
  */
 
 #import "CDVJSON.h"
-#import <Foundation/NSJSONSerialization.h>
 
 @implementation NSArray (CDVJSONSerializing)
 
-- (NSString*)JSONString
-{
+- (NSString*) JSONString {
     NSError* error = nil;
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self
                                                        options:NSJSONWritingPrettyPrinted
@@ -41,8 +39,7 @@
 
 @implementation NSDictionary (CDVJSONSerializing)
 
-- (NSString*)JSONString
-{
+- (NSString*) JSONString {
     NSError* error = nil;
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self
                                                        options:NSJSONWritingPrettyPrinted
@@ -60,8 +57,7 @@
 
 @implementation NSString (CDVJSONSerializing)
 
-- (id)JSONObject
-{
+- (id) JSONObject {
     NSError* error = nil;
     id object = [NSJSONSerialization JSONObjectWithData:[self dataUsingEncoding:NSUTF8StringEncoding]
                                                 options:kNilOptions

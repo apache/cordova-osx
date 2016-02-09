@@ -17,14 +17,19 @@
  under the License.
  */
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCUnusedMethodInspection"
+
 @interface NSArray (CDVJSONSerializing)
-- (NSString*)JSONString;
+- (NSString*) JSONString;
 @end
 
 @interface NSDictionary (CDVJSONSerializing)
-- (NSString*)JSONString;
+- (NSString*) JSONString;
 @end
 
 @interface NSString (CDVJSONSerializing)
-- (id)JSONObject;
+- (id) JSONObject;
 @end
+
+#pragma clang diagnostic pop

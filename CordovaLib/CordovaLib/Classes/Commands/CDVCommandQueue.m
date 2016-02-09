@@ -19,15 +19,13 @@
 
 #include <objc/message.h>
 #import "CDV.h"
-#import "CDVCommandQueue.h"
-#import "CDVCommandDelegateImpl.h"
 
 @interface CDVCommandQueue () {
     NSInteger _lastCommandQueueFlushRequestId;
 #ifdef __MAC_10_8
     __weak
 #endif
-    NSViewController* _viewController;
+    CDVViewController* _viewController;
     NSMutableArray* _queue;
     BOOL _currentlyExecuting;
 }
@@ -37,8 +35,7 @@
 
 @synthesize currentlyExecuting = _currentlyExecuting;
 
-- (id)initWithViewController:(NSViewController*)viewController
-{
+- (id) initWithViewController:(CDVViewController*) viewController {
     self = [super init];
     if (self != nil) {
         _viewController = viewController;
@@ -47,27 +44,23 @@
     return self;
 }
 
-- (void)dispose
-{
+- (void) dispose {
     // TODO(agrieve): Make this a zeroing weak ref once we drop support for 4.3.
     _viewController = nil;
 }
 
-- (void)resetRequestId
-{
+- (void) resetRequestId {
     _lastCommandQueueFlushRequestId = 0;
 }
 
-- (void)enqueCommandBatch:(NSString*)batchJSON
-{
+- (void) enqueCommandBatch:(NSString*) batchJSON {
     if ([batchJSON length] > 0) {
         [_queue addObject:batchJSON];
         [self executePending];
     }
 }
 
-- (void)maybeFetchCommandsFromJs:(NSNumber*)requestId
-{
+- (void) maybeFetchCommandsFromJs:(NSNumber*) requestId {
     // Use the request ID to determine if we've already flushed for this request.
     // This is required only because the NSURLProtocol enqueues the same request
     // multiple times.
@@ -77,21 +70,19 @@
     }
 }
 
-- (void)fetchCommandsFromJs
-{
+- (void) fetchCommandsFromJs {
     // TODO:
-//    // Grab all the queued commands from the JS side.
-//    NSString* queuedCommandsJSON = [_viewController.webView stringByEvaluatingJavaScriptFromString:
-//        @"cordova.require('cordova/exec').nativeFetchMessages()"];
-//
-//    [self enqueCommandBatch:queuedCommandsJSON];
-//    if ([queuedCommandsJSON length] > 0) {
-//        CDV_EXEC_LOG(@"Exec: Retrieved new exec messages by request.");
-//    }
+    //    // Grab all the queued commands from the JS side.
+    //    NSString* queuedCommandsJSON = [_viewController.webView stringByEvaluatingJavaScriptFromString:
+    //        @"cordova.require('cordova/exec').nativeFetchMessages()"];
+    //
+    //    [self enqueCommandBatch:queuedCommandsJSON];
+    //    if ([queuedCommandsJSON length] > 0) {
+    //        CDV_EXEC_LOG(@"Exec: Retrieved new exec messages by request.");
+    //    }
 }
 
-- (void)executePending
-{
+- (void) executePending {
     // Make us re-entrant-safe.
     if (_currentlyExecuting) {
         return;
@@ -101,37 +92,35 @@
 
         for (NSUInteger i = 0; i < [_queue count]; ++i) {
             // Parse the returned JSON array.
-            NSArray* commandBatch = [[_queue objectAtIndex:i] JSONObject];
+            NSArray* commandBatch = [_queue[i] JSONObject];
 
             // Iterate over and execute all of the commands.
             for (NSArray* jsonEntry in commandBatch) {
                 CDVInvokedUrlCommand* command = [CDVInvokedUrlCommand commandFromJson:jsonEntry];
-                CDV_EXEC_LOG(@"Exec(%@): Calling %@.%@", command.callbackId, command.className, command.methodName);
+                CDV_EXEC_LOG(@"Exec(%@): Calling %@.%@", command.callbackId, command.cmdClassName, command.methodName);
 
                 if (![self execute:command]) {
 #ifdef DEBUG
-                        NSString* commandJson = [jsonEntry JSONString];
-                        static NSUInteger maxLogLength = 1024;
-                        NSString* commandString = ([commandJson length] > maxLogLength) ?
-                        [NSString stringWithFormat:@"%@[...]", [commandJson substringToIndex:maxLogLength]] :
-                        commandJson;
+                    NSString* commandJson = [jsonEntry JSONString];
+                    static NSUInteger maxLogLength = 1024;
+                    NSString* commandString = ([commandJson length] > maxLogLength) ?
+                            [NSString stringWithFormat:@"%@[...]", [commandJson substringToIndex:maxLogLength]] :
+                            commandJson;
 
-                        DLog(@"FAILED pluginJSON = %@", commandString);
+                    DLog(@"FAILED pluginJSON = %@", commandString);
 #endif
                 }
             }
         }
 
         [_queue removeAllObjects];
-    } @finally
-    {
+    } @finally {
         _currentlyExecuting = NO;
     }
 }
 
-- (BOOL)execute:(CDVInvokedUrlCommand*)command
-{
-    if ((command.className == nil) || (command.methodName == nil)) {
+- (BOOL) execute:(CDVInvokedUrlCommand*) command {
+    if ((command.cmdClassName == nil) || (command.methodName == nil)) {
         NSLog(@"ERROR: Classname and/or methodName not found for command.");
         return NO;
     }
@@ -141,9 +130,9 @@
 //    CDVPlugin* obj = [_viewController.commandDelegate getCommandInstance:command.className];
 //
     CDVPlugin* obj = nil;
-    
+
     if (!([obj isKindOfClass:[CDVPlugin class]])) {
-        NSLog(@"ERROR: Plugin '%@' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.", command.className);
+        NSLog(@"ERROR: Plugin '%@' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.", command.cmdClassName);
         return NO;
     }
     BOOL retVal = YES;
@@ -157,7 +146,7 @@
         objc_msgSend(obj, normalSelector, command);
     } else {
         // There's no method to call, so throw an error.
-        NSLog(@"ERROR: Method '%@' not defined in Plugin '%@'", methodName, command.className);
+        NSLog(@"ERROR: Method '%@' not defined in Plugin '%@'", methodName, command.cmdClassName);
         retVal = NO;
     }
 

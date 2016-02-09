@@ -27,11 +27,10 @@
 #import "CDVPlugin.h"
 #import "CDVWebViewDelegate.h"
 
-@interface CDVViewController : NSWindowController
-{
-    @protected
+@interface CDVViewController : NSWindowController {
+
+@protected
     id <CDVCommandDelegate> _commandDelegate;
-    @protected
     CDVCommandQueue* _commandQueue;
     NSString* _userAgent;
 }
@@ -51,7 +50,7 @@
 @property (nonatomic, readonly, strong) CDVCommandQueue* commandQueue;
 @property (nonatomic, readonly, strong) id <CDVCommandDelegate> commandDelegate;
 
-- (id)getCommandInstance:(NSString*)pluginName;
+- (id) getCommandInstance:(NSString*) pluginName;
 
 /**
  * Action that toggles the fullscreen.
@@ -68,20 +67,24 @@
  */
 - (IBAction) onPreferences:(id) sender;
 
-- (void)registerPlugin:(CDVPlugin*)plugin withClassName:(NSString*)className;
-- (void)registerPlugin:(CDVPlugin*)plugin withPluginName:(NSString*)pluginName;
+- (void) registerPlugin:(CDVPlugin*) plugin withClassName:(NSString*) className;
+
+- (void) registerPlugin:(CDVPlugin*) plugin withPluginName:(NSString*) pluginName;
 
 @end
 
 // add private web preferences
 @interface WebPreferences (WebPrivate)
 
-- (BOOL)webGLEnabled;
-- (void)setWebGLEnabled:(BOOL)enabled;
+- (BOOL) webGLEnabled;
 
-- (BOOL)localStorageEnabled;
-- (void)setLocalStorageEnabled:(BOOL)localStorageEnabled;
+- (void) setWebGLEnabled:(BOOL) enabled;
 
-- (NSString *)_localStorageDatabasePath;
-- (void)_setLocalStorageDatabasePath:(NSString *)path;
+- (BOOL) localStorageEnabled;
+
+- (void) setLocalStorageEnabled:(BOOL) localStorageEnabled;
+
+- (NSString*) _localStorageDatabasePath;
+
+- (void) _setLocalStorageDatabasePath:(NSString*) path;
 @end

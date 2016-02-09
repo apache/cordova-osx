@@ -25,16 +25,16 @@
 
 @interface CDVViewController ()
 
-@property (nonatomic, readwrite, strong) NSXMLParser* configParser;
-@property (nonatomic, readwrite, strong) NSMutableDictionary* settings;
-@property (nonatomic, readwrite, strong) NSMutableDictionary* pluginObjects;
-@property (nonatomic, readwrite, strong) NSArray* startupPluginNames;
-@property (nonatomic, readwrite, strong) NSDictionary* pluginsMap;
-@property (nonatomic, readwrite, assign) BOOL loadFromString;
-@property (readwrite, assign) BOOL initialized;
+@property(nonatomic, readwrite, strong) NSXMLParser* configParser;
+@property(nonatomic, readwrite, strong) NSMutableDictionary* settings;
+@property(nonatomic, readwrite, strong) NSMutableDictionary* pluginObjects;
+@property(nonatomic, readwrite, strong) NSArray* startupPluginNames;
+@property(nonatomic, readwrite, strong) NSDictionary* pluginsMap;
+@property(nonatomic, readwrite, assign) BOOL loadFromString;
+@property(readwrite, assign) BOOL initialized;
 
-@property (readwrite, assign) BOOL cfgFullScreen;
-@property (readwrite, assign) NSSize cfgWindowSize;
+@property(readwrite, assign) BOOL cfgFullScreen;
+@property(readwrite, assign) NSSize cfgWindowSize;
 
 @end
 
@@ -47,8 +47,7 @@
 @synthesize commandDelegate = _commandDelegate;
 @synthesize commandQueue = _commandQueue;
 
-- (void) awakeFromNib
-{
+- (void) awakeFromNib {
     // make the linker happy since CDVWebViewDelegate is not referenced anywhere and would be stripped out
     // see http://stackoverflow.com/questions/1725881/unknown-class-myclass-in-interface-builder-file-error-at-runtime
     [CDVWebViewDelegate class];
@@ -89,7 +88,7 @@
     WebPreferences* prefs = [self.webView preferences];
     [prefs setAutosaves:YES];
 
-    [self configureWebGL: prefs];
+    [self configureWebGL:prefs];
     [self configureLocalStorage:prefs];
     [self configureWindowSize];
     [self configureHideMousePointer];
@@ -97,7 +96,7 @@
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
 }
 
-- (void)__init {
+- (void) __init {
     if ((self != nil) && !self.initialized) {
         _commandQueue = [[CDVCommandQueue alloc] initWithViewController:self];
         _commandDelegate = [[CDVCommandDelegateImpl alloc] initWithViewController:self];
@@ -111,8 +110,7 @@
     }
 }
 
-- (id) init
-{
+- (id) init {
     self = [super init];
     if (self) {
         // Initialization code here.
@@ -121,8 +119,7 @@
     return self;
 }
 
-- (id)initWithWindowNibName:(NSString*)nibNameOrNil
-{
+- (id) initWithWindowNibName:(NSString*) nibNameOrNil {
     self = [super initWithWindowNibName:nibNameOrNil];
     if (self) {
         // Initialization code here.
@@ -131,8 +128,7 @@
     return self;
 }
 
-- (void)loadSettings
-{
+- (void) loadSettings {
     CDVConfigParser* delegate = [[CDVConfigParser alloc] init];
 
     // read from config.xml in the app bundle
@@ -150,7 +146,7 @@
         NSLog(@"Failed to initialize XML parser.");
         return;
     }
-    [configParser setDelegate:((id < NSXMLParserDelegate >)delegate)];
+    [configParser setDelegate:((id <NSXMLParserDelegate>) delegate)];
     [configParser parse];
 
     // Get the plugin dictionary, whitelist and settings from the delegate.
@@ -172,7 +168,7 @@
 /**
  * Configures WebGL
  */
-- (void) configureWebGL: (WebPreferences*) prefs {
+- (void) configureWebGL:(WebPreferences*) prefs {
     // initialize items based on settings
     BOOL enableWebGL = [self.settings[@"EnableWebGL"] boolValue];
 
@@ -185,7 +181,7 @@
 /**
  * Configures Local Storage path
  */
-- (void) configureLocalStorage: (WebPreferences*) prefs {
+- (void) configureLocalStorage:(WebPreferences*) prefs {
     // ensure that local storage is enable and paths are correct
     NSString* webStoragePath = self.settings[@"OSXLocalStoragePath"];
     if (webStoragePath == nil) {
@@ -224,7 +220,7 @@
     } else if ([windowSize isEqualToString:@"fullscreen"]) {
         _cfgFullScreen = true;
     } else {
-        NSArray *dims = [windowSize componentsSeparatedByString: @"x"];
+        NSArray* dims = [windowSize componentsSeparatedByString:@"x"];
         if (dims.count == 2) {
             _cfgWindowSize.width = [dims[0] integerValue];
             _cfgWindowSize.height = [dims[1] integerValue];
@@ -236,14 +232,13 @@
  * Configures the hideMousePointer preference.
  */
 - (void) configureHideMousePointer {
-    NSString *hide = self.settings[@"HideMousePointer"];
+    NSString* hide = self.settings[@"HideMousePointer"];
     if (hide) {
         [[CDVCursorMonitorService service] startWithTimeout:[hide integerValue]];
     }
 }
 
-- (void)registerPlugin:(CDVPlugin*)plugin withClassName:(NSString*)className
-{
+- (void) registerPlugin:(CDVPlugin*) plugin withClassName:(NSString*) className {
     if ([plugin respondsToSelector:@selector(setViewController:)]) {
         [plugin setViewController:self];
     }
@@ -252,12 +247,11 @@
         [plugin setCommandDelegate:_commandDelegate];
     }
 
-    [self.pluginObjects setObject:plugin forKey:className];
+    self.pluginObjects[className] = plugin;
     [plugin pluginInitialize];
 }
 
-- (void)registerPlugin:(CDVPlugin*)plugin withPluginName:(NSString*)pluginName
-{
+- (void) registerPlugin:(CDVPlugin*) plugin withPluginName:(NSString*) pluginName {
     if ([plugin respondsToSelector:@selector(setViewController:)]) {
         [plugin setViewController:self];
     }
@@ -267,30 +261,29 @@
     }
 
     NSString* className = NSStringFromClass([plugin class]);
-    [self.pluginObjects setObject:plugin forKey:className];
+    self.pluginObjects[className] = plugin;
     [self.pluginsMap setValue:className forKey:[pluginName lowercaseString]];
     [plugin pluginInitialize];
 }
 
 /**
- Returns an instance of a CordovaCommand object, based on its name.  If one exists already, it is returned.
+ * Returns an instance of a CordovaCommand object, based on its name.  If one exists already, it is returned.
  */
-- (id)getCommandInstance:(NSString*)pluginName
-{
+- (id) getCommandInstance:(NSString*) pluginName {
     // first, we try to find the pluginName in the pluginsMap
     // (acts as a whitelist as well) if it does not exist, we return nil
     // NOTE: plugin names are matched as lowercase to avoid problems - however, a
     // possible issue is there can be duplicates possible if you had:
     // "org.apache.cordova.Foo" and "org.apache.cordova.foo" - only the lower-cased entry will match
-    NSString* className = [self.pluginsMap objectForKey:[pluginName lowercaseString]];
+    NSString* className = self.pluginsMap[[pluginName lowercaseString]];
 
     if (className == nil) {
         return nil;
     }
 
-    id obj = [self.pluginObjects objectForKey:className];
+    id obj = self.pluginObjects[className];
     if (!obj) {
-        obj = [[NSClassFromString (className)alloc] initWithWebView:webView];
+        obj = [(CDVPlugin*) [NSClassFromString(className) alloc] initWithWebView:webView];
 
         if (obj != nil) {
             [self registerPlugin:obj withClassName:className];
@@ -313,19 +306,19 @@
 
     [self showWindow:self];
     [self.window makeKeyAndOrderFront:self];
-    [[NSApplication sharedApplication] activateIgnoringOtherApps : YES];
+    [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 }
 
 
-- (void) windowResized:(NSNotification*)notification;
-{
+- (void) windowResized:(NSNotification*) notification; {
 }
 
 #pragma mark Menu Action Handlers
+
 /**
  * Implement our own fullscreen logic
  */
-- (IBAction) onFullscreen:(id)sender {
+- (IBAction) onFullscreen:(id) sender {
     [CDVWindowSizeCommand toggleFullScreen:self.window];
 }
 
