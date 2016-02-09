@@ -61,7 +61,7 @@
     if ([commandsJSON length] > 0) {
         CDV_EXEC_LOG(@"Exec: Retrieved new exec messages by chaining.");
     }
-    
+
     // TODO:
 //    [_commandQueue enqueCommandBatch:commandsJSON];
 }
@@ -122,11 +122,6 @@
 - (id)getCommandInstance:(NSString*)pluginName
 {
     return [_viewController getCommandInstance:pluginName];
-}
-
-- (void)registerPlugin:(CDVPlugin*)plugin withClassName:(NSString*)className
-{
-    [_viewController registerPlugin:plugin withClassName:className];
 }
 
 - (void)runInBackground:(void (^)())block
