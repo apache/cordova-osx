@@ -43,7 +43,7 @@ Create your project
 2. add the osx platform:
 
    ````
-   $ cordova platform add git://git.apache.org/cordova-osx.git
+   $ cordova platform add https://github.com/apache/cordova-osx.git
    $ cordova run osx
    ````
    
