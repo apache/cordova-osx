@@ -20,10 +20,38 @@
 -->
 ## Release Notes for Cordova (OS X) ##
  
- Cordova is a framework that enables developers to include the Cordova API in their OS X application projects easily, and also create new Cordova-based OS X application projects through the command-line.
+### 4.0.0 (Feb 11, 2016)
+* CB-10570 Compilation error on case sensitive filesystem
+* CB-6789 **OSX** - Fix header licenses (Apache RAT report).
+* Update `CDVBridge.m`
+* CB-10308 Unable to parse multi dimensional arrays with more than 2 levels
+* CB-10238 Move device-plugin out from `cordovalib` to the plugin repository
+* CB-9818 Reloading the webview in **OSX** looses the `CordovaBridgeUti`
+* CB-10198 Prompt submission bug
+* CB-10085 Implement and expose PlatformApi for **OSX**
+* CB-10099 **OSX** copy-paste not possible in own windows
+* CB-10087 **OSX** facilitate easy preferences menu item handling
+* CB-10084 **OSX** (re)move connectivity in favour of `cordova-plugin-network-information`
+* CB-6789 **OSX** Fix header licenses 
+* CB-9584 **OSX** add config to enable webview debug menu
+* simple: `CDV.h` is not exported
+* CB-9925 Add basic tests to **OSX** platform
+* CB-9818 Reloading the webview in **OSX** looses the `CordovaBridgeUtil`
+* CB-9692 **OSX** `cordova.exec` is not available
+* CB-9581 **OSX** `WebView` does not send cookies is safari cache is cleared 
+* Fullscreen windows does not properly get focused
+* fix plugin argument calls
+* CB-9541 Add preferences to put app into "kiosk mode"
+* escape `__PROJECT_NAME__` with quotes in project file
+* replace `__PROJECT_NAME__` also in `config.xml` and controller strings
+* CB-9517 Adding a plugin on **iOS/OSX** that uses a private framework does not work 
+* CB-8417 moved platform specific js into platform
+* CB-6789 Add license to `CONTRIBUTING.md`
+* Updated docs link in `README` to use apache link, not the redirect.
+* CB-6567 Adding the **OSX** platform also copies over the `CordovaLibTests`
+* CB-6560: added top level `package.json` file
+* CB-6491 add `CONTRIBUTING.md`
 
-### 4.0.0 (20151231) ###
-* Official release.
 
 ### 3.5.0 (20140418) ###
 * Fixed layout and updated scripts to work with cli
