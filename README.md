@@ -36,19 +36,18 @@ Create your project
 -------------------------------------------------------------
    
 1. (Optionally) Follow the instructions in the [**Command-Line Usage**](http://cordova.apache.org/docs/en/latest/guide/cli/index.html) section of the [Cordova Docs](http://cordova.apache.org/docs/en/latest/guide/cli/index.html) to create a new project. For example
-    ````
-    $ cordova create hello com.example.hello HelloWorld
-    ````
+
+   ````
+   $ cordova create hello com.example.hello HelloWorld
+   ````
 
 2. add the osx platform:
 
    ````
-   $ cordova platform add https://github.com/apache/cordova-osx.git
+   $ cordova platform add osx
    $ cordova run osx
    ````
    
-   > **Note**: Since OSX is not officailly released and deployed to npm yet, you need to use the git url when adding the platform.
-
 3. You can also open the project in XCode:
 
    ````
@@ -58,10 +57,10 @@ Create your project
 
 ### Add plugins
 
-1. if you need the file-plugin add the master branch version, eg:
+1. for example, if you need the file-plugin do:
 
    ````
-   $ cordova plugin add https://github.com/apache/cordova-plugin-file.git
+   $ cordova plugin add cordova-plugin-file
    ````
     
 
@@ -83,10 +82,10 @@ Create a Cordova OSX Standalone project
 
 ### Add plugins
 
-1. if you need the file-plugin add the master branch version, eg:
+1. for example, if you need the file-plugin do:
 
    ````
-   $ cordova plugin add https://github.com/apache/cordova-plugin-file.git
+   $ cordova plugin add cordova-plugin-file
    ````
 
 
