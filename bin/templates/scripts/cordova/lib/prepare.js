@@ -211,7 +211,7 @@ function handleBuildSettings(platformConfig, locations) {
 
 function handleIcons(projectConfig, platformRoot) {
     // Update icons
-    var icons = projectConfig.getIcons('ios');
+    var icons = projectConfig.getIcons('osx');
     var appRoot = path.dirname(projectConfig.path);
 
     // See https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/Designing.html

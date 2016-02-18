@@ -16,7 +16,7 @@
         "test": "npm run jshint && npm run jasmine",
         "jasmine": "npm run objc-tests && npm run jasmine-tests",
         "objc-tests": "jasmine-node --captureExceptions --color tests/spec/cordovalib.spec.js",
-        "jasmine-tests": "jasmine-node --captureExceptions --color tests/spec/create.spec.js",
+        "jasmine-tests": "jasmine-node --captureExceptions --color tests/spec/create.spec.js tests/spec/platform.spec.js",
         "jshint": "node node_modules/jshint/bin/jshint bin && node node_modules/jshint/bin/jshint tests"
     },
     "author": "Apache Software Foundation",
