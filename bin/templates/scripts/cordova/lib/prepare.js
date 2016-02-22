@@ -69,7 +69,7 @@ module.exports.prepare = function (cordovaProject) {
  *   configuration is already dumped to appropriate config.xml file.
  */
 function updateConfigFile(sourceConfig, configMunger, locations) {
-    events.emit('verbose', 'Generating config.xml from defaults for platform "ios"');
+    events.emit('verbose', 'Generating config.xml from defaults for platform "osx"');
 
     // First cleanup current config and merge project's one into own
     // Overwrite platform config.xml with defaults.xml.
@@ -108,7 +108,7 @@ function updateWww(cordovaProject, destinations) {
     // If project contains 'merges' for our platform, use them as another overrides
     var merges_path = path.join(cordovaProject.root, 'merges', 'osx');
     if (fs.existsSync(merges_path)) {
-        events.emit('verbose', 'Found "merges" for ios platform. Copying over existing "www" files.');
+        events.emit('verbose', 'Found "merges" for osx platform. Copying over existing "www" files.');
         var overrides = path.join(merges_path, '*');
         shell.cp('-rf', overrides, destinations.www);
     }

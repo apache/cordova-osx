@@ -18,7 +18,7 @@
         "test": "npm run jshint && npm run jasmine",
         "jasmine": "npm run objc-tests && npm run jasmine-tests",
         "objc-tests": "jasmine-node --captureExceptions --color tests/spec/cordovalib.spec.js",
-        "jasmine-tests": "jasmine-node --captureExceptions --color tests/spec/create.spec.js",
+        "jasmine-tests": "jasmine-node --captureExceptions --color tests/spec/create.spec.js tests/spec/platform.spec.js",
         "jshint": "node node_modules/jshint/bin/jshint bin && node node_modules/jshint/bin/jshint tests"
     },
     "author": "Apache Software Foundation",
@@ -27,7 +27,7 @@
         "cordova-common": "^1.0.0",
         "nopt": "^3.0.6",
         "q": "^1.4.1",
-        "shelljs": "^0.6.0",
+        "shelljs": "^0.5.3",
         "underscore": "^1.8.3",
         "unorm": "^1.4.1",
         "xcode": "^0.8.3"
