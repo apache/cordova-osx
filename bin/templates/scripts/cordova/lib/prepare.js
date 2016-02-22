@@ -123,12 +123,11 @@ function updateWww(cordovaProject, destinations) {
  */
 function updateProject(platformConfig, locations) {
 
-
     // CB-6992 it is necessary to normalize characters
     // because node and shell scripts handles unicode symbols differently
     // We need to normalize the name to NFD form since OSX uses NFD unicode form
     var name = unorm.nfd(platformConfig.name());
-    var pkg = platformConfig.osx_CFBundleIdentifier() || platformConfig.packageName();
+    var pkg = platformConfig.ios_CFBundleIdentifier() || platformConfig.packageName();
     var version = platformConfig.version();
 
     var originalName = path.basename(locations.xcodeCordovaProj);
@@ -140,7 +139,7 @@ function updateProject(platformConfig, locations) {
 
     // Update version (bundle version)
     infoPlist['CFBundleShortVersionString'] = version;
-    var CFBundleVersion = platformConfig.osx_CFBundleVersion() || default_CFBundleVersion(version);
+    var CFBundleVersion = platformConfig.ios_CFBundleVersion() || default_CFBundleVersion(version);
     infoPlist['CFBundleVersion'] = CFBundleVersion;
 
     // Update Author if present

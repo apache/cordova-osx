@@ -10,23 +10,42 @@
     "keywords": [
         "osx",
         "cordova",
-        "apache"
+        "apache",
+        "ecosystem:cordova",
+        "cordova:platform"
     ],
     "scripts": {
         "test": "npm run jshint && npm run jasmine",
         "jasmine": "npm run objc-tests && npm run jasmine-tests",
         "objc-tests": "jasmine-node --captureExceptions --color tests/spec/cordovalib.spec.js",
-        "jasmine-tests": "jasmine-node --captureExceptions --color tests/spec/create.spec.js tests/spec/platform.spec.js",
+        "jasmine-tests": "jasmine-node --captureExceptions --color tests/spec/create.spec.js",
         "jshint": "node node_modules/jshint/bin/jshint bin && node node_modules/jshint/bin/jshint tests"
     },
     "author": "Apache Software Foundation",
     "license": "Apache Version 2.0",
+    "dependencies": {
+        "cordova-common": "^1.0.0",
+        "nopt": "^3.0.6",
+        "q": "^1.4.1",
+        "shelljs": "^0.6.0",
+        "underscore": "^1.8.3",
+        "unorm": "^1.4.1",
+        "xcode": "^0.8.3"
+    },
+    "bundledDependencies": [
+        "cordova-common",
+        "nopt",
+        "q",
+        "underscore",
+        "unorm",
+        "xcode",
+        "shelljs"
+    ],
     "devDependencies": {
         "jshint": "^2.6.0",
         "uncrustify": "^0.6.1",
         "tmp": "^0.0.26",
         "jasmine-node": "~1",
-        "shelljs": "^0.2.6",
         "coffee-script": "^1.7.1",
         "nodeunit": "^0.8.7"
     }

@@ -38,7 +38,7 @@ var ConsoleLogger = require('./lib/ConsoleLogger');
  */
 function Api(platform, platformRootDir, events) {
     // 'platform' property is required as per PlatformApi spec
-    this.platform = platform || 'ios';
+    this.platform = platform || 'osx';
 
     this.root = platformRootDir || path.resolve(__dirname, '..');
     this.events = events || ConsoleLogger.get();
@@ -101,7 +101,7 @@ Api.createPlatform = function (destination, config, options, events) {
         // after platform is created we return Api instance based on new Api.js location
         // This is required to correctly resolve paths in the future api calls
         var PlatformApi = require(path.resolve(destination, 'cordova/Api'));
-        return new PlatformApi('ios', destination, events);
+        return new PlatformApi('osx', destination, events);
     });
 };
 
