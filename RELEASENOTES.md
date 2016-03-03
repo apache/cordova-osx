@@ -20,6 +20,13 @@
 -->
 ## Release Notes for Cordova (OS X) ##
  
+### 4.0.1 (Mar 03, 2016)
+* updated .ratignore
+* CB-10668 added node_modules directory
+* CB-10668 removed bin/node_modules, updated create.js to use root node_modules
+* CB-10668 updated package.json, prepare.js and Api.js
+* CB-10646 Platform specific icons not copied to xcode project
+
 ### 4.0.0 (Feb 11, 2016)
 * CB-10570 Compilation error on case sensitive filesystem
 * CB-6789 **OSX** - Fix header licenses (Apache RAT report).
