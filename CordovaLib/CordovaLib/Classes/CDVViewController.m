@@ -88,7 +88,7 @@
     WebPreferences* prefs = [self.webView preferences];
     [prefs setAutosaves:YES];
 
-    [self configureWebGL:prefs];
+    [self configureWebDefaults:prefs];
     [self configureLocalStorage:prefs];
     [self configureWindowSize];
     [self configureHideMousePointer];
@@ -166,9 +166,9 @@
 }
 
 /**
- * Configures WebGL
+ * Configures the default web preferences
  */
-- (void) configureWebGL:(WebPreferences*) prefs {
+- (void) configureWebDefaults:(WebPreferences*) prefs {
     // initialize items based on settings
     BOOL enableWebGL = [self.settings[@"EnableWebGL"] boolValue];
 
@@ -176,6 +176,17 @@
     if (enableWebGL) {
         [prefs setWebGLEnabled:YES];
     }
+
+    // ensure that acceleration settings are enabled (CB-11002)
+    [prefs setRequestAnimationFrameEnabled:YES];
+    [prefs setAccelerated2dCanvasEnabled:YES];
+    [prefs setAcceleratedDrawingEnabled:YES];
+    [prefs setCanvasUsesAcceleratedDrawing:YES];
+    [prefs setAcceleratedCompositingEnabled:YES];
+
+    // todo: add configuration options for those
+    // [prefs setShowRepaintCounter:YES];
+    // [prefs setShowDebugBorders:YES];
 }
 
 /**
