@@ -27,7 +27,10 @@
 var cordova = require('cordova'),
         channel = require('cordova/channel'),
         utils = require('cordova/utils'),
-        base64 = require('cordova/base64');
+        base64 = require('cordova/base64'),
+        commandQueue = [], // Contains pending JS->Native messages.
+        isInContextOfEvalJs = 0,
+        failSafeTimerId = 0;
 
 
 function massageMessageNativeToJs(message) {
@@ -95,7 +98,7 @@ function OSXExec() {
     if (successCallback || failCallback) {
         callbackId = service + cordova.callbackId++;
         cordova.callbacks[callbackId] =
-        {success: successCallback, fail: failCallback};
+        { success: successCallback, fail: failCallback };
     }
 
     actionArgs = massageArgsJsToNative(actionArgs);
@@ -107,6 +110,20 @@ function OSXExec() {
     }
 }
 
+OSXExec.nativeFetchMessages = function () {
+    // Stop listing for window detatch once native side confirms poke.
+    if (failSafeTimerId) {
+        clearTimeout(failSafeTimerId);
+        failSafeTimerId = 0;
+    }
+    // Each entry in commandQueue is a JSON string already.
+    if (!commandQueue.length) {
+        return '';
+    }
+    var json = '[' + commandQueue.join(',') + ']';
+    commandQueue.length = 0;
+    return json;
+};
 
 OSXExec.nativeCallback = function (callbackId, status, message, keepCallback) {
     var success = status === 0 || status === 1;
@@ -114,4 +131,40 @@ OSXExec.nativeCallback = function (callbackId, status, message, keepCallback) {
     cordova.callbackFromNative(callbackId, success, status, args, keepCallback);
 };
 
-module.exports = OSXExec;
+OSXExec.nativeEvalAndFetch = function (func) {
+    // This shouldn't be nested, but better to be safe.
+    isInContextOfEvalJs++;
+    try {
+        func();
+        return iOSExec.nativeFetchMessages();
+    } finally {
+        isInContextOfEvalJs--;
+    }
+};
+//module.exports = OSXExec;
+
+// Proxy the exec for bridge changes. See CB-10106
+
+function cordovaExec() {
+    var cexec = require('cordova/exec');
+    var cexec_valid = (typeof cexec.nativeFetchMessages === 'function') && (typeof cexec.nativeEvalAndFetch === 'function') && (typeof cexec.nativeCallback === 'function');
+    return (cexec_valid && execProxy !== cexec) ? cexec : OSXExec;
+}
+
+function execProxy() {
+    cordovaExec().apply(null, arguments);
+};
+
+execProxy.nativeFetchMessages = function () {
+    return cordovaExec().nativeFetchMessages.apply(null, arguments);
+};
+
+execProxy.nativeEvalAndFetch = function () {
+    return cordovaExec().nativeEvalAndFetch.apply(null, arguments);
+};
+
+execProxy.nativeCallback = function () {
+    return cordovaExec().nativeCallback.apply(null, arguments);
+};
+
+module.exports = execProxy;
