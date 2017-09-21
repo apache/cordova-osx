@@ -88,6 +88,7 @@
     WebPreferences* prefs = [self.webView preferences];
     [prefs setAutosaves:YES];
 
+    [self configureWebViewDelegate];
     [self configureWebDefaults:prefs];
     [self configureLocalStorage:prefs];
     [self configureWindowSize];
@@ -163,6 +164,14 @@
 
     // Initialize the plugin objects dict.
     self.pluginObjects = [[NSMutableDictionary alloc] initWithCapacity:20];
+}
+
+- (void)configureWebViewDelegate {
+    NSString *allowWebViewNavigation = [self.settings objectForKey:@"AllowWebViewNavigation"];
+    if (allowWebViewNavigation == nil) {
+        allowWebViewNavigation = @"true";  // Default to true for backwards compatibility.
+    }
+    self.webViewDelegate.allowWebViewNavigation = [allowWebViewNavigation boolValue];
 }
 
 /**
