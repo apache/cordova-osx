@@ -83,9 +83,15 @@
 #pragma mark WebPolicyDelegate
 
 - (void) webView:(WebView*) sender decidePolicyForNavigationAction:(NSDictionary*) actionInformation request:(NSURLRequest*) request frame:(WebFrame*) frame decisionListener:(id <WebPolicyDecisionListener>) listener {
-    NSString* url = [[request URL] description];
-    NSLog(@"navigating to %@", url);
+  NSURL *url = [request URL];
+  NSLog(@"navigating to %@", url.description);
+  if (self.allowWebViewNavigation || [@"file" isEqualToString:url.scheme]) {
+    // Open in-app if navigation is allowed in the WebView, or if this is a local file request.
     [listener use];
+  } else {
+    // Forward external requests to the system otherwise.
+    [[NSWorkspace sharedWorkspace] openURL:url];
+  }
 }
 
 #pragma mark WebViewDelegate
