@@ -20,7 +20,9 @@
 var fs = require('fs');
 var path = require('path');
 
-var CordovaError = require('cordova-common').CordovaError;
+var PluginManager = require('cordova-common').PluginManager;
+var projectFile   = require('./lib/projectFile');
+var CordovaError  = require('cordova-common').CordovaError;
 var ConsoleLogger = require('./lib/ConsoleLogger');
 
 /**
@@ -181,8 +183,8 @@ Api.prototype.prepare = function (cordovaProject) {
  *   CordovaError instance.
  */
 Api.prototype.addPlugin = function (plugin, installOptions) {
-    var Plugman = require('./lib/plugman/Plugman');
-    return Plugman.get(this.locations, this.events).addPlugin(plugin, installOptions);
+    var xcodeproj = projectFile.parse(this.locations);
+    return PluginManager.get(this.platform, this.locations, xcodeproj).addPlugin(plugin, installOptions);
 };
 
 /**
@@ -199,8 +201,8 @@ Api.prototype.addPlugin = function (plugin, installOptions) {
  *   CordovaError instance.
  */
 Api.prototype.removePlugin = function (plugin, uninstallOptions) {
-    var Plugman = require('./lib/plugman/Plugman');
-    return Plugman.get(this.locations, this.events).removePlugin(plugin, uninstallOptions);
+    var xcodeproj = projectFile.parse(this.locations);
+    return PluginManager.get(self.platform, self.locations, xcodeproj).removePlugin(plugin, uninstallOptions)
 };
 
 /**
