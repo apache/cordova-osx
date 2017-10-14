@@ -213,6 +213,7 @@ function handleIcons (projectConfig, platformRoot) {
     // See https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/Designing.html
     // for application images sizes reference.
     var platformIcons = [
+        {dest: 'icon-1024x1024.png', width: 1024, height: 1024},
         {dest: 'icon-512x512.png', width: 512, height: 512},
         {dest: 'icon-256x256.png', width: 256, height: 256},
         {dest: 'icon-128x128.png', width: 128, height: 128},
