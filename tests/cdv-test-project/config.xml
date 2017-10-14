@@ -33,6 +33,7 @@
         <icon src="res/test-64x64.png" width="128" height="128" />
         <icon src="res/test-64x64.png" width="256" height="256" />
         <icon src="res/test-64x64.png" width="512" height="512" />
+        <icon src="res/test-64x64.png" width="1024" height="1024" />
     </platform>
 
 </widget>
