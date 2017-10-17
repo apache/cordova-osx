@@ -202,7 +202,7 @@ Api.prototype.addPlugin = function (plugin, installOptions) {
  */
 Api.prototype.removePlugin = function (plugin, uninstallOptions) {
     var xcodeproj = projectFile.parse(this.locations);
-    return PluginManager.get(self.platform, self.locations, xcodeproj).removePlugin(plugin, uninstallOptions)
+    return PluginManager.get(this.platform, this.locations, xcodeproj).removePlugin(plugin, uninstallOptions)
 };
 
 /**
