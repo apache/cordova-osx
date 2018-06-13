@@ -33,7 +33,6 @@
     "xcode": "^1.0.0"
   },
   "devDependencies": {
-    "coffee-script": "^1.7.1",
     "eslint": "^4.19.1",
     "eslint-config-semistandard": "^11.0.0",
     "eslint-config-standard": "^10.2.1",
