@@ -17,8 +17,8 @@
   "scripts": {
     "test": "npm run eslint && npm run jasmine",
     "jasmine": "npm run objc-tests && npm run jasmine-tests",
-    "objc-tests": "jasmine-node --captureExceptions --color tests/spec/cordovalib.spec.js",
-    "jasmine-tests": "jasmine-node --captureExceptions --color tests/spec/create.spec.js tests/spec/platform.spec.js",
+    "objc-tests": "jasmine tests/spec/cordovalib.spec.js",
+    "jasmine-tests": "jasmine tests/spec/create.spec.js tests/spec/platform.spec.js",
     "eslint": "node node_modules/eslint/bin/eslint bin && node node_modules/eslint/bin/eslint tests"
   },
   "author": "Apache Software Foundation",
@@ -41,7 +41,7 @@
     "eslint-plugin-node": "^5.0.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "jasmine-node": "~1",
+    "jasmine": "^2.6.0",
     "nodeunit": "^0.8.7",
     "tmp": "^0.0.26",
     "uncrustify": "^0.6.1"
