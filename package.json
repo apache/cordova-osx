@@ -15,11 +15,11 @@
     "cordova:platform"
   ],
   "scripts": {
-    "test": "npm run jshint && npm run jasmine",
+    "test": "npm run eslint && npm run jasmine",
     "jasmine": "npm run objc-tests && npm run jasmine-tests",
     "objc-tests": "jasmine-node --captureExceptions --color tests/spec/cordovalib.spec.js",
     "jasmine-tests": "jasmine-node --captureExceptions --color tests/spec/create.spec.js tests/spec/platform.spec.js",
-    "jshint": "node node_modules/jshint/bin/jshint bin && node node_modules/jshint/bin/jshint tests"
+    "eslint": "node node_modules/eslint/bin/eslint bin"
   },
   "author": "Apache Software Foundation",
   "license": "Apache Version 2.0",
@@ -42,7 +42,13 @@
     "shelljs"
   ],
   "devDependencies": {
-    "jshint": "^2.6.0",
+    "eslint": "^4.0.0",
+    "eslint-config-semistandard": "^11.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
     "jasmine-node": "^1.5.0",
     "tmp": "^0.0.26"
   }
