@@ -19,7 +19,7 @@
     "jasmine": "npm run objc-tests && npm run jasmine-tests",
     "objc-tests": "jasmine tests/spec/cordovalib.spec.js",
     "jasmine-tests": "jasmine tests/spec/create.spec.js tests/spec/platform.spec.js",
-    "eslint": "node node_modules/eslint/bin/eslint bin && node node_modules/eslint/bin/eslint tests"
+    "eslint": "node node_modules/eslint/bin/eslint bin && node node_modules/eslint/bin/eslint tests/spec"
   },
   "author": "Apache Software Foundation",
   "license": "Apache-2.0",
