@@ -1,2 +1,11 @@
 env:
-    jasmine: true
+  jasmine: true
+
+rules:
+  # rules ignored in tests/spec (at least for now):
+  one-var: off
+  indent: off
+  space-before-function-paren: off
+  no-unused-vars: off
+  standard/object-curly-even-spacing: off
+  comma-spacing: off

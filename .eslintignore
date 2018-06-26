@@ -1,4 +1,2 @@
 bin/node_modules/*
 bin/templates/project/*
-# ignore for now:
-tests
