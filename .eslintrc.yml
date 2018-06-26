@@ -1,5 +1,6 @@
 root: true
 extends: semistandard
+
 rules:
   # not used in patch release (at least for now):
   # indent:
@@ -10,6 +11,7 @@ rules:
   operator-linebreak: off
   no-throw-literal: off
   # needed in patch release (at least for now):
+
   indent: off
   no-useless-escape: off
   space-before-function-paren: off
