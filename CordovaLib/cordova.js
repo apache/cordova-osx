@@ -1,5 +1,5 @@
 // Platform: osx
-// c517ca811b4948b630e0b74dbae6c9637939da24
+// 1482f4b4d182328efd1f73185d6347e11071f4f7
 /*
  Licensed to the Apache Software Foundation (ASF) under one
  or more contributor license agreements.  See the NOTICE file
@@ -19,7 +19,7 @@
  under the License.
 */
 ;(function() {
-var PLATFORM_VERSION_BUILD_LABEL = '4.0.1';
+var PLATFORM_VERSION_BUILD_LABEL = '4.0.2-dev';
 // file: src/scripts/require.js
 
 /*jshint -W079 */
@@ -817,7 +817,7 @@ module.exports = channel;
 
 });
 
-// file: /Users/steveng/repo/cordova/cordova-osx/cordova-js-src/exec.js
+// file: /Users/brodybits/Documents/cordova/cordova-osx/cordova-js-src/exec.js
 define("cordova/exec", function(require, exports, module) {
 
 /**
@@ -1400,7 +1400,7 @@ exports.reset();
 
 });
 
-// file: /Users/steveng/repo/cordova/cordova-osx/cordova-js-src/platform.js
+// file: /Users/brodybits/Documents/cordova/cordova-osx/cordova-js-src/platform.js
 define("cordova/platform", function(require, exports, module) {
 
 module.exports = {
