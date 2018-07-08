@@ -26,6 +26,7 @@
   "dependencies": {
     "cordova-common": "2.2.5",
     "nopt": "3.0.6",
+    "plist": "2.1.0",
     "q": "1.4.1",
     "shelljs": "0.5.3",
     "underscore": "1.8.3",
@@ -35,6 +36,7 @@
   "bundledDependencies": [
     "cordova-common",
     "nopt",
+    "plist",
     "q",
     "underscore",
     "unorm",
