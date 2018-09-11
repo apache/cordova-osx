@@ -32,15 +32,6 @@
     "unorm": "^1.4.1",
     "xcode": "^0.8.3"
   },
-  "bundledDependencies": [
-    "cordova-common",
-    "nopt",
-    "q",
-    "underscore",
-    "unorm",
-    "xcode",
-    "shelljs"
-  ],
   "devDependencies": {
     "coffee-script": "^1.7.1",
     "eslint": "^4.0.0",
