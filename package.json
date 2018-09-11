@@ -54,5 +54,8 @@
     "nodeunit": "^0.8.7",
     "tmp": "^0.0.26",
     "uncrustify": "^0.6.1"
+  },
+  "engines": {
+    "node": ">=6.0.0"
   }
 }
