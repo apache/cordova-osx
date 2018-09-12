@@ -24,7 +24,7 @@
   "author": "Apache Software Foundation",
   "license": "Apache Version 2.0",
   "dependencies": {
-    "cordova-common": "^2.2.3",
+    "cordova-common": "^2.2.5",
     "nopt": "^3.0.6",
     "q": "^1.4.1",
     "shelljs": "^0.5.3",
