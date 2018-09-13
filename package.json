@@ -30,7 +30,7 @@
     "shelljs": "^0.5.3",
     "underscore": "^1.8.3",
     "unorm": "^1.4.1",
-    "xcode": "^0.8.3"
+    "xcode": "^1.0.0"
   },
   "devDependencies": {
     "coffee-script": "^1.7.1",
