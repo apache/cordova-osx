@@ -25,7 +25,7 @@ var fs = require('fs');
 
 var spec = __dirname;
 
-var test_projectPath = path.join(spec, '../', 'cdv-test-project');
+var test_projectPath = path.join(spec, '../../', 'cdv-test-project');
 
 var test_platformPath = path.join(test_projectPath, 'platforms', 'osx');
 

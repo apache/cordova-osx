@@ -25,7 +25,7 @@ var fs = require('fs');
 
 var spec = __dirname;
 
-var cordova_bin = path.join(spec, '../..', 'bin');
+var cordova_bin = path.join(spec, '../../..', 'bin');
 
 var tmp = require('tmp').dirSync().name;
 

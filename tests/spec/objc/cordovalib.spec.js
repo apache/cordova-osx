@@ -26,7 +26,7 @@ var tmp = require('tmp');
 
 var spec = __dirname;
 
-var tests_dir = path.join(spec, '..');
+var tests_dir = path.join(spec, '..', '..');
 
 describe('cordova-lib', function () {
 
