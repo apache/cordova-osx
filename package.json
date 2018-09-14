@@ -33,7 +33,6 @@
     "xcode": "^1.0.0"
   },
   "devDependencies": {
-    "coffee-script": "^1.7.1",
     "eslint": "^4.0.0",
     "eslint-config-semistandard": "^11.0.0",
     "eslint-config-standard": "^10.2.1",
@@ -42,9 +41,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "jasmine": "^3.1.0",
-    "nodeunit": "^0.8.7",
-    "tmp": "^0.0.26",
-    "uncrustify": "^0.6.1"
+    "tmp": "0.0.33"
   },
   "engines": {
     "node": ">=6.0.0"
