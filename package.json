@@ -21,7 +21,10 @@
     "jasmine-tests": "jasmine tests/spec/create.spec.js tests/spec/platform.spec.js",
     "eslint:bin": "node node_modules/eslint/bin/eslint bin",
     "eslint:spec": "node node_modules/eslint/bin/eslint tests/spec",
-    "eslint": "npm-run-all eslint:bin eslint:spec"
+    "eslint:cdvlibtests": "eslint tests/CordovaLibTests --rule 'space-before-function-paren:off' --rule 'indent:off' --rule 'comma-spacing:off' --rule 'key-spacing:off' --rule 'no-unused-vars:off' --rule 'no-multiple-empty-lines:off' --rule 'no-undef:off' --rule 'quotes:off' --rule 'space-infix-ops:off' --rule 'one-var:off' --rule 'semi:off'",
+    "eslint:cdvtestwww": "eslint --rule 'space-before-function-paren:off' --rule 'eol-last:off' tests/cdv-test-project/www",
+    "eslint:tests": "npm-run-all eslint:spec eslint:cdvlibtests eslint:cdvtestwww",
+    "eslint": "npm-run-all eslint:bin eslint:tests"
   },
   "author": "Apache Software Foundation",
   "license": "Apache-2.0",
