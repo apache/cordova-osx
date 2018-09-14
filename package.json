@@ -19,7 +19,7 @@
     "jasmine": "npm run objc-tests && npm run jasmine-tests",
     "objc-tests": "jasmine tests/spec/cordovalib.spec.js",
     "jasmine-tests": "jasmine tests/spec/create.spec.js tests/spec/platform.spec.js",
-    "eslint": "node node_modules/eslint/bin/eslint bin && node node_modules/eslint/bin/eslint tests"
+    "eslint": "eslint bin tests"
   },
   "author": "Apache Software Foundation",
   "license": "Apache-2.0",
@@ -34,13 +34,13 @@
   },
   "devDependencies": {
     "coffee-script": "^1.7.1",
-    "eslint": "^4.0.0",
+    "eslint": "^4.19.1",
     "eslint-config-semistandard": "^11.0.0",
     "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-node": "^5.0.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
     "jasmine": "^3.1.0",
     "nodeunit": "^0.8.7",
     "tmp": "^0.0.26",
