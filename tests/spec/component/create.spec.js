@@ -17,32 +17,29 @@
  under the License.
  */
 
-var shell = require('shelljs');
+const shell = require('shelljs');
+const path = require('path');
+const util = require('util');
+const fs = require('fs');
+const tmp = require('tmp').dirSync().name;
 
-var path = require('path');
-var util = require('util');
-var fs = require('fs');
-
-var spec = __dirname;
-
-var cordova_bin = path.join(spec, '../../..', 'bin');
-
-var tmp = require('tmp').dirSync().name;
+const cordova_bin = path.join(__dirname, '../../..', 'bin');
 
 function initProjectPath (projectname) {
     // remove existing folder
-    var pPath = path.join(tmp, projectname);
+    const pPath = path.join(tmp, projectname);
     shell.rm('-rf', pPath);
     return pPath;
 }
 
 function createProject (projectname, projectid) {
-    var projectPath = initProjectPath(projectname);
+    const projectPath = initProjectPath(projectname);
 
     // create the project
-    var command = util.format('"%s/create" "%s/%s" %s "%s"', cordova_bin, tmp, projectname, projectid, projectname);
+    const command = util.format('"%s/create" "%s/%s" %s "%s"', cordova_bin, tmp, projectname, projectid, projectname);
     shell.echo(command);
-    var return_code = shell.exec(command).code;
+
+    const return_code = shell.exec(command).code;
     expect(return_code).toBe(0);
     expect(fs.existsSync(projectPath)).toBe(true);
 
@@ -51,25 +48,24 @@ function createProject (projectname, projectid) {
 }
 
 function createAndBuild (projectname, projectid) {
-    var projectPath = createProject(projectname, projectid);
+    const projectPath = createProject(projectname, projectid);
 
     // build the project
-    var command = util.format('"%s/cordova/build"', path.join(tmp, projectname));
+    const command = util.format('"%s/cordova/build"', path.join(tmp, projectname));
     shell.echo(command);
-    var return_code = shell.exec(command, { silent: true }).code;
+
+    const return_code = shell.exec(command, { silent: true }).code;
     expect(return_code).toBe(0);
 
     // clean-up
     shell.rm('-rf', projectPath);
 }
 
-describe('create', function () {
-
-    it('create project with ascii+unicode name, and spaces', function () {
-        var projectname = '応応応応 hello 用用用用';
-        var projectid = 'com.test.app6';
+describe('create', () => {
+    it('create project with ascii+unicode name, and spaces', () => {
+        const projectname = '応応応応 hello 用用用用';
+        const projectid = 'com.test.app6';
 
         createAndBuild(projectname, projectid);
     });
-
 });
