@@ -15,10 +15,10 @@
     "cordova:platform"
   ],
   "scripts": {
-    "test": "npm run eslint && npm run jasmine",
-    "jasmine": "npm run objc-tests && npm run jasmine-tests",
-    "objc-tests": "jasmine tests/spec/cordovalib.spec.js",
-    "jasmine-tests": "jasmine tests/spec/create.spec.js tests/spec/platform.spec.js",
+    "test": "npm run eslint && npm run test:coverage",
+    "test:objc": "jasmine  --config=tests/spec/objc.json",
+    "test:component": "jasmine --config=tests/spec/component.json",
+    "test:coverage": "nyc jasmine --config=tests/spec/coverage.json",
     "eslint": "eslint bin tests"
   },
   "author": "Apache Software Foundation",
@@ -41,9 +41,19 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "jasmine": "^3.1.0",
+    "nyc": "^13.0.1",
     "tmp": "0.0.33"
   },
   "engines": {
     "node": ">=6.0.0"
+  },
+  "nyc": {
+    "include": [
+      "bin/templates/scripts/**"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ]
   }
 }

@@ -17,31 +17,25 @@
  under the License.
  */
 
-var shell = require('shelljs');
+const shell = require('shelljs');
+const path = require('path');
+const util = require('util');
+const tmp = require('tmp');
 
-var path = require('path');
-var util = require('util');
+const tests_dir = path.join(__dirname, '..', '..');
 
-var tmp = require('tmp');
-
-var spec = __dirname;
-
-var tests_dir = path.join(spec, '..');
-
-describe('cordova-lib', function () {
-
-    it('objective-c unit tests', function () {
-        var return_code = 0;
-        var command;
-        var artifacts_dir = tmp.dirSync().name;
+describe('cordova-lib', () => {
+    it('objective-c unit tests', () => {
+        const artifacts_dir = tmp.dirSync().name;
 
         // run the tests
-        command = util.format('xcodebuild test ' +
+        const command = util.format('xcodebuild test ' +
                 '-project %s/CordovaLibTests/CordovaLibTests.xcodeproj ' +
                 '-scheme CordovaLibApp ' +
                 'CONFIGURATION_BUILD_DIR="%s"', tests_dir, artifacts_dir);
         shell.echo(command);
-        return_code = shell.exec(command).code;
+
+        const return_code = shell.exec(command).code;
         expect(return_code).toBe(0);
     });
 });

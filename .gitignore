@@ -1,5 +1,6 @@
 .DS_Store
 .*.sw?
+.vscode
 *.cso
 tmp
 *.mode1v3
@@ -8,3 +9,6 @@ xcuserdata
 *.xcworkspace
 console.log
 node_modules
+coverage/
+npm-debug.log
+.nyc_output/
