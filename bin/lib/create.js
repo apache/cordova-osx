@@ -73,7 +73,7 @@ function copyJsAndCordovaLib (projectPath, projectName, use_shared) {
     });
 }
 
-function copyScripts (projectPath) {
+function copyScripts (projectPath, options) {
     var srcScriptsDir = path.join(ROOT, 'bin', 'templates', 'scripts', 'cordova');
     var destScriptsDir = path.join(projectPath, 'cordova');
 
@@ -83,7 +83,7 @@ function copyScripts (projectPath) {
     // Copy in the new ones.
     var binDir = path.join(ROOT, 'bin');
     shell.cp('-r', srcScriptsDir, projectPath);
-    shell.cp('-r', path.join(ROOT, 'node_modules'), destScriptsDir);
+    if (options.copyPlatformNodeModules) shell.cp('-r', path.join(ROOT, 'node_modules'), destScriptsDir);
 
     // Copy the check_reqs script
     shell.cp(path.join(binDir, 'check_reqs*'), destScriptsDir);
@@ -188,7 +188,7 @@ exports.createProject = function (project_path, package_name, project_name, opts
 
     // CordovaLib stuff
     copyJsAndCordovaLib(project_path, project_name, use_shared);
-    copyScripts(project_path);
+    copyScripts(project_path, opts);
 
     events.emit('log', generateDoneMessage('create', use_shared));
     return Q.resolve();

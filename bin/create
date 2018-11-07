@@ -59,7 +59,8 @@ if (argv.argv.remain[2]) config.setName(argv.argv.remain[2]);
 
 var options = {
     link: argv.link,
-    customTemplate: argv.argv.remain[3]
+    customTemplate: argv.argv.remain[3],
+    copyPlatformNodeModules: true
 };
 
 Api.createPlatform(projectPath, config, options).done();
