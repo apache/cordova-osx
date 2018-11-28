@@ -26,6 +26,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cordova-common": "^3.0.0",
+    "jasmine-spec-reporter": "^4.2.1",
     "nopt": "^3.0.6",
     "q": "^1.4.1",
     "shelljs": "^0.5.3",

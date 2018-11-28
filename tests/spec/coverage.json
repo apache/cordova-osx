@@ -4,6 +4,9 @@
       "component/**/*[sS]pec.js",
       "objc/**/*[sS]pec.js"
   ],
+  "helpers": [
+      "helper.js"
+  ],
   "stopSpecOnExpectationFailure": false,
   "random": false
 }
