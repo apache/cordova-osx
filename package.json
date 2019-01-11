@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/apache/cordova-osx"
   },
+  "bugs": {
+    "url": "https://github.com/apache/cordova-osx/issues"
+  },
   "keywords": [
     "osx",
     "cordova",
