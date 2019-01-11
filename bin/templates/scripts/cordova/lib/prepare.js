@@ -213,13 +213,13 @@ function handleIcons (projectConfig, platformRoot) {
     // See https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/Designing.html
     // for application images sizes reference.
     var platformIcons = [
-        {dest: 'icon-1024x1024.png', width: 1024, height: 1024},
-        {dest: 'icon-512x512.png', width: 512, height: 512},
-        {dest: 'icon-256x256.png', width: 256, height: 256},
-        {dest: 'icon-128x128.png', width: 128, height: 128},
-        {dest: 'icon-64x64.png', width: 64, height: 64},
-        {dest: 'icon-32x32.png', width: 32, height: 32},
-        {dest: 'icon-16x16.png', width: 16, height: 16}
+        { dest: 'icon-1024x1024.png', width: 1024, height: 1024 },
+        { dest: 'icon-512x512.png', width: 512, height: 512 },
+        { dest: 'icon-256x256.png', width: 256, height: 256 },
+        { dest: 'icon-128x128.png', width: 128, height: 128 },
+        { dest: 'icon-64x64.png', width: 64, height: 64 },
+        { dest: 'icon-32x32.png', width: 32, height: 32 },
+        { dest: 'icon-16x16.png', width: 16, height: 16 }
     ];
 
     platformIcons.forEach(function (item) {
@@ -287,7 +287,8 @@ function processAccessAndAllowNavigationEntries (config) {
     null is returned if the URL cannot be parsed, or is to be skipped for ATS.
 */
 function parseWhitelistUrlForATS (url, minimum_tls_version, requires_forward_secrecy) {
-    var href = URL.parse(url);
+    // @todo 'url.parse' was deprecated since v11.0.0. Use 'url.URL' constructor instead  node/no-deprecated-api
+    var href = URL.parse(url); // eslint-disable-line
     var retObj = {};
     retObj.Hostname = href.hostname;
 

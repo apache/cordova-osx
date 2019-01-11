@@ -31,7 +31,7 @@ var proc = require('child_process');
 module.exports = function (cmd, args, opt_cwd) {
     var d = Q.defer();
     try {
-        var child = proc.spawn(cmd, args, {cwd: opt_cwd, stdio: 'inherit'});
+        var child = proc.spawn(cmd, args, { cwd: opt_cwd, stdio: 'inherit' });
 
         child.on('exit', function (code) {
             if (code) {
