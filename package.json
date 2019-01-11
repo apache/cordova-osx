@@ -18,8 +18,7 @@
     "cordova:platform"
   ],
   "scripts": {
-    "cover": "npm run test:coverage",
-    "test": "npm run eslint && npm run test:component && npm run test:objc",
+    "test": "npm run eslint && npm run test:coverage",
     "test:objc": "jasmine  --config=tests/spec/objc.json",
     "test:component": "jasmine --config=tests/spec/component.json",
     "test:coverage": "nyc jasmine --config=tests/spec/coverage.json",
@@ -55,6 +54,7 @@
   },
   "nyc": {
     "include": [
+      "bin/lib/**",
       "bin/templates/scripts/**"
     ],
     "reporter": [
