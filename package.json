@@ -26,11 +26,11 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cordova-common": "^3.0.0",
-    "nopt": "^3.0.6",
+    "nopt": "^4.0.1",
     "plist": "^3.0.1",
     "q": "^1.4.1",
     "shelljs": "^0.5.3",
-    "underscore": "^1.8.3",
+    "underscore": "^1.9.1",
     "unorm": "^1.4.1",
     "xcode": "^1.0.0"
   },
