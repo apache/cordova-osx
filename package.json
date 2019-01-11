@@ -27,6 +27,7 @@
   "dependencies": {
     "cordova-common": "^3.0.0",
     "nopt": "^3.0.6",
+    "plist": "^3.0.1",
     "q": "^1.4.1",
     "shelljs": "^0.5.3",
     "underscore": "^1.8.3",
