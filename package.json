@@ -34,7 +34,7 @@
     "shelljs": "^0.5.3",
     "underscore": "^1.9.1",
     "unorm": "^1.4.1",
-    "xcode": "^1.1.0"
+    "xcode": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^5.12.0",
