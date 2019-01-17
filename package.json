@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/apache/cordova-osx"
   },
+  "bugs": {
+    "url": "https://github.com/apache/cordova-osx/issues"
+  },
   "keywords": [
     "osx",
     "cordova",
@@ -15,8 +18,7 @@
     "cordova:platform"
   ],
   "scripts": {
-    "cover": "npm run test:coverage",
-    "test": "npm run eslint && npm run test:component && npm run test:objc",
+    "test": "npm run eslint && npm run test:coverage",
     "test:objc": "jasmine  --config=tests/spec/objc.json",
     "test:component": "jasmine --config=tests/spec/component.json",
     "test:coverage": "nyc jasmine --config=tests/spec/coverage.json",
@@ -25,23 +27,23 @@
   "author": "Apache Software Foundation",
   "license": "Apache-2.0",
   "dependencies": {
-    "cordova-common": "^3.0.0",
-    "nopt": "^3.0.6",
+    "cordova-common": "^3.1.0",
+    "nopt": "^4.0.1",
     "plist": "^3.0.1",
     "q": "^1.4.1",
     "shelljs": "^0.5.3",
-    "underscore": "^1.8.3",
+    "underscore": "^1.9.1",
     "unorm": "^1.4.1",
-    "xcode": "^1.0.0"
+    "xcode": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-config-semistandard": "^11.0.0",
-    "eslint-config-standard": "^10.2.1",
+    "eslint": "^5.12.0",
+    "eslint-config-semistandard": "^13.0.0",
+    "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-standard": "^3.1.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
     "jasmine": "^3.1.0",
     "jasmine-spec-reporter": "^4.2.1",
     "nyc": "^13.0.1",
@@ -52,6 +54,7 @@
   },
   "nyc": {
     "include": [
+      "bin/lib/**",
       "bin/templates/scripts/**"
     ],
     "reporter": [
