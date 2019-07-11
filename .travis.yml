@@ -19,3 +19,6 @@ script:
   - node --version
   - npm --version
   - npm test
+
+after_script:
+  - codecov
