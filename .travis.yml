@@ -14,8 +14,12 @@ before_install:
 install:
   - npm install -g cordova@latest
   - npm install
+  - npm install -g codecov
 
 script:
   - node --version
   - npm --version
   - npm test
+
+after_script:
+  - codecov
