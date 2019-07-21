@@ -4,9 +4,10 @@ sudo: false
 
 env:
   matrix:
-    - TRAVIS_NODE_VERSION: '6'
-    - TRAVIS_NODE_VERSION: '8'
-    - TRAVIS_NODE_VERSION: '10'
+    - TRAVIS_NODE_VERSION: 6
+    - TRAVIS_NODE_VERSION: 8
+    - TRAVIS_NODE_VERSION: 10
+    - TRAVIS_NODE_VERSION: 12
 
 before_install:
   - nvm install $TRAVIS_NODE_VERSION
