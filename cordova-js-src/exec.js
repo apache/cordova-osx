@@ -25,12 +25,11 @@
  * @private
  */
 var cordova = require('cordova');
-var channel = require('cordova/channel');
 var utils = require('cordova/utils');
 var base64 = require('cordova/base64');
 
 function massageMessageNativeToJs (message) {
-    if (message.CDVType == 'ArrayBuffer') {
+    if (message.CDVType === 'ArrayBuffer') {
         var stringToArrayBuffer = function (str) {
             var ret = new Uint8Array(str.length);
             for (var i = 0; i < str.length; i++) {
@@ -48,9 +47,9 @@ function massageMessageNativeToJs (message) {
 
 function convertMessageToArgsNativeToJs (message) {
     var args = [];
-    if (!message || !message.hasOwnProperty('CDVType')) {
+    if (!message || !Object.prototype.hasOwnProperty.call(message, 'CDVType')) {
         args.push(message);
-    } else if (message.CDVType == 'MultiPart') {
+    } else if (message.CDVType === 'MultiPart') {
         message.messages.forEach(function (e) {
             args.push(massageMessageNativeToJs(e));
         });
@@ -61,12 +60,12 @@ function convertMessageToArgsNativeToJs (message) {
 }
 
 function massageArgsJsToNative (args) {
-    if (!args || utils.typeName(args) != 'Array') {
+    if (!args || utils.typeName(args) !== 'Array') {
         return args;
     }
     var ret = [];
     args.forEach(function (arg, i) {
-        if (utils.typeName(arg) == 'ArrayBuffer') {
+        if (utils.typeName(arg) === 'ArrayBuffer') {
             ret.push({
                 CDVType: 'ArrayBuffer',
                 data: base64.fromArrayBuffer(arg)
@@ -79,7 +78,7 @@ function massageArgsJsToNative (args) {
 }
 
 function OSXExec () {
-    var successCallback, failCallback, service, action, actionArgs, splitCommand;
+    var successCallback, failCallback, service, action, actionArgs;
     var callbackId = 'INVALID';
 
     successCallback = arguments[0];
