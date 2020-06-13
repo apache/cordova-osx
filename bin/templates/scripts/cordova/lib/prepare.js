@@ -262,7 +262,7 @@ function processAccessAndAllowNavigationEntries (config) {
                 item = {};
             }
             for (var o in obj) {
-                if (obj[o]) {
+                if (Object.prototype.hasOwnProperty.call(obj, o)) {
                     item[o] = obj[o];
                 }
             }
@@ -346,7 +346,7 @@ function writeATSEntries (config) {
     var ats = {};
 
     for (var hostname in pObj) {
-        if (pObj[hostname]) {
+        if (Object.prototype.hasOwnProperty.call(pObj, hostname)) {
             if (hostname === '*') {
                 ats.NSAllowsArbitraryLoads = true;
                 continue;
@@ -356,7 +356,7 @@ function writeATSEntries (config) {
             var exceptionDomain = {};
 
             for (var key in entry) {
-                if (entry[key] && key !== 'Hostname') {
+                if (Object.prototype.hasOwnProperty.call(entry, key) && key !== 'Hostname') {
                     exceptionDomain[key] = entry[key];
                 }
             }
