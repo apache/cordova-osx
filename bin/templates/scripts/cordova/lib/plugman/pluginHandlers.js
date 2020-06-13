@@ -62,7 +62,7 @@ var handlers = {
             shell.rm('-rf', destFile);
         }
     },
-    'framework': { // CB-5238 custom frameworks only
+    framework: { // CB-5238 custom frameworks only
         install: function (obj, plugin, project, options) {
             var src = obj.src;
             var custom = obj.custom;
@@ -119,7 +119,7 @@ var handlers = {
             events.emit('verbose', 'lib-file.uninstall is not supported for osx');
         }
     },
-    'asset': {
+    asset: {
         install: function (obj, plugin, project, options) {
             if (!obj.src) {
                 throw new CordovaError('<asset> tag without required "src" attribute. plugin=' + plugin.dir);

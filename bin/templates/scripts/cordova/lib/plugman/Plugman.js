@@ -42,7 +42,6 @@ function Plugman (locations, events) {
 var _instance = null;
 
 Plugman.get = function (locations, events) {
-
     if (!_instance) {
         _instance = new Plugman(locations, events);
     }
@@ -54,7 +53,6 @@ Plugman.get = function (locations, events) {
 module.exports = Plugman;
 
 Plugman.prototype.addPlugin = function (plugin, installOptions) {
-
     if (!plugin || plugin.constructor.name !== 'PluginInfo') { return Q.reject(new CordovaError('The parameter is incorrect. The first parameter to addPlugin should be a PluginInfo instance')); }
 
     installOptions = installOptions || {};
@@ -89,9 +87,9 @@ Plugman.prototype.addPlugin = function (plugin, installOptions) {
             .add_plugin_changes(plugin, installOptions.variables, /* is_top_level= */true, /* should_increment= */true)
             .save_all();
 
-        var targetDir = installOptions.usePlatformWww ?
-            self.locations.platformWww :
-            self.locations.www;
+        var targetDir = installOptions.usePlatformWww
+            ? self.locations.platformWww
+            : self.locations.www;
 
         self._addModulesInfo(plugin, targetDir);
     });
@@ -123,9 +121,9 @@ Plugman.prototype.removePlugin = function (plugin, uninstallOptions) {
             .remove_plugin_changes(plugin, /* is_top_level= */true)
             .save_all();
 
-        var targetDir = uninstallOptions.usePlatformWww ?
-            self.locations.platformWww :
-            self.locations.www;
+        var targetDir = uninstallOptions.usePlatformWww
+            ? self.locations.platformWww
+            : self.locations.www;
 
         self._removeModulesInfo(plugin, targetDir);
     });

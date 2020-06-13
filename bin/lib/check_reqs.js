@@ -35,9 +35,9 @@ module.exports.run = module.exports.check_xcodebuild = function () {
 
 module.exports.check_os = function () {
     // Build OSX apps available for OSX platform only, so we reject on others platforms
-    return process.platform === 'darwin' ?
-        Q.resolve(process.platform) :
-        Q.reject('Cordova tooling for OSX requires Apple OS X');
+    return process.platform === 'darwin'
+        ? Q.resolve(process.platform)
+        : Q.reject('Cordova tooling for OSX requires Apple OS X');
 };
 
 /**
@@ -56,9 +56,9 @@ function checkTool (tool, minVersion, message) {
     // check if tool version is greater than specified one
     return versions.get_tool_version(tool).then(function (version) {
         version = version.trim();
-        return versions.compareVersions(version, minVersion) >= 0 ?
-            Q.resolve(version) :
-            Q.reject('Cordova needs ' + tool + ' version ' + minVersion +
+        return versions.compareVersions(version, minVersion) >= 0
+            ? Q.resolve(version)
+            : Q.reject('Cordova needs ' + tool + ' version ' + minVersion +
               ' or greater, you have version ' + version + '. ' + (message || ''));
     });
 }
@@ -85,7 +85,6 @@ var Requirement = function (id, name, isFatal) {
  * @return Promise<Requirement[]> Array of requirements. Due to implementation, promise is always fulfilled.
  */
 module.exports.check_all = function () {
-
     var requirements = [
         new Requirement('os', 'Apple OS X', true),
         new Requirement('xcode', 'Xcode')
