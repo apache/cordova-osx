@@ -22,7 +22,7 @@
     "test:objc": "jasmine  --config=tests/spec/objc.json",
     "test:component": "jasmine --config=tests/spec/component.json",
     "test:coverage": "nyc jasmine --config=tests/spec/coverage.json",
-    "lint": "eslint bin tests"
+    "lint": "eslint . \"bin/**/!(*.*)\""
   },
   "author": "Apache Software Foundation",
   "license": "Apache-2.0",
