@@ -24,13 +24,12 @@
 
  * @private
  */
-var cordova = require('cordova'),
-        channel = require('cordova/channel'),
-        utils = require('cordova/utils'),
-        base64 = require('cordova/base64');
+var cordova = require('cordova');
+var channel = require('cordova/channel');
+var utils = require('cordova/utils');
+var base64 = require('cordova/base64');
 
-
-function massageMessageNativeToJs(message) {
+function massageMessageNativeToJs (message) {
     if (message.CDVType == 'ArrayBuffer') {
         var stringToArrayBuffer = function (str) {
             var ret = new Uint8Array(str.length);
@@ -47,7 +46,7 @@ function massageMessageNativeToJs(message) {
     return message;
 }
 
-function convertMessageToArgsNativeToJs(message) {
+function convertMessageToArgsNativeToJs (message) {
     var args = [];
     if (!message || !message.hasOwnProperty('CDVType')) {
         args.push(message);
@@ -61,7 +60,7 @@ function convertMessageToArgsNativeToJs(message) {
     return args;
 }
 
-function massageArgsJsToNative(args) {
+function massageArgsJsToNative (args) {
     if (!args || utils.typeName(args) != 'Array') {
         return args;
     }
@@ -69,8 +68,8 @@ function massageArgsJsToNative(args) {
     args.forEach(function (arg, i) {
         if (utils.typeName(arg) == 'ArrayBuffer') {
             ret.push({
-                'CDVType': 'ArrayBuffer',
-                'data': base64.fromArrayBuffer(arg)
+                CDVType: 'ArrayBuffer',
+                data: base64.fromArrayBuffer(arg)
             });
         } else {
             ret.push(arg);
@@ -79,8 +78,7 @@ function massageArgsJsToNative(args) {
     return ret;
 }
 
-function OSXExec() {
-
+function OSXExec () {
     var successCallback, failCallback, service, action, actionArgs, splitCommand;
     var callbackId = 'INVALID';
 
@@ -95,7 +93,7 @@ function OSXExec() {
     if (successCallback || failCallback) {
         callbackId = service + cordova.callbackId++;
         cordova.callbacks[callbackId] =
-        {success: successCallback, fail: failCallback};
+        { success: successCallback, fail: failCallback };
     }
 
     actionArgs = massageArgsJsToNative(actionArgs);
@@ -106,7 +104,6 @@ function OSXExec() {
         alert('window.cordovabridge binding is missing.');
     }
 }
-
 
 OSXExec.nativeCallback = function (callbackId, status, message, keepCallback) {
     var success = status === 0 || status === 1;
