@@ -20,6 +20,22 @@
 -->
 ## Release Notes for Cordova (OS X) ##
  
+### 6.0.0 (Jun 15, 2020)
+* [GH-103](https://github.com/apache/cordova-osx/pull/103) breaking(npm): bump dependencies
+* [GH-101](https://github.com/apache/cordova-osx/pull/101) breaking: @cordova/eslint-config w/ applied fix
+* [GH-102](https://github.com/apache/cordova-osx/pull/102) ci: update xcode image to 11.5
+* [GH-100](https://github.com/apache/cordova-osx/pull/100) chore(npm) update npm audit issues
+* [GH-97](https://github.com/apache/cordova-osx/pull/97) breaking: bump cordova-common@^4.0.0
+* (ci) drop nodejs <10 from Travis
+* [GH-98](https://github.com/apache/cordova-osx/pull/98) breaking: bump node support >=10.0.0
+* [GH-95](https://github.com/apache/cordova-osx/pull/95) breaking: bump package 6.0.0-dev
+* chore(asf): update git notification settings
+* Update CONTRIBUTING.md
+* [GH-90](https://github.com/apache/cordova-osx/pull/90) chore: update nyc dev dependency
+* chore: add Node.js 12 to ci services
+* [GH-88](https://github.com/apache/cordova-osx/pull/88) build: report test coverage to codecov.io
+* Add or update GitHub pull request and issue template
+
 ### 5.0.0 (Feb 01, 2019)
 * [GH-83](https://github.com/apache/cordova-osx/pull/83) OSX Platform Release Preparation (Cordova 9)
 * [GH-66](https://github.com/apache/cordova-osx/pull/66) explicit `plist@3` dependency
