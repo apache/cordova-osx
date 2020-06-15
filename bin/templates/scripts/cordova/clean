@@ -21,14 +21,14 @@
 
 var Api = require('./Api');
 
-if(['--help', '/?', '-h', 'help', '-help', '/help'].indexOf(process.argv[2]) >= 0) {
+if (['--help', '/?', '-h', 'help', '-help', '/help'].indexOf(process.argv[2]) >= 0) {
     console.log('Cleans the project directory.');
     process.exit(0);
 }
 
-new Api().clean({argv: process.argv.slice(2)}).done(function() {
+new Api().clean({ argv: process.argv.slice(2) }).done(function () {
     console.log('** CLEAN SUCCEEDED **');
-},function(err) {
+}, function (err) {
     console.error(err);
     process.exit(2);
 });

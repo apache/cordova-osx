@@ -28,7 +28,6 @@ var events = require('cordova-common').events;
 var projectPath = path.join(__dirname, '..', '..');
 
 module.exports.run = function (runOptions) {
-
     return Q.resolve().then(function () {
         if (!runOptions.nobuild) {
             return build.run(runOptions);

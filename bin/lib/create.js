@@ -84,7 +84,7 @@ function copyScripts (projectPath) {
     var binDir = path.join(ROOT, 'bin');
     shell.cp('-r', srcScriptsDir, projectPath);
 
-    let nodeModulesDir = path.join(ROOT, 'node_modules');
+    const nodeModulesDir = path.join(ROOT, 'node_modules');
     if (fs.existsSync(nodeModulesDir)) shell.cp('-r', nodeModulesDir, destScriptsDir);
 
     // Copy the check_reqs script

@@ -19,13 +19,12 @@
     under the License.
 */
 
-var create = require('./lib/create'),
-    args;
+var create = require('./lib/create');
+var args;
 
 if (process.argv.length < 3) {
     create.updateSubprojectHelp();
-}
-else {
+} else {
     args = process.argv.slice(2);
     create.update_cordova_subproject(args);
 }

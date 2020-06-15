@@ -120,7 +120,7 @@ exports.compareVersions = function (version1, version2) {
             // Number constructor is strict enough and will return NaN
             // if conversion fails. In this case we won't be able to compare versions properly
             if (isNaN(parsed)) {
-                throw 'Version should contain only numbers and dots';
+                throw new Error('Version should contain only numbers and dots');
             }
             return parsed;
         });

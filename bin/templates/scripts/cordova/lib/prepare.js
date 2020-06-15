@@ -34,7 +34,6 @@ var configMunger = require('./configMunger');
 /* jshint sub:true */
 
 module.exports.prepare = function (cordovaProject) {
-
     var self = this;
 
     this._config = updateConfigFile(cordovaProject.projectConfig,
@@ -119,7 +118,6 @@ function updateWww (cordovaProject, destinations) {
  * @param   {Object}  locations       A map of locations for this platform (In/Out)
  */
 function updateProject (platformConfig, locations) {
-
     // CB-6992 it is necessary to normalize characters
     // because node and shell scripts handles unicode symbols differently
     // We need to normalize the name to NFD form since OSX uses NFD unicode form
@@ -132,26 +130,26 @@ function updateProject (platformConfig, locations) {
     // Update package id (bundle id)
     var plistFile = path.join(locations.xcodeCordovaProj, originalName + '-Info.plist');
     var infoPlist = plist.parse(fs.readFileSync(plistFile, 'utf8'));
-    infoPlist['CFBundleIdentifier'] = pkg;
+    infoPlist.CFBundleIdentifier = pkg;
 
     // Update version (bundle version)
-    infoPlist['CFBundleShortVersionString'] = version;
+    infoPlist.CFBundleShortVersionString = version;
     var CFBundleVersion = platformConfig.ios_CFBundleVersion() || default_CFBundleVersion(version);
-    infoPlist['CFBundleVersion'] = CFBundleVersion;
+    infoPlist.CFBundleVersion = CFBundleVersion;
 
     // Update Author if present
     var author = platformConfig.author();
-    var copyRight = infoPlist['NSHumanReadableCopyright'];
+    var copyRight = infoPlist.NSHumanReadableCopyright;
     if (copyRight && author) {
-        infoPlist['NSHumanReadableCopyright'] = copyRight.replace('--AUTHOR--', author);
+        infoPlist.NSHumanReadableCopyright = copyRight.replace('--AUTHOR--', author);
     }
 
     // replace Info.plist ATS entries according to <access> and <allow-navigation> config.xml entries
     var ats = writeATSEntries(platformConfig);
     if (Object.keys(ats).length > 0) {
-        infoPlist['NSAppTransportSecurity'] = ats;
+        infoPlist.NSAppTransportSecurity = ats;
     } else {
-        delete infoPlist['NSAppTransportSecurity'];
+        delete infoPlist.NSAppTransportSecurity;
     }
 
     var info_contents = plist.build(infoPlist);
@@ -264,7 +262,7 @@ function processAccessAndAllowNavigationEntries (config) {
                 item = {};
             }
             for (var o in obj) {
-                if (obj.hasOwnProperty(o)) {
+                if (Object.prototype.hasOwnProperty.call(obj, o)) {
                     item[o] = obj[o];
                 }
             }
@@ -348,9 +346,9 @@ function writeATSEntries (config) {
     var ats = {};
 
     for (var hostname in pObj) {
-        if (pObj.hasOwnProperty(hostname)) {
+        if (Object.prototype.hasOwnProperty.call(pObj, hostname)) {
             if (hostname === '*') {
-                ats['NSAllowsArbitraryLoads'] = true;
+                ats.NSAllowsArbitraryLoads = true;
                 continue;
             }
 
@@ -358,16 +356,16 @@ function writeATSEntries (config) {
             var exceptionDomain = {};
 
             for (var key in entry) {
-                if (entry.hasOwnProperty(key) && key !== 'Hostname') {
+                if (Object.prototype.hasOwnProperty.call(entry, key) && key !== 'Hostname') {
                     exceptionDomain[key] = entry[key];
                 }
             }
 
-            if (!ats['NSExceptionDomains']) {
-                ats['NSExceptionDomains'] = {};
+            if (!ats.NSExceptionDomains) {
+                ats.NSExceptionDomains = {};
             }
 
-            ats['NSExceptionDomains'][hostname] = exceptionDomain;
+            ats.NSExceptionDomains[hostname] = exceptionDomain;
         }
     }
 

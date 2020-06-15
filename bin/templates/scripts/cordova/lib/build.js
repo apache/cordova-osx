@@ -30,7 +30,6 @@ var projectPath = path.join(__dirname, '..', '..');
 var projectName = null;
 
 module.exports.run = function (buildOpts) {
-
     buildOpts = buildOpts || {};
 
     if (buildOpts.debug && buildOpts.release) {
@@ -101,7 +100,6 @@ module.exports.run = function (buildOpts) {
         // return spawn('xcrun', xcRunArgs, projectPath);
 
         // todo
-
     });
 };
 
