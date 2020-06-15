@@ -34,7 +34,7 @@
     "shelljs": "^0.5.3",
     "underscore": "^1.9.1",
     "unorm": "^1.4.1",
-    "xcode": "^2.0.0"
+    "xcode": "^3.0.1"
   },
   "devDependencies": {
     "@cordova/eslint-config": "^3.0.0",
