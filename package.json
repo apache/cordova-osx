@@ -4,9 +4,7 @@
   "description": "cordova-osx release",
   "main": "bin/templates/scripts/cordova/Api.js",
   "repository": "github:apache/cordova-osx",
-  "bugs": {
-    "url": "https://github.com/apache/cordova-osx/issues"
-  },
+  "bugs": "https://github.com/apache/cordova-osx/issues",
   "keywords": [
     "osx",
     "cordova",
