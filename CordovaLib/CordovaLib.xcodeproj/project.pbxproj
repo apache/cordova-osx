@@ -38,7 +38,7 @@
 		70BD67B818FFA12D00A1EFCF /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD679218FFA12D00A1EFCF /* NSData+Base64.m */; };
 		70BD67B918FFA12D00A1EFCF /* NSWindow+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 70BD679318FFA12D00A1EFCF /* NSWindow+Utils.h */; };
 		70BD67BA18FFA12D00A1EFCF /* NSWindow+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD679418FFA12D00A1EFCF /* NSWindow+Utils.m */; };
-		CC6A01B9AD6ECF2D913FF418 /* CDVWindowSizeCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = CC6A03B1971BACCB9183AEFE /* CDVWindowSizeCommand.h */; };
+		CC6A01B9AD6ECF2D913FF418 /* CDVWindowSizeCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = CC6A03B1971BACCB9183AEFE /* CDVWindowSizeCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC6A03130738A1F299369195 /* CDVCursorMonitorService.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6A07666A2CE3AE46F85AD6 /* CDVCursorMonitorService.m */; };
 		CC6A051516599A029D1ECA50 /* CDVMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6A0F82EDAFA619D95D3392 /* CDVMainWindow.m */; };
 		CC6A0567D3BA91121C2D643C /* CookieJar.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6A01435C5B9099EA0BF004 /* CookieJar.m */; };
