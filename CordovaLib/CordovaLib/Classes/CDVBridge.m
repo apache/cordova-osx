@@ -74,7 +74,8 @@
     SEL normalSelector = NSSelectorFromString(methodName);
     if ([obj respondsToSelector:normalSelector]) {
         // [obj performSelector:normalSelector withObject:command];
-        objc_msgSend(obj, normalSelector, command);
+        void (*msgSend)(id, SEL, CDVInvokedUrlCommand*) = (void (*)(id, SEL, CDVInvokedUrlCommand*)) objc_msgSend;
+        msgSend(obj, normalSelector, command);
     } else {
         // There's no method to call, so throw an error.
         NSLog(@"ERROR: Method '%@' not defined in Plugin '%@'", methodName, command.cmdClassName);
