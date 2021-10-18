@@ -17,7 +17,6 @@
  * under the License.
  */
 
-var Q = require('q');
 var path = require('path');
 var shell = require('shelljs');
 var spawn = require('./spawn');
@@ -30,7 +29,7 @@ module.exports.run = function () {
     })[0];
 
     if (!projectName) {
-        return Q.reject('No Xcode project found in ' + projectPath);
+        return Promise.reject('No Xcode project found in ' + projectPath);
     }
 
     return spawn('xcodebuild', ['-project', projectName, '-configuration', 'Debug', '-alltargets', 'clean'], projectPath)

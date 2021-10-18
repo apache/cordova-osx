@@ -20,7 +20,6 @@
 */
 
 var shell = require('shelljs');
-var Q = require('q');
 var path = require('path');
 var fs = require('fs');
 var ROOT = path.join(__dirname, '..', '..');
@@ -153,12 +152,12 @@ exports.createProject = function (project_path, package_name, project_name, opts
 
     // check that project path doesn't exist
     if (fs.existsSync(project_path)) {
-        return Q.reject('Project already exists');
+        return Promise.reject('Project already exists');
     }
 
     // check that parent directory does exist so cp -r will not fail
     if (!fs.existsSync(project_parent)) {
-        return Q.reject(project_parent + ' does not exist. Please specify an existing parent folder');
+        return Promise.reject(project_parent + ' does not exist. Please specify an existing parent folder');
     }
 
     // create the project directory and copy over files
@@ -193,7 +192,7 @@ exports.createProject = function (project_path, package_name, project_name, opts
     copyScripts(project_path);
 
     events.emit('log', generateDoneMessage('create', use_shared));
-    return Q.resolve();
+    return Promise.resolve();
 };
 
 exports.updateProject = function (projectPath, opts, events) {
@@ -203,7 +202,7 @@ exports.updateProject = function (projectPath, opts, events) {
         copyScripts(projectPath);
         events.emit('log', generateDoneMessage('update', opts.link));
     });
-    return Q.resolve();
+    return Promise.resolve();
 };
 
 function generateDoneMessage (type, link) {

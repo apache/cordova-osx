@@ -17,7 +17,6 @@
        under the License.
 */
 
-var Q = require('q');
 var path = require('path');
 var fs = require('fs');
 var shell = require('shelljs');
@@ -53,7 +52,7 @@ Plugman.get = function (locations, events) {
 module.exports = Plugman;
 
 Plugman.prototype.addPlugin = function (plugin, installOptions) {
-    if (!plugin || plugin.constructor.name !== 'PluginInfo') { return Q.reject(new CordovaError('The parameter is incorrect. The first parameter to addPlugin should be a PluginInfo instance')); }
+    if (!plugin || plugin.constructor.name !== 'PluginInfo') { return Promise.reject(new CordovaError('The parameter is incorrect. The first parameter to addPlugin should be a PluginInfo instance')); }
 
     installOptions = installOptions || {};
     installOptions.variables = installOptions.variables || {};
@@ -96,7 +95,7 @@ Plugman.prototype.addPlugin = function (plugin, installOptions) {
 };
 
 Plugman.prototype.removePlugin = function (plugin, uninstallOptions) {
-    if (!plugin || plugin.constructor.name !== 'PluginInfo') { return Q.reject(new CordovaError('The parameter is incorrect. The first parameter to addPlugin should be a PluginInfo instance')); }
+    if (!plugin || plugin.constructor.name !== 'PluginInfo') { return Promise.reject(new CordovaError('The parameter is incorrect. The first parameter to addPlugin should be a PluginInfo instance')); }
 
     var self = this;
     var actions = new ActionStack();

@@ -32,4 +32,7 @@ if (args.help || args.argv.remain.length === 0) {
     process.exit(0);
 }
 
-Api.updatePlatform(args.argv.remain[0], { link: (args.link || args.shared) }).done();
+Api.updatePlatform(args.argv.remain[0], { link: (args.link || args.shared) }).catch(err => {
+    console.log(err);
+    process.exit(2);
+});

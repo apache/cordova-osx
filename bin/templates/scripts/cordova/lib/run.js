@@ -19,7 +19,6 @@
 
 /* jshint node: true */
 
-var Q = require('q');
 var path = require('path');
 var build = require('./build');
 var spawn = require('./spawn');
@@ -28,11 +27,9 @@ var events = require('cordova-common').events;
 var projectPath = path.join(__dirname, '..', '..');
 
 module.exports.run = function (runOptions) {
-    return Q.resolve().then(function () {
+    return Promise.resolve().then(function () {
         if (!runOptions.nobuild) {
             return build.run(runOptions);
-        } else {
-            return Q.resolve();
         }
     }).then(function () {
         return build.findXCodeProjectIn(projectPath);

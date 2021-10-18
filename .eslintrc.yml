@@ -17,6 +17,10 @@
 
 extends: '@cordova/eslint-config/node'
 
+# FIXME avoid rule exceptions
+rules:
+  prefer-promise-reject-errors: off
+
 overrides:
   - files: [tests/spec/**/*.js]
     extends: '@cordova/eslint-config/node-tests'

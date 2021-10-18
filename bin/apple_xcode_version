@@ -21,7 +21,7 @@
 
 var versions = require('./lib/versions.js');
 
-versions.get_apple_xcode_version().done(function (version) {
+versions.get_apple_xcode_version().then(function (version) {
     console.log(version);
 }, function (err) {
     console.error(err);

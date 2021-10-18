@@ -17,7 +17,7 @@
  * under the License.
  */
 
-var Q = require('q');
+const { promisify } = require('util');
 var path = require('path');
 var shell = require('shelljs');
 var spawn = require('./spawn');
@@ -33,16 +33,16 @@ module.exports.run = function (buildOpts) {
     buildOpts = buildOpts || {};
 
     if (buildOpts.debug && buildOpts.release) {
-        return Q.reject('Only one of "debug"/"release" options should be specified');
+        return Promise.reject('Only one of "debug"/"release" options should be specified');
     }
 
     if (buildOpts.device && buildOpts.emulator) {
-        return Q.reject('Only one of "device"/"emulator" options should be specified');
+        return Promise.reject('Only one of "device"/"emulator" options should be specified');
     }
 
     if (buildOpts.buildConfig) {
         if (!fs.existsSync(buildOpts.buildConfig)) {
-            return Q.reject('Build config file does not exist:' + buildOpts.buildConfig);
+            return Promise.reject('Build config file does not exist:' + buildOpts.buildConfig);
         }
         events.emit('log', 'Reading build config file:', path.resolve(buildOpts.buildConfig));
         var buildConfig = JSON.parse(fs.readFileSync(buildOpts.buildConfig, 'utf-8'));
@@ -72,7 +72,7 @@ module.exports.run = function (buildOpts) {
         if (buildOpts.provisioningProfile) {
             extraConfig += 'PROVISIONING_PROFILE = ' + buildOpts.provisioningProfile + '\n';
         }
-        return Q.nfcall(fs.writeFile, path.join(__dirname, '..', 'build-extras.xcconfig'), extraConfig, 'utf-8');
+        return promisify(fs.writeFile)(path.join(__dirname, '..', 'build-extras.xcconfig'), extraConfig, 'utf-8');
     }).then(function () {
         var configuration = buildOpts.release ? 'Release' : 'Debug';
 
@@ -115,7 +115,7 @@ function findXCodeProjectIn (projectPath) {
     });
 
     if (xcodeProjFiles.length === 0) {
-        return Q.reject('No Xcode project found in ' + projectPath);
+        return Promise.reject('No Xcode project found in ' + projectPath);
     }
     if (xcodeProjFiles.length > 1) {
         events.emit('warn', 'Found multiple .xcodeproj directories in \n' +
@@ -123,7 +123,7 @@ function findXCodeProjectIn (projectPath) {
     }
 
     var projectName = path.basename(xcodeProjFiles[0], '.xcodeproj');
-    return Q.resolve(projectName);
+    return Promise.resolve(projectName);
 }
 
 module.exports.findXCodeProjectIn = findXCodeProjectIn;

@@ -62,4 +62,7 @@ var options = {
     customTemplate: argv.argv.remain[3]
 };
 
-Api.createPlatform(projectPath, config, options).done();
+Api.createPlatform(projectPath, config, options).catch(err => {
+    console.error(err);
+    process.exit(2);
+});

@@ -51,7 +51,7 @@ var opts = nopt({
 // Make options compatible with PlatformApi build method spec
 opts.argv = opts.argv.remain;
 
-new Api().run(opts).done(function () {
+new Api().run(opts).then(function () {
     console.log('** RUN SUCCEEDED **');
 }, function (err) {
     var errorMessage = (err && err.stack) ? err.stack : err;

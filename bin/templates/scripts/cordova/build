@@ -45,7 +45,7 @@ var buildOpts = nopt({
 // Make buildOptions compatible with PlatformApi build method spec
 buildOpts.argv = buildOpts.argv.remain;
 
-new Api().build(buildOpts).done(function () {
+new Api().build(buildOpts).then(function () {
     console.log('** BUILD SUCCEEDED **');
 }, function (err) {
     var errorMessage = (err && err.stack) ? err.stack : err;
