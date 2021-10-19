@@ -50,34 +50,6 @@ exports.get_apple_osx_version = function () {
     });
 };
 
-exports.get_apple_osx_version = function () {
-    var d = Q.defer();
-    child_process.exec('xcodebuild -showsdks', function (error, stdout, stderr) {
-        if (error) {
-            d.reject(stderr);
-        } else {
-            d.resolve(stdout);
-        }
-    });
-
-    return d.promise.then(function (output) {
-        var regex = /[0-9]*\.[0-9]*/;
-        var versions = [];
-        var regexOSX = /^OS X \d+/;
-        output = output.split('\n');
-        for (var i = 0; i < output.length; i++) {
-            if (output[i].trim().match(regexOSX)) {
-                versions[versions.length] = parseFloat(output[i].match(regex)[0]);
-            }
-        }
-        versions.sort();
-        console.log(versions[0]);
-        return Q();
-    }, function (stderr) {
-        return Q.reject(stderr);
-    });
-};
-
 exports.get_apple_xcode_version = function () {
     var d = Q.defer();
     child_process.exec('xcodebuild -version', function (error, stdout, stderr) {
