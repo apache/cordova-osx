@@ -15,6 +15,19 @@
 # specific language governing permissions and limitations
 # under the License.
 
+github:
+  description: Apache Cordova OSX
+  homepage: https://cordova.apache.org/
+
+  labels:
+    - cordova
+    - cordova-platform
+    - osx
+    - objective-c
+    - javascript
+    - nodejs
+    - hacktoberfest
+
 notifications:
   commits:              commits@cordova.apache.org
   issues:               issues@cordova.apache.org
