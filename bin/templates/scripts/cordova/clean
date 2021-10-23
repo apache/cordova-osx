@@ -26,7 +26,7 @@ if (['--help', '/?', '-h', 'help', '-help', '/help'].indexOf(process.argv[2]) >=
     process.exit(0);
 }
 
-new Api().clean({ argv: process.argv.slice(2) }).done(function () {
+new Api().clean({ argv: process.argv.slice(2) }).then(function () {
     console.log('** CLEAN SUCCEEDED **');
 }, function (err) {
     console.error(err);

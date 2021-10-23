@@ -17,7 +17,6 @@
        under the License.
 */
 
-var Q = require('q');
 var shell = require('shelljs');
 var versions = require('./versions');
 
@@ -36,8 +35,8 @@ module.exports.run = module.exports.check_xcodebuild = function () {
 module.exports.check_os = function () {
     // Build OSX apps available for OSX platform only, so we reject on others platforms
     return process.platform === 'darwin'
-        ? Q.resolve(process.platform)
-        : Q.reject('Cordova tooling for OSX requires Apple OS X');
+        ? Promise.resolve(process.platform)
+        : Promise.reject('Cordova tooling for OSX requires Apple OS X');
 };
 
 /**
@@ -51,14 +50,14 @@ function checkTool (tool, minVersion, message) {
     // Check whether tool command is available at all
     var tool_command = shell.which(tool);
     if (!tool_command) {
-        return Q.reject(tool + ' was not found. ' + (message || ''));
+        return Promise.reject(tool + ' was not found. ' + (message || ''));
     }
     // check if tool version is greater than specified one
     return versions.get_tool_version(tool).then(function (version) {
         version = version.trim();
         return versions.compareVersions(version, minVersion) >= 0
-            ? Q.resolve(version)
-            : Q.reject('Cordova needs ' + tool + ' version ' + minVersion +
+            ? Promise.resolve(version)
+            : Promise.reject('Cordova needs ' + tool + ' version ' + minVersion +
               ' or greater, you have version ' + version + '. ' + (message || ''));
     });
 }
@@ -103,7 +102,7 @@ module.exports.check_all = function () {
         return promise.then(function () {
             // If fatal requirement is failed,
             // we don't need to check others
-            if (fatalIsHit) return Q();
+            if (fatalIsHit) return;
 
             var requirement = requirements[idx];
             return checkFn()
@@ -117,7 +116,7 @@ module.exports.check_all = function () {
                     result.push(requirement);
                 });
         });
-    }, Q())
+    }, Promise.resolve())
         .then(function () {
             // When chain is completed, return requirements array to upstream API
             return result;

@@ -17,7 +17,6 @@
     under the License.
 */
 
-var Q = require('q');
 var fs = require('fs');
 var path = require('path');
 var shell = require('shelljs');
@@ -40,7 +39,7 @@ module.exports.prepare = function (cordovaProject) {
         configMunger.get(this.locations.root), this.locations);
 
     // Update own www dir with project's www assets and plugins' assets and js-files
-    return Q.when(updateWww(cordovaProject, this.locations)).then(function () {
+    return Promise.resolve(updateWww(cordovaProject, this.locations)).then(function () {
         // update project according to config.xml changes.
         return updateProject(self._config, self.locations);
     }).then(function () {
@@ -161,7 +160,7 @@ function updateProject (platformConfig, locations) {
     return handleBuildSettings(platformConfig, locations).then(function () {
         if (name === originalName) {
             events.emit('verbose', 'OSX Product Name has not changed (still "' + originalName + '")');
-            return Q();
+            return Promise.resolve();
         }
 
         // Update product name inside pbxproj file
@@ -169,7 +168,7 @@ function updateProject (platformConfig, locations) {
         try {
             proj.parseSync();
         } catch (err) {
-            return Q.reject(new CordovaError('An error occurred during parsing of project.pbxproj. Start weeping. Output: ' + err));
+            return Promise.reject(new CordovaError('An error occurred during parsing of project.pbxproj. Start weeping. Output: ' + err));
         }
 
         proj.updateProductName(name);
@@ -194,13 +193,13 @@ function updateProject (platformConfig, locations) {
         fs.writeFileSync(locations.pbxproj, pbx_contents, 'utf-8');
         events.emit('verbose', 'Wrote out OSX Product Name and updated XCode project file names from "' + originalName + '" to "' + name + '".');
         // in case of updated paths we return them back to
-        return Q();
+        return Promise.resolve();
     });
 }
 
 function handleBuildSettings (platformConfig, locations) {
     // nothing to do
-    return Q();
+    return Promise.resolve();
 }
 
 function handleIcons (projectConfig, platformRoot) {

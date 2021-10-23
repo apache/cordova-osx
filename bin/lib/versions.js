@@ -20,19 +20,17 @@
 */
 
 var child_process = require('child_process');
-var Q = require('q');
 
 exports.get_apple_osx_version = function () {
-    var d = Q.defer();
-    child_process.exec('xcodebuild -showsdks', function (error, stdout, stderr) {
-        if (error) {
-            d.reject(stderr);
-        } else {
-            d.resolve(stdout);
-        }
-    });
-
-    return d.promise.then(function (output) {
+    return new Promise((resolve, reject) => {
+        child_process.exec('xcodebuild -showsdks', function (error, stdout, stderr) {
+            if (error) {
+                reject(stderr);
+            } else {
+                resolve(stdout);
+            }
+        });
+    }).then(function (output) {
         var regex = /[0-9]*\.[0-9]*/;
         var versions = [];
         var regexOSX = /^OS X \d+/;
@@ -44,23 +42,20 @@ exports.get_apple_osx_version = function () {
         }
         versions.sort();
         console.log(versions[0]);
-        return Q();
-    }, function (stderr) {
-        return Q.reject(stderr);
     });
 };
 
 exports.get_apple_xcode_version = function () {
-    var d = Q.defer();
-    child_process.exec('xcodebuild -version', function (error, stdout, stderr) {
-        var versionMatch = /Xcode (.*)/.exec(stdout);
-        if (error || !versionMatch) {
-            d.reject(stderr);
-        } else {
-            d.resolve(versionMatch[1]);
-        }
+    return new Promise((resolve, reject) => {
+        child_process.exec('xcodebuild -version', function (error, stdout, stderr) {
+            var versionMatch = /Xcode (.*)/.exec(stdout);
+            if (error || !versionMatch) {
+                reject(stderr);
+            } else {
+                resolve(versionMatch[1]);
+            }
+        });
     });
-    return d.promise;
 };
 
 /**
@@ -72,7 +67,7 @@ exports.get_apple_xcode_version = function () {
 exports.get_tool_version = function (toolName) {
     switch (toolName) {
     case 'xcodebuild': return exports.get_apple_xcode_version();
-    default: return Q.reject(toolName + ' is not valid tool name. Valid names are: \'xcodebuild\'');
+    default: return Promise.reject(toolName + ' is not valid tool name. Valid names are: \'xcodebuild\'');
     }
 };
 
