@@ -143,7 +143,8 @@
     // Test for the legacy selector first in case they both exist.
     if ([obj respondsToSelector:normalSelector]) {
         // [obj performSelector:normalSelector withObject:command];
-        objc_msgSend(obj, normalSelector, command);
+        void* (*msgSend)(id, SEL, CDVInvokedUrlCommand*) = (typeof(msgSend)) &objc_msgSend;
+        msgSend(obj, normalSelector, command);
     } else {
         // There's no method to call, so throw an error.
         NSLog(@"ERROR: Method '%@' not defined in Plugin '%@'", methodName, command.cmdClassName);
