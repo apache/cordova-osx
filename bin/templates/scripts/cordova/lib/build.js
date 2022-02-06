@@ -81,25 +81,6 @@ module.exports.run = function (buildOpts) {
 
         const xcodebuildArgs = getXcodeArgs(projectName, projectPath, configuration);
         return spawn('xcodebuild', xcodebuildArgs, projectPath);
-    }).then(function () {
-        if (buildOpts.noSign) {
-
-        }
-        // var buildOutputDir = path.join(projectPath, 'build');
-        // var pathToApp = path.join(buildOutputDir, projectName + '.app');
-        // var pathToIpa = path.join(buildOutputDir, projectName + '.ipa');
-        // var xcRunArgs = ['-sdk', 'iphoneos', 'PackageApplication',
-        //    '-v', pathToApp,
-        //    '-o', pathToIpa];
-        // if (buildOpts.codeSignIdentity) {
-        //    xcRunArgs.concat('--sign', buildOpts.codeSignIdentity);
-        // }
-        // if (buildOpts.provisioningProfile) {
-        //    xcRunArgs.concat('--embed', buildOpts.provisioningProfile);
-        // }
-        // return spawn('xcrun', xcRunArgs, projectPath);
-
-        // todo
     });
 };
 

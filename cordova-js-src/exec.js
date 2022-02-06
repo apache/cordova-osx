@@ -78,14 +78,13 @@ function massageArgsJsToNative (args) {
 }
 
 function OSXExec () {
-    let successCallback, failCallback, service, action, actionArgs;
     let callbackId = 'INVALID';
 
-    successCallback = arguments[0];
-    failCallback = arguments[1];
-    service = arguments[2];
-    action = arguments[3];
-    actionArgs = arguments[4];
+    const successCallback = arguments[0];
+    const failCallback = arguments[1];
+    const service = arguments[2];
+    const action = arguments[3];
+    let actionArgs = arguments[4];
 
     // Register the callbacks and add the callbackId to the positional
     // arguments if given.
