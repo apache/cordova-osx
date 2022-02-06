@@ -17,23 +17,23 @@
     under the License.
 */
 
-var fs = require('fs');
-var path = require('path');
-var shell = require('shelljs');
-var xcode = require('xcode');
-var unorm = require('unorm');
-var plist = require('plist');
-var URL = require('url');
-var events = require('cordova-common').events;
-var xmlHelpers = require('cordova-common').xmlHelpers;
-var ConfigParser = require('cordova-common').ConfigParser;
-var CordovaError = require('cordova-common').CordovaError;
-var configMunger = require('./configMunger');
+const fs = require('fs');
+const path = require('path');
+const shell = require('shelljs');
+const xcode = require('xcode');
+const unorm = require('unorm');
+const plist = require('plist');
+const URL = require('url');
+const events = require('cordova-common').events;
+const xmlHelpers = require('cordova-common').xmlHelpers;
+const ConfigParser = require('cordova-common').ConfigParser;
+const CordovaError = require('cordova-common').CordovaError;
+const configMunger = require('./configMunger');
 
 /* jshint sub:true */
 
 module.exports.prepare = function (cordovaProject) {
-    var self = this;
+    const self = this;
 
     this._config = updateConfigFile(cordovaProject.projectConfig,
         configMunger.get(this.locations.root), this.locations);
@@ -75,7 +75,7 @@ function updateConfigFile (sourceConfig, configMunger, locations) {
     configMunger.reapply_global_munge().save_all();
 
     // Merge changes from app's config.xml into platform's one
-    var config = new ConfigParser(locations.configXml);
+    const config = new ConfigParser(locations.configXml);
     xmlHelpers.mergeXml(sourceConfig.doc.getroot(),
         config.doc.getroot(), 'osx', /* clobber= */true);
 
@@ -101,10 +101,10 @@ function updateWww (cordovaProject, destinations) {
     shell.cp('-rf', path.join(destinations.platformWww, '*'), destinations.www);
 
     // If project contains 'merges' for our platform, use them as another overrides
-    var merges_path = path.join(cordovaProject.root, 'merges', 'osx');
+    const merges_path = path.join(cordovaProject.root, 'merges', 'osx');
     if (fs.existsSync(merges_path)) {
         events.emit('verbose', 'Found "merges" for osx platform. Copying over existing "www" files.');
-        var overrides = path.join(merges_path, '*');
+        const overrides = path.join(merges_path, '*');
         shell.cp('-rf', overrides, destinations.www);
     }
 }
@@ -120,38 +120,38 @@ function updateProject (platformConfig, locations) {
     // CB-6992 it is necessary to normalize characters
     // because node and shell scripts handles unicode symbols differently
     // We need to normalize the name to NFD form since OSX uses NFD unicode form
-    var name = unorm.nfd(platformConfig.name());
-    var pkg = platformConfig.ios_CFBundleIdentifier() || platformConfig.packageName();
-    var version = platformConfig.version();
+    const name = unorm.nfd(platformConfig.name());
+    const pkg = platformConfig.ios_CFBundleIdentifier() || platformConfig.packageName();
+    const version = platformConfig.version();
 
-    var originalName = path.basename(locations.xcodeCordovaProj);
+    const originalName = path.basename(locations.xcodeCordovaProj);
 
     // Update package id (bundle id)
-    var plistFile = path.join(locations.xcodeCordovaProj, originalName + '-Info.plist');
-    var infoPlist = plist.parse(fs.readFileSync(plistFile, 'utf8'));
+    const plistFile = path.join(locations.xcodeCordovaProj, originalName + '-Info.plist');
+    const infoPlist = plist.parse(fs.readFileSync(plistFile, 'utf8'));
     infoPlist.CFBundleIdentifier = pkg;
 
     // Update version (bundle version)
     infoPlist.CFBundleShortVersionString = version;
-    var CFBundleVersion = platformConfig.ios_CFBundleVersion() || default_CFBundleVersion(version);
+    const CFBundleVersion = platformConfig.ios_CFBundleVersion() || default_CFBundleVersion(version);
     infoPlist.CFBundleVersion = CFBundleVersion;
 
     // Update Author if present
-    var author = platformConfig.author();
-    var copyRight = infoPlist.NSHumanReadableCopyright;
+    const author = platformConfig.author();
+    const copyRight = infoPlist.NSHumanReadableCopyright;
     if (copyRight && author) {
         infoPlist.NSHumanReadableCopyright = copyRight.replace('--AUTHOR--', author);
     }
 
     // replace Info.plist ATS entries according to <access> and <allow-navigation> config.xml entries
-    var ats = writeATSEntries(platformConfig);
+    const ats = writeATSEntries(platformConfig);
     if (Object.keys(ats).length > 0) {
         infoPlist.NSAppTransportSecurity = ats;
     } else {
         delete infoPlist.NSAppTransportSecurity;
     }
 
-    var info_contents = plist.build(infoPlist);
+    let info_contents = plist.build(infoPlist);
     info_contents = info_contents.replace(/<string>[\s\r\n]*<\/string>/g, '<string></string>');
     fs.writeFileSync(plistFile, info_contents, 'utf-8');
     events.emit('verbose', 'Wrote out OSX Bundle Identifier to "' + pkg + '"');
@@ -188,7 +188,7 @@ function updateProject (platformConfig, locations) {
         locations.pbxproj = path.join(locations.xcodeProjDir, 'project.pbxproj');
 
         // Hack this shi*t
-        var pbx_contents = fs.readFileSync(locations.pbxproj, 'utf-8');
+        let pbx_contents = fs.readFileSync(locations.pbxproj, 'utf-8');
         pbx_contents = pbx_contents.split(originalName).join(name);
         fs.writeFileSync(locations.pbxproj, pbx_contents, 'utf-8');
         events.emit('verbose', 'Wrote out OSX Product Name and updated XCode project file names from "' + originalName + '" to "' + name + '".');
@@ -204,12 +204,12 @@ function handleBuildSettings (platformConfig, locations) {
 
 function handleIcons (projectConfig, platformRoot) {
     // Update icons
-    var icons = projectConfig.getIcons('osx');
-    var appRoot = path.dirname(projectConfig.path);
+    const icons = projectConfig.getIcons('osx');
+    const appRoot = path.dirname(projectConfig.path);
 
     // See https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/OSXHIGuidelines/Designing.html
     // for application images sizes reference.
-    var platformIcons = [
+    const platformIcons = [
         { dest: 'icon-1024x1024.png', width: 1024, height: 1024 },
         { dest: 'icon-512x512.png', width: 512, height: 512 },
         { dest: 'icon-256x256.png', width: 256, height: 256 },
@@ -220,10 +220,10 @@ function handleIcons (projectConfig, platformRoot) {
     ];
 
     platformIcons.forEach(function (item) {
-        var icon = icons.getBySize(item.width, item.height) || icons.getDefault();
+        const icon = icons.getBySize(item.width, item.height) || icons.getDefault();
         if (icon) {
-            var src = path.join(appRoot, icon.src);
-            var dst = path.join(platformRoot, 'Images.xcassets/AppIcon.appiconset/', item.dest);
+            const src = path.join(appRoot, icon.src);
+            const dst = path.join(platformRoot, 'Images.xcassets/AppIcon.appiconset/', item.dest);
             events.emit('verbose', 'Copying icon from ' + src + ' to ' + dst);
             shell.cp('-f', src, dst);
         }
@@ -242,8 +242,8 @@ function handleIcons (projectConfig, platformRoot) {
         }
 */
 function processAccessAndAllowNavigationEntries (config) {
-    var accesses = config.getAccesses();
-    var allow_navigations = config.getAllowNavigations();
+    const accesses = config.getAccesses();
+    const allow_navigations = config.getAllowNavigations();
 
     // we concat allow_navigations and accesses, after processing accesses
     return allow_navigations.concat(accesses.map(function (obj) {
@@ -253,14 +253,14 @@ function processAccessAndAllowNavigationEntries (config) {
         return obj;
     // we reduce the array to an object with all the entries processed (key is Hostname)
     })).reduce(function (previousReturn, currentElement) {
-        var obj = parseWhitelistUrlForATS(currentElement.href, currentElement.minimum_tls_version, currentElement.requires_forward_secrecy);
+        const obj = parseWhitelistUrlForATS(currentElement.href, currentElement.minimum_tls_version, currentElement.requires_forward_secrecy);
         if (obj) {
             // we 'union' duplicate entries
-            var item = previousReturn[obj.Hostname];
+            let item = previousReturn[obj.Hostname];
             if (!item) {
                 item = {};
             }
-            for (var o in obj) {
+            for (const o in obj) {
                 if (Object.prototype.hasOwnProperty.call(obj, o)) {
                     item[o] = obj[o];
                 }
@@ -286,7 +286,7 @@ function processAccessAndAllowNavigationEntries (config) {
 function parseWhitelistUrlForATS (url, minimum_tls_version, requires_forward_secrecy) {
     // @todo 'url.parse' was deprecated since v11.0.0. Use 'url.URL' constructor instead  node/no-deprecated-api
     var href = URL.parse(url); // eslint-disable-line
-    var retObj = {};
+    const retObj = {};
     retObj.Hostname = href.hostname;
 
     if (url === '*') {
@@ -299,9 +299,9 @@ function parseWhitelistUrlForATS (url, minimum_tls_version, requires_forward_sec
 
     if (!retObj.Hostname) {
         // check origin, if it allows subdomains (wildcard in hostname), we set NSIncludesSubdomains to YES. Default is NO
-        var subdomain1 = '/*.'; // wildcard in hostname
-        var subdomain2 = '*://*.'; // wildcard in hostname and protocol
-        var subdomain3 = '*://'; // wildcard in protocol only
+        const subdomain1 = '/*.'; // wildcard in hostname
+        const subdomain2 = '*://*.'; // wildcard in hostname and protocol
+        const subdomain3 = '*://'; // wildcard in protocol only
         if (href.pathname.indexOf(subdomain1) === 0) {
             retObj.NSIncludesSubdomains = true;
             retObj.Hostname = href.pathname.substring(subdomain1.length);
@@ -320,7 +320,7 @@ function parseWhitelistUrlForATS (url, minimum_tls_version, requires_forward_sec
         retObj.NSExceptionMinimumTLSVersion = minimum_tls_version;
     }
 
-    var rfs = (requires_forward_secrecy === 'true');
+    const rfs = (requires_forward_secrecy === 'true');
     if (requires_forward_secrecy && !rfs) { // default is true
         retObj.NSExceptionRequiresForwardSecrecy = false;
     }
@@ -340,21 +340,21 @@ function parseWhitelistUrlForATS (url, minimum_tls_version, requires_forward_sec
     in config.xml
 */
 function writeATSEntries (config) {
-    var pObj = processAccessAndAllowNavigationEntries(config);
+    const pObj = processAccessAndAllowNavigationEntries(config);
 
-    var ats = {};
+    const ats = {};
 
-    for (var hostname in pObj) {
+    for (const hostname in pObj) {
         if (Object.prototype.hasOwnProperty.call(pObj, hostname)) {
             if (hostname === '*') {
                 ats.NSAllowsArbitraryLoads = true;
                 continue;
             }
 
-            var entry = pObj[hostname];
-            var exceptionDomain = {};
+            const entry = pObj[hostname];
+            const exceptionDomain = {};
 
-            for (var key in entry) {
+            for (const key in entry) {
                 if (Object.prototype.hasOwnProperty.call(entry, key) && key !== 'Hostname') {
                     exceptionDomain[key] = entry[key];
                 }

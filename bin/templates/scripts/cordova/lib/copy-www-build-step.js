@@ -24,17 +24,17 @@
 // This script should not be called directly.
 // It is called as a build step from Xcode.
 
-var BUILT_PRODUCTS_DIR = process.env.BUILT_PRODUCTS_DIR;
-var FULL_PRODUCT_NAME = process.env.FULL_PRODUCT_NAME;
-var COPY_HIDDEN = process.env.COPY_HIDDEN;
-var PROJECT_FILE_PATH = process.env.PROJECT_FILE_PATH;
+const BUILT_PRODUCTS_DIR = process.env.BUILT_PRODUCTS_DIR;
+const FULL_PRODUCT_NAME = process.env.FULL_PRODUCT_NAME;
+const COPY_HIDDEN = process.env.COPY_HIDDEN;
+const PROJECT_FILE_PATH = process.env.PROJECT_FILE_PATH;
 
-var path = require('path');
-var fs = require('fs');
-var shell = require('shelljs');
-var srcDir = 'www';
-var dstDir = path.join(BUILT_PRODUCTS_DIR, FULL_PRODUCT_NAME, 'Contents', 'Resources');
-var dstWwwDir = path.join(dstDir, 'www');
+const path = require('path');
+const fs = require('fs');
+const shell = require('shelljs');
+const srcDir = 'www';
+const dstDir = path.join(BUILT_PRODUCTS_DIR, FULL_PRODUCT_NAME, 'Contents', 'Resources');
+const dstWwwDir = path.join(dstDir, 'www');
 
 if (!BUILT_PRODUCTS_DIR) {
     console.error('The script is meant to be run as an Xcode build step and relies on env variables set by Xcode.');
@@ -56,7 +56,7 @@ shell.rm('-rf', path.join(dstDir, 'PkgInfo'));
 shell.rm('-rf', path.join(dstDir, 'embedded.mobileprovision'));
 
 // Copy www dir recursively
-var code;
+let code;
 if (COPY_HIDDEN) {
     code = shell.exec('rsync -Lra "' + srcDir + '" "' + dstDir + '"').code;
 } else {

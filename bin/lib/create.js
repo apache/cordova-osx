@@ -19,10 +19,10 @@
     under the License.
 */
 
-var shell = require('shelljs');
-var path = require('path');
-var fs = require('fs');
-var ROOT = path.join(__dirname, '..', '..');
+const shell = require('shelljs');
+const path = require('path');
+const fs = require('fs');
+const ROOT = path.join(__dirname, '..', '..');
 
 function updateSubprojectHelp () {
     console.log('Updates the subproject path of the CordovaLib entry to point to this script\'s version of Cordova.');
@@ -30,7 +30,7 @@ function updateSubprojectHelp () {
 }
 
 function setShellFatal (value, func) {
-    var oldVal = shell.config.fatal;
+    const oldVal = shell.config.fatal;
     shell.config.fatal = value;
     func();
     shell.config.fatal = oldVal;
@@ -57,9 +57,9 @@ function copyJsAndCordovaLib (projectPath, projectName, use_shared) {
             // like it should).
             fs.symlinkSync(path.join(ROOT, 'CordovaLib'), path.join(projectPath, 'CordovaLib'));
         } else {
-            var r = path.join(projectPath, projectName);
-            var srcLib = path.join(ROOT, 'CordovaLib');
-            var dstLib = path.join(projectPath, 'CordovaLib');
+            const r = path.join(projectPath, projectName);
+            const srcLib = path.join(ROOT, 'CordovaLib');
+            const dstLib = path.join(projectPath, 'CordovaLib');
             shell.mkdir('-p', path.join(dstLib, 'CordovaLib.xcodeproj'));
             shell.cp('-f', path.join(r, '.gitignore'), projectPath);
             shell.cp('-rf', path.join(srcLib, 'CordovaLib'), dstLib);
@@ -73,14 +73,14 @@ function copyJsAndCordovaLib (projectPath, projectName, use_shared) {
 }
 
 function copyScripts (projectPath) {
-    var srcScriptsDir = path.join(ROOT, 'bin', 'templates', 'scripts', 'cordova');
-    var destScriptsDir = path.join(projectPath, 'cordova');
+    const srcScriptsDir = path.join(ROOT, 'bin', 'templates', 'scripts', 'cordova');
+    const destScriptsDir = path.join(projectPath, 'cordova');
 
     // Delete old scripts directory.
     shell.rm('-rf', destScriptsDir);
 
     // Copy in the new ones.
-    var binDir = path.join(ROOT, 'bin');
+    const binDir = path.join(ROOT, 'bin');
     shell.cp('-r', srcScriptsDir, projectPath);
 
     const nodeModulesDir = path.join(ROOT, 'node_modules');
@@ -102,9 +102,9 @@ function copyScripts (projectPath) {
 }
 
 function detectProjectName (projectDir) {
-    var files = fs.readdirSync(projectDir);
-    for (var i = 0; i < files.length; ++i) {
-        var m = /(.*)\.xcodeproj$/.exec(files[i]);
+    const files = fs.readdirSync(projectDir);
+    for (let i = 0; i < files.length; ++i) {
+        const m = /(.*)\.xcodeproj$/.exec(files[i]);
         if (m) {
             return m[1];
         }
@@ -117,7 +117,7 @@ function AbsParentPath (_path) {
 }
 
 function AbsProjectPath (relative_path) {
-    var absolute_path = path.resolve(relative_path);
+    let absolute_path = path.resolve(relative_path);
     if (/.pbxproj$/.test(absolute_path)) {
         absolute_path = AbsParentPath(absolute_path);
     } else if (!(/.xcodeproj$/.test(absolute_path))) {
@@ -145,10 +145,10 @@ function relpath (_path, start) {
 exports.createProject = function (project_path, package_name, project_name, opts, events) {
     package_name = package_name || 'my.cordova.project';
     project_name = project_name || 'CordovaExample';
-    var use_shared = !!opts.link;
-    var bin_dir = path.join(ROOT, 'bin');
-    var project_parent = path.dirname(project_path);
-    var project_template_dir = opts.customTemplate || path.join(bin_dir, 'templates', 'project');
+    const use_shared = !!opts.link;
+    const bin_dir = path.join(ROOT, 'bin');
+    const project_parent = path.dirname(project_path);
+    const project_template_dir = opts.customTemplate || path.join(bin_dir, 'templates', 'project');
 
     // check that project path doesn't exist
     if (fs.existsSync(project_path)) {
@@ -168,12 +168,12 @@ exports.createProject = function (project_path, package_name, project_name, opts
     shell.cp('-rf', path.join(project_template_dir, '__PROJECT_NAME__'), project_path);
     shell.mv(path.join(project_path, '__PROJECT_NAME__'), path.join(project_path, project_name));
 
-    var r = path.join(project_path, project_name);
+    const r = path.join(project_path, project_name);
     shell.mv(path.join(r, '__PROJECT_NAME__-Info.plist'), path.join(r, project_name + '-Info.plist'));
     shell.mv(path.join(r, '__PROJECT_NAME__-Prefix.pch'), path.join(r, project_name + '-Prefix.pch'));
     shell.mv(path.join(r, 'gitignore'), path.join(r, '.gitignore'));
 
-    var project_name_esc = project_name.replace(/&/g, '\\&');
+    const project_name_esc = project_name.replace(/&/g, '\\&');
     shell.sed('-i', /__PROJECT_NAME__/g, project_name_esc, path.join(r + '.xcodeproj', 'project.pbxproj'));
     shell.sed('-i', /__PROJECT_NAME__/g, project_name_esc, path.join(r, 'Classes', 'AppDelegate.h'));
     shell.sed('-i', /__PROJECT_NAME__/g, project_name_esc, path.join(r, 'Classes', 'AppDelegate.m'));
@@ -196,7 +196,7 @@ exports.createProject = function (project_path, package_name, project_name, opts
 };
 
 exports.updateProject = function (projectPath, opts, events) {
-    var projectName = detectProjectName(projectPath);
+    const projectName = detectProjectName(projectPath);
     setShellFatal(true, function () {
         copyJsAndCordovaLib(projectPath, projectName, opts.link);
         copyScripts(projectPath);
@@ -206,8 +206,8 @@ exports.updateProject = function (projectPath, opts, events) {
 };
 
 function generateDoneMessage (type, link) {
-    var pkg = require('../../package');
-    var msg = 'OS X project ' + (type === 'update' ? 'updated ' : 'created ') + 'with ' + pkg.name + '@' + pkg.version;
+    const pkg = require('../../package');
+    let msg = 'OS X project ' + (type === 'update' ? 'updated ' : 'created ') + 'with ' + pkg.name + '@' + pkg.version;
     if (link) {
         msg += ' and has a linked CordovaLib';
     }
@@ -220,24 +220,24 @@ function update_cordova_subproject (argv) {
         throw new Error('Usage error for update_cordova_subproject');
     }
 
-    var projectPath = AbsProjectPath(argv[0]);
-    var cordovaLibXcodePath;
+    const projectPath = AbsProjectPath(argv[0]);
+    let cordovaLibXcodePath;
     if (argv.length < 2) {
         cordovaLibXcodePath = path.join(ROOT, 'CordovaLib', 'CordovaLib.xcodeproj');
     } else {
         cordovaLibXcodePath = AbsProjectPath(argv[1]);
     }
 
-    var parentProjectPath = AbsParentPath(projectPath);
-    var subprojectPath = relpath(cordovaLibXcodePath, parentProjectPath);
-    var REGEX = /(.+PBXFileReference.+wrapper.pb-project.+)(path = .+?;)(.*)(sourceTree.+;)(.+)/;
-    var newLine;
-    var lines = shell.grep('CordovaLib.xcodeproj', path.join(projectPath, 'project.pbxproj'));
-    var found = false;
+    const parentProjectPath = AbsParentPath(projectPath);
+    let subprojectPath = relpath(cordovaLibXcodePath, parentProjectPath);
+    const REGEX = /(.+PBXFileReference.+wrapper.pb-project.+)(path = .+?;)(.*)(sourceTree.+;)(.+)/;
+    let newLine;
+    let lines = shell.grep('CordovaLib.xcodeproj', path.join(projectPath, 'project.pbxproj'));
+    let found = false;
 
     subprojectPath = subprojectPath.replace(/\\/g, '/');
     lines = lines.split('\n');
-    for (var i = 0; i < lines.length; ++i) {
+    for (let i = 0; i < lines.length; ++i) {
         if (lines[i].match(REGEX)) {
             found = true;
             /* eslint-disable no-useless-escape */
@@ -252,8 +252,8 @@ function update_cordova_subproject (argv) {
 
     // Patching pbxproj to replace copy www shell script with nodejs
     // Don't forget to duplicate this in templates/__CLI__.xcodeproj/project.pbxproj and templates/__PROJECT_NAME__.xcodeproj/project.pbxproj on later changes
-    var copyWwwSh = 'cordova\/lib\/copy-www-build-step\.sh';
-    var copyWwwJs = 'NODEJS_PATH=\/usr\/local\/bin; NVM_NODE_PATH=~\/\.nvm\/versions\/node\/`nvm version 2>\/dev\/null`\/bin; N_NODE_PATH=`find \/usr\/local\/n\/versions\/node\/\* -maxdepth 0 -type d 2>\/dev\/null \| tail -1`\/bin; XCODE_NODE_PATH=`xcode-select --print-path`\/usr\/share\/xcs\/Node\/bin; PATH=\$NODEJS_PATH:\$NVM_NODE_PATH:\$N_NODE_PATH:\$XCODE_NODE_PATH:\$PATH && node cordova\/lib\/copy-www-build-step\.js';
+    const copyWwwSh = 'cordova\/lib\/copy-www-build-step\.sh';
+    const copyWwwJs = 'NODEJS_PATH=\/usr\/local\/bin; NVM_NODE_PATH=~\/\.nvm\/versions\/node\/`nvm version 2>\/dev\/null`\/bin; N_NODE_PATH=`find \/usr\/local\/n\/versions\/node\/\* -maxdepth 0 -type d 2>\/dev\/null \| tail -1`\/bin; XCODE_NODE_PATH=`xcode-select --print-path`\/usr\/share\/xcs\/Node\/bin; PATH=\$NODEJS_PATH:\$NVM_NODE_PATH:\$N_NODE_PATH:\$XCODE_NODE_PATH:\$PATH && node cordova\/lib\/copy-www-build-step\.js';
     shell.sed('-i', copyWwwSh, copyWwwJs, path.join(projectPath, 'project.pbxproj'));
 
     /* eslint-enable no-useless-escape */

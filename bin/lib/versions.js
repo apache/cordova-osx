@@ -19,7 +19,7 @@
     under the License.
 */
 
-var child_process = require('child_process');
+const child_process = require('child_process');
 
 exports.get_apple_osx_version = function () {
     return new Promise((resolve, reject) => {
@@ -31,11 +31,11 @@ exports.get_apple_osx_version = function () {
             }
         });
     }).then(function (output) {
-        var regex = /[0-9]*\.[0-9]*/;
-        var versions = [];
-        var regexOSX = /^OS X \d+/;
+        const regex = /[0-9]*\.[0-9]*/;
+        const versions = [];
+        const regexOSX = /^OS X \d+/;
         output = output.split('\n');
-        for (var i = 0; i < output.length; i++) {
+        for (let i = 0; i < output.length; i++) {
             if (output[i].trim().match(regexOSX)) {
                 versions[versions.length] = parseFloat(output[i].match(regex)[0]);
             }
@@ -48,7 +48,7 @@ exports.get_apple_osx_version = function () {
 exports.get_apple_xcode_version = function () {
     return new Promise((resolve, reject) => {
         child_process.exec('xcodebuild -version', function (error, stdout, stderr) {
-            var versionMatch = /Xcode (.*)/.exec(stdout);
+            const versionMatch = /Xcode (.*)/.exec(stdout);
             if (error || !versionMatch) {
                 reject(stderr);
             } else {
@@ -83,7 +83,7 @@ exports.compareVersions = function (version1, version2) {
     function parseVer (version) {
         return version.split('.').map(function (value) {
             // try to convert version segment to Number
-            var parsed = Number(value);
+            const parsed = Number(value);
             // Number constructor is strict enough and will return NaN
             // if conversion fails. In this case we won't be able to compare versions properly
             if (isNaN(parsed)) {
@@ -92,14 +92,14 @@ exports.compareVersions = function (version1, version2) {
             return parsed;
         });
     }
-    var parsedVer1 = parseVer(version1);
-    var parsedVer2 = parseVer(version2);
+    const parsedVer1 = parseVer(version1);
+    const parsedVer2 = parseVer(version2);
 
     // Compare corresponding segments of each version
-    for (var i = 0; i < Math.max(parsedVer1.length, parsedVer2.length); i++) {
+    for (let i = 0; i < Math.max(parsedVer1.length, parsedVer2.length); i++) {
         // if segment is not specified, assume that it is 0
         // E.g. 3.1 is equal to 3.1.0
-        var ret = (parsedVer1[i] || 0) - (parsedVer2[i] || 0);
+        const ret = (parsedVer1[i] || 0) - (parsedVer2[i] || 0);
         // if segments are not equal, we're finished
         if (ret !== 0) return ret;
     }

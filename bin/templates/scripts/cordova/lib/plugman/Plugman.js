@@ -17,16 +17,16 @@
        under the License.
 */
 
-var path = require('path');
-var fs = require('fs');
-var shell = require('shelljs');
+const path = require('path');
+const fs = require('fs');
+const shell = require('shelljs');
 
-var CordovaError = require('cordova-common').CordovaError;
-var ActionStack = require('cordova-common').ActionStack;
+const CordovaError = require('cordova-common').CordovaError;
+const ActionStack = require('cordova-common').ActionStack;
 
-var configMunger = require('../configMunger');
-var projectFile = require('../projectFile');
-var pluginHandlers = require('./pluginHandlers');
+const configMunger = require('../configMunger');
+const projectFile = require('../projectFile');
+const pluginHandlers = require('./pluginHandlers');
 
 function Plugman (locations, events) {
     this.locations = locations;
@@ -38,7 +38,7 @@ function Plugman (locations, events) {
 }
 
 // shared Plugman instance
-var _instance = null;
+let _instance = null;
 
 Plugman.get = function (locations, events) {
     if (!_instance) {
@@ -57,10 +57,10 @@ Plugman.prototype.addPlugin = function (plugin, installOptions) {
     installOptions = installOptions || {};
     installOptions.variables = installOptions.variables || {};
 
-    var self = this;
-    var actions = new ActionStack();
+    const self = this;
+    const actions = new ActionStack();
 
-    var project = projectFile.parse(this.locations);
+    const project = projectFile.parse(this.locations);
 
     // gather all files needs to be handled during install
     plugin.getFilesAndFrameworks(this.platform).concat(plugin.getAssets(this.platform)).concat(plugin.getJsModules(this.platform)).forEach(function (item) {
@@ -86,7 +86,7 @@ Plugman.prototype.addPlugin = function (plugin, installOptions) {
             .add_plugin_changes(plugin, installOptions.variables, /* is_top_level= */true, /* should_increment= */true)
             .save_all();
 
-        var targetDir = installOptions.usePlatformWww
+        const targetDir = installOptions.usePlatformWww
             ? self.locations.platformWww
             : self.locations.www;
 
@@ -97,9 +97,9 @@ Plugman.prototype.addPlugin = function (plugin, installOptions) {
 Plugman.prototype.removePlugin = function (plugin, uninstallOptions) {
     if (!plugin || plugin.constructor.name !== 'PluginInfo') { return Promise.reject(new CordovaError('The parameter is incorrect. The first parameter to addPlugin should be a PluginInfo instance')); }
 
-    var self = this;
-    var actions = new ActionStack();
-    var project = projectFile.parse(this.locations);
+    const self = this;
+    const actions = new ActionStack();
+    const project = projectFile.parse(this.locations);
 
     // queue up plugin files
     plugin.getFilesAndFrameworks(this.platform).concat(plugin.getAssets(this.platform)).concat(plugin.getJsModules(this.platform)).forEach(function (item) {
@@ -120,7 +120,7 @@ Plugman.prototype.removePlugin = function (plugin, uninstallOptions) {
             .remove_plugin_changes(plugin, /* is_top_level= */true)
             .save_all();
 
-        var targetDir = uninstallOptions.usePlatformWww
+        const targetDir = uninstallOptions.usePlatformWww
             ? self.locations.platformWww
             : self.locations.www;
 
@@ -138,17 +138,17 @@ Plugman.prototype.removePlugin = function (plugin, uninstallOptions) {
  *   should be written to.
  */
 Plugman.prototype._addModulesInfo = function (plugin, targetDir) {
-    var installedModules = this._platformJson.root.modules || [];
+    const installedModules = this._platformJson.root.modules || [];
 
-    var installedPaths = installedModules.map(function (installedModule) {
+    const installedPaths = installedModules.map(function (installedModule) {
         return installedModule.file;
     });
 
-    var modulesToInstall = plugin.getJsModules(this.platform).filter(function (moduleToInstall) {
+    const modulesToInstall = plugin.getJsModules(this.platform).filter(function (moduleToInstall) {
         return installedPaths.indexOf(moduleToInstall.file) === -1;
     }).map(function (moduleToInstall) {
-        var moduleName = plugin.id + '.' + (moduleToInstall.name || moduleToInstall.src.match(/([^\/]+)\.js/)[1]); /* eslint no-useless-escape : 0 */
-        var obj = {
+        const moduleName = plugin.id + '.' + (moduleToInstall.name || moduleToInstall.src.match(/([^\/]+)\.js/)[1]); /* eslint no-useless-escape : 0 */
+        const obj = {
             file: ['plugins', plugin.id, moduleToInstall.src].join('/'),
             id: moduleName,
             pluginId: plugin.id
@@ -180,14 +180,14 @@ Plugman.prototype._addModulesInfo = function (plugin, targetDir) {
  *   directories.
  */
 Plugman.prototype._writePluginModules = function (targetDir) {
-    var self = this;
+    const self = this;
     // Write out moduleObjects as JSON wrapped in a cordova module to cordova_plugins.js
-    var final_contents = 'cordova.define(\'cordova/plugin_list\', function(require, exports, module) {\n';
+    let final_contents = 'cordova.define(\'cordova/plugin_list\', function(require, exports, module) {\n';
     final_contents += 'module.exports = ' + JSON.stringify(this._platformJson.root.modules, null, '    ') + ';\n';
     final_contents += 'module.exports.metadata = \n';
     final_contents += '// TOP OF METADATA\n';
 
-    var pluginMetadata = Object.keys(this._platformJson.root.installed_plugins).reduce(function (metadata, plugin) {
+    const pluginMetadata = Object.keys(this._platformJson.root.installed_plugins).reduce(function (metadata, plugin) {
         metadata[plugin] = self._platformJson.root.installed_plugins[plugin].version;
         return metadata;
     }, {});
@@ -210,12 +210,12 @@ Plugman.prototype._writePluginModules = function (targetDir) {
  *   should be written to.
  */
 Plugman.prototype._removeModulesInfo = function (plugin, targetDir) {
-    var installedModules = this._platformJson.root.modules || [];
-    var modulesToRemove = plugin.getJsModules(this.platform).map(function (jsModule) {
+    const installedModules = this._platformJson.root.modules || [];
+    const modulesToRemove = plugin.getJsModules(this.platform).map(function (jsModule) {
         return ['plugins', plugin.id, jsModule.src].join('/');
     });
 
-    var updatedModules = installedModules.filter(function (installedModule) {
+    const updatedModules = installedModules.filter(function (installedModule) {
         return (modulesToRemove.indexOf(installedModule.file) === -1);
     });
 

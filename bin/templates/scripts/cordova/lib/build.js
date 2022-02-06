@@ -18,16 +18,16 @@
  */
 
 const { promisify } = require('util');
-var path = require('path');
-var shell = require('shelljs');
-var spawn = require('./spawn');
-var check_reqs = require('./check_reqs');
-var fs = require('fs');
+const path = require('path');
+const shell = require('shelljs');
+const spawn = require('./spawn');
+const check_reqs = require('./check_reqs');
+const fs = require('fs');
 
-var events = require('cordova-common').events;
+const events = require('cordova-common').events;
 
-var projectPath = path.join(__dirname, '..', '..');
-var projectName = null;
+const projectPath = path.join(__dirname, '..', '..');
+let projectName = null;
 
 module.exports.run = function (buildOpts) {
     buildOpts = buildOpts || {};
@@ -45,10 +45,10 @@ module.exports.run = function (buildOpts) {
             return Promise.reject('Build config file does not exist:' + buildOpts.buildConfig);
         }
         events.emit('log', 'Reading build config file:', path.resolve(buildOpts.buildConfig));
-        var buildConfig = JSON.parse(fs.readFileSync(buildOpts.buildConfig, 'utf-8'));
+        const buildConfig = JSON.parse(fs.readFileSync(buildOpts.buildConfig, 'utf-8'));
         if (buildConfig.osx) {
-            var buildType = buildOpts.release ? 'release' : 'debug';
-            var config = buildConfig.osx[buildType];
+            const buildType = buildOpts.release ? 'release' : 'debug';
+            const config = buildConfig.osx[buildType];
             if (config) {
                 ['codeSignIdentity', 'codeSignResourceRules', 'provisioningProfile'].forEach(
                     function (key) {
@@ -62,7 +62,7 @@ module.exports.run = function (buildOpts) {
         return findXCodeProjectIn(projectPath);
     }).then(function (name) {
         projectName = name;
-        var extraConfig = '';
+        let extraConfig = '';
         if (buildOpts.codeSignIdentity) {
             extraConfig += 'CODE_SIGN_IDENTITY = ' + buildOpts.codeSignIdentity + '\n';
         }
@@ -74,12 +74,12 @@ module.exports.run = function (buildOpts) {
         }
         return promisify(fs.writeFile)(path.join(__dirname, '..', 'build-extras.xcconfig'), extraConfig, 'utf-8');
     }).then(function () {
-        var configuration = buildOpts.release ? 'Release' : 'Debug';
+        const configuration = buildOpts.release ? 'Release' : 'Debug';
 
         events.emit('log', 'Building project  : ' + path.join(projectPath, projectName + '.xcodeproj'));
         events.emit('log', '\tConfiguration : ' + configuration);
 
-        var xcodebuildArgs = getXcodeArgs(projectName, projectPath, configuration);
+        const xcodebuildArgs = getXcodeArgs(projectName, projectPath, configuration);
         return spawn('xcodebuild', xcodebuildArgs, projectPath);
     }).then(function () {
         if (buildOpts.noSign) {
@@ -110,7 +110,7 @@ module.exports.run = function (buildOpts) {
  */
 function findXCodeProjectIn (projectPath) {
     // 'Searching for Xcode project in ' + projectPath);
-    var xcodeProjFiles = shell.ls(projectPath).filter(function (name) {
+    const xcodeProjFiles = shell.ls(projectPath).filter(function (name) {
         return path.extname(name) === '.xcodeproj';
     });
 
@@ -122,7 +122,7 @@ function findXCodeProjectIn (projectPath) {
             projectPath + '\nUsing first one');
     }
 
-    var projectName = path.basename(xcodeProjFiles[0], '.xcodeproj');
+    const projectName = path.basename(xcodeProjFiles[0], '.xcodeproj');
     return Promise.resolve(projectName);
 }
 

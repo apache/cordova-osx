@@ -17,14 +17,14 @@
  * under the License.
  */
 
-var path = require('path');
-var shell = require('shelljs');
-var spawn = require('./spawn');
+const path = require('path');
+const shell = require('shelljs');
+const spawn = require('./spawn');
 
-var projectPath = path.join(__dirname, '..', '..');
+const projectPath = path.join(__dirname, '..', '..');
 
 module.exports.run = function () {
-    var projectName = shell.ls(projectPath).filter(function (name) {
+    const projectName = shell.ls(projectPath).filter(function (name) {
         return path.extname(name) === '.xcodeproj';
     })[0];
 

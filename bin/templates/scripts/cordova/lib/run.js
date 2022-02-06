@@ -19,12 +19,12 @@
 
 /* jshint node: true */
 
-var path = require('path');
-var build = require('./build');
-var spawn = require('./spawn');
-var events = require('cordova-common').events;
+const path = require('path');
+const build = require('./build');
+const spawn = require('./spawn');
+const events = require('cordova-common').events;
 
-var projectPath = path.join(__dirname, '..', '..');
+const projectPath = path.join(__dirname, '..', '..');
 
 module.exports.run = function (runOptions) {
     return Promise.resolve().then(function () {
@@ -34,7 +34,7 @@ module.exports.run = function (runOptions) {
     }).then(function () {
         return build.findXCodeProjectIn(projectPath);
     }).then(function (projectName) {
-        var appPath = path.join(projectPath, 'build', projectName + '.app');
+        const appPath = path.join(projectPath, 'build', projectName + '.app');
         return runApp(appPath, projectName);
     });
 };
@@ -44,7 +44,7 @@ module.exports.run = function (runOptions) {
  * @return {Promise}        Resolves when run succeeds otherwise rejects
  */
 function runApp (appDir, appName) {
-    var binPath = path.join(appDir, 'Contents', 'MacOS', appName);
+    const binPath = path.join(appDir, 'Contents', 'MacOS', appName);
     events.emit('log', 'Starting: ' + binPath);
     return spawn(binPath);
 }

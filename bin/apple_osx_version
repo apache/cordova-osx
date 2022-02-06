@@ -19,7 +19,7 @@
     under the License.
 */
 
-var versions = require('./lib/versions.js');
+const versions = require('./lib/versions.js');
 
 versions.get_apple_osx_version().catch(function (err) {
     console.log(err);

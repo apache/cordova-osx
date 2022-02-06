@@ -17,13 +17,13 @@
     under the License.
 */
 
-var fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
 
-var PluginManager = require('cordova-common').PluginManager;
-var projectFile = require('./lib/projectFile');
-var CordovaError = require('cordova-common').CordovaError;
-var ConsoleLogger = require('./lib/ConsoleLogger');
+const PluginManager = require('cordova-common').PluginManager;
+const projectFile = require('./lib/projectFile');
+const CordovaError = require('cordova-common').CordovaError;
+const ConsoleLogger = require('./lib/ConsoleLogger');
 
 /**
  * Creates a new PlatformApi instance.
@@ -45,8 +45,8 @@ function Api (platform, platformRootDir, events) {
     // NOTE: trick to share one EventEmitter instance across all js code
     require('cordova-common').events = this.events;
 
-    var xcodeProjDir;
-    var xcodeCordovaProj;
+    let xcodeProjDir;
+    let xcodeCordovaProj;
 
     try {
         xcodeProjDir = fs.readdirSync(this.root).filter(function (e) { return e.match(/\.xcodeproj$/i); })[0];
@@ -54,7 +54,7 @@ function Api (platform, platformRootDir, events) {
             throw new CordovaError('The provided path "' + this.root + '" is not a Cordova iOS project.');
         }
 
-        var cordovaProjName = xcodeProjDir.substring(xcodeProjDir.lastIndexOf(path.sep) + 1, xcodeProjDir.indexOf('.xcodeproj'));
+        const cordovaProjName = xcodeProjDir.substring(xcodeProjDir.lastIndexOf(path.sep) + 1, xcodeProjDir.indexOf('.xcodeproj'));
         xcodeCordovaProj = path.join(this.root, cordovaProjName);
     } catch (e) {
         throw new CordovaError('The provided path "' + this.root + '" is not a Cordova iOS project.');
@@ -100,7 +100,7 @@ Api.createPlatform = function (destination, config, options, events) {
         .then(function () {
             // after platform is created we return Api instance based on new Api.js location
             // This is required to correctly resolve paths in the future api calls
-            var PlatformApi = require(path.resolve(destination, 'cordova/Api'));
+            const PlatformApi = require(path.resolve(destination, 'cordova/Api'));
             return new PlatformApi('osx', destination, events);
         });
 };
@@ -125,7 +125,7 @@ Api.updatePlatform = function (destination, options, events) {
     return require('../../../lib/create')
         .updateProject(destination, options, events || ConsoleLogger.get())
         .then(function () {
-            var PlatformApi = require(path.resolve(destination, 'cordova/Api'));
+            const PlatformApi = require(path.resolve(destination, 'cordova/Api'));
             return new PlatformApi('android', destination, events);
         });
 };
@@ -137,7 +137,7 @@ Api.updatePlatform = function (destination, options, events) {
  *   platform's file structure and other properties of platform.
  */
 Api.prototype.getPlatformInfo = function () {
-    var result = {};
+    const result = {};
     result.locations = this.locations;
     result.root = this.root;
     result.name = this.platform;
@@ -183,7 +183,7 @@ Api.prototype.prepare = function (cordovaProject) {
  *   CordovaError instance.
  */
 Api.prototype.addPlugin = function (plugin, installOptions) {
-    var xcodeproj = projectFile.parse(this.locations);
+    const xcodeproj = projectFile.parse(this.locations);
     return PluginManager.get(this.platform, this.locations, xcodeproj).addPlugin(plugin, installOptions);
 };
 
@@ -201,7 +201,7 @@ Api.prototype.addPlugin = function (plugin, installOptions) {
  *   CordovaError instance.
  */
 Api.prototype.removePlugin = function (plugin, uninstallOptions) {
-    var xcodeproj = projectFile.parse(this.locations);
+    const xcodeproj = projectFile.parse(this.locations);
     return PluginManager.get(this.platform, this.locations, xcodeproj).removePlugin(plugin, uninstallOptions);
 };
 
@@ -238,7 +238,7 @@ Api.prototype.removePlugin = function (plugin, uninstallOptions) {
  *   CordovaError instance.
  */
 Api.prototype.build = function (buildOptions) {
-    var self = this;
+    const self = this;
     return require('./lib/check_reqs').run()
         .then(function () {
             return require('./lib/build').run.call(self, buildOptions);
@@ -258,7 +258,7 @@ Api.prototype.build = function (buildOptions) {
  *   successfully, or rejected with CordovaError.
  */
 Api.prototype.run = function (runOptions) {
-    var self = this;
+    const self = this;
     return require('./lib/check_reqs').run()
         .then(function () {
             return require('./lib/run').run.call(self, runOptions);
@@ -272,7 +272,7 @@ Api.prototype.run = function (runOptions) {
  *   CordovaError.
  */
 Api.prototype.clean = function (cleanOptions) {
-    var self = this;
+    const self = this;
     return require('./lib/check_reqs').run()
         .then(function () {
             return require('./lib/clean').run.call(self, cleanOptions);

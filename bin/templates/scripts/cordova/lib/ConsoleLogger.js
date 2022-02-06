@@ -17,10 +17,10 @@
     under the License.
 */
 
-var loggerInstance;
-var util = require('util');
-var EventEmitter = require('events').EventEmitter;
-var CordovaError = require('cordova-common').CordovaError;
+let loggerInstance;
+const util = require('util');
+const EventEmitter = require('events').EventEmitter;
+const CordovaError = require('cordova-common').CordovaError;
 
 /**
  * @class ConsoleLogger
@@ -36,7 +36,7 @@ var CordovaError = require('cordova-common').CordovaError;
 function ConsoleLogger () {
     EventEmitter.call(this);
 
-    var isVerbose = process.argv.indexOf('-d') >= 0 || process.argv.indexOf('--verbose') >= 0;
+    const isVerbose = process.argv.indexOf('-d') >= 0 || process.argv.indexOf('--verbose') >= 0;
     // For CordovaError print only the message without stack trace unless we
     // are in a verbose mode.
     process.on('uncaughtException', function (err) {

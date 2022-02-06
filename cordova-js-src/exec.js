@@ -24,20 +24,20 @@
 
  * @private
  */
-var cordova = require('cordova');
-var utils = require('cordova/utils');
-var base64 = require('cordova/base64');
+const cordova = require('cordova');
+const utils = require('cordova/utils');
+const base64 = require('cordova/base64');
 
 function massageMessageNativeToJs (message) {
     if (message.CDVType === 'ArrayBuffer') {
-        var stringToArrayBuffer = function (str) {
-            var ret = new Uint8Array(str.length);
-            for (var i = 0; i < str.length; i++) {
+        const stringToArrayBuffer = function (str) {
+            const ret = new Uint8Array(str.length);
+            for (let i = 0; i < str.length; i++) {
                 ret[i] = str.charCodeAt(i);
             }
             return ret.buffer;
         };
-        var base64ToArrayBuffer = function (b64) {
+        const base64ToArrayBuffer = function (b64) {
             return stringToArrayBuffer(atob(b64));
         };
         message = base64ToArrayBuffer(message.data);
@@ -46,7 +46,7 @@ function massageMessageNativeToJs (message) {
 }
 
 function convertMessageToArgsNativeToJs (message) {
-    var args = [];
+    const args = [];
     if (!message || !Object.prototype.hasOwnProperty.call(message, 'CDVType')) {
         args.push(message);
     } else if (message.CDVType === 'MultiPart') {
@@ -63,7 +63,7 @@ function massageArgsJsToNative (args) {
     if (!args || utils.typeName(args) !== 'Array') {
         return args;
     }
-    var ret = [];
+    const ret = [];
     args.forEach(function (arg, i) {
         if (utils.typeName(arg) === 'ArrayBuffer') {
             ret.push({
@@ -78,8 +78,8 @@ function massageArgsJsToNative (args) {
 }
 
 function OSXExec () {
-    var successCallback, failCallback, service, action, actionArgs;
-    var callbackId = 'INVALID';
+    let successCallback, failCallback, service, action, actionArgs;
+    let callbackId = 'INVALID';
 
     successCallback = arguments[0];
     failCallback = arguments[1];
@@ -105,8 +105,8 @@ function OSXExec () {
 }
 
 OSXExec.nativeCallback = function (callbackId, status, message, keepCallback) {
-    var success = status === 0 || status === 1;
-    var args = convertMessageToArgsNativeToJs(message);
+    const success = status === 0 || status === 1;
+    const args = convertMessageToArgsNativeToJs(message);
     cordova.callbackFromNative(callbackId, success, status, args, keepCallback);
 };
 

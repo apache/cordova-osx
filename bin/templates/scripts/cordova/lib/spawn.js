@@ -17,7 +17,7 @@
        under the License.
 */
 
-var proc = require('child_process');
+const proc = require('child_process');
 
 /**
  * Run specified command with arguments
@@ -30,7 +30,7 @@ var proc = require('child_process');
 module.exports = function (cmd, args, opt_cwd) {
     return new Promise((resolve, reject) => {
         try {
-            var child = proc.spawn(cmd, args, { cwd: opt_cwd, stdio: 'inherit' });
+            const child = proc.spawn(cmd, args, { cwd: opt_cwd, stdio: 'inherit' });
 
             child.on('exit', function (code) {
                 if (code) {
