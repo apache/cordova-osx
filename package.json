@@ -25,7 +25,7 @@
     "cordova-common": "^4.0.2",
     "nopt": "^5.0.0",
     "plist": "^3.0.4",
-    "shelljs": "^0.5.3",
+    "shelljs": "^0.8.5",
     "underscore": "^1.13.2",
     "unorm": "^1.4.1",
     "xcode": "^3.0.1"
