@@ -20,6 +20,16 @@
 -->
 ## Release Notes for Cordova (OS X) ##
  
+### 7.0.0 (Mar 06, 2022)
+* [GH-117](https://github.com/apache/cordova-osx/pull/117) Prepare release 7.0.0
+* [GH-105](https://github.com/apache/cordova-osx/pull/105) Fix to make Cordova OSX build successfully on AppleSilicon target.
+* [GH-115](https://github.com/apache/cordova-osx/pull/115) refactor!: drop q
+* chore: bump version to 7.0.0-dev
+* chore: update GH description, homepage and labels
+* [GH-114](https://github.com/apache/cordova-osx/pull/114) refactor(versions): remove duplicated function
+* [GH-108](https://github.com/apache/cordova-osx/pull/108) ci: add node-14.x to workflow
+* [GH-107](https://github.com/apache/cordova-osx/pull/107) chore: clean up `package.json`
+
 ### 6.0.0 (Jun 15, 2020)
 * [GH-103](https://github.com/apache/cordova-osx/pull/103) breaking(npm): bump dependencies
 * [GH-101](https://github.com/apache/cordova-osx/pull/101) breaking: @cordova/eslint-config w/ applied fix
