@@ -1,5 +1,5 @@
 // Platform: osx
-// 538a985db128858c0a0eb4dd40fb9c8e5433fc94
+// cordova-js rel/6.1.0-3-g7c2f8304
 /*
  Licensed to the Apache Software Foundation (ASF) under one
  or more contributor license agreements.  See the NOTICE file
@@ -19,7 +19,7 @@
  under the License.
 */
 ;(function() {
-var PLATFORM_VERSION_BUILD_LABEL = '6.1.0-dev';
+var PLATFORM_VERSION_BUILD_LABEL = '7.0.0';
 // file: src/scripts/require.js
 var require;
 var define;
@@ -429,62 +429,30 @@ define("cordova/base64", function(require, exports, module) {
 var base64 = exports;
 
 base64.fromArrayBuffer = function (arrayBuffer) {
-    var array = new Uint8Array(arrayBuffer);
-    return uint8ToBase64(array);
+    return btoa(bufferToBinaryString(arrayBuffer));
 };
 
 base64.toArrayBuffer = function (str) {
-    var decodedStr = atob(str);
-    var arrayBuffer = new ArrayBuffer(decodedStr.length);
-    var array = new Uint8Array(arrayBuffer);
-    for (var i = 0, len = decodedStr.length; i < len; i++) {
-        array[i] = decodedStr.charCodeAt(i);
-    }
-    return arrayBuffer;
+    return binaryStringToBuffer(atob(str));
 };
 
-// ------------------------------------------------------------------------------
-
-/* This code is based on the performance tests at http://jsperf.com/b64tests
- * This 12-bit-at-a-time algorithm was the best performing version on all
- * platforms tested.
- */
-
-var b64_6bit = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-var b64_12bit;
-
-var b64_12bitTable = function () {
-    b64_12bit = [];
-    for (var i = 0; i < 64; i++) {
-        for (var j = 0; j < 64; j++) {
-            b64_12bit[i * 64 + j] = b64_6bit[i] + b64_6bit[j];
-        }
+function bufferToBinaryString (buffer) {
+    var bytes = new Uint8Array(buffer);
+    var CHUNK_SIZE = 1 << 15;
+    var string = '';
+    for (var i = 0; i < bytes.length; i += CHUNK_SIZE) {
+        var chunk = bytes.subarray(i, i + CHUNK_SIZE);
+        string += String.fromCharCode.apply(null, chunk);
     }
-    b64_12bitTable = function () { return b64_12bit; };
-    return b64_12bit;
-};
+    return string;
+}
 
-function uint8ToBase64 (rawData) {
-    var numBytes = rawData.byteLength;
-    var output = '';
-    var segment;
-    var table = b64_12bitTable();
-    for (var i = 0; i < numBytes - 2; i += 3) {
-        segment = (rawData[i] << 16) + (rawData[i + 1] << 8) + rawData[i + 2];
-        output += table[segment >> 12];
-        output += table[segment & 0xfff];
+function binaryStringToBuffer (binaryString) {
+    var bytes = new Uint8Array(binaryString.length);
+    for (var i = 0; i < bytes.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
     }
-    if (numBytes - i === 2) {
-        segment = (rawData[i] << 16) + (rawData[i + 1] << 8);
-        output += table[segment >> 12];
-        output += b64_6bit[(segment & 0xfff) >> 6];
-        output += '=';
-    } else if (numBytes - i === 1) {
-        segment = (rawData[i] << 16);
-        output += table[segment >> 12];
-        output += '==';
-    }
-    return output;
+    return bytes.buffer;
 }
 
 });
@@ -874,20 +842,20 @@ define("cordova/exec", function(require, exports, module) {
 
  * @private
  */
-var cordova = require('cordova');
-var utils = require('cordova/utils');
-var base64 = require('cordova/base64');
+const cordova = require('cordova');
+const utils = require('cordova/utils');
+const base64 = require('cordova/base64');
 
 function massageMessageNativeToJs (message) {
     if (message.CDVType === 'ArrayBuffer') {
-        var stringToArrayBuffer = function (str) {
-            var ret = new Uint8Array(str.length);
-            for (var i = 0; i < str.length; i++) {
+        const stringToArrayBuffer = function (str) {
+            const ret = new Uint8Array(str.length);
+            for (let i = 0; i < str.length; i++) {
                 ret[i] = str.charCodeAt(i);
             }
             return ret.buffer;
         };
-        var base64ToArrayBuffer = function (b64) {
+        const base64ToArrayBuffer = function (b64) {
             return stringToArrayBuffer(atob(b64));
         };
         message = base64ToArrayBuffer(message.data);
@@ -896,7 +864,7 @@ function massageMessageNativeToJs (message) {
 }
 
 function convertMessageToArgsNativeToJs (message) {
-    var args = [];
+    const args = [];
     if (!message || !Object.prototype.hasOwnProperty.call(message, 'CDVType')) {
         args.push(message);
     } else if (message.CDVType === 'MultiPart') {
@@ -913,7 +881,7 @@ function massageArgsJsToNative (args) {
     if (!args || utils.typeName(args) !== 'Array') {
         return args;
     }
-    var ret = [];
+    const ret = [];
     args.forEach(function (arg, i) {
         if (utils.typeName(arg) === 'ArrayBuffer') {
             ret.push({
@@ -928,14 +896,13 @@ function massageArgsJsToNative (args) {
 }
 
 function OSXExec () {
-    var successCallback, failCallback, service, action, actionArgs;
-    var callbackId = 'INVALID';
+    let callbackId = 'INVALID';
 
-    successCallback = arguments[0];
-    failCallback = arguments[1];
-    service = arguments[2];
-    action = arguments[3];
-    actionArgs = arguments[4];
+    const successCallback = arguments[0];
+    const failCallback = arguments[1];
+    const service = arguments[2];
+    const action = arguments[3];
+    let actionArgs = arguments[4];
 
     // Register the callbacks and add the callbackId to the positional
     // arguments if given.
@@ -955,8 +922,8 @@ function OSXExec () {
 }
 
 OSXExec.nativeCallback = function (callbackId, status, message, keepCallback) {
-    var success = status === 0 || status === 1;
-    var args = convertMessageToArgsNativeToJs(message);
+    const success = status === 0 || status === 1;
+    const args = convertMessageToArgsNativeToJs(message);
     cordova.callbackFromNative(callbackId, success, status, args, keepCallback);
 };
 
