@@ -1,5 +1,5 @@
 /*
-    #define CORDOVA_VERSION_MIN_REQUIRED __CORDOVA_6_0_0
+    #define CORDOVA_VERSION_MIN_REQUIRED __CORDOVA_7_0_0
  or more contributor license agreements.  See the NOTICE file
  distributed with this work for additional information
  regarding copyright ownership.  The ASF licenses this file
@@ -55,3 +55,4 @@
 #endif
 #define __CORDOVA_5_0_0 50000
 #define __CORDOVA_6_0_0 60000
+#define __CORDOVA_7_0_0 70000
