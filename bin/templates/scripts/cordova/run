@@ -19,9 +19,9 @@
        under the License.
 */
 
-var args = process.argv;
-var Api = require('./Api');
-var nopt = require('nopt');
+const args = process.argv;
+const Api = require('./Api');
+const nopt = require('nopt');
 
 // Handle help flag
 if (['--help', '/?', '-h', 'help', '-help', '/help'].indexOf(process.argv[2]) >= 0) {
@@ -30,7 +30,7 @@ if (['--help', '/?', '-h', 'help', '-help', '/help'].indexOf(process.argv[2]) >=
 }
 
 // Parse arguments (includes build params as well)
-var opts = nopt({
+const opts = nopt({
     verbose: Boolean,
     silent: Boolean,
     debug: Boolean,
@@ -54,7 +54,7 @@ opts.argv = opts.argv.remain;
 new Api().run(opts).then(function () {
     console.log('** RUN SUCCEEDED **');
 }, function (err) {
-    var errorMessage = (err && err.stack) ? err.stack : err;
+    const errorMessage = (err && err.stack) ? err.stack : err;
     console.error(errorMessage);
     process.exit(2);
 });

@@ -19,8 +19,8 @@
     under the License.
 */
 
-var create = require('./lib/create');
-var args;
+const create = require('./lib/create');
+let args;
 
 if (process.argv.length < 3) {
     create.updateSubprojectHelp();

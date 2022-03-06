@@ -29,16 +29,16 @@
  *  ./create ~/Desktop/radness org.apache.cordova.radness Radness
  */
 
-var path = require('path');
-var ConfigParser = require('cordova-common').ConfigParser;
-var Api = require('./templates/scripts/cordova/Api');
+const path = require('path');
+const ConfigParser = require('cordova-common').ConfigParser;
+const Api = require('./templates/scripts/cordova/Api');
 
-var argv = require('nopt')({
+const argv = require('nopt')({
     help: Boolean,
     link: Boolean
 });
 
-var projectPath = argv.argv.remain[0];
+const projectPath = argv.argv.remain[0];
 
 if (argv.help || !projectPath) {
     console.log('Usage: $0 [--link] <path_to_new_project> <package_name> <project_name> [<project_template_dir>]');
@@ -51,13 +51,13 @@ if (argv.help || !projectPath) {
 }
 
 // use default configuration file from project template
-var config = new ConfigParser(path.resolve(__dirname, 'templates/project/__PROJECT_NAME__/config.xml'));
+const config = new ConfigParser(path.resolve(__dirname, 'templates/project/__PROJECT_NAME__/config.xml'));
 
 // apply overrides (package and project names
 if (argv.argv.remain[1]) config.setPackageName(argv.argv.remain[1]);
 if (argv.argv.remain[2]) config.setName(argv.argv.remain[2]);
 
-var options = {
+const options = {
     link: argv.link,
     customTemplate: argv.argv.remain[3]
 };

@@ -19,9 +19,9 @@
     under the License.
 */
 
-var path = require('path');
-var Api = require('./templates/scripts/cordova/Api');
-var args = require('nopt')({
+const path = require('path');
+const Api = require('./templates/scripts/cordova/Api');
+const args = require('nopt')({
     link: Boolean,
     shared: Boolean, // alias for --link
     help: Boolean

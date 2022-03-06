@@ -19,7 +19,7 @@
        under the License.
 */
 
-var Api = require('./Api');
+const Api = require('./Api');
 
 if (['--help', '/?', '-h', 'help', '-help', '/help'].indexOf(process.argv[2]) >= 0) {
     console.log('Cleans the project directory.');
