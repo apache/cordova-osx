@@ -18,6 +18,19 @@
 # under the License.
 #
 -->
+
+---
+📌 **Deprecation Notice**
+
+This repository is deprecated and no more work will be done on this by Apache Cordova. You can continue to use this and it should work as-is but any future issues will not be fixed by the Cordova community.
+
+Feel free to fork this repository and improve your fork. Existing forks are listed in [Network](../../network) and [Forks](../../network/members).
+
+As an alternative you could use the cordova-electron platform or use cordova-ios to build macOS apps.
+
+- Learn more: https://github.com/apache/cordova/blob/master/deprecated.md
+---
+
 Cordova OSX
 =============================================================
 CordovaLib is a framework that enables users to include Cordova in their OS X application projects easily, 
