@@ -16,7 +16,7 @@
 # under the License.
 
 github:
-  description: [DEPRECATED] Apache Cordova OSX
+  description: "[DEPRECATED] Apache Cordova OSX"
   homepage: https://cordova.apache.org/
 
   labels:
